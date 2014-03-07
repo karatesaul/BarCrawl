@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Tile : MonoBehaviour {
 
-	public bool passable = true;
+	public bool isPassable = true;
 
 	// Use this for initialization
 	void Start () {

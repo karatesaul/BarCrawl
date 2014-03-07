@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GridManager : MonoBehaviour {
 
@@ -8,12 +9,14 @@ public class GridManager : MonoBehaviour {
 	// the positive y-axis is UP
 	//so (0,0) should be the bottom-left.  Unless we allow negative tiles, which we probably don't.
 
+	public List<Entity> entities;
+
 	public Tile[,] map;
 	//this really wants to be serialized,
 	//but apparently unity can't serialize 2D arrays.
 	//we could make a "map row" object that just holds an array of tiles.
 	//it seems stupid, but it'll WORK.
-	//,,,not doing that yet though.
+	//,,,not doing that yet though.  largely cause I don't like it.
 
 	public Tile prefab;
 	
@@ -25,8 +28,8 @@ public class GridManager : MonoBehaviour {
 	const float tileSizeY = .5f;
 
 	// singleton behaviour
-	static GridManager m_instance;
-	static GridManager instance
+	private static GridManager m_instance;
+	public static GridManager instance
 	{
 		get
 		{
@@ -52,6 +55,10 @@ public class GridManager : MonoBehaviour {
 				map[x,y] = (Tile)Instantiate(prefab, new Vector3(tileSizeX * x, tileSizeY * y, 0), Quaternion.identity);
 			}
 		}
+
+		entities = new List<Entity>();
+
+		m_instance = this;
 
 	}
 
@@ -88,7 +95,7 @@ public class GridManager : MonoBehaviour {
 		if (y >= height)
 			return false;
 
-		if(map[x,y].passable)
+		if(map[x,y].isPassable)
 			return true;
 
 		return false;
