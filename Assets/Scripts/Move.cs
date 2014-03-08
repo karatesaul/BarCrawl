@@ -4,7 +4,7 @@ using System.Collections;
 // Right is the POSITIVE X
 // Up is the POSITIVE Y
 //not that you need to remember that, because we have a conversion function.
-public enum Move {Left, Right, Up, Down, Fight};
+public enum Move {None, Left, Right, Up, Down, Fight};
 
 public static class moveExtensions
 {
