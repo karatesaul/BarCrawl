@@ -11,7 +11,7 @@ public class PlayerCharacter : Entity {
 	// Use this for initialization
 	void Start () {
 		exit = false;
-		timer = 0;
+		timer = 30;
 		executeMode = false;
 		movelist = new Move[10];
 		currCombo = 0;
@@ -84,7 +84,7 @@ public class PlayerCharacter : Entity {
 				Debug.Log ("Execute mode exited.");
 				exit = false;
 				currCombo = 0;
-				timer = 0;
+				timer = 30;
 				executeMode = false;
 				return;
 			}

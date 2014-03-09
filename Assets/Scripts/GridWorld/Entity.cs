@@ -32,6 +32,7 @@ public class Entity : MonoBehaviour {
 
 		if(GridManager.instance.isPassable(destX, destY))
 		{
+			Debug.Log ("moved");
 			x = destX;
 			y = destY;
 			Vector2 dest = GridManager.getTransformPosition(x, y);
