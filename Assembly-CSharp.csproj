@@ -46,8 +46,14 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\GridManager.cs" />
-     <Compile Include="Assets\Scripts\Tile.cs" />
+     <Compile Include="Assets\Scripts\GridWorld\Enemy.cs" />
+     <Compile Include="Assets\Scripts\GridWorld\Entity.cs" />
+     <Compile Include="Assets\Scripts\GridWorld\GridManager.cs" />
+     <Compile Include="Assets\Scripts\GridWorld\PlayerCharacter.cs" />
+     <Compile Include="Assets\Scripts\GridWorld\Tile.cs" />
+     <Compile Include="Assets\Scripts\Move.cs" />
+     <Compile Include="Assets\Scripts\PuzzleManager.cs" />
+     <Compile Include="Assets\Scripts\udlrTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
