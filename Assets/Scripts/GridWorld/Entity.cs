@@ -9,25 +9,19 @@ public class Entity : MonoBehaviour {
 
 	public bool isPassable = false;
 
-	//i hate doing things like this, but...
-	private bool fullyInitialized = false;
-
 	//for display & fight logic purposes.
 	protected Move lastMove;
 
 	// Use this for initialization
-	void Start () {
-
+	// Start MUST be called by superclasses!
+	protected virtual void Start () {
+		GridManager.instance.entities.Add(this);
 	}
 	
 	// Update is called once per frame
-	// Update needs to be called by superclasses, which is a bit awkward, but ohwell.
-	protected virtual void Update() {
-		if (!fullyInitialized)
-		{
-			GridManager.instance.entities.Add(this);
-			fullyInitialized = true;
-		}
+	// At the moment, Update need not be called by superclasses.  And indeed, cannot.
+	void Update() {
+
 	}
 
 	/// <summary>

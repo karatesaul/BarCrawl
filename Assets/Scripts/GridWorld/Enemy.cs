@@ -8,17 +8,18 @@ public class Enemy : Entity {
 	private int timer;
 	private int moveCount;
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
 		timer = 30;
 		player = GameObject.Find ("lamePC");
 		currMove = Move.None;
 		isExecute = false;
+
+		base.Start();
 	}
 	
 	// Update is called once per frame
-	protected override void Update()
+	void Update()
 	{
-		base.Update();
 
 		if (!isExecute) {
 			if(Input.GetKeyDown (KeyCode.O)){

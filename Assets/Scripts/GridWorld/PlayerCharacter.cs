@@ -9,7 +9,7 @@ public class PlayerCharacter : Entity {
 	private bool exit;
 	private int timer;
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
 		exit = false;
 		timer = 30;
 		executeMode = false;
@@ -19,13 +19,13 @@ public class PlayerCharacter : Entity {
 			movelist[i] = Move.None;
 		}
 	
+		base.Start();
 	}
 
 
 
 	// Update is called once per frame
-	protected override void Update () {
-		base.Update();
+	void Update () {
 
 		if(!executeMode){
 			if (Input.GetKeyDown (KeyCode.LeftArrow)) {

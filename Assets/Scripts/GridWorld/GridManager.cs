@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class GridManager : MonoBehaviour {
+public class GridManager{
 
 	// just to be clear:
 	// the positive x-axis is RIGHT
@@ -11,21 +11,21 @@ public class GridManager : MonoBehaviour {
 
 	public List<Entity> entities;
 
-	public Tile[,] map;
+	public Map map;
 	//this really wants to be serialized,
 	//but apparently unity can't serialize 2D arrays.
 	//we could make a "map row" object that just holds an array of tiles.
 	//it seems stupid, but it'll WORK.
 	//,,,not doing that yet though.  largely cause I don't like it.
 
-	public Tile prefab;
+
 	
 	public int width = 10;
-	public int height = 5;
-	
+	public int height = 4;
+
 	//consts, just in case, but these shouldn't need changing
-	const float tileSizeX = .5f;
-	const float tileSizeY = .5f;
+	public const float tileSizeX = .5f;
+	public const float tileSizeY = .5f;
 
 	// singleton behaviour
 	private static GridManager m_instance;
@@ -44,22 +44,8 @@ public class GridManager : MonoBehaviour {
 
 	
 	// Use this for initialization
-	void Start () {
-
-		//this is, of course, not what we want in the end
-		//as we need actual map data, not a map of all the same tile
-		//but it's okay for now
-		map = new Tile[width,height];
-		for (int x=0; x < width; x++) {
-			for (int y=0; y < height; y++) {
-				map[x,y] = (Tile)Instantiate(prefab, new Vector3(tileSizeX * x, tileSizeY * y, 0), Quaternion.identity);
-			}
-		}
-
+	GridManager() {
 		entities = new List<Entity>();
-
-		m_instance = this;
-
 	}
 
 	/// <summary>

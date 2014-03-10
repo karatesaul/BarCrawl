@@ -49,6 +49,8 @@
      <Compile Include="Assets\Scripts\GridWorld\Enemy.cs" />
      <Compile Include="Assets\Scripts\GridWorld\Entity.cs" />
      <Compile Include="Assets\Scripts\GridWorld\GridManager.cs" />
+     <Compile Include="Assets\Scripts\GridWorld\Map.cs" />
+     <Compile Include="Assets\Scripts\GridWorld\MapRow.cs" />
      <Compile Include="Assets\Scripts\GridWorld\PlayerCharacter.cs" />
      <Compile Include="Assets\Scripts\GridWorld\Tile.cs" />
      <Compile Include="Assets\Scripts\Move.cs" />
