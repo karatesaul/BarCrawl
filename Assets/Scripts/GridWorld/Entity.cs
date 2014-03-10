@@ -37,6 +37,7 @@ public class Entity : MonoBehaviour {
 		int destX = x + (int)moveDir.x;
 		int destY = y + (int)moveDir.y;
 		if(move != Move.Fight){
+			lastMove = move;
 			if(GridManager.instance.isPassable(destX, destY))
 			{
 				Debug.Log ("moved");
@@ -45,8 +46,22 @@ public class Entity : MonoBehaviour {
 				Vector2 dest = GridManager.getTransformPosition(x, y);
 				transform.position = new Vector3(dest.x, dest.y, -1);
 			}
-			
-			lastMove = move;
+			else if(gameObject.tag == "enemy"){
+				Vector2[] moveOrder = move.attackOrder ();
+				for(int i = 1; i < 4; i++){
+					destX = x + (int)moveOrder[i].x;
+					destY = y + (int)moveOrder[i].y;
+					if(GridManager.instance.isPassable(destX, destY))
+					{
+						Debug.Log ("moved");
+						x = destX;
+						y = destY;
+						Vector2 dest = GridManager.getTransformPosition(x, y);
+						transform.position = new Vector3(dest.x, dest.y, -1);
+						i = 4;
+					}
+				}
+			}
 		}
 		else{
 			Vector2[] fightOrder = move.attackOrder ();
