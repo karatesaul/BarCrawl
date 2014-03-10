@@ -4,7 +4,7 @@ using System.Collections;
 public class Enemy : Entity {
 	public GameObject player;
 	private Move currMove;
-	private bool isExecute;
+	public bool isExecute;
 	private int timer;
 	private int moveCount;
 	// Use this for initialization
