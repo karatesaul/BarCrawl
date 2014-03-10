@@ -78,5 +78,7 @@ public class Entity : MonoBehaviour {
 		//right now, that consists of removing it from the GridManager's entity list.
 
 		GridManager.instance.entities.Remove(this);
+		Debug.Log (gameObject.name + " has been defeated!");
+		Destroy (this);
 	}
 }

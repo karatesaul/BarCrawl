@@ -27,7 +27,6 @@ public static class moveExtensions
 		case Move.Left:
 			return new Vector2(-1, 0);
 		case Move.Fight:
-			Debug.Log("Attack!");
 			return new Vector2(0, 0);
 		case Move.None:
 			return new Vector2(0, 0);

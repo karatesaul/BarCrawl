@@ -47,7 +47,6 @@ public class Enemy : Entity {
 				   (Mathf.Abs(GridManager.getX(player.transform.position) - GridManager.getX(transform.position)) == 0 &&
 				 	Mathf.Abs(GridManager.getY(player.transform.position) - GridManager.getY(transform.position)) == 1)){
 					currMove = Move.Fight;
-					Debug.Log ("Enemy attacks!");
 					moveCount++;
 				}
 				else if(GridManager.getY(player.transform.position) > GridManager.getY(transform.position)){
