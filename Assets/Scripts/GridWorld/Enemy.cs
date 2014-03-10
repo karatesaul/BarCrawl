@@ -16,7 +16,10 @@ public class Enemy : Entity {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update()
+	{
+		base.Update();
+
 		if (!isExecute) {
 			if(Input.GetKeyDown (KeyCode.O)){
 				Debug.Log ("Enemy takes a turn!");

@@ -73,7 +73,12 @@ public class GridManager : MonoBehaviour {
 		if (!isPassableMapOnly (x, y))
 			return false;
 
-		//entity checking would go here - but we have none yet.
+		foreach (Entity entity in entities) {
+			if(entity.x == x && entity.y == y)
+			{
+				return false;
+			}
+		}
 
 		return true;
 	}

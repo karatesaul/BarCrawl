@@ -9,14 +9,25 @@ public class Entity : MonoBehaviour {
 
 	public bool isPassable = false;
 
+	//i hate doing things like this, but...
+	private bool fullyInitialized = false;
+
+	//for display & fight logic purposes.
+	protected Move lastMove;
+
 	// Use this for initialization
 	void Start () {
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	// Update needs to be called by superclasses, which is a bit awkward, but ohwell.
+	protected virtual void Update() {
+		if (!fullyInitialized)
+		{
+			GridManager.instance.entities.Add(this);
+			fullyInitialized = true;
+		}
 	}
 
 	/// <summary>
@@ -38,5 +49,17 @@ public class Entity : MonoBehaviour {
 			Vector2 dest = GridManager.getTransformPosition(x, y);
 			transform.position = new Vector3(dest.x, dest.y, -1);
 		}
+
+		lastMove = move;
+	}
+
+	/// <summary>
+	/// Kills the entity.  Call this to make sure its deconstruction logic is done.
+	/// </summary>
+	public void Die()
+	{
+		//right now, that consists of removing it from the GridManager's entity list.
+
+		GridManager.instance.entities.Remove(this);
 	}
 }
