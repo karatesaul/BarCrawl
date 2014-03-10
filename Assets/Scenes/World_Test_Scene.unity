@@ -142,6 +142,7 @@ MonoBehaviour:
   y: 3
   isPassable: 0
   player: {fileID: 0}
+  isExecute: 0
 --- !u!1001 &40374028
 Prefab:
   m_ObjectHideFlags: 0
@@ -676,6 +677,7 @@ GameObject:
   - 4: {fileID: 1707795428}
   - 212: {fileID: 1707795427}
   - 114: {fileID: 1707795426}
+  - 114: {fileID: 1707795429}
   m_Layer: 0
   m_Name: lamePC
   m_TagString: Untagged
@@ -699,6 +701,8 @@ MonoBehaviour:
   y: 2
   isPassable: 0
   movelist: 
+  tm: {fileID: 0}
+  executeMode: 0
 --- !u!212 &1707795427
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -734,6 +738,22 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1707795429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1707795425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4405cff9259dfd94ab1d618118ba54aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  enemyCount: 0
+  enemyObjs: []
+  enemies: []
+  turn: 0
 --- !u!1001 &1750832003
 Prefab:
   m_ObjectHideFlags: 0
