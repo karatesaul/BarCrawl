@@ -17,10 +17,16 @@ public class PuzzleManager : MonoBehaviour {
 		for (int i=0; i<6; i++) {
 			for (int j=0; j<5; j++){
 				puzzleGrid[i,j] = new Token();
-				puzzleGrid[i,j].xLocation = 0; //Add code here once we figure out scaling and screen dimensions
-				puzzleGrid[i,j].yLocation = 0; //Add code here once we figure out scaling and screen dimensions
-				puzzleGrid[i,j].tokenVal = 0;
+				puzzleGrid[i,j].xLocation = i; //Add code here once we figure out scaling.
+				puzzleGrid[i,j].yLocation = j; //Add code here once we figure out scaling.
+				puzzleGrid[i,j].tokenVal = 0; //The placement of tiles definitely needs to have a lot more intelligence as time goes on. For now this will do.
 			}
+		}
+		matches = new Match[20];
+		for (int i=0; i<20; i++) {
+			matches[i].firstNum = 0;
+			matches[i].secondNum = 0;
+			matches[i].thirdNum = 0;
 		}
 	}
 	
@@ -33,24 +39,51 @@ public class PuzzleManager : MonoBehaviour {
 					matches[slotNum].firstNum = i;
 					matches[slotNum].secondNum = i+6;
 					matches[slotNum].thirdNum = i+12;
+					puzzleGrid[i,2].used = true;
+					puzzleGrid[i,1].used = true;
+					puzzleGrid[i,0].used = true;
 					slotNum++;
 			}
+				else if (puzzleGrid[i,2].tokenVal.Equals(puzzleGrid[i,3])){
+					matches[slotNum].firstNum = i+6;
+					matches[slotNum].secondNum = i+12;
+					matches[slotNum].thirdNum = i+18;
+					puzzleGrid[i,3].used = true;
+					puzzleGrid[i,2].used = true;
+					puzzleGrid[i,1].used = true;
+					slotNum++;
+				}
 		}
 			if (puzzleGrid[i,2].tokenVal.Equals(puzzleGrid[i,3])){
-				if (puzzleGrid[i,1].tokenVal.Equals(puzzleGrid[i,4])){
+				if (puzzleGrid[i,3].tokenVal.Equals(puzzleGrid[i,4])){
 					matches[slotNum].firstNum = i+12;
 					matches[slotNum].secondNum = i+18;
 					matches[slotNum].thirdNum = i+24;
+					puzzleGrid[i,4].used = true;
+					puzzleGrid[i,3].used = true;
+					puzzleGrid[i,2].used = true;
 					slotNum++;
 				}
 			}
 	}
 		for (int j = 0; j < 5; j++){
-			if (puzzleGrid[0,j].tokenVal.Equals(puzzleGrid[1,j])){
-				if (puzzleGrid[1,j].Equals(puzzleGrid[2,j])){
+			if (puzzleGrid[2,j].tokenVal.Equals(puzzleGrid[1,j])){
+				if (puzzleGrid[1,j].Equals(puzzleGrid[0,j])){
 					matches[slotNum].firstNum = 0+(6*j);
 					matches[slotNum].secondNum = 1+(6*j);
 					matches[slotNum].thirdNum = 2+(6*j);
+					puzzleGrid[2,j].used = true;
+					puzzleGrid[1,j].used = true;
+					puzzleGrid[0,j].used = true;
+					slotNum++;
+			}
+				else if (puzzleGrid[2,j].Equals(puzzleGrid[3,j])) {
+					matches[slotNum].firstNum = 1+(6*j);
+					matches[slotNum].secondNum = 2+(6*j);
+					matches[slotNum].thirdNum = 3+(6*j);
+					puzzleGrid[3,j].used = true;
+					puzzleGrid[2,j].used = true;
+					puzzleGrid[1,j].used = true;
 					slotNum++;
 			}
 		}
@@ -61,16 +94,46 @@ public class PuzzleManager : MonoBehaviour {
 					matches[slotNum].firstNum = 3+(6*j);
 					matches[slotNum].secondNum = 4+(6*j);
 					matches[slotNum].thirdNum = 5+(6*j);
+					puzzleGrid[5,j].used = true;
+					puzzleGrid[4,j].used = true;
+					puzzleGrid[3,j].used = true;
+					slotNum++;
+				}
+				else if (puzzleGrid[3,j].Equals(puzzleGrid[2,j])) {
+					matches[slotNum].firstNum = 2+(6*j);
+					matches[slotNum].secondNum = 3+(6*j);
+					matches[slotNum].thirdNum = 4+(6*j);
+					puzzleGrid[4,j].used = true;
+					puzzleGrid[3,j].used = true;
+					puzzleGrid[2,j].used = true;
 					slotNum++;
 				}
 			}
 		}
+	}
+
+	public void makeMove (Match[] matches, Token[,] puzzleGrid){
+		for (int i=0; i<20; i++){ //Maybe this works, maybe it doesn't, nobody knows!
+			//Pass along the matches queue, but don't organize it at this time.
+
+	}
+		//Move tiles down after matches.
+		for (int i=0; i<6; i++){
+			for (int j=0; j<4; j++){
+				if (puzzleGrid[i,j].used == true){
+					puzzleGrid[i,j].tokenVal = puzzleGrid[i,j+1].tokenVal;
+					puzzleGrid[i,5].tokenVal = 0;
+				}
+			}
+		}
+		//Pass matches queue to GridMovement here.
 	}
 }
 
 public class Token{
 
 	public bool seen;
+	public bool used;
 
 	public int xLocation;
 	public int yLocation;
@@ -79,6 +142,7 @@ public class Token{
 	
 	public Token(){
 		this.seen = false;
+		this.used = false;
 	}
 
 }
