@@ -69,6 +69,22 @@ public class GridManager{
 		return true;
 	}
 
+	//For combat
+	public Entity getTarget(int x, int y)
+	{
+		if (!isPassableMapOnly (x, y))
+			return null;
+		
+		foreach (Entity entity in entities) {
+			if(entity.x == x && entity.y == y)
+			{
+				return entity;
+			}
+		}
+		
+		return null;
+	}
+
 	/// <summary>
 	/// Checks if the specified tile is passable, ignoring entities.
 	/// </summary>

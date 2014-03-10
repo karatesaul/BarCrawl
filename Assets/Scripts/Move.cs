@@ -35,4 +35,41 @@ public static class moveExtensions
 			return new Vector2(760, 3589);
 		}
 	}
+
+	public static Vector2[] attackOrder(this Move move){
+		Vector2[] ret = new Vector2[4];
+		switch (move) {
+		case Move.Down:
+			ret[0] = new Vector2(0, -1);
+			ret[1] = new Vector2(1, 0);
+			ret[2] = new Vector2(-1, 0);
+			ret[3] = new Vector2(0, 1);
+			break;
+		case Move.Up:
+			ret[0] = new Vector2(0, 1);
+			ret[1] = new Vector2(-1, 0);
+			ret[2] = new Vector2(1, 0);
+			ret[3] = new Vector2(0, -1);
+			break;
+		case Move.Left:
+			ret[0] = new Vector2(-1, 0);
+			ret[1] = new Vector2(0, 1);
+			ret[2] = new Vector2(0, -1);
+			ret[3] = new Vector2(1, 0);
+			break;
+		case Move.Right:
+			ret[0] = new Vector2(1, 0);
+			ret[1] = new Vector2(0, -1);
+			ret[2] = new Vector2(0, 1);
+			ret[3] = new Vector2(1, 0);
+			break;
+		default:
+			ret[0] = new Vector2(0, -1);
+			ret[1] = new Vector2(1, 0);
+			ret[2] = new Vector2(-1, 0);
+			ret[3] = new Vector2(0, 1);
+			break;
+		}
+		return ret;
+	}
 }

@@ -29,10 +29,10 @@ public class TurnManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (turn == 1) {
-			Debug.Log ("PLAYER TURN");
+			//Debug.Log ("PLAYER TURN");
 			//turn is set within PlayerCharacter.cs after exiting executeMode and attempting to move
 		} else if (turn == 2) {
-			Debug.Log ("ENEMY TURN");
+			//Debug.Log ("ENEMY TURN");
 			for (int i = 0; i < enemies.Length; i++) {
 				enemies[i].isExecute = true;
 			}

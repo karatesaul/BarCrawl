@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: lamePC
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,8 +41,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 2
   y: 2
+  health: 0
   isPassable: 0
   movelist: 
+  tm: {fileID: 0}
+  executeMode: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

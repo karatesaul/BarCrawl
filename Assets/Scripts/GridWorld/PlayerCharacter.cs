@@ -13,6 +13,7 @@ public class PlayerCharacter : Entity {
 	protected override void Start () {
 		tm = GameObject.Find("lamePC").GetComponent<TurnManager>();
 		exit = false;
+		health = 50;
 		timer = 30;
 		executeMode = false;
 		movelist = new Move[10];
@@ -64,6 +65,16 @@ public class PlayerCharacter : Entity {
 												Debug.Log ("Down move queued.");
 										} else
 												Debug.Log ("Queue full!");
+										//AttemptMove (Move.Down);
+								}
+								if (Input.GetKeyDown (KeyCode.F)) {
+										if(currCombo < 10){
+											movelist [currCombo] = Move.Fight;
+											currCombo++;
+											Debug.Log ("Fight move queued.");
+										}
+										else
+											Debug.Log ("Queue full!");
 										//AttemptMove (Move.Down);
 								}
 								if (Input.GetKeyDown (KeyCode.Space)) {

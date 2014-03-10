@@ -9,6 +9,7 @@ public class Enemy : Entity {
 	private int moveCount;
 	// Use this for initialization
 	protected override void Start () {
+		health = 20;
 		timer = 30;
 		player = GameObject.Find ("lamePC");
 		currMove = Move.None;
@@ -20,6 +21,9 @@ public class Enemy : Entity {
 	// Update is called once per frame
 	void Update()
 	{
+		if (health < 1) {
+			Die ();
+		}
 
 		if (!isExecute) {
 			if(Input.GetKeyDown (KeyCode.O)){
@@ -38,8 +42,10 @@ public class Enemy : Entity {
 				return;
 			}
 			if(timer > 30){
-				if(Mathf.Abs(GridManager.getX(player.transform.position) - GridManager.getX(transform.position)) == 1 ||
-				   Mathf.Abs(GridManager.getY(player.transform.position) - GridManager.getX(transform.position)) == 1){
+				if((Mathf.Abs(GridManager.getX(player.transform.position) - GridManager.getX(transform.position)) == 1 &&
+				    Mathf.Abs(GridManager.getY(player.transform.position) - GridManager.getY(transform.position)) == 0) ||
+				   (Mathf.Abs(GridManager.getX(player.transform.position) - GridManager.getX(transform.position)) == 0 &&
+				 	Mathf.Abs(GridManager.getY(player.transform.position) - GridManager.getY(transform.position)) == 1)){
 					currMove = Move.Fight;
 					Debug.Log ("Enemy attacks!");
 					moveCount++;

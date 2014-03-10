@@ -140,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 6
   y: 3
+  health: 0
   isPassable: 0
   player: {fileID: 0}
   isExecute: 0
@@ -680,7 +681,7 @@ GameObject:
   - 114: {fileID: 1707795429}
   m_Layer: 0
   m_Name: lamePC
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -699,6 +700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 2
   y: 2
+  health: 0
   isPassable: 0
   movelist: 
   tm: {fileID: 0}
