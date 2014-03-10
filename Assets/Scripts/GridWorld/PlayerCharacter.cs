@@ -11,7 +11,11 @@ public class PlayerCharacter : Entity {
 	private int timer;
 	// Use this for initialization
 	void Start () {
+
+
 		tm = GameObject.Find("lamePC").GetComponent<TurnManager>();
+
+
 		exit = false;
 		timer = 30;
 		executeMode = false;
@@ -69,6 +73,7 @@ public class PlayerCharacter : Entity {
 								if (Input.GetKeyDown (KeyCode.Space)) {
 										currCombo = 0;
 										executeMode = true;
+										tm.turn = 1;
 										Debug.Log ("Execute mode entered.");
 								}
 						} else {
@@ -85,6 +90,7 @@ public class PlayerCharacter : Entity {
 										currCombo = 0;
 										timer = 30;
 										executeMode = false;
+										tm.turn = 2;
 										return;
 								}
 								timer++;
@@ -94,7 +100,7 @@ public class PlayerCharacter : Entity {
 										timer = 0;
 								}
 								//set to enemy turn
-								tm.turn = 2;
+								//tm.turn = 2;
 						}
 				}
 	}
