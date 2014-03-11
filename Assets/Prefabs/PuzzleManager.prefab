@@ -36,8 +36,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab3dfbda2e1307b45b204d69e9b04f6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   tokenUp: {fileID: 2800000, guid: d5bcf0d8c4a8b9947be3cf860fbcf77f, type: 3}
   tokenDown: {fileID: 2800000, guid: 87ac080928b023e4bad5e5732f6bff7a, type: 3}
   tokenLeft: {fileID: 2800000, guid: 973ce296544eb984787c7c140ad1145f, type: 3}
