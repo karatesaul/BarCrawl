@@ -35,6 +35,28 @@ public static class moveExtensions
 		}
 	}
 
+	public static void getMove(this Move move, Vector2 direction){
+		if (direction.x == 0 && direction.y == -1) {
+			move = Move.Down;
+			return;
+		}
+		if (direction.x == 0 && direction.y == 1) {
+			move = Move.Up;
+			return;
+		}
+		if (direction.x == 1 && direction.y == 0) {
+			move = Move.Right;
+			return;
+		}
+		if (direction.x == -1 && direction.y == 0) {
+			move = Move.Left;
+			return;
+		}
+		move = Move.None;
+		return;
+
+	}
+
 	public static Vector2[] attackOrder(this Move move){
 		Vector2[] ret = new Vector2[4];
 		switch (move) {
