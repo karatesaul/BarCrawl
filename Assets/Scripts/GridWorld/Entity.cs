@@ -12,7 +12,7 @@ public class Entity : MonoBehaviour {
 	public bool isPassable = false;
 
 	//for display & fight logic purposes.
-	protected Move lastMove;
+	protected Move facing;
 
 	// Use this for initialization
 	// Start MUST be called by superclasses!
@@ -27,58 +27,81 @@ public class Entity : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Attempts to execute the specified move.  If there is something in the way, will not change position.
-	/// Does not handle Fight, should be overriden for Fight behaviour.
+	/// Attempts to execute the specified move.  If there is something in the way, will not change position, but will change facing.
 	/// </summary>
 	/// <param name="move">The move to execute.</param>
 	protected void AttemptMove(Move move)
 	{
+		//find the destination tile
 		Vector2 moveDir = move.getDirection();
 		int destX = x + (int)moveDir.x;
 		int destY = y + (int)moveDir.y;
+
+
 		if(move != Move.Fight){
-			lastMove = move;
-			if(GridManager.instance.isPassable(destX, destY))
+
+			if(GridManager.instance.isPassable(destX, destY) && gameObject.tag != "enemy")
 			{
+				//moves the player if there is no obstacle
 				Debug.Log ("moved");
 				x = destX;
 				y = destY;
 				Vector2 dest = GridManager.getTransformPosition(x, y);
 				transform.position = new Vector3(dest.x, dest.y, -1);
+				facing = move;
 			}
-			else if(gameObject.tag == "enemy"){
+			else if(gameObject.tag != "enemy")
+			{
+				//the player will still turn to face the obstacle
+				facing = move;
+			}
+			else if(gameObject.tag == "enemy")
+			{
+				//enemies will attempt to move around obstacles if they are in the way
 				Vector2[] moveOrder = move.attackOrder ();
-				for(int i = 1; i < 4; i++){
+				for(int i = 0; i < 4; i++){
 					destX = x + (int)moveOrder[i].x;
 					destY = y + (int)moveOrder[i].y;
-					if(GridManager.instance.isPassable(destX, destY))
+
+					//they will not make U-turns
+					if(GridManager.instance.isPassable(destX, destY) && !moveOrder[i].Equals (-1*facing.getDirection ()))
 					{
 						Debug.Log ("moved");
 						x = destX;
 						y = destY;
 						Vector2 dest = GridManager.getTransformPosition(x, y);
 						transform.position = new Vector3(dest.x, dest.y, -1);
+						facing.getMove (moveOrder[i]);
 						i = 4;
 					}
 				}
 			}
+
+
+
 		}
 		else{
-			Vector2[] fightOrder = move.attackOrder ();
-			//Fight code starts here
-			//If target is straight ahead of player
+			//handles fighting
+			//this function orders the tiles so that the entity will attack those in front of it before ones to the side
+			Vector2[] fightOrder = facing.attackOrder ();
+
 			for(int i = 0; i < 4; i++){
+
 				Vector2 fightDir = fightOrder[i];
 				destX = x + (int)fightDir.x;
 				destY = y + (int)fightDir.y;
 				if(GridManager.instance.getTarget(destX, destY) != null){
 					if((gameObject.tag == "Player" && GridManager.instance.getTarget(destX, destY).gameObject.tag == "enemy") ||
 					   (gameObject.tag == "enemy" && GridManager.instance.getTarget (destX, destY).gameObject.tag == "Player")){
-						//Attack animation code goes here.
+						//at this point, we have confirmed there is a fightable entity in this tile
+						//Attack animation code should go somewhere under this if.
+
 						GridManager.instance.getTarget (destX, destY).health -= 10;
 						Debug.Log (gameObject.name + " attacks! " + GridManager.instance.getTarget (destX, destY).gameObject.name + " takes 10 damage, and has " +
 						           GridManager.instance.getTarget(destX, destY).health + " remaining!");
-						return;
+
+
+						facing = moveExtensions.getMove(fightOrder[i]);
 					}
 				}
 			}
@@ -94,6 +117,6 @@ public class Entity : MonoBehaviour {
 
 		GridManager.instance.entities.Remove(this);
 		Debug.Log (gameObject.name + " has been defeated!");
-		Destroy (this);
+		Destroy (this.gameObject);
 	}
 }

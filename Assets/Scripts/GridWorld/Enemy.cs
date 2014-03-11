@@ -49,17 +49,17 @@ public class Enemy : Entity {
 					currMove = Move.Fight;
 					moveCount++;
 				}
-				else if(GridManager.getY(player.transform.position) > GridManager.getY(transform.position)){
-					currMove = Move.Up;
-				}
-				else if(GridManager.getY(player.transform.position) < GridManager.getY(transform.position)){
-					currMove = Move.Down;
-				}
 				else if(GridManager.getX(player.transform.position) > GridManager.getX(transform.position)){
 					currMove = Move.Right;
 				}
 				else if(GridManager.getX(player.transform.position) < GridManager.getX(transform.position)){
 					currMove = Move.Left;
+				}
+				else if(GridManager.getY(player.transform.position) > GridManager.getY(transform.position)){
+					currMove = Move.Up;
+				}
+				else if(GridManager.getY(player.transform.position) < GridManager.getY(transform.position)){
+					currMove = Move.Down;
 				}
 				AttemptMove (currMove);
 				moveCount++;
