@@ -6,7 +6,11 @@ using System.Collections.Generic;
 /// The script to manage the puzzle, drawing the puzzle, and running the puzzle
 /// </summary>
 public class PuzzleManager : MonoBehaviour {
-	int scalingFactor;
+	public Texture tokenUp;
+	public Texture tokenDown;
+	public Texture tokenLeft;
+	public Texture tokenRight;
+	public Texture tokenAttack;
 	
 	private Token[,] puzzleGrid;
 
@@ -21,6 +25,9 @@ public class PuzzleManager : MonoBehaviour {
 		puzzleGrid = new Token[6, 5];
 		for (int i=0; i<6; i++) {
 			for (int j=0; j<5; j++){
+
+				//get a random token type here
+
 				puzzleGrid[i,j] = new Token(i, j, TokenType.Up);
 			}
 		}
@@ -125,44 +132,47 @@ public class PuzzleManager : MonoBehaviour {
 		}
 		//Pass matches queue to GridMovement here.
 	}
+
+	public void OnGUI(){
+		for (int i=0; i<6; i++) {
+			for (int j=0; j<5; j++){
+				GUI.DrawTexture(puzzleGrid[i,j].location, puzzleGrid[i,j].sprite);
+			}
+		}
+	}
 }
 
 public class Token{
-	public static GameObject tokenUp;
-	public static GameObject tokenDown;
-	public static GameObject tokenLeft;
-	public static GameObject tokenRight;
-	public static GameObject tokenAttack;
-
 	public bool seen;
 	public bool used;
 
-	//remove these - use GameObject
-	public int xLocation;
-	public int yLocation;
-
 	public TokenType tokenVal;
-	public GameObject gameObject;
+	public Rect location;
+
+	public Texture sprite;
 	
 	public Token(int xLoc, int yLoc, TokenType type){
 		this.seen = false;
 		this.used = false;
+		this.tokenVal = type;
+
+		location = new Rect (Screen.width * (xLoc / 6.0f), Screen.height - (5.0f / 6.0f * Screen.width * (yLoc / 5.0f)), Screen.width * 1.0f / 6.0f, 5.0f / 6.0f * Screen.width * 1.0f / 5.0f);
 
 		switch (type) {
 		case TokenType.Attack:
-			gameObject = GameObject.Instantiate(tokenAttack, new Vector3 (Screen.width * xLoc / 6, 5 / 6 * Screen.width * yLoc / 5, 0), Quaternion.identity) as GameObject;
-			break;
-		case TokenType.Up:
-			gameObject = GameObject.Instantiate(tokenUp, new Vector3 (Screen.width * xLoc / 6, 5 / 6 * Screen.width * yLoc / 5, 0), Quaternion.identity) as GameObject;
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenAttack;
 			break;
 		case TokenType.Down:
-			gameObject = GameObject.Instantiate(tokenDown, new Vector3 (Screen.width * xLoc / 6, 5 / 6 * Screen.width * yLoc / 5, 0), Quaternion.identity) as GameObject;
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenDown;
 			break;
 		case TokenType.Left:
-			gameObject = GameObject.Instantiate(tokenLeft, new Vector3 (Screen.width * xLoc / 6, 5 / 6 * Screen.width * yLoc / 5, 0), Quaternion.identity) as GameObject;
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenLeft;
 			break;
 		case TokenType.Right:
-			gameObject = GameObject.Instantiate(tokenRight, new Vector3 (Screen.width * xLoc / 6, 5 / 6 * Screen.width * yLoc / 5, 0), Quaternion.identity) as GameObject;
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenRight;
+			break;
+		case TokenType.Up:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenUp;
 			break;
 		default:
 			break;
