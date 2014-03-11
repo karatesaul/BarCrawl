@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// The script to manage the puzzle, drawing the puzzle, and running the puzzle
@@ -9,25 +10,21 @@ public class PuzzleManager : MonoBehaviour {
 	
 	private Token[,] puzzleGrid;
 
-	public Match[] matches;
+	/// <summary>
+	/// A queue of the matches found to be sent to the player movement.
+	/// </summary>
+	public List<Match> matches;
 	
 	// Use this for initialization
 	void Start () {
+		//initialize the tokens
 		puzzleGrid = new Token[6, 5];
 		for (int i=0; i<6; i++) {
 			for (int j=0; j<5; j++){
-				puzzleGrid[i,j] = new Token();
-				puzzleGrid[i,j].xLocation = i; //Add code here once we figure out scaling.
-				puzzleGrid[i,j].yLocation = j; //Add code here once we figure out scaling.
-				puzzleGrid[i,j].tokenVal = 0; //The placement of tiles definitely needs to have a lot more intelligence as time goes on. For now this will do.
+				puzzleGrid[i,j] = new Token(i, j, TokenType.Up);
 			}
 		}
-		matches = new Match[20];
-		for (int i=0; i<20; i++) {
-			matches[i].firstNum = 0;
-			matches[i].secondNum = 0;
-			matches[i].thirdNum = 0;
-		}
+		matches = new List<Match> ();
 	}
 	
 	// Update is called once per frame
@@ -131,20 +128,46 @@ public class PuzzleManager : MonoBehaviour {
 }
 
 public class Token{
+	public static GameObject tokenUp;
+	public static GameObject tokenDown;
+	public static GameObject tokenLeft;
+	public static GameObject tokenRight;
+	public static GameObject tokenAttack;
 
 	public bool seen;
 	public bool used;
 
+	//remove these - use GameObject
 	public int xLocation;
 	public int yLocation;
 
-	public int tokenVal;
+	public TokenType tokenVal;
+	public GameObject gameObject;
 	
-	public Token(){
+	public Token(int xLoc, int yLoc, TokenType type){
 		this.seen = false;
 		this.used = false;
-	}
 
+		switch (type) {
+		case TokenType.Attack:
+			gameObject = GameObject.Instantiate(tokenAttack, new Vector3 (Screen.width * xLoc / 6, 5 / 6 * Screen.width * yLoc / 5, 0), Quaternion.identity) as GameObject;
+			break;
+		case TokenType.Up:
+			gameObject = GameObject.Instantiate(tokenUp, new Vector3 (Screen.width * xLoc / 6, 5 / 6 * Screen.width * yLoc / 5, 0), Quaternion.identity) as GameObject;
+			break;
+		case TokenType.Down:
+			gameObject = GameObject.Instantiate(tokenDown, new Vector3 (Screen.width * xLoc / 6, 5 / 6 * Screen.width * yLoc / 5, 0), Quaternion.identity) as GameObject;
+			break;
+		case TokenType.Left:
+			gameObject = GameObject.Instantiate(tokenLeft, new Vector3 (Screen.width * xLoc / 6, 5 / 6 * Screen.width * yLoc / 5, 0), Quaternion.identity) as GameObject;
+			break;
+		case TokenType.Right:
+			gameObject = GameObject.Instantiate(tokenRight, new Vector3 (Screen.width * xLoc / 6, 5 / 6 * Screen.width * yLoc / 5, 0), Quaternion.identity) as GameObject;
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 public class Match{
@@ -152,4 +175,12 @@ public class Match{
 	public int firstNum;
 	public int secondNum;
 	public int thirdNum;
+
+	public Match(){
+		firstNum = 0;
+		secondNum = 0;
+		thirdNum = 0;
+	}
 }
+
+public enum TokenType : int { Empty, Up, Down, Left, Right, Attack };
