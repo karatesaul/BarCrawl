@@ -143,6 +143,7 @@ public class PuzzleManager : MonoBehaviour {
 		for (int i=0; i<6; i++) {
 			for (int j=0; j<5; j++){
 				GUI.DrawTexture(puzzleGrid[i,j].location, puzzleGrid[i,j].sprite);
+//				GUI.Box(puzzleGrid[i,j].location, "i: " + i.ToString() + "j: " + j.ToString());
 			}
 		}
 	}
@@ -162,7 +163,7 @@ public class Token{
 		this.used = false;
 		this.tokenVal = type;
 
-		location = new Rect (Screen.width * (xLoc / 6.0f), Screen.height - (5.0f / 6.0f * Screen.width * (yLoc / 5.0f)), Screen.width * 1.0f / 6.0f, 5.0f / 6.0f * Screen.width * 1.0f / 5.0f);
+		location = new Rect (Screen.width * (xLoc / 6.0f), Screen.height - Screen.width / 6.0f - (5.0f / 6.0f * Screen.width * (yLoc / 5.0f)), Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f);
 
 		switch (type) {
 		case TokenType.Attack:
