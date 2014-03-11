@@ -164,7 +164,17 @@ public class PuzzleManager : MonoBehaviour {
 			if (activeToken != null) {
 				activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
 				activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
-				
+
+				//keep the token within the bounds
+				if (activeToken.location.x < 0)
+					activeToken.location.x = 0;
+				if (activeToken.location.x > Screen.width - activeToken.location.width)
+					activeToken.location.x = Screen.width - activeToken.location.width;
+				if (activeToken.location.y < Screen.height - 5.0f/6.0f*Screen.width) 
+					activeToken.location.y = Screen.height - 5.0f/6.0f*Screen.width;
+				if (activeToken.location.y > Screen.height - activeToken.location.height)
+					activeToken.location.y = Screen.height - activeToken.location.height;
+
 				if (currTime <= 0) {
 					activeToken = null;
 				}
