@@ -17,11 +17,11 @@ public class PuzzleManager : MonoBehaviour {
 	/// <summary>
 	/// A queue of the matches found to be sent to the player movement.
 	/// </summary>
-	/// 
+	///
 	//public List<Match> matches;
 
 	public List<TokenType> setOfMoves;
-	
+
 	// Use this for initialization
 	void Start () {
 		//initialize the tokens
@@ -39,7 +39,7 @@ public class PuzzleManager : MonoBehaviour {
 		//List of moves to pass to the Game Board
 		setOfMoves = new List<TokenType> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 	}
@@ -156,7 +156,7 @@ public class Token{
 	public Rect location;
 
 	public Texture sprite;
-	
+
 	public Token(int xLoc, int yLoc, TokenType type){
 		this.seen = false;
 		this.used = false;
