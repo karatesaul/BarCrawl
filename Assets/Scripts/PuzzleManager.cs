@@ -13,6 +13,7 @@ public class PuzzleManager : MonoBehaviour {
 	public Texture tokenAttack;
 	
 	private Token activeToken;
+	private int activeX, activeY;
 	public int timeLimit = 900;
 	private int currTime;
 	private Vector2 mouseTokenRelativeLocation;
@@ -162,10 +163,22 @@ public class PuzzleManager : MonoBehaviour {
 
 		if (Input.GetMouseButton (0)) { //or if there is a touch present
 			if (activeToken != null) {
+				//drag around the currently selected token
 				activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
 				activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 
-				//keep the token within the bounds
+				//swap around the tiles
+				int x = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
+				int y = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
+				if (puzzleGrid[x, y] != activeToken){
+					puzzleGrid[activeX, activeY] = puzzleGrid[x, y];
+					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+					puzzleGrid [x, y] = activeToken;
+					activeX = x;
+					activeY = y;
+				}
+
+				//keep the token within the boundsa
 				if (activeToken.location.x < 0)
 					activeToken.location.x = 0;
 				if (activeToken.location.x > Screen.width - activeToken.location.width)
@@ -176,24 +189,30 @@ public class PuzzleManager : MonoBehaviour {
 					activeToken.location.y = Screen.height - activeToken.location.height;
 
 				if (currTime <= 0) {
+					activeToken.Reposition(activeX, activeY);
 					activeToken = null;
 				}
 				currTime--;
-			}
-			//get the token that the mouse is over
-			if (activeToken == null && Input.mousePosition.y < 5.0 / 6.0 * Screen.width) {
+			} else if (activeToken == null && Input.mousePosition.y < 5.0 / 6.0 * Screen.width) {
+				//get the token that the mouse is over, and pick it up
 				int x = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
 				int y = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
 				//Debug.Log("X: " + x.ToString() + " Y: " + y.ToString());
 				
 				activeToken = puzzleGrid [x, y];
+				activeX = x;
+				activeY = y;
 				//start the movement timer
 				currTime = timeLimit;
 				//get the difference between the mouse position and the token's origin
 				mouseTokenRelativeLocation = new Vector2 (activeToken.location.x, Screen.height - activeToken.location.y) - new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 			}
+
 		} else {
-			activeToken = null;
+			if (activeToken != null){
+				activeToken.Reposition(activeX, activeY);
+				activeToken = null;
+			}
 		}
 	}
 }
@@ -233,6 +252,10 @@ public class Token{
 		default:
 			break;
 		}
+	}
+
+	public void Reposition(int xLoc, int yLoc){
+		location = new Rect (Screen.width * (xLoc / 6.0f), Screen.height - Screen.width / 6.0f * (1 + yLoc), Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f);
 	}
 }
 
