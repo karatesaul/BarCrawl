@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : Entity {
+public class Enemy : MeleeEntity {
+
 	public GameObject player;
 	private Move currMove;
 	public bool isExecute;
 	private int timer;
 	private int moveCount;
+
 	// Use this for initialization
 	protected override void Start () {
 		health = 20;
@@ -14,6 +16,8 @@ public class Enemy : Entity {
 		player = GameObject.Find ("lamePC");
 		currMove = Move.None;
 		isExecute = false;
+
+		foeTag = "Player";
 
 		base.Start();
 	}
@@ -61,7 +65,7 @@ public class Enemy : Entity {
 				else if(GridManager.getY(player.transform.position) < GridManager.getY(transform.position)){
 					currMove = Move.Down;
 				}
-				AttemptMove (currMove);
+				AttemptMove(currMove);
 				moveCount++;
 				timer = 0;
 			}

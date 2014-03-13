@@ -98,7 +98,7 @@ public static class moveExtensions
 			ret[0] = new Vector2(1, 0);
 			ret[1] = new Vector2(0, -1);
 			ret[2] = new Vector2(0, 1);
-			ret[3] = new Vector2(1, 0);
+			ret[3] = new Vector2(-1, 0);
 			break;
 		default:
 			ret[0] = new Vector2(0, -1);

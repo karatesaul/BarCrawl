@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerCharacter : Entity {
+public class PlayerCharacter : MeleeEntity {
 
 	public Move[] movelist;
 	public TurnManager tm;
@@ -21,6 +21,8 @@ public class PlayerCharacter : Entity {
 		for(int i = 0; i < 10; i++){
 			movelist[i] = Move.None;
 		}
+
+		foeTag = "enemy";
 	
 		base.Start();
 	}
