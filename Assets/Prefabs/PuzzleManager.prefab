@@ -38,11 +38,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab3dfbda2e1307b45b204d69e9b04f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tokenUp: {fileID: 2800000, guid: d5bcf0d8c4a8b9947be3cf860fbcf77f, type: 3}
-  tokenDown: {fileID: 2800000, guid: 87ac080928b023e4bad5e5732f6bff7a, type: 3}
-  tokenLeft: {fileID: 2800000, guid: 973ce296544eb984787c7c140ad1145f, type: 3}
-  tokenRight: {fileID: 2800000, guid: 040dc33c32e56d94ca4e91edac913a7e, type: 3}
-  tokenAttack: {fileID: 2800000, guid: a9db8fe41f95342bcabb9bcbf0a38441, type: 3}
+  tokenUp: {fileID: 2800000, guid: 21e74f154c209324e9f4c81176a2c0ea, type: 3}
+  tokenDown: {fileID: 2800000, guid: a10e8c075d13d7f49b032f598c77a88d, type: 3}
+  tokenLeft: {fileID: 2800000, guid: bb68ef7929d6d1e45911c1df6c5fb555, type: 3}
+  tokenRight: {fileID: 2800000, guid: 30c2c099cd54d454890b8499178d7c66, type: 3}
+  tokenAttack: {fileID: 2800000, guid: 83ac4ec0373303041a94bd59276b8b56, type: 3}
   timeLimit: 900
   setOfMoves: 
 --- !u!1001 &100100000
