@@ -43,6 +43,7 @@ MonoBehaviour:
   tokenLeft: {fileID: 2800000, guid: bb68ef7929d6d1e45911c1df6c5fb555, type: 3}
   tokenRight: {fileID: 2800000, guid: 30c2c099cd54d454890b8499178d7c66, type: 3}
   tokenAttack: {fileID: 2800000, guid: 83ac4ec0373303041a94bd59276b8b56, type: 3}
+  tokenEmpty: {fileID: 2800000, guid: a9db8fe41f95342bcabb9bcbf0a38441, type: 3}
   timeLimit: 900
   setOfMoves: 
 --- !u!1001 &100100000

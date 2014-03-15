@@ -11,6 +11,7 @@ public class PuzzleManager : MonoBehaviour {
 	public Texture tokenLeft;
 	public Texture tokenRight;
 	public Texture tokenAttack;
+	public Texture tokenEmpty;
 	
 	private Token activeToken;
 	private int activeX, activeY;
@@ -53,21 +54,32 @@ public class PuzzleManager : MonoBehaviour {
 	void Update () {
 	}
 	
-	public void makeMove (Token[,] puzzleGrid){
+	public void makeMove (/*Token[,] puzzleGrid*/){
 		for (int i=0; i<20; i++){ //Maybe this works, maybe it doesn't, nobody knows!
 			//Pass along the matches queue, but don't organize it at this time.
 			
 		}
+		queueMove ();
 		//Move tiles down after matches.
 		for (int i=0; i<6; i++){
 			for (int j=0; j<5; j++){
 				if (puzzleGrid[i,j].used == true){
 					if (j<4){
 						puzzleGrid[i,j].tokenVal = puzzleGrid[i,j+1].tokenVal;
+						puzzleGrid[i,j+1].used = true;
+						puzzleGrid[i,j].resetSprite ();
 					}
-					puzzleGrid[i,5].tokenVal = 0;
+					else{
+						puzzleGrid[i,j].tokenVal = TokenType.Empty;
+						puzzleGrid[i,j].resetSprite ();
+					}
+					//puzzleGrid[i,5].tokenVal = 0;
 				}
 			}
+		}
+		Debug.Log (setOfMoves.Count);
+		for (int i=0; i<setOfMoves.Count; i++) {
+			Debug.Log (setOfMoves[i].ToString ());
 		}
 		//Pass matches queue to GridMovement here.
 	}
@@ -76,8 +88,8 @@ public class PuzzleManager : MonoBehaviour {
 		int slotNum = 0;
 		bool foundMove = false;
 		for (int i = 0; i < 6; i++){
-			if (puzzleGrid[i,2].tokenVal.Equals(puzzleGrid[i,1])){
-				if (puzzleGrid[i,1].tokenVal.Equals(puzzleGrid[i,0])){
+			if (puzzleGrid[i,2].tokenVal.Equals(puzzleGrid[i,1].tokenVal)){
+				if (puzzleGrid[i,1].tokenVal.Equals(puzzleGrid[i,0].tokenVal)){
 					puzzleGrid[i,2].used = true;
 					puzzleGrid[i,1].used = true;
 					puzzleGrid[i,0].used = true;
@@ -85,7 +97,7 @@ public class PuzzleManager : MonoBehaviour {
 					setOfMoves.Add(puzzleGrid[i,2].tokenVal);
 					slotNum++;
 				}
-				if (puzzleGrid[i,2].tokenVal.Equals(puzzleGrid[i,3])){
+				if (puzzleGrid[i,2].tokenVal.Equals(puzzleGrid[i,3].tokenVal)){
 					puzzleGrid[i,3].used = true;
 					puzzleGrid[i,2].used = true;
 					puzzleGrid[i,1].used = true;
@@ -94,8 +106,8 @@ public class PuzzleManager : MonoBehaviour {
 					slotNum++;
 				}
 			}
-			if (puzzleGrid[i,2].tokenVal.Equals(puzzleGrid[i,3])){
-				if (puzzleGrid[i,3].tokenVal.Equals(puzzleGrid[i,4])){
+			if (puzzleGrid[i,2].tokenVal.Equals(puzzleGrid[i,3].tokenVal)){
+				if (puzzleGrid[i,3].tokenVal.Equals(puzzleGrid[i,4].tokenVal)){
 					puzzleGrid[i,4].used = true;
 					puzzleGrid[i,3].used = true;
 					puzzleGrid[i,2].used = true;
@@ -106,8 +118,8 @@ public class PuzzleManager : MonoBehaviour {
 			}
 		}
 		for (int j = 0; j < 5; j++){
-			if (puzzleGrid[2,j].tokenVal.Equals(puzzleGrid[1,j])){
-				if (puzzleGrid[1,j].Equals(puzzleGrid[0,j])){
+			if (puzzleGrid[2,j].tokenVal.Equals(puzzleGrid[1,j].tokenVal)){
+				if (puzzleGrid[1,j].tokenVal.Equals(puzzleGrid[0,j].tokenVal)){
 					puzzleGrid[2,j].used = true;
 					puzzleGrid[1,j].used = true;
 					puzzleGrid[0,j].used = true;
@@ -115,7 +127,7 @@ public class PuzzleManager : MonoBehaviour {
 					foundMove = true;
 					slotNum++;
 				}
-				if (puzzleGrid[2,j].Equals(puzzleGrid[3,j])) {
+				if (puzzleGrid[2,j].tokenVal.Equals(puzzleGrid[3,j].tokenVal)) {
 					puzzleGrid[3,j].used = true;
 					puzzleGrid[2,j].used = true;
 					puzzleGrid[1,j].used = true;
@@ -126,8 +138,8 @@ public class PuzzleManager : MonoBehaviour {
 			}
 		}
 		for (int j = 0; j < 5; j++){
-			if (puzzleGrid[3,j].tokenVal.Equals(puzzleGrid[4,j])){
-				if (puzzleGrid[4,j].Equals(puzzleGrid[5,j])){
+			if (puzzleGrid[3,j].tokenVal.Equals(puzzleGrid[4,j].tokenVal)){
+				if (puzzleGrid[4,j].tokenVal.Equals(puzzleGrid[5,j].tokenVal)){
 					puzzleGrid[5,j].used = true;
 					puzzleGrid[4,j].used = true;
 					puzzleGrid[3,j].used = true;
@@ -135,7 +147,7 @@ public class PuzzleManager : MonoBehaviour {
 					foundMove = true;
 					slotNum++;
 				}
-				if (puzzleGrid[3,j].Equals(puzzleGrid[2,j])) {
+				if (puzzleGrid[3,j].tokenVal.Equals(puzzleGrid[2,j].tokenVal)) {
 					puzzleGrid[4,j].used = true;
 					puzzleGrid[3,j].used = true;
 					puzzleGrid[2,j].used = true;
@@ -191,6 +203,7 @@ public class PuzzleManager : MonoBehaviour {
 				if (currTime <= 0) {
 					activeToken.Reposition(activeX, activeY);
 					activeToken = null;
+					makeMove ();
 				}
 				currTime--;
 			} else if (activeToken == null && Input.mousePosition.y < 5.0 / 6.0 * Screen.width) {
@@ -212,6 +225,7 @@ public class PuzzleManager : MonoBehaviour {
 			if (activeToken != null){
 				activeToken.Reposition(activeX, activeY);
 				activeToken = null;
+				makeMove ();
 			}
 		}
 	}
@@ -248,6 +262,33 @@ public class Token{
 			break;
 		case TokenType.Up:
 			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenUp;
+			break;
+		case TokenType.Empty:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenEmpty;
+			break;
+		default:
+			break;
+		}
+	}
+	public void resetSprite(){
+		switch (tokenVal) {
+		case TokenType.Attack:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenAttack;
+			break;
+		case TokenType.Down:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenDown;
+			break;
+		case TokenType.Left:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenLeft;
+			break;
+		case TokenType.Right:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenRight;
+			break;
+		case TokenType.Up:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenUp;
+			break;
+		case TokenType.Empty:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenEmpty;
 			break;
 		default:
 			break;
