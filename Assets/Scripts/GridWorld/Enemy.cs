@@ -12,7 +12,7 @@ public class Enemy : MeleeEntity {
 	// Use this for initialization
 	protected override void Start () {
 		health = 20;
-		timer = 30;
+		timer = 0;
 		player = GameObject.Find ("lamePC");
 		currMove = Move.None;
 		isExecute = false;
@@ -41,7 +41,7 @@ public class Enemy : MeleeEntity {
 			if(moveCount > 1){
 				Debug.Log ("Enemy's turn is over.");
 				moveCount = 0;
-				timer = 30;
+				timer = 0;
 				isExecute = false;
 				return;
 			}
