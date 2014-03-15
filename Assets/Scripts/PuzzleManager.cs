@@ -48,6 +48,7 @@ public class PuzzleManager : MonoBehaviour {
 		
 		//List of moves to pass to the Game Board
 		setOfMoves = new List<TokenType> ();
+		Debug.Log (puzzleGrid [0, 0].tokenVal);
 	}
 	
 	// Update is called once per frame
@@ -61,9 +62,15 @@ public class PuzzleManager : MonoBehaviour {
 		}
 		queueMove ();
 		//Move tiles down after matches.
-		for (int i=0; i<6; i++){
-			for (int j=0; j<5; j++){
-				if (puzzleGrid[i,j].used == true){
+		for (int j=1; j<5; j++){
+			for (int i=0; i<6; i++){
+				if(puzzleGrid[i,j-1].tokenVal == TokenType.Empty){
+					puzzleGrid[i, j-1].tokenVal = puzzleGrid[i, j].tokenVal;
+					puzzleGrid[i, j].tokenVal = TokenType.Empty;
+					puzzleGrid[i, j-1].resetSprite ();
+					puzzleGrid[i, j].resetSprite ();
+				}
+				/*if (puzzleGrid[i,j].used == true){
 					if (j<4){
 						puzzleGrid[i,j].tokenVal = puzzleGrid[i,j+1].tokenVal;
 						puzzleGrid[i,j+1].used = true;
@@ -74,13 +81,14 @@ public class PuzzleManager : MonoBehaviour {
 						puzzleGrid[i,j].resetSprite ();
 					}
 					//puzzleGrid[i,5].tokenVal = 0;
-				}
+				}*/
 			}
 		}
 		Debug.Log (setOfMoves.Count);
 		for (int i=0; i<setOfMoves.Count; i++) {
 			Debug.Log (setOfMoves[i].ToString ());
 		}
+		setOfMoves.Clear ();
 		//Pass matches queue to GridMovement here.
 	}
 	
@@ -93,6 +101,9 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[i,2].used = true;
 					puzzleGrid[i,1].used = true;
 					puzzleGrid[i,0].used = true;
+					puzzleGrid[i,2].tokenVal = TokenType.Empty;
+					puzzleGrid[i,1].tokenVal = TokenType.Empty;
+					puzzleGrid[i,0].tokenVal = TokenType.Empty;
 					foundMove = true;
 					setOfMoves.Add(puzzleGrid[i,2].tokenVal);
 					slotNum++;
@@ -101,6 +112,9 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[i,3].used = true;
 					puzzleGrid[i,2].used = true;
 					puzzleGrid[i,1].used = true;
+					puzzleGrid[i,3].tokenVal = TokenType.Empty;
+					puzzleGrid[i,2].tokenVal = TokenType.Empty;
+					puzzleGrid[i,1].tokenVal = TokenType.Empty;
 					setOfMoves.Add(puzzleGrid[i,2].tokenVal);
 					foundMove = true;
 					slotNum++;
@@ -111,6 +125,9 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[i,4].used = true;
 					puzzleGrid[i,3].used = true;
 					puzzleGrid[i,2].used = true;
+					puzzleGrid[i,4].tokenVal = TokenType.Empty;
+					puzzleGrid[i,3].tokenVal = TokenType.Empty;
+					puzzleGrid[i,2].tokenVal = TokenType.Empty;
 					setOfMoves.Add(puzzleGrid[i,2].tokenVal);
 					foundMove = true;
 					slotNum++;
@@ -123,6 +140,9 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[2,j].used = true;
 					puzzleGrid[1,j].used = true;
 					puzzleGrid[0,j].used = true;
+					puzzleGrid[2,j].tokenVal = TokenType.Empty;
+					puzzleGrid[1,j].tokenVal = TokenType.Empty;
+					puzzleGrid[0,j].tokenVal = TokenType.Empty;
 					setOfMoves.Add(puzzleGrid[2,j].tokenVal);
 					foundMove = true;
 					slotNum++;
@@ -131,6 +151,9 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[3,j].used = true;
 					puzzleGrid[2,j].used = true;
 					puzzleGrid[1,j].used = true;
+					puzzleGrid[3,j].tokenVal = TokenType.Empty;
+					puzzleGrid[2,j].tokenVal = TokenType.Empty;
+					puzzleGrid[1,j].tokenVal = TokenType.Empty;
 					setOfMoves.Add(puzzleGrid[2,j].tokenVal);
 					foundMove = true;
 					slotNum++;
@@ -143,6 +166,9 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[5,j].used = true;
 					puzzleGrid[4,j].used = true;
 					puzzleGrid[3,j].used = true;
+					puzzleGrid[5,j].tokenVal = TokenType.Empty;
+					puzzleGrid[4,j].tokenVal = TokenType.Empty;
+					puzzleGrid[3,j].tokenVal = TokenType.Empty;
 					setOfMoves.Add(puzzleGrid[3,j].tokenVal);
 					foundMove = true;
 					slotNum++;
@@ -151,6 +177,9 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[4,j].used = true;
 					puzzleGrid[3,j].used = true;
 					puzzleGrid[2,j].used = true;
+					puzzleGrid[4,j].tokenVal = TokenType.Empty;
+					puzzleGrid[5,j].tokenVal = TokenType.Empty;
+					puzzleGrid[2,j].tokenVal = TokenType.Empty;
 					setOfMoves.Add(puzzleGrid[3,j].tokenVal);
 					foundMove = true;
 					slotNum++;
