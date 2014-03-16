@@ -89,6 +89,13 @@ public class PuzzleManager : MonoBehaviour {
 			refillStep = 3;
 			break;
 		case 3:
+			//while(ShiftTokensDown()){Debug.Log ("loop");};//added by Cody
+			for(int i = 0; i < 20; i++){
+				bool moved = ShiftTokensDown ();
+				if(moved == false){
+					break;
+				}
+			}
 			//if we have shifted tokens, try again.  Otherwise, proceed back to the matching algorithm
 			if (!ShiftTokensDown()){
 				refillStep = 0;
@@ -268,7 +275,7 @@ public class PuzzleManager : MonoBehaviour {
 	private bool ShiftTokensDown(){
 		bool shifts = false;
 		//Move tiles down after matches.
-		for (int j=1; j<10; j++){
+		for (int j=1; j<5; j++){
 			for (int i=0; i<6; i++){
 				if(puzzleGrid[i,j-1].tokenVal == TokenType.Empty){
 					puzzleGrid[i, j-1].tokenVal = puzzleGrid[i, j].tokenVal;
@@ -312,7 +319,7 @@ public class PuzzleManager : MonoBehaviour {
 					activeY = y;
 				}
 				
-				//keep the token within the boundsa
+				//keep the token within the bounds
 				if (activeToken.location.x < 0)
 					activeToken.location.x = 0;
 				if (activeToken.location.x > Screen.width - activeToken.location.width)
