@@ -91,6 +91,13 @@ public class PuzzleManager : MonoBehaviour {
 			refillStep = 3;
 			break;
 		case 3:
+			//while(ShiftTokensDown()){Debug.Log ("loop");};//added by Cody
+			for(int i = 0; i < 20; i++){
+				bool moved = ShiftTokensDown ();
+				if(moved == false){
+					break;
+				}
+			}
 			//if we have shifted tokens, try again.  Otherwise, proceed back to the matching algorithm
 			if (!ShiftTokensDown()){
 				refillStep = 0;
