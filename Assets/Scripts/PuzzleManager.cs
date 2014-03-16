@@ -258,7 +258,6 @@ public class PuzzleManager : MonoBehaviour {
 	/// </summary>
 	/// <returns><c>true</c>, if matches are done fading, <c>false</c> otherwise.</returns>
 	private bool FadeMatches(){
-<<<<<<< HEAD
 		bool fadeIsDone = false;
 		bool setDone = false;
 		//fade only one move at a time
@@ -290,18 +289,6 @@ public class PuzzleManager : MonoBehaviour {
 				t.tokenVal = TokenType.Empty;
 			}
 		}
-=======
-		//fill this in
-		for (int i=0; i<6; i++){
-			for (int j=0; j<5; j++){
-				if(puzzleGrid[i,j].used == true){
-					puzzleGrid[i,j].tokenVal = TokenType.Empty;
-					puzzleGrid[i,j].used = false;
-				}
-			}
-		}
-		return true;
->>>>>>> FETCH_HEAD
 	}
 
 	/// <summary>
@@ -334,12 +321,7 @@ public class PuzzleManager : MonoBehaviour {
 	/// <returns><c>true</c>, if token were shifted down, <c>false</c> if done and no shifts were made.</returns>
 	private bool ShiftTokensDown(){
 		bool shifts = false;
-<<<<<<< HEAD
 		for (int j=1; j<10; j++){
-=======
-		//Move tiles down after matches.
-		for (int j=1; j<5; j++){
->>>>>>> FETCH_HEAD
 			for (int i=0; i<6; i++){
 				if(puzzleGrid[i,j-1] != null && puzzleGrid[i,j] != null && puzzleGrid[i,j-1].tokenVal == TokenType.Empty){
 					puzzleGrid[i, j-1].tokenVal = puzzleGrid[i, j].tokenVal;
