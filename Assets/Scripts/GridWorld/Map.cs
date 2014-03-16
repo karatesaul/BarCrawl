@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Map : MonoBehaviour {
@@ -9,7 +9,7 @@ public class Map : MonoBehaviour {
 	public int height = 4;
 
 	public Tile prefab;
-	public Tile prefab2;
+	//prefab
 
 	// Use this for initialization
 	void Start () {

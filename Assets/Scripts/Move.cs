@@ -6,6 +6,7 @@ using System.Collections;
 //not that you need to remember that, because we have a conversion function.
 public enum Move {None, Left, Right, Up, Down, Fight};
 
+//This class allows us to make methods that can be called using Move.whatever
 public static class moveExtensions
 {
 

@@ -18,11 +18,6 @@ public class GridManager{
 	//it seems stupid, but it'll WORK.
 	//,,,not doing that yet though.  largely cause I don't like it.
 
-
-	
-	public int width = 10;
-	public int height = 4;
-
 	//consts, just in case, but these shouldn't need changing
 	public const float tileSizeX = .5f;
 	public const float tileSizeY = .5f;
@@ -42,8 +37,6 @@ public class GridManager{
 		}
 	}
 
-	
-	// Use this for initialization
 	GridManager() {
 		entities = new List<Entity>();
 	}
@@ -97,9 +90,9 @@ public class GridManager{
 			return false;
 		if (y < 0)
 			return false;
-		if (x >= width)
+		if (x >= map.width)
 			return false;
-		if (y >= height)
+		if (y >= map.height)
 			return false;
 
 		if(map[x,y].isPassable)
@@ -152,12 +145,5 @@ public class GridManager{
 		float x = getX(transformPosition);
 		float y = getY(transformPosition);
 		return new Vector2(x,y);
-	}
-
-
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }
