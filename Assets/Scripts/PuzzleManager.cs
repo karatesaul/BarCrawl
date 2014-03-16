@@ -28,7 +28,7 @@ public class PuzzleManager : MonoBehaviour {
 	/// 4 - waiting
 	/// </summary>
 	private int refillStep;
-	
+
 	private Token[,] puzzleGrid;
 	private int[] refillCount;
 	
@@ -146,9 +146,6 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[i,2].used = true;
 					puzzleGrid[i,1].used = true;
 					puzzleGrid[i,0].used = true;
-					puzzleGrid[i,2].tokenVal = TokenType.Empty;
-					puzzleGrid[i,1].tokenVal = TokenType.Empty;
-					puzzleGrid[i,0].tokenVal = TokenType.Empty;
 					foundMove = true;
 					setOfMoves.Add(puzzleGrid[i,2].tokenVal);
 					slotNum++;
@@ -157,9 +154,6 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[i,3].used = true;
 					puzzleGrid[i,2].used = true;
 					puzzleGrid[i,1].used = true;
-					puzzleGrid[i,3].tokenVal = TokenType.Empty;
-					puzzleGrid[i,2].tokenVal = TokenType.Empty;
-					puzzleGrid[i,1].tokenVal = TokenType.Empty;
 					setOfMoves.Add(puzzleGrid[i,2].tokenVal);
 					foundMove = true;
 					slotNum++;
@@ -170,9 +164,6 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[i,4].used = true;
 					puzzleGrid[i,3].used = true;
 					puzzleGrid[i,2].used = true;
-					puzzleGrid[i,4].tokenVal = TokenType.Empty;
-					puzzleGrid[i,3].tokenVal = TokenType.Empty;
-					puzzleGrid[i,2].tokenVal = TokenType.Empty;
 					setOfMoves.Add(puzzleGrid[i,2].tokenVal);
 					foundMove = true;
 					slotNum++;
@@ -185,9 +176,6 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[2,j].used = true;
 					puzzleGrid[1,j].used = true;
 					puzzleGrid[0,j].used = true;
-					puzzleGrid[2,j].tokenVal = TokenType.Empty;
-					puzzleGrid[1,j].tokenVal = TokenType.Empty;
-					puzzleGrid[0,j].tokenVal = TokenType.Empty;
 					setOfMoves.Add(puzzleGrid[2,j].tokenVal);
 					foundMove = true;
 					slotNum++;
@@ -196,9 +184,6 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[3,j].used = true;
 					puzzleGrid[2,j].used = true;
 					puzzleGrid[1,j].used = true;
-					puzzleGrid[3,j].tokenVal = TokenType.Empty;
-					puzzleGrid[2,j].tokenVal = TokenType.Empty;
-					puzzleGrid[1,j].tokenVal = TokenType.Empty;
 					setOfMoves.Add(puzzleGrid[2,j].tokenVal);
 					foundMove = true;
 					slotNum++;
@@ -211,9 +196,6 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[5,j].used = true;
 					puzzleGrid[4,j].used = true;
 					puzzleGrid[3,j].used = true;
-					puzzleGrid[5,j].tokenVal = TokenType.Empty;
-					puzzleGrid[4,j].tokenVal = TokenType.Empty;
-					puzzleGrid[3,j].tokenVal = TokenType.Empty;
 					setOfMoves.Add(puzzleGrid[3,j].tokenVal);
 					foundMove = true;
 					slotNum++;
@@ -222,9 +204,6 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[4,j].used = true;
 					puzzleGrid[3,j].used = true;
 					puzzleGrid[2,j].used = true;
-					puzzleGrid[4,j].tokenVal = TokenType.Empty;
-					puzzleGrid[5,j].tokenVal = TokenType.Empty;
-					puzzleGrid[2,j].tokenVal = TokenType.Empty;
 					setOfMoves.Add(puzzleGrid[3,j].tokenVal);
 					foundMove = true;
 					slotNum++;
@@ -241,6 +220,13 @@ public class PuzzleManager : MonoBehaviour {
 	/// <returns><c>true</c>, if matches are done fading, <c>false</c> otherwise.</returns>
 	private bool FadeMatches(){
 		//fill this in
+		for (int i=0; i<6; i++){
+			for (int j=0; j<5; j++){
+				if(puzzleGrid[i,j].used == true){
+					puzzleGrid[i,j].tokenVal = TokenType.Empty;
+				}
+			}
+		}
 		return true;
 	}
 
