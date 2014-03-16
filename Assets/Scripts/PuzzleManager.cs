@@ -12,6 +12,8 @@ public class PuzzleManager : MonoBehaviour {
 	public Texture tokenRight;
 	public Texture tokenAttack;
 	public Texture tokenEmpty;
+
+	public PlayerCharacter pc;
 	
 	private Token activeToken;
 	private int activeX, activeY;
@@ -76,7 +78,11 @@ public class PuzzleManager : MonoBehaviour {
 			if (matchFound){
 				refillStep = 1;
 			} else {
+				//Debug.Log ("sent " + setOfMoves.Count+ " commands");
 				refillStep = 4;
+				pc.moveInput = setOfMoves.ToArray ();
+				setOfMoves.Clear ();
+				pc.fillUp = true;
 			}
 			break;
 		case 1:

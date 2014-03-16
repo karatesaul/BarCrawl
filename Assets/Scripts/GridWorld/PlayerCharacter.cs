@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerCharacter : MeleeEntity {
 
 	public Move[] movelist;
+	public TokenType[] moveInput;
+	public bool fillUp;
 	public TurnManager tm;
 	private int currCombo;
 	public bool executeMode;
@@ -13,12 +16,13 @@ public class PlayerCharacter : MeleeEntity {
 	protected override void Start () {
 		tm = GameObject.Find("lamePC").GetComponent<TurnManager>();
 		exit = false;
+		fillUp = false;
 		health = 50;
 		timer = 30;
 		executeMode = false;
-		movelist = new Move[10];
+		movelist = new Move[20];
 		currCombo = 0;
-		for(int i = 0; i < 10; i++){
+		for(int i = 0; i < 20; i++){
 			movelist[i] = Move.None;
 		}
 
@@ -33,6 +37,44 @@ public class PlayerCharacter : MeleeEntity {
 	void Update () {
 				if (tm.turn == 1) {
 						if (!executeMode) {
+								if(fillUp){
+					for(int i = 0; i < 20; i++){
+						if(moveInput.Length == i){
+							Debug.Log ("ran out of moves at " + i);
+							break;
+						}
+						switch(moveInput[i]){
+						case TokenType.Left:
+							Debug.Log ("Left move queued.");
+							movelist[i] = Move.Left;
+							break;
+						case TokenType.Right:
+							Debug.Log ("Right move queued.");
+							movelist[i] = Move.Right;
+							break;
+						case TokenType.Up:
+							Debug.Log ("Up move queued.");
+							movelist[i] = Move.Up;
+							break;
+						case TokenType.Down:
+							Debug.Log ("Down move queued.");
+							movelist[i] = Move.Down;
+							break;
+						case TokenType.Attack:
+							Debug.Log ("Fight move queued.");
+							movelist[i] = Move.Fight;
+							break;
+						default:
+							Debug.Log ("No move queued.");
+							movelist[i] = Move.None;
+							break;
+
+						}
+					}
+					fillUp = false;
+					executeMode = true;
+								}
+				/*
 								if (Input.GetKeyDown (KeyCode.LeftArrow)) {
 										if (currCombo < 10) {
 												movelist [currCombo] = Move.Left;
@@ -85,16 +127,16 @@ public class PlayerCharacter : MeleeEntity {
 										tm.turn = 1;
 										Debug.Log ("Execute mode entered.");
 								}
-						} else {
-								if (currCombo > 9 || currCombo < 0) {
+						*/} else {
+								if (currCombo > 19 || currCombo < 0) {
 										currCombo = 0;
 										exit = true;
 								}
 								if (exit || movelist [currCombo] == Move.None) {
-										for (int i = 0; i < 10; i++) {
+										for (int i = 0; i < 20; i++) {
 												movelist [i] = Move.None;
 										}
-										Debug.Log ("Execute mode exited.");
+										//Debug.Log ("Execute mode exited.");
 										exit = false;
 										currCombo = 0;
 										timer = 30;
