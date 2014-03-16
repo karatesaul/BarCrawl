@@ -224,6 +224,7 @@ public class PuzzleManager : MonoBehaviour {
 			for (int j=0; j<5; j++){
 				if(puzzleGrid[i,j].used == true){
 					puzzleGrid[i,j].tokenVal = TokenType.Empty;
+					puzzleGrid[i,j].used = false;
 				}
 			}
 		}
