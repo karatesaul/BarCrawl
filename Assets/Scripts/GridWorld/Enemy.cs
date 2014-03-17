@@ -23,8 +23,9 @@ public class Enemy : MeleeEntity {
 	}
 	
 	// Update is called once per frame
-	void Update()
+	protected override void Update()
 	{
+		base.Update ();
 		if (health < 1) {
 			Die ();
 		}

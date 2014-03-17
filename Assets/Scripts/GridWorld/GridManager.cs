@@ -67,7 +67,6 @@ public class GridManager{
 	{
 		if (!isPassableMapOnly (x, y))
 			return null;
-		
 		foreach (Entity entity in entities) {
 			if(entity.x == x && entity.y == y)
 			{

@@ -8,8 +8,11 @@ public class Entity : MonoBehaviour {
 	public int y;
 
 	public int health;
-
+	public const int maxRed = 100;
+	public int currentRed = 0;
 	public bool isPassable = false;
+	
+	protected SpriteRenderer spriteRender;
 
 	//for display & fight logic purposes.
 	protected Move facing;
@@ -18,12 +21,21 @@ public class Entity : MonoBehaviour {
 	// Start MUST be called by superclasses!
 	protected virtual void Start () {
 		GridManager.instance.entities.Add(this);
+		spriteRender = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
 	// At the moment, Update need not be called by superclasses.  And indeed, cannot.
-	void Update() {
-
+	protected virtual void Update() {
+		currentRed--;
+		
+		if(currentRed >= 0){
+			spriteRender.color = Color.red;
+			//Debug.Log ("red");
+		}else{
+			spriteRender.color = Color.white;
+			//Debug.Log("white");
+		}
 	}
 
 	/// <summary>

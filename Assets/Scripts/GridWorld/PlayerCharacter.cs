@@ -36,7 +36,8 @@ public class PlayerCharacter : MeleeEntity {
 
 
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
+		base.Update ();
 				if (tm.turn == 1) {
 						if (!executeMode) {
 								if(fillUp){
@@ -156,14 +157,6 @@ public class PlayerCharacter : MeleeEntity {
 				}
 
 			//make sure the sprite is the right color
-			currentRed--;
 
-			if(currentRed >= 0){
-				spriteRender.color = Color.red;
-			//Debug.Log ("red");
-			}else{
-				spriteRender.color = Color.white;
-			//Debug.Log("white");
-			}
 		}
 }

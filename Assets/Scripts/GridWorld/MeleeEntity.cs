@@ -15,13 +15,10 @@ public class MeleeEntity : Entity {
 	protected int damageDealt = 10;
 
 	//used for animation stuff
-	protected SpriteRenderer spriteRender;
-	protected const int maxRed = 100;
-	protected int currentRed = 0;
 
 	protected virtual void Start(){
+		base.Start ();
 		//sprite renderer
-		spriteRender = GetComponent<SpriteRenderer>();
 	}
 
 	/// <summary>
@@ -56,6 +53,8 @@ public class MeleeEntity : Entity {
 
 					GridManager.instance.getTarget (destX, destY).health -= damageDealt;
 					//change color at the same time
+					
+					GridManager.instance.getTarget (destX, destY).currentRed = 100;
 
 
 					facing = moveExtensions.getMove(fightOrder[i]);
