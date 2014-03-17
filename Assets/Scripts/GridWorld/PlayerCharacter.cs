@@ -12,6 +12,7 @@ public class PlayerCharacter : MeleeEntity {
 	public bool executeMode;
 	private bool exit;
 	private int timer;
+	
 	// Use this for initialization
 	protected override void Start () {
 		tm = GameObject.Find("lamePC").GetComponent<TurnManager>();
@@ -29,6 +30,7 @@ public class PlayerCharacter : MeleeEntity {
 		foeTag = "enemy";
 	
 		base.Start();
+
 	}
 
 
@@ -152,5 +154,16 @@ public class PlayerCharacter : MeleeEntity {
 								}
 						}
 				}
+
+			//make sure the sprite is the right color
+			currentRed--;
+
+			if(currentRed >= 0){
+				spriteRender.color = Color.red;
+			//Debug.Log ("red");
+			}else{
+				spriteRender.color = Color.white;
+			//Debug.Log("white");
+			}
 		}
 }

@@ -14,6 +14,16 @@ public class MeleeEntity : Entity {
 	/// </summary>
 	protected int damageDealt = 10;
 
+	//used for animation stuff
+	protected SpriteRenderer spriteRender;
+	protected const int maxRed = 100;
+	protected int currentRed = 0;
+
+	protected virtual void Start(){
+		//sprite renderer
+		spriteRender = GetComponent<SpriteRenderer>();
+	}
+
 	/// <summary>
 	/// Attempts to execute the specified move. If there is something in the way, will not change position, but will change facing.
 	/// In MeleeEntity, this handles melee fighting as well as movement.
@@ -28,7 +38,6 @@ public class MeleeEntity : Entity {
 		}
 
 		Debug.Log (gameObject.name + "attempts to fight!");
-
 		//handles fighting
 		//this function orders the tiles so that the entity will attack those in front of it before ones to the side
 		Vector2[] fightOrder = facing.attackOrder ();
@@ -46,6 +55,8 @@ public class MeleeEntity : Entity {
 					//Attack animation code should go somewhere under this if.
 
 					GridManager.instance.getTarget (destX, destY).health -= damageDealt;
+					//change color at the same time
+
 
 					facing = moveExtensions.getMove(fightOrder[i]);
 
