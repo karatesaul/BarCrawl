@@ -6,6 +6,11 @@ using System.Collections.Generic;
 /// The script to manage the puzzle, drawing the puzzle, and running the puzzle
 /// </summary>
 public class PuzzleManager : MonoBehaviour {
+
+	//this is off by default so the menu can appear.
+	//when start is pressed on the menu, it turns the puzzle on
+	public bool puzzleActive;
+
 	public Texture tokenUp;
 	public Texture tokenDown;
 	public Texture tokenLeft;
@@ -39,6 +44,7 @@ public class PuzzleManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		puzzleActive = false;
 		
 		currTime = 0;		
 		refillCount = new int[6];
@@ -71,6 +77,9 @@ public class PuzzleManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//no need to update while still on the menu
+		if(!puzzleActive) return;
+
 		switch (refillStep) {
 		case 0:
 			//if the matching algorithm returns matches, go to the next steps.  Otherwise, await anomther move.
@@ -345,6 +354,9 @@ public class PuzzleManager : MonoBehaviour {
 	}
 	
 	public void OnGUI(){
+		//no need to draw this while menu is active
+		if(!puzzleActive) return;
+
 		for (int i=0; i<6; i++) {
 			for (int j=0; j<5; j++){
 				if (puzzleGrid[i, j] != activeToken){
