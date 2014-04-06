@@ -6,18 +6,18 @@ using System.Collections.Generic;
 /// The script to manage the puzzle, drawing the puzzle, and running the puzzle
 /// </summary>
 public class PuzzleManager : MonoBehaviour {
-
+	
 	//this is off by default so the menu can appear.
 	//when start is pressed on the menu, it turns the puzzle on
 	public bool puzzleActive;
-
+	
 	public Texture tokenUp;
 	public Texture tokenDown;
 	public Texture tokenLeft;
 	public Texture tokenRight;
 	public Texture tokenAttack;
 	public Texture tokenEmpty;
-
+	
 	public PlayerCharacter pc;
 	
 	private Token activeToken;
@@ -25,7 +25,7 @@ public class PuzzleManager : MonoBehaviour {
 	public int timeLimit = 900;
 	private int currTime;
 	private Vector2 mouseTokenRelativeLocation;
-
+	
 	/// <summary>
 	/// The refill step.
 	/// 0 - matching algorithm
@@ -35,13 +35,15 @@ public class PuzzleManager : MonoBehaviour {
 	/// 4 - waiting
 	/// </summary>
 	private int refillStep;
-
+	public int fallSpeed = 4;
+	
 	private Token[,] puzzleGrid;
 	private int[] refillCount;
-
+	private int[] shiftBottomRow;
+	
 	public List<TokenType> setOfMoves;
 	private List<List<Token>> setOfTokens;
-
+	
 	// Use this for initialization
 	void Start () {
 		puzzleActive = false;
@@ -49,14 +51,15 @@ public class PuzzleManager : MonoBehaviour {
 		currTime = 0;		
 		refillCount = new int[6];
 		refillStep = 4;
-
+		
 		//List of moves to pass to the Game Board
 		setOfMoves = new List<TokenType> ();
 		setOfTokens = new List<List<Token>> ();
 		//Debug.Log (puzzleGrid [0, 0].tokenVal);
-
+		
 		//initialize the tokens
 		puzzleGrid = new Token[6, 10];
+		shiftBottomRow = new int[6];
 		for (int i=0; i<6; i++) {
 			for (int j=0; j<5; j++){
 				
@@ -64,21 +67,30 @@ public class PuzzleManager : MonoBehaviour {
 				int type = Random.Range(1, 6);
 				puzzleGrid[i,j] = new Token(i, j, type);
 			}
+			//fill the unseen rows with empty tokens
+			for (int j=5; j<10; j++){
+				puzzleGrid[i,j] = new Token(i,j, 0);
+			}
+			shiftBottomRow[i] = -1;
 		}
-
+		
 		//clear out the initial matches
 		while (QueueMove()) {
 			ClearInitialMatches();
 			RefillTokens();
-			while (ShiftTokensDown());
+			while (ShiftDownAtOnce());
 		}
-
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//no need to update while still on the menu
 		if(!puzzleActive) return;
+
+		if (Input.GetKey (KeyCode.I)) {
+			Debug.Log(refillStep.ToString());
+		}
 
 		switch (refillStep) {
 		case 0:
@@ -106,18 +118,18 @@ public class PuzzleManager : MonoBehaviour {
 			refillStep = 3;
 			break;
 		case 3:
-			//while(ShiftTokensDown()){Debug.Log ("loop");};//added by Cody
-			for(int i = 0; i < 20; i++){
-				bool moved = ShiftTokensDown ();
-				if(moved == false){
-					break;
-				}
-			}
+			//			//while(ShiftTokensDown()){Debug.Log ("loop");};//added by Cody
+			//			for(int i = 0; i < 20; i++){
+			//				bool moved = ShiftTokensDown ();
+			//				if(moved == false){
+			//					break;
+			//				}
+			//			}
 			//if we have shifted tokens, try again.  Otherwise, proceed back to the matching algorithm
-			if (!ShiftTokensDown()){
+			if (!ShiftTokensDownVisually()){
 				refillStep = 0;
 			}
- 			break;
+			break;
 		case 4:
 			//we are waiting for input
 			break;
@@ -126,34 +138,34 @@ public class PuzzleManager : MonoBehaviour {
 		}
 	}
 	
-//	public void MakeMove (){
-//		//		for (int i=0; i<20; i++){ //Maybe this works, maybe it doesn't, nobody knows!
-//		//			//Pass along the matches queue, but don't organize it at this time.
-//		//			
-//		//		}
-//		QueueMove ();
-//		
-//		RefillTokens ();
-//		
-//		/*if (puzzleGrid[i,j].used == true){
-//					if (j<4){
-//						puzzleGrid[i,j].tokenVal = puzzleGrid[i,j+1].tokenVal;
-//						puzzleGrid[i,j+1].used = true;
-//						puzzleGrid[i,j].resetSprite ();
-//					}
-//					else{
-//						puzzleGrid[i,j].tokenVal = TokenType.Empty;
-//						puzzleGrid[i,j].resetSprite ();
-//					}
-//					//puzzleGrid[i,5].tokenVal = 0;
-//				}*/
-//		Debug.Log (setOfMoves.Count);
-//		for (int i=0; i<setOfMoves.Count; i++) {
-//			Debug.Log (setOfMoves[i].ToString ());
-//		}
-//		//Pass matches queue to GridMovement here.
-//		setOfMoves.Clear ();
-//	}
+	//	public void MakeMove (){
+	//		//		for (int i=0; i<20; i++){ //Maybe this works, maybe it doesn't, nobody knows!
+	//		//			//Pass along the matches queue, but don't organize it at this time.
+	//		//			
+	//		//		}
+	//		QueueMove ();
+	//		
+	//		RefillTokens ();
+	//		
+	//		/*if (puzzleGrid[i,j].used == true){
+	//					if (j<4){
+	//						puzzleGrid[i,j].tokenVal = puzzleGrid[i,j+1].tokenVal;
+	//						puzzleGrid[i,j+1].used = true;
+	//						puzzleGrid[i,j].resetSprite ();
+	//					}
+	//					else{
+	//						puzzleGrid[i,j].tokenVal = TokenType.Empty;
+	//						puzzleGrid[i,j].resetSprite ();
+	//					}
+	//					//puzzleGrid[i,5].tokenVal = 0;
+	//				}*/
+	//		Debug.Log (setOfMoves.Count);
+	//		for (int i=0; i<setOfMoves.Count; i++) {
+	//			Debug.Log (setOfMoves[i].ToString ());
+	//		}
+	//		//Pass matches queue to GridMovement here.
+	//		setOfMoves.Clear ();
+	//	}
 	
 	public bool QueueMove (){
 		//Debug.Log ("Running Algorithm");
@@ -266,7 +278,7 @@ public class PuzzleManager : MonoBehaviour {
 		}
 		return foundMove;
 	}
-
+	
 	/// <summary>
 	/// Fades the matches, one by one.
 	/// Returns true when all are faded.
@@ -297,7 +309,7 @@ public class PuzzleManager : MonoBehaviour {
 		}
 		return fadeIsDone;
 	}
-
+	
 	private void ClearInitialMatches(){
 		foreach (List<Token> l in setOfTokens) {
 			foreach (Token t in l){
@@ -305,7 +317,7 @@ public class PuzzleManager : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	/// <summary>
 	/// Creates new tokens to fall and refill the grid.  
 	/// Iterates over all of the rows, counting the gaps and then adding that many tokens above.
@@ -315,26 +327,24 @@ public class PuzzleManager : MonoBehaviour {
 		for (int i=0; i<6; i++) {
 			//first reset the refillcount for the column
 			refillCount[i] = 0;
+			shiftBottomRow[i] = -1;
 			//next count the empty spots in the column
 			for (int j=0; j<5; j++){
 				if (puzzleGrid[i,j].tokenVal == TokenType.Empty){
 					refillCount[i]++;
+					if (shiftBottomRow[i] == -1) shiftBottomRow[i] = j;
 				}
 			}
 			//now add that number of tokens above to refill the lower rows
 			for (int j=5; j<5+refillCount[i]; j++){
 				//get a random token type here
 				int type = Random.Range(1, 6);
-				puzzleGrid[i,j] = new Token(i, j, type);
+				puzzleGrid[i,j].tokenVal = (TokenType)type;
 			}
 		}
 	}
 
-	/// <summary>
-	/// Shifts the tokens down.
-	/// </summary>
-	/// <returns><c>true</c>, if token were shifted down, <c>false</c> if done and no shifts were made.</returns>
-	private bool ShiftTokensDown(){
+	private bool ShiftDownAtOnce(){
 		bool shifts = false;
 		for (int j=1; j<10; j++){
 			for (int i=0; i<6; i++){
@@ -350,15 +360,41 @@ public class PuzzleManager : MonoBehaviour {
 				}
 			}
 		}
+		
+		return shifts;
+	}
+
+	/// <summary>
+	/// Shifts the tokens down with a visual effect.
+	/// </summary>
+	/// <returns><c>true</c>, if token were shifted down, <c>false</c> if done and no shifts were made.</returns>
+	private bool ShiftTokensDownVisually(){
+		bool shifts = false;
+		for (int i=0; i<6; i++) {
+			if (shiftBottomRow[i] == -1) continue;
+			if (puzzleGrid[i,shiftBottomRow[i]].tokenVal == TokenType.Empty){
+				for (int j=shiftBottomRow[i]; j<10; j++){
+					if (puzzleGrid[i,j].tokenVal == TokenType.Empty) continue;
+					puzzleGrid[i,j].location.y += fallSpeed;
+					shifts = true;
+					if (j > Token.GetPositionOfCoords(puzzleGrid[i,j].Origin).y && j > 0){
+						puzzleGrid[i,j-1].tokenVal = puzzleGrid[i,j].tokenVal;
+						puzzleGrid[i,j].tokenVal = TokenType.Empty;
+						puzzleGrid[i,j].ResetSprite();
+						puzzleGrid[i,j-1].ResetSprite();
+					}
+				}
+			}
+		}
 		return shifts;
 	}
 	
 	public void OnGUI(){
 		//no need to draw this while menu is active
 		if(!puzzleActive) return;
-
+		
 		for (int i=0; i<6; i++) {
-			for (int j=0; j<5; j++){
+			for (int j=0; j<(refillStep == 3 ? 6 : 5); j++){
 				if (puzzleGrid[i, j] != activeToken){
 					GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,j].drawAlpha);
 					GUI.DrawTexture(puzzleGrid[i,j].location, puzzleGrid[i,j].sprite);
@@ -371,7 +407,7 @@ public class PuzzleManager : MonoBehaviour {
 			GUI.DrawTexture(activeToken.location, activeToken.sprite);
 		}
 		
-		if (Input.GetMouseButton (0)) { //or if there is a touch present
+		if (refillStep == 4 && Input.GetMouseButton (0)) { //or if there is a touch present
 			if (activeToken != null) {
 				//drag around the currently selected token
 				activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
@@ -408,7 +444,7 @@ public class PuzzleManager : MonoBehaviour {
 				//get the token that the mouse is over, and pick it up
 				int x = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
 				int y = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
-
+				
 				activeToken = puzzleGrid [x, y];
 				activeX = x;
 				activeY = y;
@@ -437,7 +473,19 @@ public class Token{
 	
 	public Texture sprite;
 	public float drawAlpha;
+
+	public Vector2 Origin {
+		get { return new Vector2(location.x, location.y); }
+	}
 	
+	public static Vector2 GetCoordsOfPosition(int i, int j){
+		return new Vector2 (Screen.width * (i / 6.0f), Screen.height - Screen.width / 6.0f * (1 + j));
+	}
+
+	public static Vector2 GetPositionOfCoords(Vector2 coords){
+		return new Vector2 (Mathf.FloorToInt (coords.x * 6.0f / Screen.width), Mathf.FloorToInt ((Screen.height - coords.y) * 6.0f / Screen.width - 1));
+	}
+
 	public Token(int xLoc, int yLoc, int type){
 		this.seen = false;
 		this.used = false;
@@ -469,7 +517,7 @@ public class Token{
 			break;
 		}
 	}
-
+	
 	public void ResetSprite(){
 		switch (tokenVal) {
 		case TokenType.Attack:
