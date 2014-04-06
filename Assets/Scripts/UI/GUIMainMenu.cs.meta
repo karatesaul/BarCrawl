@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0c4ef3904f195bc48874df71d294c08b
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - buttonPressClip: {instanceID: 0}
+  - play: {fileID: 2800000, guid: b2ca88436b09d3a46846d3790603c7b6, type: 3}
+  - highScores: {fileID: 2800000, guid: 2dfdf190a3cbc8d4f89aa5070a048ebf, type: 3}
+  - instructions: {fileID: 2800000, guid: 32d28dc50df3eb1408db304faadf4407, type: 3}
+  - credits: {fileID: 2800000, guid: 1a2e53f217784fd47b8c05f069d86d1c, type: 3}
+  - quit: {fileID: 2800000, guid: 5a5c0b8de728db84f9ce50f063d1d874, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

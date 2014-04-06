@@ -238,10 +238,14 @@
      <Compile Include="Assets\Scripts\GridWorld\MeleeEntity.cs" />
      <Compile Include="Assets\Scripts\GridWorld\PlayerCharacter.cs" />
      <Compile Include="Assets\Scripts\GridWorld\Tile.cs" />
+     <Compile Include="Assets\Scripts\Highscores\HighScoreManager.cs" />
+     <Compile Include="Assets\Scripts\Highscores\MenuController.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Move.cs" />
      <Compile Include="Assets\Scripts\PuzzleManager.cs" />
      <Compile Include="Assets\Scripts\TurnManager.cs" />
+     <Compile Include="Assets\Scripts\UI\GUIBackMainMenuButton.cs" />
+     <Compile Include="Assets\Scripts\UI\GUIMainMenu.cs" />
      <Compile Include="Assets\Scripts\udlrTest.cs" />
      <None Include="Assets\Daikon Forge\Examples\Skins\Fantasy\Fonts\Open Sans\Heiro-OpenSans-Regular-24px.fnt" />
      <None Include="Assets\Daikon Forge\Examples\Labels\Atlas\Huggable32.fnt" />

@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 81742cb18205b334a80da931afdae506
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - buttonPressClip: {instanceID: 0}
+  - backButton: {fileID: 2800000, guid: e0bab627a0c5eb94d9e123821b8bf75b, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
