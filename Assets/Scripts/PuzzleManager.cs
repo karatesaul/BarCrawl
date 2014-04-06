@@ -126,8 +126,14 @@ public class PuzzleManager : MonoBehaviour {
 			//				}
 			//			}
 			//if we have shifted tokens, try again.  Otherwise, proceed back to the matching algorithm
-			if (!ShiftTokensDownVisually()){
+			if (!ShiftDownAtOnce()){
 				refillStep = 0;
+//				for (int i=0; i<6; i++){
+//					for (int j=0; j<5; j++){
+//						puzzleGrid[i,j].Reposition(i, j);
+//						puzzleGrid[i,j].ResetSprite();
+//					}
+//				}
 			}
 			break;
 		case 4:
@@ -340,6 +346,7 @@ public class PuzzleManager : MonoBehaviour {
 				//get a random token type here
 				int type = Random.Range(1, 6);
 				puzzleGrid[i,j].tokenVal = (TokenType)type;
+				puzzleGrid[i,j].ResetSprite();
 			}
 		}
 	}
@@ -378,8 +385,9 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[i,j].location.y += fallSpeed;
 					shifts = true;
 					if (j > Token.GetPositionOfCoords(puzzleGrid[i,j].Origin).y && j > 0){
-						puzzleGrid[i,j-1].tokenVal = puzzleGrid[i,j].tokenVal;
-						puzzleGrid[i,j].tokenVal = TokenType.Empty;
+						Token temp = puzzleGrid[i, j-1];
+						puzzleGrid[i,j-1] = puzzleGrid[i,j];
+						puzzleGrid[i, j] = temp;
 						puzzleGrid[i,j].ResetSprite();
 						puzzleGrid[i,j-1].ResetSprite();
 					}
@@ -394,10 +402,17 @@ public class PuzzleManager : MonoBehaviour {
 		if(!puzzleActive) return;
 		
 		for (int i=0; i<6; i++) {
-			for (int j=0; j<(refillStep == 3 ? 6 : 5); j++){
+			for (int j=0; j<5; j++){
 				if (puzzleGrid[i, j] != activeToken){
 					GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,j].drawAlpha);
 					GUI.DrawTexture(puzzleGrid[i,j].location, puzzleGrid[i,j].sprite);
+					//GUI.Box(puzzleGrid[i,j].location, "i: " + i.ToString() + "j: " + j.ToString());
+				}
+			}
+			if (refillStep == 3){
+				if (puzzleGrid[i, 6] != activeToken){
+					GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,6].drawAlpha);
+					GUI.DrawTexture(puzzleGrid[i,6].location, puzzleGrid[i,6].sprite);
 					//GUI.Box(puzzleGrid[i,j].location, "i: " + i.ToString() + "j: " + j.ToString());
 				}
 			}
