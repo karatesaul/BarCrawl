@@ -3,6 +3,7 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 	bool displayMenu;
+	public Texture title;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +20,8 @@ public class MainMenu : MonoBehaviour {
 		if(!displayMenu){
 			return;
 		}
+		//draw title
+		GUI.DrawTexture(new Rect(0, -Screen.height/3, Screen.width, Screen.height), title, ScaleMode.ScaleToFit);
 		//find desired button size
 		int x = Screen.width;
 		int y = Screen.height;
