@@ -15,7 +15,7 @@ public class PlayerCharacter : MeleeEntity {
 	
 	// Use this for initialization
 	protected override void Start () {
-		tm = GameObject.Find("lamePC").GetComponent<TurnManager>();
+		tm = GameObject.Find("Player").GetComponent<TurnManager>();
 		exit = false;
 		fillUp = false;
 		health = 50;

@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MeleeEntity {
+public class MeleeEnemy : MeleeEntity, IEnemy {
 
-	public GameObject player;
+	public GameObject player { get; set; }
 	private Move currMove;
-	public bool isExecute;
+	public bool isExecuting { get; set; }
 	private int timer;
 	private int moveCount;
 
@@ -13,9 +13,9 @@ public class Enemy : MeleeEntity {
 	protected override void Start () {
 		health = 20;
 		timer = 0;
-		player = GameObject.Find ("lamePC");
+		player = GameObject.Find ("Player");
 		currMove = Move.None;
-		isExecute = false;
+		isExecuting = false;
 
 		foeTag = "Player";
 
@@ -30,10 +30,10 @@ public class Enemy : MeleeEntity {
 			Die ();
 		}
 
-		if (!isExecute) {
+		if (!isExecuting) {
 			if(Input.GetKeyDown (KeyCode.O)){
 				Debug.Log ("Enemy takes a turn!");
-				isExecute = true;
+				isExecuting = true;
 			}
 		}
 		else{
@@ -43,7 +43,7 @@ public class Enemy : MeleeEntity {
 				Debug.Log ("Enemy's turn is over.");
 				moveCount = 0;
 				timer = 0;
-				isExecute = false;
+				isExecuting = false;
 				return;
 			}
 			if(timer > 30){

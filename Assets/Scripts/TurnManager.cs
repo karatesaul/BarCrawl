@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TurnManager : MonoBehaviour {
 
 	public PlayerCharacter player;
 	public int enemyCount;
-	public GameObject[] enemyObjs; 
-	public Enemy[] enemies; 
+	public List<IEnemy> enemies;
 
 	//0 = none
 	//1 = player turn
@@ -15,11 +15,14 @@ public class TurnManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.Find("lamePC").GetComponent<PlayerCharacter>();
+		GameObject[] enemyObjs; 
+
+		player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
+
 		enemyObjs = GameObject.FindGameObjectsWithTag("enemy");
-		enemies = new Enemy[enemyObjs.Length];
+		enemies = new List<IEnemy>();
 		for (int i = 0; i < enemyObjs.Length; i++) {
-			enemies[i] = enemyObjs[i].GetComponent<Enemy>();
+			enemies.Add((IEnemy)enemyObjs[i].GetComponent(typeof(IEnemy)));
 		}
 
 		turn = 1;
@@ -33,8 +36,9 @@ public class TurnManager : MonoBehaviour {
 			//turn is set within PlayerCharacter.cs after exiting executeMode and attempting to move
 		} else if (turn == 2) {
 			//Debug.Log ("ENEMY TURN");
-			for (int i = 0; i < enemies.Length; i++) {
-				enemies[i].isExecute = true;
+			foreach(IEnemy enemy in enemies)
+			{
+				enemy.isExecuting = true;
 			}
 			turn = 1;
 		}

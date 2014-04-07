@@ -12,7 +12,7 @@ public class Entity : MonoBehaviour {
 	public int currentRed = 0;
 	public bool isPassable = false;
 	
-	protected SpriteRenderer spriteRender;
+	protected SpriteRenderer spriteRenderer;
 
 	//for display & fight logic purposes.
 	protected Move facing;
@@ -21,19 +21,20 @@ public class Entity : MonoBehaviour {
 	// Start MUST be called by superclasses!
 	protected virtual void Start () {
 		GridManager.instance.entities.Add(this);
-		spriteRender = GetComponent<SpriteRenderer>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
-	// At the moment, Update need not be called by superclasses.  And indeed, cannot.
+	// Update also MUST be called by superclasses!
 	protected virtual void Update() {
-		currentRed--;
+		if(currentRed > 0)
+			currentRed--;
 		
 		if(currentRed >= 0){
-			spriteRender.color = Color.red;
+			spriteRenderer.color = Color.red;
 			//Debug.Log ("red");
 		}else{
-			spriteRender.color = Color.white;
+			spriteRenderer.color = Color.white;
 			//Debug.Log("white");
 		}
 	}

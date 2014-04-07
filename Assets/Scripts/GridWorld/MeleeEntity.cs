@@ -16,7 +16,7 @@ public class MeleeEntity : Entity {
 
 	//used for animation stuff
 
-	protected virtual void Start(){
+	protected override void Start(){
 		base.Start ();
 		//sprite renderer
 	}
