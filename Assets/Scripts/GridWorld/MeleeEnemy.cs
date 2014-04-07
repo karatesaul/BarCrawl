@@ -72,4 +72,9 @@ public class MeleeEnemy : MeleeEntity, IEnemy {
 			}
 		}
 	}
+	public override void Die(){
+		base.Die ();
+		player.GetComponent<PlayerCharacter> ().score += 100;
+		player.GetComponent<TurnManager>().shortenEnemyList();
+	}
 }

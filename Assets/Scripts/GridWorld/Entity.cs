@@ -106,7 +106,7 @@ public class Entity : MonoBehaviour {
 	/// <summary>
 	/// Kills the entity.  Call this to make sure its deconstruction logic is done.
 	/// </summary>
-	public void Die()
+	public virtual void Die()
 	{
 		//right now, that consists of removing it from the GridManager's entity list.
 

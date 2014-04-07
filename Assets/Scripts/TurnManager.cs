@@ -46,21 +46,12 @@ public class TurnManager : MonoBehaviour {
 			if((spawnTimer > 5 && enemyCount < (player.score/100) && enemyCount < maxEnemies) || enemyCount < 0)
 			{
 
-				shortenEnemyList(); //This should instead be called in Enemy, but I'll move it there later.
+				 //This should instead be called in Enemy, but I'll move it there later.
 				enemyInstance = Instantiate (enemyReference, new Vector2(2, 0), new Quaternion(0,0,0,0)) as GameObject;
 				enemyInstance.GetComponent<Entity>().x = 4;
 				enemyInstance.GetComponent<Entity>().y = 0;
 
 				enemies.Add((IEnemy)enemyInstance.GetComponent(typeof(IEnemy)));
-
-				/*
-				for(int i = 0; i < enemies.Length; i++){
-					if(enemies[i] == null){
-						enemies[i] = enemyInstance.GetComponent<Enemy>();
-						i = enemies.Length;
-					}
-				}
-				*/
 
 				spawnTimer = 0;
 			}
@@ -76,15 +67,15 @@ public class TurnManager : MonoBehaviour {
 		}
 	}
 
-	void shortenEnemyList(){
+	public void shortenEnemyList(){
 		//this needs to be rewritten, (or code with a similar function), to work now that enemies is a List.  But for now, it should work without it.
 
-		/*for(int i = 1; i < maxEnemies; i++){
+		for(int i = 1; i < enemies.Count; i++){
 			if(enemies[i-1] == null){
 				enemies[i-1] = enemies[i];
 				enemies[i] = null;
 			}
 		}
-		*/
+
 	}
 }
