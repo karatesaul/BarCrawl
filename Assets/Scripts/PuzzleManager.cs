@@ -39,8 +39,8 @@ public class PuzzleManager : MonoBehaviour {
 	
 	private Token[,] puzzleGrid;
 	private int[] refillCount;
-	private int[] shiftBottomRow;
-	
+	private bool readyToShift;
+
 	public List<TokenType> setOfMoves;
 	private List<List<Token>> setOfTokens;
 	
@@ -59,7 +59,6 @@ public class PuzzleManager : MonoBehaviour {
 		
 		//initialize the tokens
 		puzzleGrid = new Token[6, 10];
-		shiftBottomRow = new int[6];
 		for (int i=0; i<6; i++) {
 			for (int j=0; j<5; j++){
 				
@@ -71,7 +70,6 @@ public class PuzzleManager : MonoBehaviour {
 			for (int j=5; j<10; j++){
 				puzzleGrid[i,j] = new Token(i,j, 0);
 			}
-			shiftBottomRow[i] = -1;
 		}
 		
 		//clear out the initial matches
@@ -87,11 +85,11 @@ public class PuzzleManager : MonoBehaviour {
 	void Update () {
 		//no need to update while still on the menu
 		if(!puzzleActive) return;
-
+		
 		if (Input.GetKey (KeyCode.I)) {
 			Debug.Log(refillStep.ToString());
 		}
-
+		
 		switch (refillStep) {
 		case 0:
 			//if the matching algorithm returns matches, go to the next steps.  Otherwise, await anomther move.
@@ -118,16 +116,15 @@ public class PuzzleManager : MonoBehaviour {
 			refillStep = 3;
 			break;
 		case 3:
-			//			//while(ShiftTokensDown()){Debug.Log ("loop");};//added by Cody
-			//			for(int i = 0; i < 20; i++){
-			//				bool moved = ShiftTokensDown ();
-			//				if(moved == false){
-			//					break;
-			//				}
-			//			}
-			//if we have shifted tokens, try again.  Otherwise, proceed back to the matching algorithm
-			if (!ShiftTokensDownVisually()){
-				refillStep = 0;
+			if (!readyToShift){
+				if (!ShiftTokensInData()){
+					readyToShift = true;
+				}
+			} else {
+				//if we have shifted tokens, try again.  Otherwise, proceed back to the matching algorithm
+				if (!ShiftTokensDownVisually()){
+					refillStep = 0;
+				}
 			}
 			break;
 		case 4:
@@ -137,36 +134,7 @@ public class PuzzleManager : MonoBehaviour {
 			break;
 		}
 	}
-	
-	//	public void MakeMove (){
-	//		//		for (int i=0; i<20; i++){ //Maybe this works, maybe it doesn't, nobody knows!
-	//		//			//Pass along the matches queue, but don't organize it at this time.
-	//		//			
-	//		//		}
-	//		QueueMove ();
-	//		
-	//		RefillTokens ();
-	//		
-	//		/*if (puzzleGrid[i,j].used == true){
-	//					if (j<4){
-	//						puzzleGrid[i,j].tokenVal = puzzleGrid[i,j+1].tokenVal;
-	//						puzzleGrid[i,j+1].used = true;
-	//						puzzleGrid[i,j].resetSprite ();
-	//					}
-	//					else{
-	//						puzzleGrid[i,j].tokenVal = TokenType.Empty;
-	//						puzzleGrid[i,j].resetSprite ();
-	//					}
-	//					//puzzleGrid[i,5].tokenVal = 0;
-	//				}*/
-	//		Debug.Log (setOfMoves.Count);
-	//		for (int i=0; i<setOfMoves.Count; i++) {
-	//			Debug.Log (setOfMoves[i].ToString ());
-	//		}
-	//		//Pass matches queue to GridMovement here.
-	//		setOfMoves.Clear ();
-	//	}
-	
+
 	public bool QueueMove (){
 		//Debug.Log ("Running Algorithm");
 		int slotNum = 0;
@@ -327,12 +295,10 @@ public class PuzzleManager : MonoBehaviour {
 		for (int i=0; i<6; i++) {
 			//first reset the refillcount for the column
 			refillCount[i] = 0;
-			shiftBottomRow[i] = -1;
 			//next count the empty spots in the column
 			for (int j=0; j<5; j++){
 				if (puzzleGrid[i,j].tokenVal == TokenType.Empty){
 					refillCount[i]++;
-					if (shiftBottomRow[i] == -1) shiftBottomRow[i] = j;
 				}
 			}
 			//now add that number of tokens above to refill the lower rows
@@ -340,10 +306,11 @@ public class PuzzleManager : MonoBehaviour {
 				//get a random token type here
 				int type = Random.Range(1, 6);
 				puzzleGrid[i,j].tokenVal = (TokenType)type;
+				puzzleGrid[i,j].ResetSprite();
 			}
 		}
 	}
-
+	
 	private bool ShiftDownAtOnce(){
 		bool shifts = false;
 		for (int j=1; j<10; j++){
@@ -364,25 +331,38 @@ public class PuzzleManager : MonoBehaviour {
 		return shifts;
 	}
 
+	private bool ShiftTokensInData(){
+		bool shifts = false;
+		//shift the tokens in data alone.
+		for (int i=0; i<6; i++) {
+			for (int j=1; j<10; j++) {
+				if (puzzleGrid [i, j - 1].tokenVal == TokenType.Empty) {
+					Token temp = puzzleGrid [i, j - 1];
+					puzzleGrid [i, j - 1] = puzzleGrid [i, j];
+					puzzleGrid [i, j] = temp;
+					if (j < 5) {
+						shifts = true;
+					}
+				}
+			}
+		}
+		return shifts;
+	}
+
 	/// <summary>
 	/// Shifts the tokens down with a visual effect.
 	/// </summary>
 	/// <returns><c>true</c>, if token were shifted down, <c>false</c> if done and no shifts were made.</returns>
 	private bool ShiftTokensDownVisually(){
 		bool shifts = false;
+		//shift the tokens in data alone.
 		for (int i=0; i<6; i++) {
-			if (shiftBottomRow[i] == -1) continue;
-			if (puzzleGrid[i,shiftBottomRow[i]].tokenVal == TokenType.Empty){
-				for (int j=shiftBottomRow[i]; j<10; j++){
-					if (puzzleGrid[i,j].tokenVal == TokenType.Empty) continue;
+			for (int j=0; j<10; j++) {
+				//get the height the tokens should be at
+				Vector2 properHeight = Token.GetCoordsOfPosition(i,j);
+				if (puzzleGrid[i,j].Origin.y < properHeight.y){
 					puzzleGrid[i,j].location.y += fallSpeed;
 					shifts = true;
-					if (j > Token.GetPositionOfCoords(puzzleGrid[i,j].Origin).y && j > 0){
-						puzzleGrid[i,j-1].tokenVal = puzzleGrid[i,j].tokenVal;
-						puzzleGrid[i,j].tokenVal = TokenType.Empty;
-						puzzleGrid[i,j].ResetSprite();
-						puzzleGrid[i,j-1].ResetSprite();
-					}
 				}
 			}
 		}
@@ -394,10 +374,19 @@ public class PuzzleManager : MonoBehaviour {
 		if(!puzzleActive) return;
 		
 		for (int i=0; i<6; i++) {
-			for (int j=0; j<(refillStep == 3 ? 6 : 5); j++){
+			for (int j=0; j<5; j++){
+				if (puzzleGrid[i,j].tokenVal == TokenType.Empty) continue;
 				if (puzzleGrid[i, j] != activeToken){
 					GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,j].drawAlpha);
 					GUI.DrawTexture(puzzleGrid[i,j].location, puzzleGrid[i,j].sprite);
+					//GUI.Box(puzzleGrid[i,j].location, "i: " + i.ToString() + "j: " + j.ToString());
+				}
+			}
+			if (refillStep == 3){
+				if (puzzleGrid[i,6].tokenVal == TokenType.Empty) continue;
+				if (puzzleGrid[i, 6] != activeToken){
+					GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,6].drawAlpha);
+					GUI.DrawTexture(puzzleGrid[i,6].location, puzzleGrid[i,6].sprite);
 					//GUI.Box(puzzleGrid[i,j].location, "i: " + i.ToString() + "j: " + j.ToString());
 				}
 			}
@@ -473,7 +462,7 @@ public class Token{
 	
 	public Texture sprite;
 	public float drawAlpha;
-
+	
 	public Vector2 Origin {
 		get { return new Vector2(location.x, location.y); }
 	}
@@ -481,11 +470,11 @@ public class Token{
 	public static Vector2 GetCoordsOfPosition(int i, int j){
 		return new Vector2 (Screen.width * (i / 6.0f), Screen.height - Screen.width / 6.0f * (1 + j));
 	}
-
+	
 	public static Vector2 GetPositionOfCoords(Vector2 coords){
 		return new Vector2 (Mathf.FloorToInt (coords.x * 6.0f / Screen.width), Mathf.FloorToInt ((Screen.height - coords.y) * 6.0f / Screen.width - 1));
 	}
-
+	
 	public Token(int xLoc, int yLoc, int type){
 		this.seen = false;
 		this.used = false;

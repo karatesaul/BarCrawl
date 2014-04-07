@@ -30,7 +30,7 @@ public class Entity : MonoBehaviour {
 		if(currentRed > 0)
 			currentRed--;
 		
-		if(currentRed >= 0){
+		if(currentRed > 0){
 			spriteRenderer.color = Color.red;
 			//Debug.Log ("red");
 		}else{

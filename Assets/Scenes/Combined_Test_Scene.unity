@@ -302,6 +302,7 @@ MonoBehaviour:
   tokenEmpty: {fileID: 2800000, guid: a9db8fe41f95342bcabb9bcbf0a38441, type: 3}
   pc: {fileID: 1707795426}
   timeLimit: 900
+  fallSpeed: 4
   setOfMoves: 
 --- !u!4 &385235318
 Transform:
@@ -914,8 +915,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1553442010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.309800208, y: .422165394, z: 0}
-  m_LocalScale: {x: .699999988, y: .5, z: .5}
+  m_LocalPosition: {x: -.0346946493, y: .177803919, z: 0}
+  m_LocalScale: {x: .400000006, y: .300000012, z: .5}
   m_Children: []
   m_Father: {fileID: 1751292210}
 --- !u!114 &1553442012
@@ -960,7 +961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f8e693563cc8f4c9b8092b938e4dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anchorStyle: 5
+  anchorStyle: 261
   isEnabled: 1
   isVisible: 1
   isInteractive: 1
@@ -980,12 +981,12 @@ MonoBehaviour:
   tabIndex: -1
   canFocus: 0
   layout:
-    anchorStyle: 5
+    anchorStyle: 261
     margins:
-      left: 1965
-      top: 1109
-      right: -1015
-      bottom: -349
+      left: 2.43457031
+      top: 2.0559895
+      right: 2.50683594
+      bottom: 2.06640625
     owner: {fileID: 1553442014}
   renderOrder: 1
   isLocalized: 0
@@ -1034,6 +1035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b73b96cba41044746a4c21784335464b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: {fileID: 0}
 --- !u!4 &1560876659
 Transform:
   m_ObjectHideFlags: 0
@@ -1535,7 +1537,7 @@ GameObject:
   - 4: {fileID: 2033607311}
   - 20: {fileID: 2033607310}
   - 114: {fileID: 2033607309}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UI Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1589,7 +1591,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .00130208337, z: 0}
+  m_LocalPosition: {x: .00130208337, y: .00130208337, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}

@@ -10,6 +10,7 @@ public class PlayerCharacter : MeleeEntity {
 	public TurnManager tm;
 	private int currCombo;
 	public bool executeMode;
+	public int score;
 	private bool exit;
 	private int timer;
 	
@@ -18,6 +19,7 @@ public class PlayerCharacter : MeleeEntity {
 		tm = GameObject.Find("Player").GetComponent<TurnManager>();
 		exit = false;
 		fillUp = false;
+		score = 0;
 		health = 50;
 		timer = 30;
 		executeMode = false;
