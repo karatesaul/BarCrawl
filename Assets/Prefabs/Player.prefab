@@ -50,6 +50,7 @@ MonoBehaviour:
   fillUp: 0
   tm: {fileID: 0}
   executeMode: 0
+  score: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -63,8 +64,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   enemyCount: 0
-  enemyObjs: []
-  enemies: []
+  spawnTimer: 0
+  enemyReference: {fileID: 100000, guid: 07d93c675daa2a8428c12d4ff1e4a0b6, type: 2}
+  maxEnemies: 0
   turn: 0
 --- !u!212 &21200000
 SpriteRenderer:

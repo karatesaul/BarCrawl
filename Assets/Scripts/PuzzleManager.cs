@@ -125,6 +125,12 @@ public class PuzzleManager : MonoBehaviour {
 				if (!ShiftTokensDownVisually()){
 					refillStep = 0;
 					readyToShift = false;
+					for (int i=0; i<6; i++){
+						for (int j=0; j<10; j++){
+							puzzleGrid[i,j].Reposition(i,j);
+							puzzleGrid[i,j].ResetSprite();
+						}
+					}
 				}
 			}
 			break;
