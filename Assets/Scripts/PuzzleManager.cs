@@ -124,6 +124,7 @@ public class PuzzleManager : MonoBehaviour {
 				//if we have shifted tokens, try again.  Otherwise, proceed back to the matching algorithm
 				if (!ShiftTokensDownVisually()){
 					refillStep = 0;
+					readyToShift = false;
 				}
 			}
 			break;
@@ -140,7 +141,7 @@ public class PuzzleManager : MonoBehaviour {
 		int slotNum = 0;
 		bool foundMove = false;
 		for (int i = 0; i < 6; i++){
-			if (puzzleGrid[i,2].tokenVal.Equals(puzzleGrid[i,1].tokenVal)){
+			if (puzzleGrid[i,2].tokenVal.Equals(puzzleGrid[i,1].tokenVal) && !(puzzleGrid[i,2].tokenVal.Equals (TokenType.Empty))){
 				if (puzzleGrid[i,1].tokenVal.Equals(puzzleGrid[i,0].tokenVal)){
 					puzzleGrid[i,2].used = true;
 					puzzleGrid[i,1].used = true;
@@ -168,7 +169,7 @@ public class PuzzleManager : MonoBehaviour {
 					slotNum++;
 				}
 			}
-			if (puzzleGrid[i,2].tokenVal.Equals(puzzleGrid[i,3].tokenVal)){
+			if (puzzleGrid[i,2].tokenVal.Equals(puzzleGrid[i,3].tokenVal) && !(puzzleGrid[i,2].tokenVal.Equals (TokenType.Empty))){
 				if (puzzleGrid[i,3].tokenVal.Equals(puzzleGrid[i,4].tokenVal)){
 					puzzleGrid[i,4].used = true;
 					puzzleGrid[i,3].used = true;
@@ -185,7 +186,7 @@ public class PuzzleManager : MonoBehaviour {
 			}
 		}
 		for (int j = 0; j < 5; j++){
-			if (puzzleGrid[2,j].tokenVal.Equals(puzzleGrid[1,j].tokenVal)){
+			if (puzzleGrid[2,j].tokenVal.Equals(puzzleGrid[1,j].tokenVal) && !(puzzleGrid[2,j].tokenVal.Equals (TokenType.Empty))){
 				if (puzzleGrid[1,j].tokenVal.Equals(puzzleGrid[0,j].tokenVal)){
 					puzzleGrid[2,j].used = true;
 					puzzleGrid[1,j].used = true;
@@ -199,7 +200,7 @@ public class PuzzleManager : MonoBehaviour {
 					setOfTokens.Add(newMove);
 					slotNum++;
 				}
-				if (puzzleGrid[2,j].tokenVal.Equals(puzzleGrid[3,j].tokenVal)) {
+				if (puzzleGrid[2,j].tokenVal.Equals(puzzleGrid[3,j].tokenVal) && !(puzzleGrid[2,j].tokenVal.Equals (TokenType.Empty))) {
 					puzzleGrid[3,j].used = true;
 					puzzleGrid[2,j].used = true;
 					puzzleGrid[1,j].used = true;
@@ -215,7 +216,7 @@ public class PuzzleManager : MonoBehaviour {
 			}
 		}
 		for (int j = 0; j < 5; j++){
-			if (puzzleGrid[3,j].tokenVal.Equals(puzzleGrid[4,j].tokenVal)){
+			if (puzzleGrid[3,j].tokenVal.Equals(puzzleGrid[4,j].tokenVal)&& !(puzzleGrid[3,j].tokenVal.Equals (TokenType.Empty))){
 				if (puzzleGrid[4,j].tokenVal.Equals(puzzleGrid[5,j].tokenVal)){
 					puzzleGrid[5,j].used = true;
 					puzzleGrid[4,j].used = true;
@@ -229,7 +230,7 @@ public class PuzzleManager : MonoBehaviour {
 					setOfTokens.Add(newMove);
 					slotNum++;
 				}
-				if (puzzleGrid[3,j].tokenVal.Equals(puzzleGrid[2,j].tokenVal)) {
+				if (puzzleGrid[3,j].tokenVal.Equals(puzzleGrid[2,j].tokenVal)&& !(puzzleGrid[3,j].tokenVal.Equals (TokenType.Empty))) {
 					puzzleGrid[4,j].used = true;
 					puzzleGrid[3,j].used = true;
 					puzzleGrid[2,j].used = true;

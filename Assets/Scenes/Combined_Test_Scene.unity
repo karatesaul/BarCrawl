@@ -567,6 +567,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 84589b969f74f2243a4bedc0cd3664e9, type: 2}
+      propertyPath: enemyReference
+      value: 
+      objectReference: {fileID: 100000, guid: 07d93c675daa2a8428c12d4ff1e4a0b6, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84589b969f74f2243a4bedc0cd3664e9, type: 2}
   m_RootGameObject: {fileID: 1707795425}
@@ -1150,7 +1154,7 @@ MonoBehaviour:
   player: {fileID: 0}
   enemyCount: 0
   spawnTimer: 0
-  enemyReference: {fileID: 0}
+  enemyReference: {fileID: 100000, guid: 07d93c675daa2a8428c12d4ff1e4a0b6, type: 2}
   maxEnemies: 0
   turn: 0
 --- !u!1001 &1750832003
