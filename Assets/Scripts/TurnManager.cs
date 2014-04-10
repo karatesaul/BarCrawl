@@ -6,7 +6,7 @@ public class TurnManager : MonoBehaviour {
 
 	public PlayerCharacter player;
 	public int enemyCount;
-	public List<IEnemy> enemies;
+	public List<Enemy> enemies;
 	public int spawnTimer;
 	private GameObject enemyInstance;
 	public GameObject enemyReference;
@@ -25,9 +25,9 @@ public class TurnManager : MonoBehaviour {
 		player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
 
 		enemyObjs = GameObject.FindGameObjectsWithTag("enemy");
-		enemies = new List<IEnemy>();
+		enemies = new List<Enemy>();
 		for (int i = 0; i < enemyObjs.Length; i++) {
-			enemies.Add((IEnemy)enemyObjs[i].GetComponent(typeof(IEnemy)));
+			enemies.Add(enemyObjs[i].GetComponent<Enemy>());
 		}
 		spawnTimer = 0;
 		turn = 1;
@@ -51,12 +51,12 @@ public class TurnManager : MonoBehaviour {
 				enemyInstance.GetComponent<Entity>().x = 4;
 				enemyInstance.GetComponent<Entity>().y = 0;
 
-				enemies.Add((IEnemy)enemyInstance.GetComponent(typeof(IEnemy)));
+				enemies.Add(enemyInstance.GetComponent<Enemy>());
 
 				spawnTimer = 0;
 			}
 
-			foreach(IEnemy enemy in enemies)
+			foreach(Enemy enemy in enemies)
 			{
 				if(enemy != null)
 				enemy.isExecuting = true;

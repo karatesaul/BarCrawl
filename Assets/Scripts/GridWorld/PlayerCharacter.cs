@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerCharacter : MeleeEntity {
+public class PlayerCharacter : FightingEntity {
 
 	public Move[] movelist;
 	public TokenType[] moveInput;

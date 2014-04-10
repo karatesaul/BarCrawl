@@ -39,12 +39,15 @@ public class Entity : MonoBehaviour {
 		}
 	}
 
+
+
 	/// <summary>
 	/// Attempts to execute the specified move.  If there is something in the way, will not change position, but will change facing.
 	/// In Entity, this does not handle fighting.  Override it to incorporate that behavior.  
 	/// </summary>
+	/// <returns><c>true</c>, if the move was successfully executed, <c>false</c> otherwise.</returns>
 	/// <param name="move">The move to execute.</param>
-	protected virtual void AttemptMove(Move move)
+	protected virtual bool AttemptMove(Move move)
 	{
 		//does nothing on these cases anyway,
 		//but we want to prevent it assigning them as facings.
@@ -52,7 +55,7 @@ public class Entity : MonoBehaviour {
 		{
 		case Move.Fight:
 		case Move.None:
-			return;
+			return false;
 		}
 		//find the destination tile
 		Vector2 moveDir = move.getDirection();
@@ -61,21 +64,28 @@ public class Entity : MonoBehaviour {
 
 
 
-		if(GridManager.instance.isPassable(destX, destY) && gameObject.tag != "enemy")
+		if(GridManager.instance.isPassable(destX, destY))
 		{
-			//moves the player if there is no obstacle
-			Debug.Log ("moved");
+			//moves the entity if there is no obstacle
+			//Debug.Log ("moved");
 			x = destX;
 			y = destY;
 			Vector2 dest = GridManager.getTransformPosition(x, y);
 			transform.position = new Vector3(dest.x, dest.y, -1);
 			facing = move;
+
+			return true;
 		}
-		else if(gameObject.tag != "enemy")
+		else
 		{
 			//the player will still turn to face the obstacle
-			facing = move;
+			if(gameObject.tag != "enemy")
+				facing = move;
+
+			return false;
 		}
+
+		/*
 		else if(gameObject.tag == "enemy")
 		{
 			//this logic should probably be moved out of this function
@@ -99,6 +109,7 @@ public class Entity : MonoBehaviour {
 				}
 			}
 		}
+		//*/
 
 
 	}
