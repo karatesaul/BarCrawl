@@ -9,7 +9,8 @@ public class TurnManager : MonoBehaviour {
 	public List<Enemy> enemies;
 	public int spawnTimer;
 	private GameObject enemyInstance;
-	public GameObject enemyReference;
+	public GameObject meleeEnemyReference;
+	public GameObject rangedEnemyReference;
 	public int maxEnemies;
 
 	//0 = none
@@ -43,11 +44,16 @@ public class TurnManager : MonoBehaviour {
 			//Debug.Log ("ENEMY TURN");
 			//player.score/100 = enemies defeated.
 
-			if((spawnTimer > 5 && enemyCount < (player.score/100) && enemyCount < maxEnemies) || enemyCount < 0)
+			if((spawnTimer > 2 && enemyCount < (player.score/100) && enemyCount < maxEnemies) || enemyCount < 0)
 			{
 
 				 //This should instead be called in Enemy, but I'll move it there later.
-				enemyInstance = Instantiate (enemyReference, new Vector2(2, 0), new Quaternion(0,0,0,0)) as GameObject;
+				if(Random.Range(0,2) == 0){
+					enemyInstance = Instantiate (meleeEnemyReference, new Vector2(2, 0), new Quaternion(0,0,0,0)) as GameObject;
+				}
+				else{
+					enemyInstance = Instantiate (rangedEnemyReference, new Vector2(2, 0), new Quaternion(0,0,0,0)) as GameObject;
+				}
 				enemyInstance.GetComponent<Entity>().x = 4;
 				enemyInstance.GetComponent<Entity>().y = 0;
 
