@@ -10,10 +10,13 @@ public class Enemy : FightingEntity {
 	protected GameObject player;
 	public bool isExecuting;
 
-	protected int maxMoves;
+	protected int maxMoves = 2;
 	protected Move currMove;
 	private int timer;
 	private int moveCount;
+
+	private bool playerDetected;
+	protected int detectionRange = 5;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -27,7 +30,7 @@ public class Enemy : FightingEntity {
 		currMove = Move.None;
 		isExecuting = false;
 
-		maxMoves = 2;
+		playerDetected = false;
 	}
 	
 	// Update is called once per frame
@@ -71,6 +74,45 @@ public class Enemy : FightingEntity {
 
 	protected void makeMove()
 	{
+		if (!playerDetected) 
+		{
+			int distance = Mathf.Abs(GridManager.getX(player.transform.position) - GridManager.getX(transform.position)) 
+						 + Mathf.Abs(GridManager.getY(player.transform.position) - GridManager.getY(transform.position));
+
+			if(distance <= 5)
+				playerDetected = true;
+		}
+		if (!playerDetected)
+		{
+			//at some later point, might change this to distribute the bikers more
+
+			int dir = Random.Range(0, 4);
+
+			switch(dir)
+			{
+			case 0:
+				currMove = Move.Left;
+				break;
+			case 1:
+				currMove = Move.Right;
+				break;
+			case 2:
+				currMove = Move.Up;
+				break;
+			case 3:
+				currMove = Move.Down;
+				break;
+			default:
+				currMove = Move.None;
+				break;
+			}
+
+			AttemptMove(currMove);
+			return;
+		}
+
+		//reaching this point implies that the player has been detected
+
 		//if in range, fight
 		if((Mathf.Abs(GridManager.getX(player.transform.position) - GridManager.getX(transform.position)) <= range &&
 		    Mathf.Abs(GridManager.getY(player.transform.position) - GridManager.getY(transform.position)) == 0) ||
@@ -94,6 +136,24 @@ public class Enemy : FightingEntity {
 		}
 
 		bool successful = AttemptMove(currMove);
+
+		if (successful)
+			return;
+
+	
+		//attempt to move around obstacles
+		//this will likely want to be improved, but later, secretly.
+		//(not actually secretly)
+		//does this by attempting to turn either left or right.  If neither works, it WILL get stuck.
+		Move[] moveOrder = currMove.getPerpendicular();
+
+		for(int i = 0; i < moveOrder.Length; i++){
+			currMove = moveOrder[i];
+
+			successful = AttemptMove(currMove);
+			if(successful)
+				return;
+		}
 
 
 	}

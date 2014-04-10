@@ -110,4 +110,18 @@ public static class moveExtensions
 		}
 		return ret;
 	}
+
+	public static Move[] getPerpendicular(this Move move)
+	{
+		switch(move) {
+		case Move.Down:
+		case Move.Up:
+			return new Move[2] {Move.Left, Move.Right};
+		case Move.Left:
+		case Move.Right:
+			return new Move[2] {Move.Up, Move.Down};
+		default:
+			return null;
+		}
+	}
 }

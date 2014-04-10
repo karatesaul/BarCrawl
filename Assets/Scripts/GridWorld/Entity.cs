@@ -86,29 +86,7 @@ public class Entity : MonoBehaviour {
 		}
 
 		/*
-		else if(gameObject.tag == "enemy")
-		{
-			//this logic should probably be moved out of this function
 
-			//enemies will attempt to move around obstacles if they are in the way
-			Vector2[] moveOrder = move.attackOrder ();
-			for(int i = 0; i < 4; i++){
-				destX = x + (int)moveOrder[i].x;
-				destY = y + (int)moveOrder[i].y;
-
-				//they will not make U-turns
-				if(GridManager.instance.isPassable(destX, destY) && !moveOrder[i].Equals (-1*facing.getDirection ()))
-				{
-					Debug.Log ("moved");
-					x = destX;
-					y = destY;
-					Vector2 dest = GridManager.getTransformPosition(x, y);
-					transform.position = new Vector3(dest.x, dest.y, -1);
-					facing.getMove (moveOrder[i]);
-					i = 4;
-				}
-			}
-		}
 		//*/
 
 
