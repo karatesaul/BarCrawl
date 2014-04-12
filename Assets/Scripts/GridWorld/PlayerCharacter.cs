@@ -8,6 +8,7 @@ public class PlayerCharacter : FightingEntity {
 	public TokenType[] moveInput;
 	public bool fillUp;
 	public TurnManager tm;
+	public MainMenu menu;
 	private int currCombo;
 	public bool executeMode;
 	public int score;
@@ -17,6 +18,7 @@ public class PlayerCharacter : FightingEntity {
 	// Use this for initialization
 	protected override void Start () {
 		tm = GameObject.Find("Player").GetComponent<TurnManager>();
+		menu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
 		exit = false;
 		fillUp = false;
 		score = 0;
@@ -41,8 +43,8 @@ public class PlayerCharacter : FightingEntity {
 	protected override void Update () {
 		base.Update ();
 				if (tm.turn == 1) {
-						if (!executeMode) {
-								if(fillUp){
+					if (!executeMode) {
+						if(fillUp){
 					for(int i = 0; i < 20; i++){
 						if(moveInput.Length == i){
 							Debug.Log ("ran out of moves at " + i);
@@ -52,22 +54,27 @@ public class PlayerCharacter : FightingEntity {
 						case TokenType.Left:
 							Debug.Log ("Left move queued.");
 							movelist[i] = Move.Left;
+							score = score + 25;
 							break;
 						case TokenType.Right:
 							Debug.Log ("Right move queued.");
 							movelist[i] = Move.Right;
+							score = score + 25;
 							break;
 						case TokenType.Up:
 							Debug.Log ("Up move queued.");
 							movelist[i] = Move.Up;
+							score = score + 25;
 							break;
 						case TokenType.Down:
 							Debug.Log ("Down move queued.");
 							movelist[i] = Move.Down;
+							score = score + 25;
 							break;
 						case TokenType.Attack:
 							Debug.Log ("Fight move queued.");
 							movelist[i] = Move.Fight;
+							score = score + 50;
 							break;
 						default:
 							Debug.Log ("No move queued.");
@@ -157,6 +164,14 @@ public class PlayerCharacter : FightingEntity {
 								}
 						}
 				}
+		if (health <= 0) {
+			/*
+			GameObject[] PM = GameObject.FindGameObjectsWithTag("PM");
+			PM[0].GetComponent <PuzzleManager>().puzzleActive = false;
+			menu.displayMenu = true;
+			*/
+			Application.LoadLevel("Main_Menu");
+		}
 
 			//make sure the sprite is the right color
 

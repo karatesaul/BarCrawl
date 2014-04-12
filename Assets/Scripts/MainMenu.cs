@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 	//whether or not to display this instead of puzzle
-	private bool displayMenu;
+	public bool displayMenu;
 	//images and tutorial settings
 	public Texture title;
 	public Texture yesTutorial;
