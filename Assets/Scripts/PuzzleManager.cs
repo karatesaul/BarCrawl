@@ -6,7 +6,9 @@ using System.Collections.Generic;
 /// The script to manage the puzzle, drawing the puzzle, and running the puzzle
 /// </summary>
 public class PuzzleManager : MonoBehaviour {
-	
+
+	#region Globals
+
 	//this is off by default so the menu can appear.
 	//when start is pressed on the menu, it turns the puzzle on
 	public bool puzzleActive;
@@ -50,6 +52,8 @@ public class PuzzleManager : MonoBehaviour {
 	private GameObject cLabel5;
 	private GameObject ccLabel;
 
+	#endregion 
+
 	//coroutine for the text popup
 	//author: Krishna Velury
 	IEnumerator Wait(GameObject label) {
@@ -57,8 +61,7 @@ public class PuzzleManager : MonoBehaviour {
 		yield return new WaitForSeconds(3.0f); // waits 3 seconds
 		label.SetActive(false);
 	}
-
-
+	
 	// Use this for initialization
 	void Start () {
 		puzzleActive = false;
@@ -165,6 +168,8 @@ public class PuzzleManager : MonoBehaviour {
 			break;
 		}
 	}
+
+	#region QueueMove
 
 	public bool QueueMove (){
 		//Debug.Log ("Running Algorithm");
@@ -275,7 +280,11 @@ public class PuzzleManager : MonoBehaviour {
 		}
 		return foundMove;
 	}
-	
+
+	#endregion
+
+	#region Fade Methods
+
 	/// <summary>
 	/// Fades the matches, one by one.
 	/// Returns true when all are faded.
@@ -316,7 +325,11 @@ public class PuzzleManager : MonoBehaviour {
 		}
 		setOfTokens.Clear ();
 	}
-	
+
+	#endregion
+
+	#region Refill
+
 	/// <summary>
 	/// Creates new tokens to fall and refill the grid.  
 	/// Iterates over all of the rows, counting the gaps and then adding that many tokens above.
@@ -341,7 +354,11 @@ public class PuzzleManager : MonoBehaviour {
 			}
 		}
 	}
-	
+
+	#endregion
+
+	#region ShiftDown Methods
+
 	private bool ShiftDownAtOnce(){
 		bool shifts = false;
 		for (int j=1; j<10; j++){
@@ -401,7 +418,9 @@ public class PuzzleManager : MonoBehaviour {
 		}
 		return shifts;
 	}
-	
+
+	#endregion
+
 	public void OnGUI(){
 		//no need to draw this while menu is active
 		if(!puzzleActive) return;
