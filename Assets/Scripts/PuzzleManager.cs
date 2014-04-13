@@ -187,7 +187,7 @@ public class PuzzleManager : MonoBehaviour {
 					newMove.Add(puzzleGrid[i,0]);
 					newMove.Add(puzzleGrid[i,1]);
 					newMove.Add(puzzleGrid[i,2]);
-					setOfTokens.Add(newMove);
+					AddMatchToFadeQueue(newMove);
 					slotNum++;
 				}
 				if (puzzleGrid[i,2].tokenVal.Equals(puzzleGrid[i,3].tokenVal)){
@@ -200,7 +200,7 @@ public class PuzzleManager : MonoBehaviour {
 					newMove.Add(puzzleGrid[i,1]);
 					newMove.Add(puzzleGrid[i,2]);
 					newMove.Add(puzzleGrid[i,3]);
-					setOfTokens.Add(newMove);
+					AddMatchToFadeQueue(newMove);
 					slotNum++;
 				}
 			}
@@ -215,7 +215,7 @@ public class PuzzleManager : MonoBehaviour {
 					newMove.Add(puzzleGrid[i,2]);
 					newMove.Add(puzzleGrid[i,3]);
 					newMove.Add(puzzleGrid[i,4]);
-					setOfTokens.Add(newMove);
+					AddMatchToFadeQueue(newMove);
 					slotNum++;
 				}
 			}
@@ -232,7 +232,7 @@ public class PuzzleManager : MonoBehaviour {
 					newMove.Add(puzzleGrid[0,j]);
 					newMove.Add(puzzleGrid[1,j]);
 					newMove.Add(puzzleGrid[2,j]);
-					setOfTokens.Add(newMove);
+					AddMatchToFadeQueue(newMove);
 					slotNum++;
 				}
 				if (puzzleGrid[2,j].tokenVal.Equals(puzzleGrid[3,j].tokenVal)) {
@@ -245,7 +245,7 @@ public class PuzzleManager : MonoBehaviour {
 					newMove.Add(puzzleGrid[1,j]);
 					newMove.Add(puzzleGrid[2,j]);
 					newMove.Add(puzzleGrid[3,j]);
-					setOfTokens.Add(newMove);
+					AddMatchToFadeQueue(newMove);
 					slotNum++;
 				}
 			}
@@ -260,7 +260,7 @@ public class PuzzleManager : MonoBehaviour {
 					newMove.Add(puzzleGrid[4,j]);
 					newMove.Add(puzzleGrid[3,j]);
 					newMove.Add(puzzleGrid[2,j]);
-					setOfTokens.Add(newMove);
+					AddMatchToFadeQueue(newMove);
 					slotNum++;
 				}
 				if (puzzleGrid[4,j].tokenVal.Equals(puzzleGrid[5,j].tokenVal)){
@@ -273,12 +273,49 @@ public class PuzzleManager : MonoBehaviour {
 					newMove.Add(puzzleGrid[3,j]);
 					newMove.Add(puzzleGrid[4,j]);
 					newMove.Add(puzzleGrid[5,j]);
-					setOfTokens.Add(newMove);
+					AddMatchToFadeQueue(newMove);
 					slotNum++;
 				}
 			}
 		}
 		return foundMove;
+	}
+
+	/// <summary>
+	/// Takes in a match and attempts to merge it with the match on the end of the queue.  
+	/// This happens if the matches have overlapping tiles.
+	/// </summary>
+	/// <param name="match">Match.</param>
+	private void AddMatchToFadeQueue(List<Token> newMatch){
+		//if there are no prior matches, just add the new move to the queue
+		if (setOfTokens.Count == 0) {
+			setOfTokens.Add (newMatch);
+		} else {
+			List<Token> duplicates = new List<Token> ();
+			
+			//first check to see if there are duplicate tokens
+			foreach (Token t in setOfTokens[setOfTokens.Count-1]) {
+				foreach(Token u in newMatch){
+					if (t == u){
+						duplicates.Add(t);
+					}
+				}
+			}
+
+			//if there are no duplicates, add the new move to the queue
+			if (duplicates.Count == 0){
+				setOfTokens.Add(newMatch);
+			} else {
+				//else add the non-duplicates to the last match.
+				while (duplicates.Count > 0){
+					Token t = duplicates[0];
+					newMatch.Remove(t);
+					duplicates.Remove(t);
+				}
+				
+				setOfTokens[setOfTokens.Count - 1].AddRange(newMatch);
+			}
+		}
 	}
 
 	#endregion
