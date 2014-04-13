@@ -317,8 +317,10 @@ public class PuzzleManager : MonoBehaviour {
 		foreach (List<Token> l in setOfTokens) {
 			foreach (Token t in l){
 				t.tokenVal = TokenType.Empty;
+				t.ResetSprite();
 			}
 		}
+		setOfTokens.Clear ();
 	}
 	
 	/// <summary>
