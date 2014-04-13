@@ -44,6 +44,21 @@ public class PuzzleManager : MonoBehaviour {
 	public List<TokenType> setOfMoves;
 	private List<List<Token>> setOfTokens;
 	
+	private GameObject cLabel2;
+	private GameObject cLabel3;
+	private GameObject cLabel4;
+	private GameObject cLabel5;
+	private GameObject ccLabel;
+
+	//coroutine for the text popup
+	//author: Krishna Velury
+	IEnumerator Wait(GameObject label) {
+		Debug.Log("WAITING");
+		yield return new WaitForSeconds(3.0f); // waits 3 seconds
+		label.SetActive(false);
+	}
+
+
 	// Use this for initialization
 	void Start () {
 		puzzleActive = false;
@@ -78,6 +93,16 @@ public class PuzzleManager : MonoBehaviour {
 			RefillTokens();
 			while (ShiftDownAtOnce());
 		}
+
+		//get scoring labels
+		cLabel2 = GameObject.Find("combo2");
+		cLabel2.SetActive(false);
+		cLabel3 = GameObject.Find("combo3");
+		cLabel3.SetActive(false);
+		cLabel4 = GameObject.Find("combo4");
+		cLabel4.SetActive(false);
+		cLabel5 = GameObject.Find("combo5");
+		cLabel5.SetActive(false);
 		
 	}
 	
@@ -97,6 +122,11 @@ public class PuzzleManager : MonoBehaviour {
 			if (matchFound){
 				refillStep = 1;
 			} else {
+
+				//assign score based on number of moves in queue and display accordingly
+				//added by Krishna
+				SetScore (setOfMoves.Count);
+
 				//Debug.Log ("sent " + setOfMoves.Count+ " commands");
 				refillStep = 4;
 				pc.moveInput = setOfMoves.ToArray ();
@@ -458,6 +488,34 @@ public class PuzzleManager : MonoBehaviour {
 			}
 		}
 	}
+
+	//function to set the score and display combo popups
+	//author: Krishna Velury
+	private void SetScore(int moves) {
+		if (moves == 1) pc.score = pc.score + 25;
+		else if (moves == 2) {
+			//Debug.Log("2x combo!");
+			pc.score = pc.score + 50;
+			cLabel2.SetActive(true);
+			StartCoroutine(Wait(cLabel2));
+		} else if (moves == 3) {
+			//Debug.Log("3x combo!");
+			pc.score = pc.score + 75;
+			cLabel3.SetActive(true);
+			StartCoroutine(Wait(cLabel3));
+		} else if (moves == 4) {
+			//Debug.Log("4x combo!");
+			pc.score = pc.score + 100;
+			cLabel4.SetActive(true);
+			StartCoroutine(Wait(cLabel4));
+		} else if (moves >= 5) {
+			//Debug.Log("Crazy combo!");
+			pc.score = pc.score + 125;
+			cLabel5.SetActive(true);
+			StartCoroutine(Wait(cLabel5));
+		}
+	}
+
 }
 
 public class Token{
@@ -542,6 +600,7 @@ public class Token{
 	public void Reposition(int xLoc, int yLoc){
 		location = new Rect (Screen.width * (xLoc / 6.0f), Screen.height - Screen.width / 6.0f * (1 + yLoc), Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f);
 	}
+
 }
 
 public enum TokenType : int { Empty, Up, Down, Left, Right, Attack };

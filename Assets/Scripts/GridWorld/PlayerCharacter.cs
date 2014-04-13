@@ -54,27 +54,27 @@ public class PlayerCharacter : FightingEntity {
 						case TokenType.Left:
 							Debug.Log ("Left move queued.");
 							movelist[i] = Move.Left;
-							score = score + 25;
+							//score = score + 25;
 							break;
 						case TokenType.Right:
 							Debug.Log ("Right move queued.");
 							movelist[i] = Move.Right;
-							score = score + 25;
+							//score = score + 25;
 							break;
 						case TokenType.Up:
 							Debug.Log ("Up move queued.");
 							movelist[i] = Move.Up;
-							score = score + 25;
+							//score = score + 25;
 							break;
 						case TokenType.Down:
 							Debug.Log ("Down move queued.");
 							movelist[i] = Move.Down;
-							score = score + 25;
+							//score = score + 25;
 							break;
 						case TokenType.Attack:
 							Debug.Log ("Fight move queued.");
 							movelist[i] = Move.Fight;
-							score = score + 50;
+							score = score + 25;
 							break;
 						default:
 							Debug.Log ("No move queued.");
