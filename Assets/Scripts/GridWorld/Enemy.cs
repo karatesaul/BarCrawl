@@ -7,7 +7,7 @@ using System.Collections;
 //And anyway, this makes it easier to tweak values when we get multiple prefabs (for different bars).
 public class Enemy : FightingEntity {
 
-	protected GameObject player;
+	protected PlayerCharacter player;
 	public bool isExecuting;
 
 	protected int maxMoves = 2;
@@ -24,7 +24,7 @@ public class Enemy : FightingEntity {
 
 		timer = 0;
 
-		player = GameObject.Find ("Player");
+		player = GameObject.Find ("Player").GetComponent<PlayerCharacter>();
 		foeTag = "Player";
 
 		currMove = Move.None;
@@ -38,7 +38,7 @@ public class Enemy : FightingEntity {
 		base.Update();
 
 
-		if (health < 1) {
+		if (health <= 0) {
 			Die ();
 		}
 		
@@ -74,10 +74,13 @@ public class Enemy : FightingEntity {
 
 	protected void makeMove()
 	{
+		//these keep coming up, so I'm going to let them be calculated once beforehand
+		int diffX = Mathf.Abs (player.x - this.x);
+		int diffY = Mathf.Abs (player.y - this.y);
+
 		if (!playerDetected) 
 		{
-			int distance = Mathf.Abs(GridManager.getX(player.transform.position) - GridManager.getX(transform.position)) 
-						 + Mathf.Abs(GridManager.getY(player.transform.position) - GridManager.getY(transform.position));
+			int distance = diffX + diffY;
 
 			if(distance <= 5)
 				playerDetected = true;
@@ -114,48 +117,135 @@ public class Enemy : FightingEntity {
 		//reaching this point implies that the player has been detected
 
 		//if in range, fight
-		if((Mathf.Abs(GridManager.getX(player.transform.position) - GridManager.getX(transform.position)) <= range &&
-		    Mathf.Abs(GridManager.getY(player.transform.position) - GridManager.getY(transform.position)) == 0) ||
-		   (Mathf.Abs(GridManager.getX(player.transform.position) - GridManager.getX(transform.position)) == 0 &&
-			Mathf.Abs(GridManager.getY(player.transform.position) - GridManager.getY(transform.position)) <= range)){
+		if ((diffX <= range && diffY == 0) ||
+			(diffX == 0 && diffY <= range))
+		{
 			currMove = Move.Fight;
 			moveCount++;
 		}
-		//else, move
-		else if(GridManager.getX(player.transform.position) > GridManager.getX(transform.position)){
-			currMove = Move.Right;
-		}
-		else if(GridManager.getX(player.transform.position) < GridManager.getX(transform.position)){
-			currMove = Move.Left;
-		}
-		else if(GridManager.getY(player.transform.position) > GridManager.getY(transform.position)){
-			currMove = Move.Up;
-		}
-		else if(GridManager.getY(player.transform.position) < GridManager.getY(transform.position)){
-			currMove = Move.Down;
+		else 
+		{
+			//else, move
+			//i should really get some actual pathfinding...
+			//but for now, better derp movement
+
+			if(diffX <= range && diffY <= range)
+			{
+				//if both are less than range, attempts to get in a line with the player
+				//so that it can throw shit
+				//this means moving on the axis it differs LESS
+
+				if(diffX < diffY)
+				{
+					if (player.x > this.x) {
+						currMove = Move.Right;
+					}
+					else if (player.x < this.x)
+					{
+						currMove = Move.Left;
+					}
+					else
+					{
+						Debug.Log("This shouldn't be reached! (Ranged attack should prevent it! (X))");
+					}
+				}
+				else
+				{
+					if (player.y > this.y)
+					{
+						currMove = Move.Up;
+					}
+					else if (player.y < this.y)
+					{
+						currMove = Move.Down;
+					}
+					else
+					{
+						Debug.Log("This shouldn't be reached! (Ranged attack should prevent it! (Y))");
+					}
+				}
+			}
+			else
+			{
+				//if it's NOT in the range box, then it should attempt to close on the player
+				//this means moving on the axis by which it differs MORE
+
+				if(diffX > diffY)
+				{
+					if (player.x > this.x) {
+						currMove = Move.Right;
+					}
+					else if (player.x < this.x)
+					{
+						currMove = Move.Left;
+					}
+					else
+					{
+						Debug.Log("This shouldn't be reached! (Any attack should prevent it! (X))");
+					}
+				}
+				else
+				{
+					if (player.y > this.y)
+					{
+						currMove = Move.Up;
+					}
+					else if (player.y < this.y)
+					{
+						currMove = Move.Down;
+					}
+					else
+					{
+						Debug.Log("This shouldn't be reached! (Any attack should prevent it! (Y))");
+					}
+				}
+			}
+
+
 		}
 
-		bool successful = AttemptMove(currMove);
+		bool successful = AttemptMove (currMove);
 
 		if (successful)
 			return;
 
-	
+
 		//attempt to move around obstacles
 		//this will likely want to be improved, but later, secretly.
 		//(not actually secretly)
 		//does this by attempting to turn either left or right.  If neither works, it WILL get stuck.
-		Move[] moveOrder = currMove.getPerpendicular();
+		Move[] moveOrder;
 
-		for(int i = 0; i < moveOrder.Length; i++){
-			currMove = moveOrder[i];
-
-			successful = AttemptMove(currMove);
-			if(successful)
-				return;
+		if(currMove == Move.Down || currMove == Move.Up)
+		{
+			if (player.x > this.x) {
+				moveOrder = new Move[] {Move.Right, Move.Left};
+			}
+			else
+			{
+				moveOrder = new Move[] {Move.Left, Move.Right};
+			}
+		}
+		else
+		{
+			if (player.y > this.y)
+			{
+				moveOrder = new Move[] {Move.Up, Move.Down};
+			}
+			else
+			{
+				moveOrder = new Move[] {Move.Down, Move.Up};
+			}
 		}
 
+		for (int i = 0; i < moveOrder.Length; i++) 
+		{
+			currMove = moveOrder [i];
 
+			successful = AttemptMove (currMove);
+			if (successful)
+				return;
+		}
 	}
 
 	public override void Die(){

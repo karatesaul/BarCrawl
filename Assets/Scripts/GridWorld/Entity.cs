@@ -42,7 +42,7 @@ public class Entity : MonoBehaviour {
 
 
 	/// <summary>
-	/// Attempts to execute the specified move.  If there is something in the way, will not change position, but will change facing.
+	/// Attempts to execute the specified move.  If there is something in the way, will not change position; will change facing if non-enemy.
 	/// In Entity, this does not handle fighting.  Override it to incorporate that behavior.  
 	/// </summary>
 	/// <returns><c>true</c>, if the move was successfully executed, <c>false</c> otherwise.</returns>
@@ -57,6 +57,9 @@ public class Entity : MonoBehaviour {
 		case Move.None:
 			return false;
 		}
+
+		//Debug.Log(gameObject.name + " attempts moving " + move);
+
 		//find the destination tile
 		Vector2 moveDir = move.getDirection();
 		int destX = x + (int)moveDir.x;
@@ -79,17 +82,12 @@ public class Entity : MonoBehaviour {
 		else
 		{
 			//the player will still turn to face the obstacle
+			//enemies, however, will not; they will instead try a different direction.
 			if(gameObject.tag != "enemy")
 				facing = move;
 
 			return false;
 		}
-
-		/*
-
-		//*/
-
-
 	}
 
 	/// <summary>

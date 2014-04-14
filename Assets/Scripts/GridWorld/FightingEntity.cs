@@ -42,7 +42,8 @@ public class FightingEntity : Entity {
 			return base.AttemptMove(move);
 		}
 		
-		Debug.Log (gameObject.name + "attempts to fight!");
+		//Debug.Log (gameObject.name + " attempts to fight!");
+
 		//handles fighting
 		//this function orders the tiles so that the entity will attack those in front of it before ones to the side
 		Vector2[] fightOrder = facing.attackOrder ();
