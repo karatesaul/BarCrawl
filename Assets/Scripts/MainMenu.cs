@@ -9,7 +9,9 @@ public class MainMenu : MonoBehaviour {
 	public Texture yesTutorial;
 	public Texture noTutorial;
 	private bool tutorial;
-
+	
+	public GameObject pauseMenu;
+	
 	// Use this for initialization
 	void Start () {
 		displayMenu = true;
@@ -22,9 +24,9 @@ public class MainMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		
 	}
-
+	
 	void OnGUI(){
 		//no need to display if not active
 		if(!displayMenu){
@@ -46,6 +48,8 @@ public class MainMenu : MonoBehaviour {
 			//PM should only have 1 element
 			//PM[0].GetComponent<PuzzleManager>().loadTutorial();
 			PM[0].GetComponent <PuzzleManager>().puzzleActive = true;
+			//turn on the pause menu as well
+			pauseMenu.GetComponent<InGameMenu>().menuActive = true;
 		}
 		//high score screen button
 		if(GUI.Button (new Rect(x/2 - buttonWidth/2, 2*y/3, buttonWidth, buttonHeight), "High Scores")){
