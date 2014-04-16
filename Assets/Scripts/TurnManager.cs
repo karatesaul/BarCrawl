@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class TurnManager : MonoBehaviour {
 
 	public PlayerCharacter player;
+	public PuzzleManager puzzle;
 	public int enemyCount;
 	public List<Enemy> enemies;
 	public int spawnTimer;
@@ -17,6 +18,7 @@ public class TurnManager : MonoBehaviour {
 	//1 = player turn
 	//2 = enemy turn
 	public int turn;
+	private bool canMove;
 
 	// Use this for initialization
 	void Start () {
@@ -24,12 +26,13 @@ public class TurnManager : MonoBehaviour {
 		GameObject[] enemyObjs; 
 
 		player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
-
+		puzzle = GameObject.Find ("PuzzleManager").GetComponent<PuzzleManager> ();
 		enemyObjs = GameObject.FindGameObjectsWithTag("enemy");
 		enemies = new List<Enemy>();
 		for (int i = 0; i < enemyObjs.Length; i++) {
 			enemies.Add(enemyObjs[i].GetComponent<Enemy>());
 		}
+		canMove = true;
 		spawnTimer = 0;
 		turn = 1;
 		enemyCount = 0;
@@ -40,6 +43,18 @@ public class TurnManager : MonoBehaviour {
 		if (turn == 1) {
 			//Debug.Log ("PLAYER TURN");
 			//turn is set within PlayerCharacter.cs after exiting executeMode and attempting to move
+			/*	canMove = true;
+				foreach(Enemy enemy in enemies){
+					if(enemy!=null){
+						if(enemy.isExecuting==true){
+							canMove = false;
+						}
+					}
+				}
+				if(canMove && puzzle.refillStep == 4){
+				Debug.Log ("You can go now!");
+					puzzle.endTurn ();
+				}*/
 		} else if (turn == 2) {
 			//Debug.Log ("ENEMY TURN");
 			//player.score/100 = enemies defeated.
@@ -67,10 +82,26 @@ public class TurnManager : MonoBehaviour {
 				if(enemy != null)
 				enemy.isExecuting = true;
 			}
+			canMove = false;
 
-			turn = 1;
+			turn = 3;
 			spawnTimer++;
 		}
+		else if(turn == 3){
+			//Actual enemy execute turn
+			turn = 1;
+			foreach(Enemy enemy in enemies){
+				if(enemy != null){
+					if(enemy.isExecuting == true){
+						turn = 3;
+					}
+				}
+			}
+			if(turn == 1)
+				puzzle.endTurn ();
+
+		}
+
 	}
 
 	public void shortenEnemyList(){

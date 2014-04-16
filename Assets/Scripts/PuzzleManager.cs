@@ -36,7 +36,7 @@ public class PuzzleManager : MonoBehaviour {
 	/// 3 - drop tiles down
 	/// 4 - waiting
 	/// </summary>
-	private int refillStep;
+	public int refillStep;
 	public int fallSpeed = 4;
 	
 	private Token[,] puzzleGrid;
@@ -96,6 +96,9 @@ public class PuzzleManager : MonoBehaviour {
 			RefillTokens();
 			while (ShiftDownAtOnce());
 		}
+		setOfMoves.Clear ();
+		endTurn ();
+
 
 		//get scoring labels
 		cLabel2 = GameObject.Find("combo2");
@@ -108,7 +111,9 @@ public class PuzzleManager : MonoBehaviour {
 		cLabel5.SetActive(false);
 		
 	}
-	
+	public void endTurn(){
+		refillStep = 5;
+	}
 	// Update is called once per frame
 	void Update () {
 		//no need to update while still on the menu
@@ -162,6 +167,9 @@ public class PuzzleManager : MonoBehaviour {
 			}
 			break;
 		case 4:
+			//executing moves
+			break;
+		case 5:
 			//we are waiting for input
 			break;
 		default:
@@ -485,7 +493,7 @@ public class PuzzleManager : MonoBehaviour {
 			GUI.DrawTexture(activeToken.location, activeToken.sprite);
 		}
 		
-		if (refillStep == 4 && Input.GetMouseButton (0)) { //or if there is a touch present
+		if (refillStep == 5 && Input.GetMouseButton (0)) { //or if there is a touch present
 			if (activeToken != null) {
 				//drag around the currently selected token
 				activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
