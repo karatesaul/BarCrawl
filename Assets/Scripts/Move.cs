@@ -124,4 +124,20 @@ public static class moveExtensions
 			return null;
 		}
 	}
+
+	public static bool isDirectional(this Move move)
+	{
+		switch (move)
+		{
+		case Move.Down:
+		case Move.Left:
+		case Move.Right:
+		case Move.Up:
+			return true;
+		case Move.None:
+		case Move.Fight:
+		default:
+			return false;
+		}
+	}
 }
