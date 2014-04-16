@@ -63,7 +63,7 @@ public class TurnManager : MonoBehaviour {
 			{
 
 				 //This should instead be called in Enemy, but I'll move it there later.
-				if(Random.Range(0,2) == 0){
+				if(Random.Range(0,100) >= 25){
 					enemyInstance = Instantiate (meleeEnemyReference, new Vector2(2, 0), new Quaternion(0,0,0,0)) as GameObject;
 				}
 				else{
@@ -79,8 +79,10 @@ public class TurnManager : MonoBehaviour {
 
 			foreach(Enemy enemy in enemies)
 			{
-				if(enemy != null)
-				enemy.isExecuting = true;
+				if(enemy != null){
+					enemy.isExecuting = true;
+					enemy.lifespan++;
+				}
 			}
 			canMove = false;
 

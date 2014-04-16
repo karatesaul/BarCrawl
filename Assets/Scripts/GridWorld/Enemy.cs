@@ -14,6 +14,8 @@ public class Enemy : FightingEntity {
 	protected Move currMove;
 	private int timer;
 	private int moveCount;
+	//lifespan = amount of turns enemy has been alive
+	public int lifespan;
 
 	private bool playerDetected;
 	protected int detectionRange = 5;
@@ -82,7 +84,7 @@ public class Enemy : FightingEntity {
 		{
 			int distance = diffX + diffY;
 
-			if(distance <= 5)
+			if(distance <= 5 || lifespan >= 4)
 				playerDetected = true;
 		}
 		if (!playerDetected)
@@ -90,7 +92,8 @@ public class Enemy : FightingEntity {
 			//at some later point, might change this to distribute the bikers more
 
 			int dir = Random.Range(0, 4);
-
+			//This is a temp fix so bikers move upward towards the bar by default.
+			dir = 2;
 			switch(dir)
 			{
 			case 0:
