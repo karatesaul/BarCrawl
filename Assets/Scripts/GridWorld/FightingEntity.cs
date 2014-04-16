@@ -10,7 +10,7 @@ public class FightingEntity : Entity {
 	/// The tag assigned to entities that this entity can fight.
 	/// </summary>
 	protected string foeTag;
-	
+	protected Animator animator;
 	
 	/// <summary>
 	/// The damage dealt.  Defaults to 10.
@@ -26,6 +26,7 @@ public class FightingEntity : Entity {
 	
 	protected override void Start(){
 		base.Start ();
+		animator = gameObject.GetComponent<Animator> ();
 		//sprite renderer
 	}
 	
@@ -47,7 +48,7 @@ public class FightingEntity : Entity {
 		//handles fighting
 		//this function orders the tiles so that the entity will attack those in front of it before ones to the side
 		Vector2[] fightOrder = facing.attackOrder ();
-		
+		animator.Play("AttackLeft");
 		for(int i = 0; i < 4; i++)
 		{
 			
@@ -71,7 +72,7 @@ public class FightingEntity : Entity {
 						
 						
 						facing = moveExtensions.getMove(fightOrder[i]);
-						
+						animator.Play("AttackLeft");
 						Debug.Log (gameObject.name + " attacks! " + GridManager.instance.getTarget (destX, destY).gameObject.name + " takes " + damageDealt + " damage, and has " +
 						           GridManager.instance.getTarget(destX, destY).health + " health remaining!");
 						
