@@ -145,4 +145,9 @@ public class GridManager{
 		float y = getY(transformPosition);
 		return new Vector2(x,y);
 	}
+
+	public void clearEntities()
+	{
+		entities.Clear();
+	}
 }

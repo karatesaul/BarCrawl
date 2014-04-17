@@ -40,11 +40,6 @@ public class Enemy : FightingEntity {
 	protected override void Update () {
 		base.Update();
 
-
-		if (health <= 0) {
-			Die ();
-		}
-		
 		if (!isExecuting) {
 			if(Input.GetKeyDown (KeyCode.O)){
 				Debug.Log ("Enemy takes a turn!");

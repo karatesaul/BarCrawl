@@ -37,6 +37,10 @@ public class Entity : MonoBehaviour {
 			spriteRenderer.color = Color.white;
 			//Debug.Log("white");
 		}
+
+		if (health <= 0) {
+			Die ();
+		}
 	}
 
 
