@@ -33,6 +33,7 @@ public class Enemy : FightingEntity {
 		isExecuting = false;
 
 		playerDetected = false;
+		lifespan = 0;
 	}
 	
 	// Update is called once per frame
@@ -84,36 +85,53 @@ public class Enemy : FightingEntity {
 		{
 			int distance = diffX + diffY;
 
-			if(distance <= 5 || lifespan >= 4)
+			if(distance <= 5)
 				playerDetected = true;
+
+
+			if(lifespan >= 10)
+				playerDetected = true;
+			//*/
 		}
 		if (!playerDetected)
 		{
 			//at some later point, might change this to distribute the bikers more
 
-			int dir = Random.Range(0, 4);
-			//This is a temp fix so bikers move upward towards the bar by default.
-			dir = 2;
-			switch(dir)
-			{
-			case 0:
-				currMove = Move.Left;
-				break;
-			case 1:
-				currMove = Move.Right;
-				break;
-			case 2:
-				currMove = Move.Up;
-				break;
-			case 3:
-				currMove = Move.Down;
-				break;
-			default:
-				currMove = Move.None;
-				break;
-			}
+			Debug.Log("Wandering");
 
-			AttemptMove(currMove);
+			bool success = false; //to ensure they actually make a move
+			int loop = 0;
+
+			while (!success)
+			{
+				loop++;
+				int dir = Random.Range(0, 4);
+				//This is a temp fix so bikers move upward towards the bar by default.
+				//dir = 2;
+				switch(dir)
+				{
+				case 0:
+					currMove = Move.Left;
+					break;
+				case 1:
+					currMove = Move.Right;
+					break;
+				case 2:
+					currMove = Move.Up;
+					break;
+				case 3:
+					currMove = Move.Down;
+					break;
+				default:
+					currMove = Move.None;
+					break;
+				}
+
+				success = AttemptMove(currMove);
+				if(loop > 10)
+					return;
+				//because infinite loops is bad.
+			}
 			return;
 		}
 
@@ -250,6 +268,24 @@ public class Enemy : FightingEntity {
 				return;
 		}
 	}
+
+	//this override exists only for debug logging purposes.
+	/*
+	protected override bool AttemptMove(Move move)
+	{
+		Debug.Log(gameObject.name + " attempts move " + move);
+		bool success = base.AttemptMove(move);
+		if(success)
+		{
+			Debug.Log("Success!");
+		}
+		else
+		{
+			Debug.Log("Failed!");
+		}
+		return success;
+	}
+	//*/
 
 	public override void Die(){
 		base.Die ();

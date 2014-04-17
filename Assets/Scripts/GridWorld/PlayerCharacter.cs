@@ -14,6 +14,7 @@ public class PlayerCharacter : FightingEntity {
 	public int score;
 	private bool exit;
 	private int timer;
+	public int startingHealth = 100;
 	
 	// Use this for initialization
 	protected override void Start () {
@@ -22,7 +23,7 @@ public class PlayerCharacter : FightingEntity {
 		exit = false;
 		fillUp = false;
 		score = 0;
-		health = 50;
+		health = startingHealth;
 		timer = 30;
 		executeMode = false;
 		movelist = new Move[20];
