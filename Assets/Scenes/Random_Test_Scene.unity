@@ -1588,7 +1588,7 @@ Prefab:
     - target: {fileID: 11400000, guid: 84589b969f74f2243a4bedc0cd3664e9, type: 2}
       propertyPath: worldCamera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1506552800}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84589b969f74f2243a4bedc0cd3664e9, type: 2}
   m_RootGameObject: {fileID: 1707795425}
@@ -2524,7 +2524,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3230,6 +3230,8 @@ MonoBehaviour:
   executeMode: 0
   score: 0
   startingHealth: 100
+  cameraOffset: {x: 0, y: 0, z: 0}
+  worldCamera: {fileID: 1506552800}
 --- !u!212 &1707795427
 SpriteRenderer:
   m_ObjectHideFlags: 0
