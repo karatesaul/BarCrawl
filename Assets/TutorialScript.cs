@@ -42,6 +42,8 @@ public class TutorialScript : MonoBehaviour {
 			if (tutorial) {
 				Destroy (tut1, 8.0F);
 				t2 = true;
+				//tut2.SetActive(true);
+				//Destroy (tut2, 4.0F);
 			}
 
 
