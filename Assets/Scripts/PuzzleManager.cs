@@ -111,9 +111,11 @@ public class PuzzleManager : MonoBehaviour {
 		cLabel5.SetActive(false);
 		
 	}
+
 	public void endTurn(){
 		refillStep = 5;
 	}
+
 	// Update is called once per frame
 	void Update () {
 		//no need to update while still on the menu
@@ -299,34 +301,64 @@ public class PuzzleManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="match">Match.</param>
 	private void AddMatchToFadeQueue(List<Token> newMatch){
+		bool matchFound = false;
+
 		//if there are no prior matches, just add the new move to the queue
 		if (setOfTokens.Count == 0) {
 			setOfTokens.Add (newMatch);
 		} else {
 			List<Token> duplicates = new List<Token> ();
-			
-			//first check to see if there are duplicate tokens
-			foreach (Token t in setOfTokens[setOfTokens.Count-1]) {
-				foreach(Token u in newMatch){
-					if (t == u){
-						duplicates.Add(t);
+
+			foreach(List<Token> l in setOfTokens){
+				//first check to see if there are duplicate tokens
+				foreach (Token t in l) {
+					foreach(Token u in newMatch){
+						if (t == u){
+							duplicates.Add(t);
+						}
 					}
+				}
+				//if there are duplicates, we have found another portion of the same match.
+				if (duplicates.Count > 0){
+					matchFound = true;
+
+					//Add the non-duplicates to the match.
+					while (duplicates.Count > 0){
+						Token t = duplicates[0];
+						newMatch.Remove(t);
+						duplicates.Remove(t);
+					}
+					setOfTokens[setOfTokens.Count - 1].AddRange(newMatch);
+					break;
 				}
 			}
 
-			//if there are no duplicates, add the new move to the queue
-			if (duplicates.Count == 0){
+			//if we didn't find another portion, add as a new match.
+			if (!matchFound){
 				setOfTokens.Add(newMatch);
-			} else {
-				//else add the non-duplicates to the last match.
-				while (duplicates.Count > 0){
-					Token t = duplicates[0];
-					newMatch.Remove(t);
-					duplicates.Remove(t);
-				}
-				
-				setOfTokens[setOfTokens.Count - 1].AddRange(newMatch);
 			}
+//			//first check to see if there are duplicate tokens
+//			foreach (Token t in setOfTokens[setOfTokens.Count-1]) {
+//				foreach(Token u in newMatch){
+//					if (t == u){
+//						duplicates.Add(t);
+//					}
+//				}
+//			}
+//
+//			//if there are no duplicates, add the new move to the queue
+//			if (duplicates.Count == 0){
+//				setOfTokens.Add(newMatch);
+//			} else {
+//				//else add the non-duplicates to the last match.
+//				while (duplicates.Count > 0){
+//					Token t = duplicates[0];
+//					newMatch.Remove(t);
+//					duplicates.Remove(t);
+//				}
+//				
+//				setOfTokens[setOfTokens.Count - 1].AddRange(newMatch);
+//			}
 		}
 	}
 

@@ -47,6 +47,8 @@ MonoBehaviour:
   tokenEmpty: {fileID: 2800000, guid: a9db8fe41f95342bcabb9bcbf0a38441, type: 3}
   pc: {fileID: 0}
   timeLimit: 900
+  refillStep: 0
+  fallSpeed: 6
   setOfMoves: 
 --- !u!1001 &100100000
 Prefab:
