@@ -122,7 +122,11 @@ public class PuzzleManager : MonoBehaviour {
 		if (Input.GetKey (KeyCode.I)) {
 			Debug.Log(refillStep.ToString());
 		}
-		
+
+		if (Input.GetKey (KeyCode.R)) {
+			ResetPuzzle();
+		}
+
 		switch (refillStep) {
 		case 0:
 			//if the matching algorithm returns matches, go to the next steps.  Otherwise, await anomther move.
@@ -574,6 +578,15 @@ public class PuzzleManager : MonoBehaviour {
 			cLabel5.SetActive(true);
 			StartCoroutine(Wait(cLabel5));
 		}
+	}
+
+	public void ResetPuzzle(){
+		setOfTokens.Clear ();
+		setOfTokens.Add (new List<Token> ());
+		foreach (Token t in puzzleGrid) {
+			setOfTokens[0].Add(t);
+		}
+		refillStep = 1;
 	}
 
 }
