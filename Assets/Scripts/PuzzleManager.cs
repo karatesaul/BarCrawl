@@ -69,7 +69,7 @@ public class PuzzleManager : MonoBehaviour {
 		currTime = 0;		
 		refillCount = new int[6];
 		refillStep = 4;
-		
+
 		//List of moves to pass to the Game Board
 		setOfMoves = new List<TokenType> ();
 		setOfTokens = new List<List<Token>> ();
@@ -99,7 +99,6 @@ public class PuzzleManager : MonoBehaviour {
 		setOfMoves.Clear ();
 		endTurn ();
 
-
 		//get scoring labels
 		cLabel2 = GameObject.Find("combo2");
 		cLabel2.SetActive(false);
@@ -109,7 +108,6 @@ public class PuzzleManager : MonoBehaviour {
 		cLabel4.SetActive(false);
 		cLabel5 = GameObject.Find("combo5");
 		cLabel5.SetActive(false);
-		
 	}
 
 	public void endTurn(){

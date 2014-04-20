@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour {
 	public Texture title;
 	public Texture yesTutorial;
 	public Texture noTutorial;
-	private bool tutorial;
+	public bool tutorial;
 	
 	public GameObject pauseMenu;
 	
