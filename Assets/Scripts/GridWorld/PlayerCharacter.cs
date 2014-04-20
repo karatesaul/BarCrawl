@@ -15,6 +15,8 @@ public class PlayerCharacter : FightingEntity {
 	private bool exit;
 	private int timer;
 	public int startingHealth = 100;
+	public Vector3 cameraOffset;
+	public Camera worldCamera;
 	
 	// Use this for initialization
 	protected override void Start () {
@@ -33,6 +35,8 @@ public class PlayerCharacter : FightingEntity {
 		}
 
 		foeTag = "enemy";
+
+		cameraOffset = new Vector3(0, -1.5f, -9);
 	
 		base.Start();
 
@@ -44,6 +48,10 @@ public class PlayerCharacter : FightingEntity {
 	protected override void Update () 
 	{
 		base.Update ();
+
+		worldCamera.gameObject.transform.position = gameObject.transform.position + cameraOffset;
+
+
 		if (tm.turn == 1) 
 		{
 			if (!executeMode) 
