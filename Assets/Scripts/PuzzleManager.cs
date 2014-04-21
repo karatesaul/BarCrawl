@@ -19,6 +19,12 @@ public class PuzzleManager : MonoBehaviour {
 	public Texture tokenRight;
 	public Texture tokenAttack;
 	public Texture tokenEmpty;
+
+	public int upVal;
+	public int downVal;
+	public int leftVal;
+	public int rightVal;
+	public int attackVal;
 	
 	public PlayerCharacter pc;
 	
@@ -70,6 +76,12 @@ public class PuzzleManager : MonoBehaviour {
 		refillCount = new int[6];
 		refillStep = 4;
 
+		upVal = 200;
+		downVal = 200;
+		leftVal = 200;
+		rightVal = 200;
+		attackVal = 200;
+
 		//List of moves to pass to the Game Board
 		setOfMoves = new List<TokenType> ();
 		setOfTokens = new List<List<Token>> ();
@@ -81,7 +93,51 @@ public class PuzzleManager : MonoBehaviour {
 			for (int j=0; j<5; j++){
 				
 				//get a random token type here
-				int type = Random.Range(1, 6);
+				int roll = Random.Range(1,1000);
+				int type = 0;
+				if(roll < upVal){
+					type = 1;
+					upVal -= 4;
+					downVal += 1;
+					leftVal += 1;
+					rightVal += 1;
+					attackVal +=1;
+				}
+				else if(roll < (downVal+upVal)){
+					type = 2;
+					upVal += 1;
+					downVal -= 4;
+					leftVal += 1;
+					rightVal += 1;
+					attackVal += 1;
+				}
+				else if (roll < (leftVal+downVal+upVal)){
+					type = 3;
+					upVal += 1;
+					downVal += 1;
+					leftVal -= 4;
+					rightVal += 1;
+					attackVal += 1;
+				}
+				else if (roll < (rightVal+leftVal+downVal+upVal)){
+					type = 4;
+					upVal += 1;
+					downVal += 1;
+					leftVal += 1;
+					rightVal -= 4;
+					attackVal += 1;
+				}
+				else if (roll < (attackVal+rightVal+leftVal+downVal+upVal)){
+					type = 5;
+					upVal += 1;
+					downVal += 1;
+					leftVal += 1;
+					rightVal += 1;
+					attackVal -= 4;
+				}
+				else {
+					type = 6;
+				}
 				puzzleGrid[i,j] = new Token(i, j, type);
 			}
 			//fill the unseen rows with empty tokens
@@ -427,7 +483,51 @@ public class PuzzleManager : MonoBehaviour {
 			//now add that number of tokens above to refill the lower rows
 			for (int j=5; j<5+refillCount[i]; j++){
 				//get a random token type here
-				int type = Random.Range(1, 6);
+				int roll = Random.Range(1,1000);
+				int type = 0;
+				if(roll < upVal){
+					type = 1;
+					upVal -= 4;
+					downVal += 1;
+					leftVal += 1;
+					rightVal += 1;
+					attackVal +=1;
+				}
+				else if(roll < (downVal+upVal)){
+					type = 2;
+					upVal += 1;
+					downVal -= 4;
+					leftVal += 1;
+					rightVal += 1;
+					attackVal += 1;
+				}
+				else if (roll < (leftVal+downVal+upVal)){
+					type = 3;
+					upVal += 1;
+					downVal += 1;
+					leftVal -= 4;
+					rightVal += 1;
+					attackVal += 1;
+				}
+				else if (roll < (rightVal+leftVal+downVal+upVal)){
+					type = 4;
+					upVal += 1;
+					downVal += 1;
+					leftVal += 1;
+					rightVal -= 4;
+					attackVal += 1;
+				}
+				else if (roll < (attackVal+rightVal+leftVal+downVal+upVal)){
+					type = 5;
+					upVal += 1;
+					downVal += 1;
+					leftVal += 1;
+					rightVal += 1;
+					attackVal -= 4;
+				}
+				else {
+					type = 6;
+				}
 				puzzleGrid[i,j].tokenVal = (TokenType)type;
 				puzzleGrid[i,j].ResetSprite();
 			}
