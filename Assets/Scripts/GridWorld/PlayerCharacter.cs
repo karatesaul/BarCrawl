@@ -19,6 +19,7 @@ public class PlayerCharacter : FightingEntity {
 	public Camera worldCamera;
 	public GameObject backdrop;
 	public Vector3 backdropOffset;
+	public int blunderDamage = 5;
 	
 	// Use this for initialization
 	protected override void Start () {
@@ -188,13 +189,54 @@ public class PlayerCharacter : FightingEntity {
 
 	protected override bool AttemptMove(Move move)
 	{
-		if(move == Move.Heal)
-		{
+		if (move == Move.Heal) {
 			health += 5;
 			return true;
 		}
-		else
-			return base.AttemptMove(move);
+		else 
+		{
+			bool success = base.AttemptMove (move);
+			if(success)
+				return true;
+			//else
+
+			if(move.isDirectional())
+			{
+				facing = move;
+
+				//find the destination tile
+				Vector2 moveDir = move.getDirection();
+				int destX = x + (int)moveDir.x;
+				int destY = y + (int)moveDir.y;
+
+				Entity target = GridManager.instance.getTarget(destX, destY);
+
+				if(target != null)
+				{
+					if(target.gameObject.tag == foeTag)
+					{
+						//a fightable enemy!
+						//deal it some damage.
+
+						target.health -= blunderDamage;
+
+						Debug.Log("Player blunders into " + target.gameObject.name + ", dealing " + blunderDamage + " damage!  " + target.health + " health remains.");
+
+						target.currentRed = 100;
+
+						return true;
+					}
+				}
+
+				return false;
+			}
+			else if(move == Move.Fight)
+			{
+				//do nothing, yet, anyway.  We'll see what we're doing with this.
+			}
+
+			return false;
+		}
 	}
 
 	public override void Die()

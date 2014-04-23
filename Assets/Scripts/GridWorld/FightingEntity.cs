@@ -65,16 +65,16 @@ public class FightingEntity : Entity {
 						//at this point, we have confirmed there is a fightable entity in this tile.
 						//Attack animation code should go somewhere under this if.
 						
-						GridManager.instance.getTarget (destX, destY).health -= damageDealt;
+						target.health -= damageDealt;
 
 						//change color at the same time
-						GridManager.instance.getTarget (destX, destY).currentRed = 100;
+						target.currentRed = 100;
 						
 						
 						facing = moveExtensions.getMove(fightOrder[i]);
 						animator.Play("AttackLeft");
-						Debug.Log (gameObject.name + " attacks! " + GridManager.instance.getTarget (destX, destY).gameObject.name + " takes " + damageDealt + " damage, and has " +
-						           GridManager.instance.getTarget(destX, destY).health + " health remaining!");
+						Debug.Log (gameObject.name + " attacks! " + target.gameObject.name + " takes " + damageDealt + " damage, and has " +
+						           target.health + " health remaining!");
 						
 						return true;
 					}

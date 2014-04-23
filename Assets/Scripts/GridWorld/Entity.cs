@@ -85,14 +85,11 @@ public class Entity : MonoBehaviour {
 		}
 		else
 		{
-			//the player will still turn to face the obstacle
-			//enemies, however, will not; they will instead try a different direction.
-			if(gameObject.tag != "enemy")
-				facing = move;
-
 			return false;
 		}
+
 	}
+
 
 	/// <summary>
 	/// Kills the entity.  Call this to make sure its deconstruction logic is done.

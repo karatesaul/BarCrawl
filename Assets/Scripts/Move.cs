@@ -136,6 +136,7 @@ public static class moveExtensions
 			return true;
 		case Move.None:
 		case Move.Fight:
+		case Move.Heal:
 		default:
 			return false;
 		}
