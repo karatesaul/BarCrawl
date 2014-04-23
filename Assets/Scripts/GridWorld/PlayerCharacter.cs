@@ -17,11 +17,14 @@ public class PlayerCharacter : FightingEntity {
 	public int startingHealth = 100;
 	public Vector3 cameraOffset;
 	public Camera worldCamera;
+	public GameObject backdrop;
+	public Vector3 backdropOffset;
 	
 	// Use this for initialization
 	protected override void Start () {
 		tm = GameObject.Find("Player").GetComponent<TurnManager>();
 		menu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
+		backdrop = GameObject.Find ("WoodBackdrop");
 		exit = false;
 		fillUp = false;
 		score = 0;
@@ -37,7 +40,7 @@ public class PlayerCharacter : FightingEntity {
 		foeTag = "enemy";
 
 		cameraOffset = new Vector3(0, -1.5f, -9);
-	
+		backdropOffset = new Vector3 (0, -3, 0);
 		base.Start();
 
 	}
@@ -48,9 +51,8 @@ public class PlayerCharacter : FightingEntity {
 	protected override void Update () 
 	{
 		base.Update ();
-
 		worldCamera.gameObject.transform.position = gameObject.transform.position + cameraOffset;
-
+		backdrop.gameObject.transform.position = gameObject.transform.position + backdropOffset;
 
 		if (tm.turn == 1) 
 		{

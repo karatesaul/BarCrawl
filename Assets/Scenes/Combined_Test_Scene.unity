@@ -863,6 +863,11 @@ MonoBehaviour:
   tokenRight: {fileID: 2800000, guid: 30c2c099cd54d454890b8499178d7c66, type: 3}
   tokenAttack: {fileID: 2800000, guid: 83ac4ec0373303041a94bd59276b8b56, type: 3}
   tokenEmpty: {fileID: 2800000, guid: a9db8fe41f95342bcabb9bcbf0a38441, type: 3}
+  upVal: 0
+  downVal: 0
+  leftVal: 0
+  rightVal: 0
+  attackVal: 0
   pc: {fileID: 1707795426}
   timeLimit: 900
   refillStep: 0
@@ -2717,6 +2722,56 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!1 &1487198776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1487198778}
+  - 212: {fileID: 1487198777}
+  m_Layer: 0
+  m_Name: WoodBackdrop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1487198777
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1487198776}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 5ba31a5e7112cc6438f439a641ac2a3e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!4 &1487198778
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1487198776}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.29097378, y: -1.98741341, z: 0}
+  m_LocalScale: {x: .150000006, y: .150000006, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1488221187
 GameObject:
   m_ObjectHideFlags: 0
@@ -3582,6 +3637,8 @@ MonoBehaviour:
   startingHealth: 100
   cameraOffset: {x: 0, y: 0, z: 0}
   worldCamera: {fileID: 1248361084}
+  backdrop: {fileID: 0}
+  backdropOffset: {x: 0, y: 0, z: 0}
 --- !u!212 &1707795427
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3830,8 +3887,8 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: f9bf95344a0d2d04896b57f7a266e26b, type: 3}
-  - {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -4112,7 +4169,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: .00130208337, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}
