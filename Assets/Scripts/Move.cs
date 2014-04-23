@@ -4,7 +4,7 @@ using System.Collections;
 // Right is the POSITIVE X
 // Up is the POSITIVE Y
 //not that you need to remember that, because we have a conversion function.
-public enum Move {None, Left, Right, Up, Down, Fight};
+public enum Move {None, Left, Right, Up, Down, Fight, Heal};
 
 //This class allows us to make methods that can be called using Move.whatever
 public static class moveExtensions
@@ -28,8 +28,8 @@ public static class moveExtensions
 		case Move.Left:
 			return new Vector2(-1, 0);
 		case Move.Fight:
-			return new Vector2(0, 0);
 		case Move.None:
+		case Move.Heal:
 			return new Vector2(0, 0);
 		default:
 			return new Vector2(760, 3589);

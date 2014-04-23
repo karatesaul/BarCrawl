@@ -184,6 +184,17 @@ public class PlayerCharacter : FightingEntity {
 
 	}
 
+	protected override bool AttemptMove(Move move)
+	{
+		if(move == Move.Heal)
+		{
+			health += 5;
+			return true;
+		}
+		else
+			return base.AttemptMove(move);
+	}
+
 	public override void Die()
 	{
 		GridManager.instance.clearEntities();
