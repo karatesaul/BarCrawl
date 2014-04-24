@@ -622,6 +622,19 @@ public class PuzzleManager : MonoBehaviour {
 				}
 			}
 		}
+
+		//draw the queue of moves
+		//center-align the queue
+		float centerX = Screen.width/2 - setOfMoves.Count/2 * Screen.width/16;
+		if (centerX < 0) centerX = 0f;
+		float centerY = Screen.width * 5/6 - Screen.width/16;
+		int index = 0;
+		foreach (TokenType t in setOfMoves) {
+			GUI.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+			GUI.DrawTexture(new Rect(centerX + Screen.width/16 * index, centerY, Screen.width/16, Screen.width/16), Token.SpriteOf(t));
+			index++;
+		}
+
 		if (activeToken != null){
 			GUI.color = new Color(1.0f, 1.0f, 1.0f, activeToken.drawAlpha);
 			GUI.DrawTexture(activeToken.location, activeToken.sprite);
@@ -741,6 +754,33 @@ public class Token{
 	
 	public static Vector2 GetPositionOfCoords(Vector2 coords){
 		return new Vector2 (Mathf.FloorToInt (coords.x * 6.0f / Screen.width), Mathf.FloorToInt ((Screen.height - coords.y) * 6.0f / Screen.width - 1));
+	}
+
+	public static Texture SpriteOf(TokenType t){
+		Texture sprite = null;
+		switch (t) {
+		case TokenType.Attack:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenAttack;
+			break;
+		case TokenType.Down:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenDown;
+			break;
+		case TokenType.Left:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenLeft;
+			break;
+		case TokenType.Right:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenRight;
+			break;
+		case TokenType.Up:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenUp;
+			break;
+		case TokenType.Empty:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenEmpty;
+			break;
+		default:
+			break;
+		}
+		return sprite;
 	}
 	
 	public Token(int xLoc, int yLoc, int type){
