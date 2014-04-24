@@ -4,6 +4,7 @@ using System.Collections;
 public class InGameMenu : MonoBehaviour {
 
 	public bool menuActive;
+	public TurnManager tm;
 	public Texture2D pauseButton;
 	public GameObject puzzleManager;
 
@@ -14,6 +15,7 @@ public class InGameMenu : MonoBehaviour {
 		this.menuActive = false;
 		pauseButton.Resize (Screen.width/9, Screen.width/9);
 		paused = false;
+		tm = GameObject.Find ("Player").GetComponent<TurnManager> ();
 	}
 	
 	// Update is called once per frame
@@ -23,6 +25,16 @@ public class InGameMenu : MonoBehaviour {
 
 	void OnGUI(){
 		if(!menuActive) return;
+		
+		if (tm.coolDownTimer > 4) {
+			if(GUI.Button (new Rect(Screen.width/25, Screen.height/45, 4*Screen.width/25, 4*Screen.height/45), "Reset the\nPuzzle!") && tm.turn == 1){
+				puzzleManager.GetComponent<PuzzleManager>().ResetPuzzle();
+				tm.coolDownTimer = 0;
+			}
+		}
+		else{
+			GUI.Box (new Rect(Screen.width/25, Screen.height/45, 4*Screen.width/25, 4*Screen.height/45), "Reset\nRecharging!");
+		}
 		if(GUI.Button(new Rect(Screen.width-pauseButton.width, 0, pauseButton.width, pauseButton.height), pauseButton)){
 			paused = !paused;
 			if(paused){

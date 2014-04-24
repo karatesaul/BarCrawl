@@ -9,6 +9,7 @@ public class TurnManager : MonoBehaviour {
 	public int enemyCount;
 	public List<Enemy> enemies;
 	public int spawnTimer;
+	public int coolDownTimer;
 	private GameObject enemyInstance;
 	public GameObject meleeEnemyReference;
 	public GameObject rangedEnemyReference;
@@ -34,13 +35,15 @@ public class TurnManager : MonoBehaviour {
 		}
 		canMove = true;
 		spawnTimer = 0;
+		coolDownTimer = 5;
 		turn = 1;
 		enemyCount = 0;
 	}
 	
 	// Update is called once per frame
+
 	void Update () {
-		if (turn == 1) {
+			if (turn == 1) {
 			//Debug.Log ("PLAYER TURN");
 			//turn is set within PlayerCharacter.cs after exiting executeMode and attempting to move
 			/*	canMove = true;
@@ -88,6 +91,7 @@ public class TurnManager : MonoBehaviour {
 
 			turn = 3;
 			spawnTimer++;
+			coolDownTimer++;
 		}
 		else if(turn == 3){
 			//Actual enemy execute turn
