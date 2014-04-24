@@ -13,7 +13,7 @@ public class Enemy : FightingEntity {
 	protected int maxMoves = 2;
 	protected Move currMove;
 	private int timer;
-	private int moveCount;
+	protected int moveCount;
 	//lifespan = amount of turns enemy has been alive
 	public int lifespan;
 
@@ -70,7 +70,7 @@ public class Enemy : FightingEntity {
 		}
 	}
 
-	protected void makeMove()
+	protected virtual void makeMove()
 	{
 		//these keep coming up, so I'm going to let them be calculated once beforehand
 		int diffX = Mathf.Abs (player.x - this.x);
@@ -142,7 +142,7 @@ public class Enemy : FightingEntity {
 		else 
 		{
 			//else, move
-			//i should really get some actual pathfinding...
+			//i should maybe get some actual pathfinding...
 			//but for now, better derp movement
 
 			if(diffX <= range && diffY <= range)

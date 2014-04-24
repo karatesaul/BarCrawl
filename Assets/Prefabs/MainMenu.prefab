@@ -38,6 +38,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b73b96cba41044746a4c21784335464b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayMenu: 0
+  title: {fileID: 0}
+  yesTutorial: {fileID: 0}
+  noTutorial: {fileID: 0}
+  tutorial: 0
+  pauseMenu: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

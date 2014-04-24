@@ -214,7 +214,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 22848677}
   - 114: {fileID: 22848678}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MapRow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiles:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -356,7 +357,7 @@ GameObject:
   - 4: {fileID: 99537029}
   - 212: {fileID: 99537031}
   - 114: {fileID: 99537030}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: chairRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,6 +419,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1450026598}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: tiles.Array.size
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.72340751
@@ -480,7 +485,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 258505644}
   - 114: {fileID: 258505645}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MapRow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,6 +530,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &271715860
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +542,7 @@ GameObject:
   - 212: {fileID: 271715862}
   - 114: {fileID: 271715861}
   - 95: {fileID: 271715864}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RangedEnemy
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -667,6 +673,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1450026598}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: tiles.Array.size
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.72340751
@@ -707,6 +717,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1450026598}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: tiles.Array.size
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.72340751
@@ -931,6 +945,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1450026598}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: tiles.Array.size
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.72340751
@@ -1236,6 +1254,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1450026598}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: tiles.Array.size
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.72340751
@@ -1318,7 +1340,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 630479106}
   - 114: {fileID: 630479107}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MapRow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1363,6 +1385,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &739780999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,7 +1396,7 @@ GameObject:
   - 4: {fileID: 739781002}
   - 212: {fileID: 739781001}
   - 114: {fileID: 739781000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: chairLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1438,7 +1461,7 @@ GameObject:
   - 4: {fileID: 786031563}
   - 212: {fileID: 786031565}
   - 114: {fileID: 786031564}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1503,7 +1526,7 @@ GameObject:
   - 4: {fileID: 847878095}
   - 212: {fileID: 847878097}
   - 114: {fileID: 847878096}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1517,7 +1540,7 @@ Transform:
   m_PrefabInternal: {fileID: 2050494650}
   m_GameObject: {fileID: 847878094}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.72340751, y: -2.21071887, z: -.100000001}
+  m_LocalPosition: {x: -1.72340751, y: -2.23004317, z: -.100000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2013112755}
@@ -1686,7 +1709,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 863127385}
   - 114: {fileID: 863127386}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MapRow2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1727,6 +1750,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 786031564}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1831,6 +1855,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1450026598}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: tiles.Array.size
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.72340751
@@ -1885,7 +1913,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 967883941}
   - 212: {fileID: 967883940}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1933,6 +1961,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1450026598}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: tiles.Array.size
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.72340751
@@ -2243,7 +2275,7 @@ GameObject:
   - 4: {fileID: 1069466681}
   - 212: {fileID: 1069466683}
   - 114: {fileID: 1069466682}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: chairRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2417,6 +2449,61 @@ MonoBehaviour:
     m_Bottom: 0
   tabSize: 48
   tabStops: 
+--- !u!1 &1143624824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+  m_PrefabInternal: {fileID: 1497757035}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1143624825}
+  - 114: {fileID: 1143624826}
+  m_Layer: 8
+  m_Name: MapRow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1143624825
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+  m_PrefabInternal: {fileID: 1497757035}
+  m_GameObject: {fileID: 1143624824}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.72340751, y: 2.21071887, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1450026598}
+--- !u!114 &1143624826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 07ead8129baf7ee46854efc7d343dec1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1497757035}
+  m_GameObject: {fileID: 1143624824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd03188c26dfbfc40adbe2cb239b4197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1248361080
 GameObject:
   m_ObjectHideFlags: 0
@@ -2508,6 +2595,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1450026598}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: tiles.Array.size
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.72340751
@@ -2562,7 +2653,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1351628345}
   - 114: {fileID: 1351628346}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MapRow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2593,6 +2684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiles:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -2638,6 +2730,7 @@ Transform:
   - {fileID: 1452567744}
   - {fileID: 630479106}
   - {fileID: 22848677}
+  - {fileID: 1143624825}
   - {fileID: 2013112755}
   - {fileID: 863127385}
   - {fileID: 1597032895}
@@ -2665,8 +2758,9 @@ MonoBehaviour:
   - {fileID: 1351628346}
   - {fileID: 258505645}
   - {fileID: 1452567745}
-  width: 14
-  height: 9
+  - {fileID: 1143624826}
+  width: 15
+  height: 10
   prefab: {fileID: 11400000, guid: cdd69aee060cdda4caccaca52eceab9f, type: 2}
 --- !u!1 &1452567743
 GameObject:
@@ -2677,7 +2771,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1452567744}
   - 114: {fileID: 1452567745}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MapRow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2722,6 +2816,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1487198776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,7 +2826,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1487198778}
   - 212: {fileID: 1487198777}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoodBackdrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2756,7 +2851,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 1456211891
   m_Sprite: {fileID: 21300000, guid: 5ba31a5e7112cc6438f439a641ac2a3e, type: 3}
@@ -2768,8 +2863,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1487198776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.29097378, y: -1.98741341, z: 0}
-  m_LocalScale: {x: .150000006, y: .150000006, z: 1}
+  m_LocalPosition: {x: .320860863, y: -2.46395087, z: 1}
+  m_LocalScale: {x: .238670424, y: .238671243, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1488221187
@@ -2918,6 +3013,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1450026598}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: tiles.Array.size
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.72340751
@@ -2949,6 +3048,50 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
   m_RootGameObject: {fileID: 22848676}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
+--- !u!1001 &1497757035
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1450026598}
+    m_Modifications:
+    - target: {fileID: 11400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: tiles.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.72340751
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.21071887
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 07ead8129baf7ee46854efc7d343dec1, type: 2}
+  m_RootGameObject: {fileID: 1143624824}
   m_IsPrefabParent: 0
   m_IsExploded: 1
 --- !u!1 &1526376640
@@ -3326,7 +3469,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1587066807}
   - 114: {fileID: 1587066808}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MapRow4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3364,6 +3507,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 1628757209}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -3429,7 +3573,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1597032895}
   - 114: {fileID: 1597032896}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MapRow3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3476,6 +3620,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1628757207
 GameObject:
   m_ObjectHideFlags: 0
@@ -3486,7 +3631,7 @@ GameObject:
   - 4: {fileID: 1628757208}
   - 212: {fileID: 1628757210}
   - 114: {fileID: 1628757209}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: chairLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3550,7 +3695,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1685710716}
   - 212: {fileID: 1685710715}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FloorFullGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3634,11 +3779,9 @@ MonoBehaviour:
   menu: {fileID: 0}
   executeMode: 0
   score: 0
-  startingHealth: 100
+  startingHealth: 200
   cameraOffset: {x: 0, y: 0, z: 0}
   worldCamera: {fileID: 1248361084}
-  backdrop: {fileID: 0}
-  backdropOffset: {x: 0, y: 0, z: 0}
   blunderDamage: 5
 --- !u!212 &1707795427
 SpriteRenderer:
@@ -3692,6 +3835,7 @@ MonoBehaviour:
   enemyCount: 0
   enemies: []
   spawnTimer: 0
+  coolDownTimer: 0
   meleeEnemyReference: {fileID: 100000, guid: 07d93c675daa2a8428c12d4ff1e4a0b6, type: 2}
   rangedEnemyReference: {fileID: 100000, guid: e7f320d7fad1fec4c8e5701472a50b23, type: 2}
   maxEnemies: 0
@@ -3888,8 +4032,8 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: f9bf95344a0d2d04896b57f7a266e26b, type: 3}
-  - {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -3985,6 +4129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuActive: 0
+  tm: {fileID: 0}
   pauseButton: {fileID: 2800000, guid: dfab3ec7b55402f428d67debce1bffb7, type: 3}
   puzzleManager: {fileID: 385235316}
 --- !u!4 &1874422199
@@ -4007,7 +4152,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2013112755}
   - 114: {fileID: 2013112756}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MapRow1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4047,6 +4192,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 847878096}
   - {fileID: 99537030}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -4170,7 +4316,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .00130208337, z: 0}
+  m_LocalPosition: {x: .00130208337, y: .00130208337, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}
@@ -4187,7 +4333,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64fe67aba4f65cc48a9d569238db6983, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.21071887
+      value: -2.23004317
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64fe67aba4f65cc48a9d569238db6983, type: 2}
       propertyPath: m_LocalPosition.z
