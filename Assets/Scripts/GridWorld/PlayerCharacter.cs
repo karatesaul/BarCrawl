@@ -14,7 +14,7 @@ public class PlayerCharacter : FightingEntity {
 	public int score;
 	private bool exit;
 	private int timer;
-	public int startingHealth = 100;
+	public int startingHealth = 200;
 	public Vector3 cameraOffset;
 	public Camera worldCamera;
 	public GameObject backdrop;
@@ -219,6 +219,7 @@ public class PlayerCharacter : FightingEntity {
 						//deal it some damage.
 
 						target.health -= blunderDamage;
+						animator.Play ("AttackLeft");
 
 						Debug.Log("Player blunders into " + target.gameObject.name + ", dealing " + blunderDamage + " damage!  " + target.health + " health remains.");
 
