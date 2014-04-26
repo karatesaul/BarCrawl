@@ -6,9 +6,9 @@ public class MainMenu : MonoBehaviour {
 	public bool displayMenu;
 	//images and tutorial settings
 	public Texture title;
-	public Texture yesTutorial;
-	public Texture noTutorial;
-	public bool tutorial;
+	//public Texture yesTutorial;
+	//public Texture noTutorial;
+	//public bool tutorial;
 	
 	public GameObject pauseMenu;
 	
@@ -19,7 +19,6 @@ public class MainMenu : MonoBehaviour {
 		//it assumes the first instance of the game to show the tutorial,
 		//and will be turned off after that unless the player selects the
 		//checkbox on this screen to turn it back on
-		tutorial = true;
 	}
 	
 	// Update is called once per frame
@@ -56,10 +55,9 @@ public class MainMenu : MonoBehaviour {
 			//transition to high score screen
 			Application.LoadLevel("High_Scores");
 		}
-		//show tutorial setting
-		Texture t = (tutorial?yesTutorial:noTutorial);
-		if(GUI.Button (new Rect(Screen.width/2-t.width/2, Screen.height - t.height - 10, t.width, t.height), t)){
-			tutorial = !tutorial;
+		if(GUI.Button (new Rect(x/2 - buttonWidth/2, 2*y/3 + buttonHeight, buttonWidth, buttonHeight), "Options")){
+			//go to the options screen
+			Application.LoadLevel ("Options");
 		}
 	}
 }

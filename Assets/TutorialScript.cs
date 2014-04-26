@@ -27,13 +27,13 @@ public class TutorialScript : MonoBehaviour {
 		t1 = false;
 		t2 = false;
 
-		tutorial = menu.GetComponent<MainMenu>().tutorial;
+		//tutorial = menu.GetComponent<MainMenu>().tutorial;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		tutorial = menu.GetComponent<MainMenu>().tutorial;
+		//tutorial = menu.GetComponent<MainMenu>().tutorial;
 		if (!t1 && tutorial) t1 = true;
 		//t2 = false;
 
