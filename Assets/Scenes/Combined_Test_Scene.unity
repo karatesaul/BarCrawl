@@ -1659,7 +1659,7 @@ MonoBehaviour:
       right: 2.59765625
       bottom: 2.140625
     owner: {fileID: 861084198}
-  renderOrder: 7
+  renderOrder: 8
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
@@ -2408,7 +2408,7 @@ MonoBehaviour:
       right: 2.57226562
       bottom: 2.139323
     owner: {fileID: 1089260920}
-  renderOrder: 6
+  renderOrder: 7
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
@@ -2427,6 +2427,125 @@ MonoBehaviour:
   align: 0
   vertAlign: 0
   textScale: 1.5
+  textScaleMode: 0
+  charSpacing: 0
+  colorizeSymbols: 0
+  processMarkup: 0
+  outline: 1
+  outlineWidth: 1
+  enableGradient: 0
+  outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  shadow: 0
+  shadowColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  shadowOffset: {x: 1, y: -1}
+  padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  tabSize: 48
+  tabStops: 
+--- !u!1 &1121814139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1121814140}
+  - 114: {fileID: 1121814142}
+  - 65: {fileID: 1121814141}
+  m_Layer: 10
+  m_Name: healthbarLabel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1121814140
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1121814139}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .03125, y: -.00520833349, z: 0}
+  m_LocalScale: {x: .333333343, y: .25, z: .400000006}
+  m_Children: []
+  m_Father: {fileID: 1553442011}
+--- !u!65 &1121814141
+BoxCollider:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1121814139}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .390625, y: .0651041716, z: .00100000005}
+  m_Center: {x: .1953125, y: -.0325520858, z: 0}
+--- !u!114 &1121814142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1121814139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e3359ffaefe124a992e17c8830875c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anchorStyle: 5
+  isEnabled: 1
+  isVisible: 1
+  isInteractive: 1
+  tooltip: 
+  pivot: 0
+  zindex: 0
+  color:
+    serializedVersion: 2
+    rgba: 4294967295
+  disabledColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  size: {x: 150, y: 25}
+  minSize: {x: 0, y: 0}
+  maxSize: {x: 0, y: 0}
+  clipChildren: 0
+  tabIndex: -1
+  canFocus: 0
+  layout:
+    anchorStyle: 5
+    margins:
+      left: 12
+      top: 2
+      right: -88
+      bottom: -19
+    owner: {fileID: 1121814142}
+  renderOrder: 5
+  isLocalized: 0
+  hotZoneScale: {x: 1, y: 1}
+  atlas: {fileID: 11400000, guid: 3cb180835b6012248ac156418cd077ef, type: 2}
+  font: {fileID: 11400000, guid: 6dfcc86da4f8a1342bafc7f42c9643bd, type: 2}
+  backgroundSprite: 
+  backgroundColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  autoSize: 0
+  autoHeight: 0
+  wordWrap: 0
+  text: 100/100
+  bottomColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  align: 1
+  vertAlign: 0
+  textScale: 1.125
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
@@ -2906,8 +3025,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .34375, y: .0859375, z: .00100000005}
-  m_Center: {x: .171875, y: -.04296875, z: 0}
+  m_Size: {x: .442708343, y: .0859375, z: .00100000005}
+  m_Center: {x: .221354172, y: -.04296875, z: 0}
 --- !u!114 &1488221190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2932,7 +3051,7 @@ MonoBehaviour:
   disabledColor:
     serializedVersion: 2
     rgba: 4294967295
-  size: {x: 132, y: 33}
+  size: {x: 170, y: 33}
   minSize: {x: 0, y: 0}
   maxSize: {x: 0, y: 0}
   clipChildren: 0
@@ -2943,7 +3062,7 @@ MonoBehaviour:
     margins:
       left: 2.36035156
       top: 2.06770825
-      right: 2.48925781
+      right: 2.52636719
       bottom: 2.110677
     owner: {fileID: 1488221190}
   renderOrder: 1
@@ -3172,7 +3291,7 @@ MonoBehaviour:
       right: 2.57226562
       bottom: 2.139323
     owner: {fileID: 1526376643}
-  renderOrder: 8
+  renderOrder: 9
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
@@ -3224,6 +3343,7 @@ GameObject:
   - 114: {fileID: 1553442014}
   - 65: {fileID: 1553442013}
   - 114: {fileID: 1553442012}
+  - 114: {fileID: 1553442015}
   m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
@@ -3238,9 +3358,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1553442010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0846946463, y: .188741431, z: 0}
-  m_LocalScale: {x: .400000006, y: .300000012, z: .5}
-  m_Children: []
+  m_LocalPosition: {x: -.110736325, y: .188741431, z: 0}
+  m_LocalScale: {x: .600000024, y: .800000012, z: .5}
+  m_Children:
+  - {fileID: 1121814140}
   m_Father: {fileID: 1751292210}
 --- !u!114 &1553442012
 MonoBehaviour:
@@ -3306,30 +3427,49 @@ MonoBehaviour:
   layout:
     anchorStyle: 261
     margins:
-      left: 2.34082031
+      left: 2.29199219
       top: 2.02864575
-      right: 2.41308594
+      right: 2.36425781
       bottom: 2.0390625
     owner: {fileID: 1553442014}
   renderOrder: 4
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
-  atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  backgroundSprite: progress-frame
-  progressSprite: progress-fill
+  atlas: {fileID: 11400000, guid: e9ca6c930f35a4f57ab1883de5e75cd5, type: 2}
+  backgroundSprite: debug_silverfat
+  progressSprite: debug_healthbar
   progressColor:
     serializedVersion: 2
     rgba: 4294967295
   rawValue: 100
   minValue: 0
   maxValue: 100
-  fillMode: 0
+  fillMode: 1
   padding:
     m_Left: 0
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
   actAsSlider: 0
+--- !u!114 &1553442015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1553442010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ef4a1e2b81b534890a74ccb941acb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DataSource:
+    Component: {fileID: 1707795426}
+    MemberName: health
+  DataTarget:
+    Component: {fileID: 1121814142}
+    MemberName: Text
+  FormatString: '{0}/100'
+  TwoWay: 0
 --- !u!1 &1560876657
 GameObject:
   m_ObjectHideFlags: 0
@@ -3779,7 +3919,7 @@ MonoBehaviour:
   menu: {fileID: 0}
   executeMode: 0
   score: 0
-  startingHealth: 200
+  startingHealth: 100
   cameraOffset: {x: 0, y: 0, z: 0}
   worldCamera: {fileID: 1248361084}
   blunderDamage: 5
@@ -3933,7 +4073,7 @@ MonoBehaviour:
       right: 2.57226562
       bottom: 2.139323
     owner: {fileID: 1736264076}
-  renderOrder: 5
+  renderOrder: 6
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
@@ -4032,8 +4172,8 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: f9bf95344a0d2d04896b57f7a266e26b, type: 3}
+  - {fileID: 2100000, guid: 5812cca7b13e54be0aaaeee56ee3d06f, type: 2}
   - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -4316,7 +4456,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00130208337, y: .00130208337, z: 0}
+  m_LocalPosition: {x: .00130208337, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}

@@ -14,7 +14,7 @@ public class PlayerCharacter : FightingEntity {
 	public int score;
 	private bool exit;
 	private int timer;
-	public int startingHealth = 200;
+	public int startingHealth = 100;
 	public Vector3 cameraOffset;
 	public Camera worldCamera;
 	public int blunderDamage = 5;
