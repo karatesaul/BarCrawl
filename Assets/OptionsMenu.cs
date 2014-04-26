@@ -16,10 +16,9 @@ public class OptionsMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		/*
-		options.Resize(Screen.width, Screen.height/5);
-		options.Apply ();
-		*/
+		tutorial = PlayerPrefs.GetInt("ShowTutorial") == 1;
+		profanity = PlayerPrefs.GetInt ("Profanity") == 1;
+		violenceSoundtrack = PlayerPrefs.GetInt ("ViolenceMusic") == 1;
 	}
 	
 	// Update is called once per frame
@@ -42,6 +41,7 @@ public class OptionsMenu : MonoBehaviour {
 		                        profanityTexture.width, profanityTexture.height), profanityTexture)){
 			profanity = !profanity;
 			//store this result
+			PlayerPrefs.SetInt ("Profanity", (profanity?1:0));
 		}
 		//option to override our music with vio-lence
 		GUI.Label (new Rect(Screen.width/2 - violenceTexture.width/2, 2 * Screen.height/5,
@@ -50,6 +50,7 @@ public class OptionsMenu : MonoBehaviour {
 		                        violenceTexture.width, violenceTexture.height), violenceTexture)){
 			violenceSoundtrack = !violenceSoundtrack;
 			//store this result
+			PlayerPrefs.SetInt ("ViolenceMusic", (violenceSoundtrack?1:0));
 		}
 		//show tutorial setting
 		GUI.Label (new Rect(Screen.width/2-tutorialTexture.width/2, 3 * Screen.height/5, 
@@ -57,7 +58,8 @@ public class OptionsMenu : MonoBehaviour {
 		if(GUI.Button (new Rect(Screen.width/2-tutorialTexture.width/2, 3 * Screen.height/5 + 50, 
 		                        tutorialTexture.width, tutorialTexture.height), tutorialTexture)){
 			tutorial = !tutorial;
-			//store this result somewhere for later retrival
+			//store this result
+			PlayerPrefs.SetInt("ShowTutorial", (tutorial?1:0));
 		}
 		//return to main
 		if(GUI.Button (new Rect(Screen.width/2 - violenceTexture.width/2, 4*Screen.height/5 + 50,
