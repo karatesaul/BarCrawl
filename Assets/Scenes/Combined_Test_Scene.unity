@@ -1137,7 +1137,7 @@ MonoBehaviour:
   TargetEventName: IsVisibleChanged
 --- !u!65 &485557396
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500000, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 410978672}
@@ -1700,7 +1700,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &861084197
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500002, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 410978672}
@@ -2258,7 +2258,7 @@ MonoBehaviour:
   TwoWay: 0
 --- !u!65 &1051246606
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500004, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 410978672}
@@ -2459,7 +2459,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &1089260919
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500006, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 410978672}
@@ -3028,7 +3028,7 @@ MonoBehaviour:
   tabStops: 
 --- !u!65 &1466020672
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500008, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 410978672}
@@ -3120,7 +3120,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &1488221189
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500010, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 410978672}
@@ -3349,7 +3349,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &1526376642
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500012, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 410978672}
@@ -3493,7 +3493,7 @@ MonoBehaviour:
   TwoWay: 0
 --- !u!65 &1553442013
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500014, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 410978672}
@@ -3648,7 +3648,7 @@ AudioSource:
   m_GameObject: {fileID: 1581097120}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 2318e7d63ac9dc248ac6595bdb33215b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 556f74ff3d9649d46894c8a40da1b975, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -4134,7 +4134,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &1736264075
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500016, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 410978672}
@@ -4343,7 +4343,7 @@ MonoBehaviour:
   touchClickRadius: 25
 --- !u!65 &1751292215
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500018, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 410978672}
