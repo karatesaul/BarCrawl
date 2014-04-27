@@ -323,7 +323,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00130208337, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400018}
@@ -369,7 +369,7 @@ Renderer:
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
   - {fileID: 2100000, guid: f9bf95344a0d2d04896b57f7a266e26b, type: 3}
-  - {fileID: 2100000, guid: e52b87183fc9f468abcae4e42a0c0672, type: 2}
+  - {fileID: 2100000, guid: d1d229b5b9f5a4a499f6fc814833ce26, type: 2}
   - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -1192,7 +1192,7 @@ MonoBehaviour:
   renderOrder: 4
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
-  atlas: {fileID: 11400000, guid: e9ca6c930f35a4f57ab1883de5e75cd5, type: 2}
+  atlas: {fileID: 11400000, guid: 890f76cdfea2b4f82bca671f3223f7e0, type: 2}
   backgroundSprite: debug_silverfat
   progressSprite: debug_healthbar
   progressColor:
