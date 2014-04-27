@@ -38,13 +38,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f514313262e3d141ad017b60809752a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: e52b87183fc9f468abcae4e42a0c0672, type: 2}
+  material: {fileID: 2100000, guid: 45a4a78b5b56e4061afb6cac55ecfc07, type: 2}
   items:
   - name: debug_healthbar
     region:
       serializedVersion: 2
       x: 0
-      y: .2578125
+      y: 0
       width: .5
       height: .25
     border:
@@ -61,7 +61,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0
-      y: 0
+      y: .2578125
       width: .5
       height: .25
     border:
