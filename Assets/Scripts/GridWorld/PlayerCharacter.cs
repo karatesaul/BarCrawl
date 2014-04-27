@@ -88,6 +88,10 @@ public class PlayerCharacter : FightingEntity {
 					movelist[i] = Move.Fight;
 					score = score + 25;
 					break;
+				case TokenType.Heal:
+					Debug.Log ("Heal move queued.");
+					movelist[i] = Move.Heal;
+					break;
 				default:
 					Debug.Log ("No move queued.");
 					movelist[i] = Move.None;
