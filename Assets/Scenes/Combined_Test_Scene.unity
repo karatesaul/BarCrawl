@@ -876,12 +876,14 @@ MonoBehaviour:
   tokenLeft: {fileID: 2800000, guid: bb68ef7929d6d1e45911c1df6c5fb555, type: 3}
   tokenRight: {fileID: 2800000, guid: 30c2c099cd54d454890b8499178d7c66, type: 3}
   tokenAttack: {fileID: 2800000, guid: 83ac4ec0373303041a94bd59276b8b56, type: 3}
+  tokenHeal: {fileID: 2800000, guid: fb40136f943991648b0e93466ea115c3, type: 3}
   tokenEmpty: {fileID: 2800000, guid: a9db8fe41f95342bcabb9bcbf0a38441, type: 3}
   upVal: 0
   downVal: 0
   leftVal: 0
   rightVal: 0
   attackVal: 0
+  healVal: 0
   pc: {fileID: 1707795426}
   timeLimit: 900
   refillStep: 0
@@ -905,6 +907,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.73076499
@@ -960,10 +966,14 @@ Prefab:
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: f9bf95344a0d2d04896b57f7a266e26b, type: 3}
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 400020, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
@@ -1317,6 +1327,10 @@ Prefab:
       propertyPath: pc
       value: 
       objectReference: {fileID: 1707795426}
+    - target: {fileID: 11400000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
+      propertyPath: tokenHeal
+      value: 
+      objectReference: {fileID: 2800000, guid: fb40136f943991648b0e93466ea115c3, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
   m_RootGameObject: {fileID: 385235316}
@@ -4271,9 +4285,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: f9bf95344a0d2d04896b57f7a266e26b, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -4560,7 +4572,7 @@ Transform:
   m_PrefabInternal: {fileID: 410978672}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00130208337, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}

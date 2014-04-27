@@ -18,6 +18,7 @@ public class PuzzleManager : MonoBehaviour {
 	public Texture tokenLeft;
 	public Texture tokenRight;
 	public Texture tokenAttack;
+	public Texture tokenHeal;
 	public Texture tokenEmpty;
 
 	public int upVal;
@@ -25,6 +26,7 @@ public class PuzzleManager : MonoBehaviour {
 	public int leftVal;
 	public int rightVal;
 	public int attackVal;
+	public int healVal;
 	
 	public PlayerCharacter pc;
 	
@@ -76,11 +78,12 @@ public class PuzzleManager : MonoBehaviour {
 		refillCount = new int[6];
 		refillStep = 4;
 
-		upVal = 200;
-		downVal = 200;
-		leftVal = 200;
-		rightVal = 200;
-		attackVal = 200;
+		upVal = 150;
+		downVal = 150;
+		leftVal = 150;
+		rightVal = 150;
+		attackVal = 300;
+		healVal = 100;
 
 		//List of moves to pass to the Game Board
 		setOfMoves = new List<TokenType> ();
@@ -93,51 +96,7 @@ public class PuzzleManager : MonoBehaviour {
 			for (int j=0; j<5; j++){
 				
 				//get a random token type here
-				int roll = Random.Range(1,1000);
-				int type = 0;
-				if(roll < upVal){
-					type = 1;
-					upVal -= 4;
-					downVal += 1;
-					leftVal += 1;
-					rightVal += 1;
-					attackVal +=1;
-				}
-				else if(roll < (downVal+upVal)){
-					type = 2;
-					upVal += 1;
-					downVal -= 4;
-					leftVal += 1;
-					rightVal += 1;
-					attackVal += 1;
-				}
-				else if (roll < (leftVal+downVal+upVal)){
-					type = 3;
-					upVal += 1;
-					downVal += 1;
-					leftVal -= 4;
-					rightVal += 1;
-					attackVal += 1;
-				}
-				else if (roll < (rightVal+leftVal+downVal+upVal)){
-					type = 4;
-					upVal += 1;
-					downVal += 1;
-					leftVal += 1;
-					rightVal -= 4;
-					attackVal += 1;
-				}
-				else if (roll < (attackVal+rightVal+leftVal+downVal+upVal)){
-					type = 5;
-					upVal += 1;
-					downVal += 1;
-					leftVal += 1;
-					rightVal += 1;
-					attackVal -= 4;
-				}
-				else {
-					type = 6;
-				}
+				int type = getTokenType();
 				puzzleGrid[i,j] = new Token(i, j, type);
 			}
 			//fill the unseen rows with empty tokens
@@ -483,55 +442,74 @@ public class PuzzleManager : MonoBehaviour {
 			//now add that number of tokens above to refill the lower rows
 			for (int j=5; j<5+refillCount[i]; j++){
 				//get a random token type here
-				int roll = Random.Range(1,1000);
-				int type = 0;
-				if(roll < upVal){
-					type = 1;
-					upVal -= 4;
-					downVal += 1;
-					leftVal += 1;
-					rightVal += 1;
-					attackVal +=1;
-				}
-				else if(roll < (downVal+upVal)){
-					type = 2;
-					upVal += 1;
-					downVal -= 4;
-					leftVal += 1;
-					rightVal += 1;
-					attackVal += 1;
-				}
-				else if (roll < (leftVal+downVal+upVal)){
-					type = 3;
-					upVal += 1;
-					downVal += 1;
-					leftVal -= 4;
-					rightVal += 1;
-					attackVal += 1;
-				}
-				else if (roll < (rightVal+leftVal+downVal+upVal)){
-					type = 4;
-					upVal += 1;
-					downVal += 1;
-					leftVal += 1;
-					rightVal -= 4;
-					attackVal += 1;
-				}
-				else if (roll < (attackVal+rightVal+leftVal+downVal+upVal)){
-					type = 5;
-					upVal += 1;
-					downVal += 1;
-					leftVal += 1;
-					rightVal += 1;
-					attackVal -= 4;
-				}
-				else {
-					type = 6;
-				}
+				int type = getTokenType();
 				puzzleGrid[i,j].tokenVal = (TokenType)type;
 				puzzleGrid[i,j].ResetSprite();
 			}
 		}
+	}
+
+	private int getTokenType(){
+		int roll = Random.Range(1,1000);
+		int type = 0;
+		if(roll < upVal){
+			type = 1;
+			upVal -= 5;
+			downVal += 1;
+			leftVal += 1;
+			rightVal += 1;
+			attackVal += 1;
+			healVal += 1;
+		}
+		else if(roll < (downVal+upVal)){
+			type = 2;
+			upVal += 1;
+			downVal -= 5;
+			leftVal += 1;
+			rightVal += 1;
+			attackVal += 1;
+			healVal += 1;
+		}
+		else if (roll < (leftVal+downVal+upVal)){
+			type = 3;
+			upVal += 1;
+			downVal += 1;
+			leftVal -= 5;
+			rightVal += 1;
+			attackVal += 1;
+			healVal += 1;
+		}
+		else if (roll < (rightVal+leftVal+downVal+upVal)){
+			type = 4;
+			upVal += 1;
+			downVal += 1;
+			leftVal += 1;
+			rightVal -= 5;
+			attackVal += 1;
+			healVal += 1;
+		}
+		else if (roll < (attackVal+rightVal+leftVal+downVal+upVal)){
+			type = 5;
+			upVal += 1;
+			downVal += 1;
+			leftVal += 1;
+			rightVal += 1;
+			attackVal -= 5;
+			healVal +=1;
+		}
+		else if (roll < (healVal+attackVal+rightVal+leftVal+downVal+upVal)){
+			type = 6;
+			upVal += 1;
+			downVal += 1;
+			leftVal += 1;
+			rightVal += 1;
+			attackVal += 1;
+			healVal -= 5;
+		}
+		else {
+			type = 7;
+		}
+		return type;
 	}
 
 	#endregion
@@ -774,6 +752,9 @@ public class Token{
 		case TokenType.Up:
 			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenUp;
 			break;
+		case TokenType.Heal:
+			sprite = GameObject.Find ("PuzzleManager").GetComponent<PuzzleManager>().tokenHeal;
+			break;
 		case TokenType.Empty:
 			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenEmpty;
 			break;
@@ -807,6 +788,9 @@ public class Token{
 		case TokenType.Up:
 			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenUp;
 			break;
+		case TokenType.Heal:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenHeal;
+			break;
 		case TokenType.Empty:
 			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenEmpty;
 			break;
@@ -832,6 +816,9 @@ public class Token{
 		case TokenType.Up:
 			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenUp;
 			break;
+		case TokenType.Heal:
+			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenHeal;
+			break;
 		case TokenType.Empty:
 			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenEmpty;
 			break;
@@ -846,4 +833,4 @@ public class Token{
 
 }
 
-public enum TokenType : int { Empty, Up, Down, Left, Right, Attack };
+public enum TokenType : int { Empty, Up, Down, Left, Right, Attack, Heal };
