@@ -978,7 +978,7 @@ Prefab:
     - target: {fileID: 11400024, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: atlas
       value: 
-      objectReference: {fileID: 11400000, guid: e9ca6c930f35a4f57ab1883de5e75cd5,
+      objectReference: {fileID: 11400000, guid: 890f76cdfea2b4f82bca671f3223f7e0,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
@@ -3551,7 +3551,7 @@ MonoBehaviour:
   renderOrder: 4
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
-  atlas: {fileID: 11400000, guid: e9ca6c930f35a4f57ab1883de5e75cd5, type: 2}
+  atlas: {fileID: 11400000, guid: 890f76cdfea2b4f82bca671f3223f7e0, type: 2}
   backgroundSprite: debug_silverfat
   progressSprite: debug_healthbar
   progressColor:

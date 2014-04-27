@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: healthbar_atlas
+  m_Name: healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,13 +38,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f514313262e3d141ad017b60809752a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: a951ccb2387ad4d8d8f6c6e8d0fe97d7, type: 2}
+  material: {fileID: 2100000, guid: 9239fbda786eb4e3486d7ef01be6be38, type: 2}
   items:
   - name: debug_healthbar
     region:
       serializedVersion: 2
       x: 0
-      y: .2578125
+      y: 0
       width: .5
       height: .25
     border:
@@ -61,7 +61,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0
-      y: 0
+      y: .2578125
       width: .5
       height: .25
     border:
