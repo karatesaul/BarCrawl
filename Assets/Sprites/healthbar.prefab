@@ -38,7 +38,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f514313262e3d141ad017b60809752a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 9239fbda786eb4e3486d7ef01be6be38, type: 2}
+  material: {fileID: 2100000, guid: 008fede4d228d47eabc3d3d20b14810e, type: 2}
   items:
   - name: debug_healthbar
     region:
