@@ -18,6 +18,8 @@ public class PlayerCharacter : FightingEntity {
 	public Vector3 cameraOffset;
 	public Camera worldCamera;
 	public int blunderDamage = 5;
+	public int healAmount = 10;
+	public int maxHealth = 100;
 	
 	// Use this for initialization
 	protected override void Start () {
@@ -191,7 +193,9 @@ public class PlayerCharacter : FightingEntity {
 	protected override bool AttemptMove(Move move)
 	{
 		if (move == Move.Heal) {
-			health += 5;
+			health += healAmount;
+			if(health > maxHealth)
+				health = maxHealth;
 			return true;
 		}
 		else 

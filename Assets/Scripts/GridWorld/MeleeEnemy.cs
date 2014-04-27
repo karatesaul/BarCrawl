@@ -5,7 +5,7 @@ public class MeleeEnemy : Enemy {
 
 	// Use this for initialization
 	protected override void Start () {
-		health = 20;
+		health = 15;
 
 		damageDealt = 10;
 		range = 1;
