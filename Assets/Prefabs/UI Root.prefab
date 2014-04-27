@@ -248,7 +248,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0260416567, y: -.00520832837, z: 0}
+  m_LocalPosition: {x: .0260416567, y: -.0071291998, z: 0}
   m_LocalScale: {x: .400000006, y: .25, z: .400000006}
   m_Children: []
   m_Father: {fileID: 400014}
@@ -259,7 +259,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.074277997, y: .173116431, z: 0}
+  m_LocalPosition: {x: -.074277997, y: .171553925, z: 0}
   m_LocalScale: {x: .200000003, y: .200000003, z: .200000003}
   m_Children: []
   m_Father: {fileID: 400018}
@@ -323,7 +323,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00130208337, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400018}
@@ -369,8 +369,8 @@ Renderer:
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
   - {fileID: 2100000, guid: f9bf95344a0d2d04896b57f7a266e26b, type: 3}
-  - {fileID: 2100000, guid: e52b87183fc9f468abcae4e42a0c0672, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
+  - {fileID: 2100000, guid: 15ec4961902cc5e41bf37d7b73a08882, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -648,7 +648,7 @@ MonoBehaviour:
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  font: {fileID: 11400000, guid: 6dfcc86da4f8a1342bafc7f42c9643bd, type: 2}
+  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -656,13 +656,13 @@ MonoBehaviour:
   autoSize: 0
   autoHeight: 0
   wordWrap: 0
-  text: crazy combo!
+  text: Crazy Combo!
   bottomColor:
     serializedVersion: 2
     rgba: 4294967295
   align: 0
   vertAlign: 0
-  textScale: 1.5
+  textScale: .916666687
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
@@ -839,7 +839,7 @@ MonoBehaviour:
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  font: {fileID: 11400000, guid: 6dfcc86da4f8a1342bafc7f42c9643bd, type: 2}
+  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -853,7 +853,7 @@ MonoBehaviour:
     rgba: 4294967295
   align: 0
   vertAlign: 0
-  textScale: 1.5
+  textScale: .916666687
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
@@ -910,15 +910,15 @@ MonoBehaviour:
     anchorStyle: 5
     margins:
       left: 9.99998474
-      top: 2
+      top: 2.73760986
       right: -70.9999847
-      bottom: -19
+      bottom: -19.7376099
     owner: {fileID: 11400014}
   renderOrder: 5
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 3cb180835b6012248ac156418cd077ef, type: 2}
-  font: {fileID: 11400000, guid: 6dfcc86da4f8a1342bafc7f42c9643bd, type: 2}
+  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -932,7 +932,7 @@ MonoBehaviour:
     rgba: 4294967295
   align: 1
   vertAlign: 0
-  textScale: 1.125
+  textScale: .666666687
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
@@ -989,15 +989,15 @@ MonoBehaviour:
     anchorStyle: 261
     margins:
       left: 2.36035156
-      top: 2.06770825
+      top: 2.0716145
       right: 2.52636719
-      bottom: 2.110677
+      bottom: 2.11458325
     owner: {fileID: 11400016}
   renderOrder: 1
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  font: {fileID: 11400000, guid: 6dfcc86da4f8a1342bafc7f42c9643bd, type: 2}
+  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -1011,7 +1011,7 @@ MonoBehaviour:
     rgba: 4294967295
   align: 0
   vertAlign: 0
-  textScale: 1.5
+  textScale: 1
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
@@ -1095,7 +1095,7 @@ MonoBehaviour:
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  font: {fileID: 11400000, guid: 6dfcc86da4f8a1342bafc7f42c9643bd, type: 2}
+  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -1109,7 +1109,7 @@ MonoBehaviour:
     rgba: 4294967295
   align: 0
   vertAlign: 0
-  textScale: 1.5
+  textScale: .916666687
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
@@ -1192,9 +1192,9 @@ MonoBehaviour:
   renderOrder: 4
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
-  atlas: {fileID: 11400000, guid: e9ca6c930f35a4f57ab1883de5e75cd5, type: 2}
-  backgroundSprite: debug_silverfat
-  progressSprite: debug_healthbar
+  atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
+  backgroundSprite: textbox-normal
+  progressSprite: progress-fill
   progressColor:
     serializedVersion: 2
     rgba: 4294967295
@@ -1269,7 +1269,7 @@ MonoBehaviour:
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  font: {fileID: 11400000, guid: 6dfcc86da4f8a1342bafc7f42c9643bd, type: 2}
+  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -1283,7 +1283,7 @@ MonoBehaviour:
     rgba: 4294967295
   align: 0
   vertAlign: 0
-  textScale: 1.5
+  textScale: .916666687
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
