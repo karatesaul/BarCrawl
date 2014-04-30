@@ -82,8 +82,8 @@ public class PuzzleManager : MonoBehaviour {
 		downVal = 150;
 		leftVal = 150;
 		rightVal = 150;
-		attackVal = 300;
-		healVal = 100;
+		attackVal = 350;
+		healVal = 50;
 
 		//List of moves to pass to the Game Board
 		setOfMoves = new List<TokenType> ();
