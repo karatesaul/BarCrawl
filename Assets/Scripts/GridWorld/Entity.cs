@@ -13,6 +13,7 @@ public class Entity : MonoBehaviour {
 	public bool isPassable = false;
 	
 	protected SpriteRenderer spriteRenderer;
+	protected Animator animator;
 
 	//for display & fight logic purposes.
 	protected Move facing;
@@ -22,6 +23,8 @@ public class Entity : MonoBehaviour {
 	protected virtual void Start () {
 		GridManager.instance.entities.Add(this);
 		spriteRenderer = GetComponent<SpriteRenderer>();
+
+		animator = gameObject.GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -101,6 +104,8 @@ public class Entity : MonoBehaviour {
 			Vector2 dest = GridManager.getTransformPosition(x, y);
 			transform.position = new Vector3(dest.x, dest.y, -1);
 			facing = move;
+
+			animator.Play("Walk");
 
 			return true;
 		}

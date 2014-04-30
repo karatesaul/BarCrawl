@@ -10,7 +10,7 @@ public class FightingEntity : Entity {
 	/// The tag assigned to entities that this entity can fight.
 	/// </summary>
 	protected string foeTag;
-	protected Animator animator;
+
 	
 	/// <summary>
 	/// The damage dealt.  Defaults to 10.
@@ -26,7 +26,7 @@ public class FightingEntity : Entity {
 	
 	protected override void Start(){
 		base.Start ();
-		animator = gameObject.GetComponent<Animator> ();
+
 		//sprite renderer
 	}
 	
@@ -72,7 +72,18 @@ public class FightingEntity : Entity {
 						
 						
 						facing = moveExtensions.getMove(fightOrder[i]);
-						animator.Play("AttackLeft");
+						if(facing == Move.Left || facing == Move.Right)
+						{
+							animator.Play("AttackLeft");
+						}
+						else if(facing == Move.Down)
+						{
+							animator.Play("AttackDown");
+						}
+						else if(facing == Move.Up)
+						{
+							animator.Play("AttackUp");
+						}
 						Debug.Log (gameObject.name + " attacks! " + target.gameObject.name + " takes " + damageDealt + " damage, and has " +
 						           target.health + " health remaining!");
 						
