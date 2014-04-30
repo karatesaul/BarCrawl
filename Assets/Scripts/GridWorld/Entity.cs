@@ -41,6 +41,27 @@ public class Entity : MonoBehaviour {
 		if (health <= 0) {
 			Die ();
 		}
+
+		//this may not be the best location for this, but...
+		if (facing == Move.Right)
+		{
+			gameObject.transform.localScale = new Vector3(-1, 1, 1);
+		}
+		else if(facing == Move.Left)
+		{
+			gameObject.transform.localScale = new Vector3(1, 1, 1);
+		}
+		//okay, tested and they work proper.  now how about we DON'T have that in the build.  (It is incredibly silly.)
+		/*
+		else if (facing == Move.Up)
+		{
+			gameObject.transform.localScale = new Vector3(1, 1.5f, 1);
+		}
+		else if (facing == Move.Down)
+		{
+			gameObject.transform.localScale = new Vector3(1, 0.5f, 1);
+		}
+		//*/
 	}
 
 
