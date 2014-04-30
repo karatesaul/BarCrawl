@@ -20,6 +20,8 @@ public class Enemy : FightingEntity {
 	private bool playerDetected;
 	protected int detectionRange = 5;
 
+	public Move toBar = Move.Up;
+
 	// Use this for initialization
 	protected override void Start () {
 		base.Start();
@@ -100,7 +102,7 @@ public class Enemy : FightingEntity {
 			while (!success)
 			{
 				loop++;
-				int dir = Random.Range(0, 4);
+				int dir = Random.Range(0, 6);
 				//This is a temp fix so bikers move upward towards the bar by default.
 				//dir = 2;
 				switch(dir)
@@ -116,6 +118,10 @@ public class Enemy : FightingEntity {
 					break;
 				case 3:
 					currMove = Move.Down;
+					break;
+				case 4:
+				case 5:
+					currMove = toBar;
 					break;
 				default:
 					currMove = Move.None;
