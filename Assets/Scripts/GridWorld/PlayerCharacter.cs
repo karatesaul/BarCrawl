@@ -247,4 +247,49 @@ public class PlayerCharacter : FightingEntity {
 
 		Application.LoadLevel("Main_Menu");
 	}
+
+//	public void OnGUI(){
+//		//draw the queue of moves
+//		//center-align the queue
+//		int length = 0;
+//		for (int i=0; i<20; i++) {
+//			if (movelist[i] != Move.None) length++;
+//		}
+//
+//		float centerX = Screen.width/2 - length * Screen.width/16;
+//		if (centerX < 0) centerX = 0f;
+//		float centerY = Screen.width * 5/6 - Screen.width/6;
+//		int index = 0;
+//		foreach (Move m in movelist) {
+//			Texture sprite = null;
+//
+//			switch (m){
+//			case Move.Up:
+//				sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenUp;
+//				break;
+//			case Move.Down:
+//				sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenDown;
+//				break;
+//			case Move.Left:
+//				sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenLeft;
+//				break;
+//			case Move.Right:
+//				sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenRight;
+//				break;
+//			case Move.Fight:
+//				sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenAttack;
+//				break;
+//			case Move.Heal:
+//				sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenHeal;
+//				break;
+//			default:
+//				break;
+//			}
+//
+//			GUI.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+//			GUI.DrawTexture(new Rect(centerX + Screen.width/16 * index, centerY, Screen.width/16, Screen.width/16), sprite);
+//			index++;
+//		}
+//
+//	}
 }

@@ -386,7 +386,7 @@ public class PuzzleManager : MonoBehaviour {
 	/// <returns><c>true</c>, if matches are done fading, <c>false</c> otherwise.</returns>
 	private bool FadeMatches(){
 		bool fadeIsDone = false;
-		bool setDone = false;
+		bool setDone = true;
 		//fade only one move at a time
 		foreach (Token t in setOfTokens[0]) {
 			//fade the move
@@ -396,7 +396,9 @@ public class PuzzleManager : MonoBehaviour {
 					t.drawAlpha = 1.0f;
 					t.tokenVal = TokenType.Empty;
 					t.ResetSprite();
-					setDone = true;
+//					setDone = true;
+				} else {
+					setDone = false;
 				}
 			}
 		}
@@ -605,7 +607,7 @@ public class PuzzleManager : MonoBehaviour {
 		//center-align the queue
 		float centerX = Screen.width/2 - setOfMoves.Count/2 * Screen.width/16;
 		if (centerX < 0) centerX = 0f;
-		float centerY = Screen.width * 5/6 - Screen.width/16;
+		float centerY = Screen.width * 5/6 - Screen.width/6;
 		int index = 0;
 		foreach (TokenType t in setOfMoves) {
 			GUI.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -623,10 +625,14 @@ public class PuzzleManager : MonoBehaviour {
 				//drag around the currently selected token
 				activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
 				activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
-				
+
 				//swap around the tiles
 				int x = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
 				int y = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
+				//keep the active token on the board
+				if (y > 4){
+					y = 4;
+				}
 				if (puzzleGrid[x, y] != activeToken){
 					puzzleGrid[activeX, activeY] = puzzleGrid[x, y];
 					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
@@ -640,17 +646,20 @@ public class PuzzleManager : MonoBehaviour {
 					activeToken.location.x = 0;
 				if (activeToken.location.x > Screen.width - activeToken.location.width)
 					activeToken.location.x = Screen.width - activeToken.location.width;
-				if (activeToken.location.y < Screen.height - 5.0f/6.0f*Screen.width) 
+				if (activeToken.location.y < Screen.height - 5.0f/6.0f*Screen.width) {
 					activeToken.location.y = Screen.height - 5.0f/6.0f*Screen.width;
+				}
 				if (activeToken.location.y > Screen.height - activeToken.location.height)
 					activeToken.location.y = Screen.height - activeToken.location.height;
-				
+
+				//if time is up, drop the token
 				if (currTime <= 0) {
 					activeToken.Reposition(activeX, activeY);
 					activeToken = null;
 					refillStep = 0;
 				}
 				currTime--;
+
 			} else if (activeToken == null && Input.mousePosition.y < 5.0 / 6.0 * Screen.width) {
 				//get the token that the mouse is over, and pick it up
 				int x = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
