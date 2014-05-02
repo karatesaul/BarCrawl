@@ -163,6 +163,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1393430905}
   - 114: {fileID: 1393430904}
+  - 114: {fileID: 1393430906}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -181,8 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81742cb18205b334a80da931afdae506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPressClip: {fileID: 0}
   backButton: {fileID: 2800000, guid: e0bab627a0c5eb94d9e123821b8bf75b, type: 3}
+  fbPlaceholder: {fileID: 0}
 --- !u!4 &1393430905
 Transform:
   m_ObjectHideFlags: 0
@@ -194,3 +195,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1393430906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1393430903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44a84a444d2cc0a469270ffdc138299d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
