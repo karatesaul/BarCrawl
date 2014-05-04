@@ -14,6 +14,7 @@ public class PlayerCharacter : FightingEntity {
 	public MainMenu menu;
 	public Vector3 cameraOffset;
 	public Camera worldCamera;
+	public ParticleSystem healingEffect;
 
 	public bool executeMode;
 	private int timer;
@@ -30,7 +31,6 @@ public class PlayerCharacter : FightingEntity {
 	protected override void Start () {
 		tm = GameObject.Find("Player").GetComponent<TurnManager>();
 		menu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
-
 
 		fillUp = false;
 		score = 0;
@@ -150,6 +150,7 @@ public class PlayerCharacter : FightingEntity {
 			health += healAmount;
 			if(health > maxHealth)
 				health = maxHealth;
+			Instantiate(healingEffect, transform.position + new Vector3(0, 0, .5f), Quaternion.identity);
 			return true;
 		}
 		else 

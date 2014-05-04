@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: -1}
+  m_LocalPosition: {x: 1.5, y: 4.5, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,18 +55,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb9172416dacfb49b677e7299ac9d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 2
-  y: 2
+  x: 3
+  y: 9
   health: 0
   currentRed: 0
   isPassable: 0
-  movelist: 
   moveInput: 
   fillUp: 0
   tm: {fileID: 0}
   menu: {fileID: 0}
+  cameraOffset: {x: 0, y: 0, z: 0}
+  worldCamera: {fileID: 0}
+  healingEffect: {fileID: 19800002, guid: 178cae534ce4a4f688846c94608a2d70, type: 2}
   executeMode: 0
   score: 0
+  maxHealth: 100
+  startingHealth: 100
+  blunderDamage: 5
+  healAmount: 10
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -79,9 +85,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  puzzle: {fileID: 0}
   enemyCount: 0
   enemies: []
   spawnTimer: 0
+  coolDownTimer: 0
   meleeEnemyReference: {fileID: 100000, guid: 07d93c675daa2a8428c12d4ff1e4a0b6, type: 2}
   rangedEnemyReference: {fileID: 100000, guid: e7f320d7fad1fec4c8e5701472a50b23, type: 2}
   maxEnemies: 0
