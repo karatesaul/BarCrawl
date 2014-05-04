@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour {
 	//public bool tutorial;
 	
 	public GameObject pauseMenu;
+	public GameObject UI;
 	
 	// Use this for initialization
 	void Start () {
@@ -19,6 +20,9 @@ public class MainMenu : MonoBehaviour {
 		//it assumes the first instance of the game to show the tutorial,
 		//and will be turned off after that unless the player selects the
 		//checkbox on this screen to turn it back on
+
+		//hide UI in main menu
+		UI.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -49,6 +53,8 @@ public class MainMenu : MonoBehaviour {
 			PM[0].GetComponent <PuzzleManager>().puzzleActive = true;
 			//turn on the pause menu as well
 			pauseMenu.GetComponent<InGameMenu>().menuActive = true;
+			//finally turn on the UI
+			UI.SetActive (true);
 		}
 		//high score screen button
 		if(GUI.Button (new Rect(x/2 - buttonWidth/2, 2*y/3, buttonWidth, buttonHeight), "High Scores")){

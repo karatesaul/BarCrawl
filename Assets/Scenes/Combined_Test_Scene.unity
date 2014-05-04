@@ -938,6 +938,22 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 8062695f402ec7644acc2260cafd644d, type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 8062695f402ec7644acc2260cafd644d, type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 8062695f402ec7644acc2260cafd644d, type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 8062695f402ec7644acc2260cafd644d, type: 2}
+      propertyPath: m_BackGroundColor.a
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8062695f402ec7644acc2260cafd644d, type: 2}
   m_RootGameObject: {fileID: 1248361080}
@@ -1202,6 +1218,10 @@ Prefab:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1874422197}
+    - target: {fileID: 11400000, guid: a7bca4e5783a98041b0e7b3513482e08, type: 2}
+      propertyPath: UI
+      value: 
+      objectReference: {fileID: 1751292209}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7bca4e5783a98041b0e7b3513482e08, type: 2}
   m_RootGameObject: {fileID: 1560876657}
@@ -2639,7 +2659,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .235294104, g: .235294104, b: .235294104, a: .0196078438}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2780,22 +2800,22 @@ Prefab:
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f9bf95344a0d2d04896b57f7a266e26b, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: 15ec4961902cc5e41bf37d7b73a08882, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.x
       value: .00130208337
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: .00130208337
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
@@ -3670,6 +3690,7 @@ MonoBehaviour:
   displayMenu: 0
   title: {fileID: 2800000, guid: dae70c66188903845b80c91d6c492f86, type: 3}
   pauseMenu: {fileID: 1874422197}
+  UI: {fileID: 1751292209}
 --- !u!4 &1560876659
 Transform:
   m_ObjectHideFlags: 0
@@ -4034,6 +4055,7 @@ MonoBehaviour:
   menu: {fileID: 0}
   cameraOffset: {x: 0, y: 0, z: 0}
   worldCamera: {fileID: 1248361084}
+  healingEffect: {fileID: 19800002, guid: 178cae534ce4a4f688846c94608a2d70, type: 2}
   executeMode: 0
   score: 0
   maxHealth: 100
@@ -4293,9 +4315,9 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: f9bf95344a0d2d04896b57f7a266e26b, type: 3}
-  - {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
-  - {fileID: 2100000, guid: 15ec4961902cc5e41bf37d7b73a08882, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -4582,7 +4604,7 @@ Transform:
   m_PrefabInternal: {fileID: 1342934104}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00130208337, y: 0, z: 0}
+  m_LocalPosition: {x: .00130208337, y: .00130208337, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}
