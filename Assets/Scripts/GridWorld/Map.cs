@@ -16,9 +16,9 @@ public class Map : MonoBehaviour {
 		for (int x=0; x < width; x++) {
 			for (int y=0; y < height; y++) {
 				if(this[x,y] == null)
-					this[x,y] = (Tile)Instantiate(prefab, new Vector3(GridManager.tileSizeX * x, GridManager.tileSizeY * y, 0), Quaternion.identity);
+					this[x,y] = (Tile)Instantiate(prefab, new Vector3(GridManager.tileSizeX * x, GridManager.tileSizeY * y, -0.1f), Quaternion.identity);
 				else
-					this[x,y].transform.position = new Vector3(GridManager.tileSizeX * x, GridManager.tileSizeY * y, 0);
+					this[x,y].transform.position = new Vector3(GridManager.tileSizeX * x, GridManager.tileSizeY * y, -0.1f);
 
 			}
 		}
