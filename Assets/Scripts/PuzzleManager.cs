@@ -21,6 +21,8 @@ public class PuzzleManager : MonoBehaviour {
 	public Texture tokenHeal;
 	public Texture tokenEmpty;
 
+	public Texture cursor;
+
 	public int upVal;
 	public int downVal;
 	public int leftVal;
@@ -59,6 +61,14 @@ public class PuzzleManager : MonoBehaviour {
 	private GameObject cLabel4;
 	private GameObject cLabel5;
 	private GameObject ccLabel;
+	
+	//for tutorial
+	private bool tutorial;
+	private bool set;
+	private float x = 0;
+	private float y = 0;
+	private float locx = 0;
+	private float locy = 0;
 
 	#endregion 
 
@@ -98,6 +108,9 @@ public class PuzzleManager : MonoBehaviour {
 				//get a random token type here
 				int type = getTokenType();
 				puzzleGrid[i,j] = new Token(i, j, type);
+
+				//testing tutorial
+				if (i==2 && j==2) puzzleGrid[i,j].highlight = true;
 			}
 			//fill the unseen rows with empty tokens
 			for (int j=5; j<10; j++){
@@ -123,6 +136,10 @@ public class PuzzleManager : MonoBehaviour {
 		cLabel4.SetActive(false);
 		cLabel5 = GameObject.Find("combo5");
 		cLabel5.SetActive(false);
+		
+		//set tutorial bool
+		tutorial = PlayerPrefs.GetInt("ShowTutorial") == 1;
+		set = false;
 	}
 
 	public void endTurn(){
@@ -194,6 +211,15 @@ public class PuzzleManager : MonoBehaviour {
 		default:
 			break;
 		}
+		
+		//move sprite if tutorial is turned on
+		if (tutorial) {
+			//move in the shape of a 7
+			if (x < locx*2) x += Time.deltaTime * 75;
+			else y += Time.deltaTime * 75;
+			
+		}
+		
 	}
 
 	#region QueueMove
@@ -583,13 +609,32 @@ public class PuzzleManager : MonoBehaviour {
 	public void OnGUI(){
 		//no need to draw this while menu is active
 		if(!puzzleActive) return;
-		
+		/*
+		if (tutorial) {
+			GUI.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+			GUI.DrawTexture(new Rect(x, y, w, h), cursor);
+		}
+		*/
 		for (int i=0; i<6; i++) {
 			for (int j=0; j<5; j++){
 				if (puzzleGrid[i,j].tokenVal == TokenType.Empty) continue;
 				if (puzzleGrid[i, j] != activeToken){
 					GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,j].drawAlpha);
 					GUI.DrawTexture(puzzleGrid[i,j].location, puzzleGrid[i,j].sprite);
+					
+					//testing tutorial sprite
+					if (!set && tutorial && puzzleGrid[i,j].highlight) {
+						x = puzzleGrid[i,j].location.x;
+						y = puzzleGrid[i,j].location.y;
+						locx = x;
+						locy = y;
+						set = true;
+						//puzzleGrid[i,j].highlight = false;
+						//tutorial = false;  
+					}
+					//draw until cursor reaches certain threshold
+					if (y < locy*2) GUI.DrawTexture(new Rect(x, y, puzzleGrid[i,j].location.width, puzzleGrid[i,j].location.height), cursor);
+					
 					//GUI.Box(puzzleGrid[i,j].location, "i: " + i.ToString() + "j: " + j.ToString());
 				}
 			}
@@ -730,6 +775,9 @@ public class Token{
 	
 	public Texture sprite;
 	public float drawAlpha;
+	
+	//for tutorial
+	public bool highlight = false;
 	
 	public Vector2 Origin {
 		get { return new Vector2(location.x, location.y); }

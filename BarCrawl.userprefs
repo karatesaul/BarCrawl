@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MainMenu.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PuzzleManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\MainMenu.cs" Line="53" Column="22" />
+      <File FileName="Assets\Scripts\PuzzleManager.cs" Line="635" Column="51" />
+      <File FileName="Assets\Scripts\MainMenu.cs" Line="7" Column="23" />
+      <File FileName="Assets\TutorialScript.cs" Line="30" Column="24" />
+      <File FileName="Assets\Scripts\OptionsMenu.cs" Line="19" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
