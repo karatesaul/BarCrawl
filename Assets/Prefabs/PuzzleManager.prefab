@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
+  - 82: {fileID: 8200000}
   m_Layer: 9
   m_Name: PuzzleManager
   m_TagString: PM
@@ -27,6 +28,64 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 4ec33490f9ed045d9a2a88d830c7a9fc, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,12 +98,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzleActive: 0
-  tokenUp: {fileID: 2800000, guid: 21e74f154c209324e9f4c81176a2c0ea, type: 3}
-  tokenDown: {fileID: 2800000, guid: a10e8c075d13d7f49b032f598c77a88d, type: 3}
-  tokenLeft: {fileID: 2800000, guid: bb68ef7929d6d1e45911c1df6c5fb555, type: 3}
-  tokenRight: {fileID: 2800000, guid: 30c2c099cd54d454890b8499178d7c66, type: 3}
-  tokenAttack: {fileID: 2800000, guid: 83ac4ec0373303041a94bd59276b8b56, type: 3}
+  tokenUp: {fileID: 2800000, guid: 878c9a44549ca8c45ae3a7d3a7105518, type: 3}
+  tokenDown: {fileID: 2800000, guid: db49b3b687f30f645b0768f6fcd1fa5a, type: 3}
+  tokenLeft: {fileID: 2800000, guid: 6a93cffe0f8a22045bcb56d44dc3aaa1, type: 3}
+  tokenRight: {fileID: 2800000, guid: 5ebb7673e971d2f47b1c6505b473c23a, type: 3}
+  tokenAttack: {fileID: 2800000, guid: 2d84334807ab43848a4d81fa67284224, type: 3}
+  tokenHeal: {fileID: 2800000, guid: 0c4ee209d788d224394959b4d6fe1595, type: 3}
   tokenEmpty: {fileID: 2800000, guid: a9db8fe41f95342bcabb9bcbf0a38441, type: 3}
+  upVal: 0
+  downVal: 0
+  leftVal: 0
+  rightVal: 0
+  attackVal: 0
+  healVal: 0
   pc: {fileID: 0}
   timeLimit: 900
   refillStep: 0

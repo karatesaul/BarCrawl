@@ -60,6 +60,8 @@ public class PuzzleManager : MonoBehaviour {
 	private GameObject cLabel5;
 	private GameObject ccLabel;
 
+	private AudioSource audioSource;
+
 	#endregion 
 
 	//coroutine for the text popup
@@ -123,6 +125,8 @@ public class PuzzleManager : MonoBehaviour {
 		cLabel4.SetActive(false);
 		cLabel5 = GameObject.Find("combo5");
 		cLabel5.SetActive(false);
+
+		audioSource = GetComponentInChildren<AudioSource> ();
 	}
 
 	public void endTurn(){
@@ -639,6 +643,7 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid [x, y] = activeToken;
 					activeX = x;
 					activeY = y;
+					audioSource.Play();
 				}
 				
 				//keep the token within the bounds
