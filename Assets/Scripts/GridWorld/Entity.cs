@@ -11,6 +11,11 @@ public class Entity : MonoBehaviour {
 	public const int maxRed = 100;
 	public int currentRed = 0;
 	public bool isPassable = false;
+	public float moveSpeed = .1f;
+
+	private bool isMoving = false;
+	private Vector3 moveDest;
+
 	
 	protected SpriteRenderer spriteRenderer;
 	protected Animator animator;
@@ -65,6 +70,23 @@ public class Entity : MonoBehaviour {
 			gameObject.transform.localScale = new Vector3(1, 0.5f, 1);
 		}
 		//*/
+		if (isMoving) {
+			if (transform.position == moveDest){
+				isMoving = false;
+			} else {
+				Vector3 diff = (moveDest - transform.position).normalized;
+				Vector3 move = new Vector3(diff.x * moveSpeed, diff.y * moveSpeed, 0);
+				//prevent an overshoot
+				if (Mathf.Abs(move.x) > Mathf.Abs(moveDest.x - transform.position.x)){
+					move.x = moveDest.x - transform.position.x;
+				}
+				if (Mathf.Abs(move.y) > Mathf.Abs(moveDest.y - transform.position.y)){
+					move.y = moveDest.y - transform.position.y;
+				}
+
+				transform.position += move;
+			}
+		}
 	}
 
 
@@ -102,7 +124,9 @@ public class Entity : MonoBehaviour {
 			x = destX;
 			y = destY;
 			Vector2 dest = GridManager.getTransformPosition(x, y);
-			transform.position = new Vector3(dest.x, dest.y, -1);
+			moveDest = new Vector3(dest.x, dest.y, -1);
+//			transform.position = new Vector3(dest.x, dest.y, -1);
+			isMoving = true;
 			facing = move;
 
 			animator.Play("Walk");
