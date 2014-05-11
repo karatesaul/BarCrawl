@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PlayerCharacter : FightingEntity {
 
-	public Queue<Move> moveQueue;
+	public List<Move> moveQueue;
 
 	//oh my god, that is ugly.
 	public TokenType[] moveInput; 
@@ -39,7 +39,7 @@ public class PlayerCharacter : FightingEntity {
 		executeMode = false;
 	
 
-		moveQueue = new Queue<Move> (10);
+		moveQueue = new List<Move> ();
 
 		foeTag = "enemy";
 
@@ -73,36 +73,36 @@ public class PlayerCharacter : FightingEntity {
 						switch(moveInput[i]){
 						case TokenType.Left:
 							//Debug.Log ("Left move queued.");
-							moveQueue.Enqueue(Move.Left);
+							moveQueue.Add(Move.Left);
 							//score = score + 25;
 							break;
 						case TokenType.Right:
 							//Debug.Log ("Right move queued.");
-							moveQueue.Enqueue(Move.Right);
+							moveQueue.Add(Move.Right);
 							//score = score + 25;
 							break;
 						case TokenType.Up:
 							//Debug.Log ("Up move queued.");
-							moveQueue.Enqueue(Move.Up);
+							moveQueue.Add(Move.Up);
 							//score = score + 25;
 							break;
 						case TokenType.Down:
 							//Debug.Log ("Down move queued.");
-							moveQueue.Enqueue(Move.Down);
+							moveQueue.Add(Move.Down);
 							//score = score + 25;
 							break;
 						case TokenType.Attack:
 							//Debug.Log ("Fight move queued.");
-							moveQueue.Enqueue(Move.Fight);
+							moveQueue.Add(Move.Fight);
 							//score = score + 25;
 							break;
 						case TokenType.Heal:
 							//Debug.Log ("Heal move queued.");
-							moveQueue.Enqueue(Move.Heal);
+							moveQueue.Add(Move.Heal);
 							break;
 						default:
 							Debug.Log ("Move.None queued.  Why did this happen?");
-							moveQueue.Enqueue(Move.None);
+							moveQueue.Add(Move.None);
 							break;
 
 						}
@@ -135,8 +135,8 @@ public class PlayerCharacter : FightingEntity {
 				timer++;
 				if (timer > 30) {
 
-					AttemptMove(moveQueue.Dequeue());
-
+					AttemptMove(moveQueue[0]);
+					moveQueue.RemoveAt(0);
 					timer = 0;
 				}
 			}
@@ -215,7 +215,7 @@ public class PlayerCharacter : FightingEntity {
 //			if (moveQueue[i] != Move.None) length++;
 //		}
 //
-		float centerX = Screen.width/2 - moveQueue.Count * Screen.width/16;
+		float centerX = Screen.width/2 - moveQueue.Count/2 * Screen.width/16;
 		if (centerX < 0) centerX = 0f;
 		float centerY = Screen.width * 5/6 - Screen.width/6;
 		int index = 0;
