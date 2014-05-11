@@ -109,8 +109,6 @@ public class PuzzleManager : MonoBehaviour {
 				int type = getTokenType();
 				puzzleGrid[i,j] = new Token(i, j, type);
 
-				//testing tutorial
-				if (i==2 && j==2) puzzleGrid[i,j].highlight = true;
 			}
 			//fill the unseen rows with empty tokens
 			for (int j=5; j<10; j++){
@@ -140,6 +138,12 @@ public class PuzzleManager : MonoBehaviour {
 		//set tutorial bool
 		tutorial = PlayerPrefs.GetInt("ShowTutorial") == 1;
 		set = false;
+
+		//Presets the board if tutorial is on
+		if (tutorial = true){
+			tutorialBoard();
+			puzzleGrid[2,2].highlight = true;
+		}
 	}
 
 	public void endTurn(){
@@ -538,6 +542,73 @@ public class PuzzleManager : MonoBehaviour {
 			type = 7;
 		}
 		return type;
+	}
+
+	private void tutorialBoard(){
+		puzzleGrid[0,0].tokenVal = TokenType.Heal;
+		puzzleGrid[0,0].ResetSprite();
+		puzzleGrid[1,0].tokenVal = TokenType.Heal;
+		puzzleGrid[1,0].ResetSprite();
+		puzzleGrid[2,0].tokenVal = TokenType.Left;
+		puzzleGrid[2,0].ResetSprite();
+		puzzleGrid[3,0].tokenVal = TokenType.Down;
+		puzzleGrid[3,0].ResetSprite();
+		puzzleGrid[4,0].tokenVal = TokenType.Right;
+		puzzleGrid[4,0].ResetSprite();
+		puzzleGrid[5,0].tokenVal = TokenType.Right;
+		puzzleGrid[5,0].ResetSprite();
+
+		puzzleGrid[0,1].tokenVal = TokenType.Right;
+		puzzleGrid[0,1].ResetSprite();
+		puzzleGrid[1,1].tokenVal = TokenType.Right;
+		puzzleGrid[1,1].ResetSprite();
+		puzzleGrid[2,1].tokenVal = TokenType.Down;
+		puzzleGrid[2,1].ResetSprite();
+		puzzleGrid[3,1].tokenVal = TokenType.Attack;
+		puzzleGrid[3,1].ResetSprite();
+		puzzleGrid[4,1].tokenVal = TokenType.Down;
+		puzzleGrid[4,1].ResetSprite();
+		puzzleGrid[5,1].tokenVal = TokenType.Attack;
+		puzzleGrid[5,1].ResetSprite();
+
+		puzzleGrid[0,2].tokenVal = TokenType.Heal;
+		puzzleGrid[0,2].ResetSprite();
+		puzzleGrid[1,2].tokenVal = TokenType.Left;
+		puzzleGrid[1,2].ResetSprite();
+		puzzleGrid[2,2].tokenVal = TokenType.Right;
+		puzzleGrid[2,2].ResetSprite();
+		puzzleGrid[3,2].tokenVal = TokenType.Right;
+		puzzleGrid[3,2].ResetSprite();
+		puzzleGrid[4,2].tokenVal = TokenType.Attack;
+		puzzleGrid[4,2].ResetSprite();
+		puzzleGrid[5,2].tokenVal = TokenType.Up;
+		puzzleGrid[5,2].ResetSprite();
+
+		puzzleGrid[0,3].tokenVal = TokenType.Left;
+		puzzleGrid[0,3].ResetSprite();
+		puzzleGrid[1,3].tokenVal = TokenType.Attack;
+		puzzleGrid[1,3].ResetSprite();
+		puzzleGrid[2,3].tokenVal = TokenType.Left;
+		puzzleGrid[2,3].ResetSprite();
+		puzzleGrid[3,3].tokenVal = TokenType.Up;
+		puzzleGrid[3,3].ResetSprite();
+		puzzleGrid[4,3].tokenVal = TokenType.Left;
+		puzzleGrid[4,3].ResetSprite();
+		puzzleGrid[5,3].tokenVal = TokenType.Attack;
+		puzzleGrid[5,3].ResetSprite();
+
+		puzzleGrid[0,4].tokenVal = TokenType.Attack;
+		puzzleGrid[0,4].ResetSprite();
+		puzzleGrid[1,4].tokenVal = TokenType.Up;
+		puzzleGrid[1,4].ResetSprite();
+		puzzleGrid[2,4].tokenVal = TokenType.Attack;
+		puzzleGrid[2,4].ResetSprite();
+		puzzleGrid[3,4].tokenVal = TokenType.Attack;
+		puzzleGrid[3,4].ResetSprite();
+		puzzleGrid[4,4].tokenVal = TokenType.Down;
+		puzzleGrid[4,4].ResetSprite();
+		puzzleGrid[5,4].tokenVal = TokenType.Right;
+		puzzleGrid[5,4].ResetSprite();
 	}
 
 	#endregion
