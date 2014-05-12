@@ -21,6 +21,8 @@ public class PuzzleManager : MonoBehaviour {
 	public Texture tokenHeal;
 	public Texture tokenEmpty;
 
+	public Texture cursor;
+
 	public int upVal;
 	public int downVal;
 	public int leftVal;
@@ -59,6 +61,16 @@ public class PuzzleManager : MonoBehaviour {
 	private GameObject cLabel4;
 	private GameObject cLabel5;
 	private GameObject ccLabel;
+
+	//for tutorial
+	public bool tut1;
+	public bool tut2;
+	public bool tut3;
+	private bool set;
+	private float x = 0;
+	private float y = 0;
+	private float locx = 0;
+	private float locy = 0;
 
 	private AudioSource audioSource;
 
@@ -125,6 +137,19 @@ public class PuzzleManager : MonoBehaviour {
 		cLabel4.SetActive(false);
 		cLabel5 = GameObject.Find("combo5");
 		cLabel5.SetActive(false);
+
+		//set tutorial bools
+		if (PlayerPrefs.GetInt("ShowTutorial") == 1) {
+			tut1 = true;
+			tut2 = false;
+			tut3 = false;
+		}
+		set = false;
+		
+		//Presets the board if tutorial is on
+		if (PlayerPrefs.GetInt("ShowTutorial") == 1){
+			tutorialBoard();
+		}
 
 		audioSource = GetComponentInChildren<AudioSource> ();
 	}
@@ -198,6 +223,25 @@ public class PuzzleManager : MonoBehaviour {
 		default:
 			break;
 		}
+
+		//move tutorial sprite based on which part of the tutorial is activated
+		if (tut1) {
+			y -= Time.deltaTime * 75;
+			if (locy - y >= 125) y = locy;	
+		}
+		if (tut2) {
+			if (x - locx <= 175) x += Time.deltaTime * 100;
+			else y += Time.deltaTime * 100;
+			if (y - locy >= 200) {
+				x = locx;
+				y = locy;
+			}
+		}
+		if (tut3) {
+			if (y - locy <= 200) y += Time.deltaTime * 100;
+			else y = locy;
+		}
+
 	}
 
 	#region QueueMove
@@ -518,6 +562,70 @@ public class PuzzleManager : MonoBehaviour {
 		return type;
 	}
 
+	private void tutorialBoard(){
+		puzzleGrid[0,0].tokenVal = TokenType.Heal;
+		puzzleGrid[0,0].ResetSprite();
+		puzzleGrid[1,0].tokenVal = TokenType.Heal;
+		puzzleGrid[1,0].ResetSprite();
+		puzzleGrid[2,0].tokenVal = TokenType.Left;
+		puzzleGrid[2,0].ResetSprite();
+		puzzleGrid[3,0].tokenVal = TokenType.Down;
+		puzzleGrid[3,0].ResetSprite();
+		puzzleGrid[4,0].tokenVal = TokenType.Right;
+		puzzleGrid[4,0].ResetSprite();
+		puzzleGrid[5,0].tokenVal = TokenType.Right;
+		puzzleGrid[5,0].ResetSprite();
+		puzzleGrid[0,1].tokenVal = TokenType.Right;
+		puzzleGrid[0,1].ResetSprite();
+		puzzleGrid[1,1].tokenVal = TokenType.Right;
+		puzzleGrid[1,1].ResetSprite();
+		puzzleGrid[2,1].tokenVal = TokenType.Down;
+		puzzleGrid[2,1].ResetSprite();
+		puzzleGrid[3,1].tokenVal = TokenType.Attack;
+		puzzleGrid[3,1].ResetSprite();
+		puzzleGrid[4,1].tokenVal = TokenType.Down;
+		puzzleGrid[4,1].ResetSprite();
+		puzzleGrid[5,1].tokenVal = TokenType.Attack;
+		puzzleGrid[5,1].ResetSprite();
+		puzzleGrid[0,2].tokenVal = TokenType.Heal;
+		puzzleGrid[0,2].ResetSprite();
+		puzzleGrid[1,2].tokenVal = TokenType.Left;
+		puzzleGrid[1,2].ResetSprite();
+		puzzleGrid[2,2].tokenVal = TokenType.Right;
+		puzzleGrid[2,2].ResetSprite();
+		puzzleGrid[3,2].tokenVal = TokenType.Right;
+		puzzleGrid[3,2].ResetSprite();
+		puzzleGrid[4,2].tokenVal = TokenType.Attack;
+		puzzleGrid[4,2].ResetSprite();
+		puzzleGrid[5,2].tokenVal = TokenType.Up;
+		puzzleGrid[5,2].ResetSprite();
+		puzzleGrid[0,3].tokenVal = TokenType.Left;
+		puzzleGrid[0,3].ResetSprite();
+		puzzleGrid[1,3].tokenVal = TokenType.Attack;
+		puzzleGrid[1,3].ResetSprite();
+		puzzleGrid[2,3].tokenVal = TokenType.Left;
+		puzzleGrid[2,3].ResetSprite();
+		puzzleGrid[3,3].tokenVal = TokenType.Up;
+		puzzleGrid[3,3].ResetSprite();
+		puzzleGrid[4,3].tokenVal = TokenType.Left;
+		puzzleGrid[4,3].ResetSprite();
+		puzzleGrid[5,3].tokenVal = TokenType.Attack;
+		puzzleGrid[5,3].ResetSprite();
+		puzzleGrid[0,4].tokenVal = TokenType.Attack;
+		puzzleGrid[0,4].ResetSprite();
+		puzzleGrid[1,4].tokenVal = TokenType.Up;
+		puzzleGrid[1,4].ResetSprite();
+		puzzleGrid[2,4].tokenVal = TokenType.Attack;
+		puzzleGrid[2,4].ResetSprite();
+		puzzleGrid[3,4].tokenVal = TokenType.Heal; //this is hardcoded because if this is an attack, the tutorial breaks
+		puzzleGrid[3,4].ResetSprite();
+		puzzleGrid[4,4].tokenVal = TokenType.Down;
+		puzzleGrid[4,4].ResetSprite();
+		puzzleGrid[5,4].tokenVal = TokenType.Right;
+		puzzleGrid[5,4].ResetSprite();
+	}
+
+
 	#endregion
 
 	#region ShiftDown Methods
@@ -587,6 +695,11 @@ public class PuzzleManager : MonoBehaviour {
 	public void OnGUI(){
 		//no need to draw this while menu is active
 		if(!puzzleActive) return;
+
+		//draw cursor based on which phase of the tutorial we are in
+		if (tut1) puzzleGrid[1,3].highlight = true;
+		else if (tut2) puzzleGrid[0,2].highlight = true;
+		else if (tut3) puzzleGrid[3,2].highlight = true;
 		
 		for (int i=0; i<6; i++) {
 			for (int j=0; j<5; j++){
@@ -595,6 +708,17 @@ public class PuzzleManager : MonoBehaviour {
 					GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,j].drawAlpha);
 					GUI.DrawTexture(puzzleGrid[i,j].location, puzzleGrid[i,j].sprite);
 					//GUI.Box(puzzleGrid[i,j].location, "i: " + i.ToString() + "j: " + j.ToString());
+
+					//set cursor position based on which token is highlighted
+					if (PlayerPrefs.GetInt("ShowTutorial") == 1 && !set && puzzleGrid[i,j].highlight) {
+						x = puzzleGrid[i,j].location.x;
+						y = puzzleGrid[i,j].location.y + 25;
+						locx = x;
+						locy = y;
+						set = true;
+					}
+					if (tut1 || tut2 || tut3) GUI.DrawTexture(new Rect(x, y, puzzleGrid[i,j].location.width, puzzleGrid[i,j].location.height), cursor);
+
 				}
 			}
 			if (refillStep == 3){
@@ -622,6 +746,26 @@ public class PuzzleManager : MonoBehaviour {
 		if (activeToken != null){
 			GUI.color = new Color(1.0f, 1.0f, 1.0f, activeToken.drawAlpha);
 			GUI.DrawTexture(activeToken.location, activeToken.sprite);
+
+			//activate next phase of tutorial if player touches highlighted tile
+			if (PlayerPrefs.GetInt("ShowTutorial") == 1) {
+				if (tut1 && activeToken == puzzleGrid[1,3]) {
+					tut1 = false;
+					tut2 = true;
+					set = false;
+					puzzleGrid[1,3].highlight = false;
+				}
+				if (tut2 && activeToken == puzzleGrid[0,2]) {
+					tut2 = false;
+					tut3 = true;
+					set = false;
+					puzzleGrid[0,2].highlight = false;
+				}
+				if (tut3 && activeToken == puzzleGrid[3,2]) {
+					tut3 = false;
+					puzzleGrid[0,2].highlight = false;
+				}
+			}
 		}
 		
 		if (refillStep == 5 && Input.GetMouseButton (0)) { //or if there is a touch present
@@ -735,6 +879,9 @@ public class Token{
 	
 	public Texture sprite;
 	public float drawAlpha;
+
+	//for tutorial
+	public bool highlight = false;
 	
 	public Vector2 Origin {
 		get { return new Vector2(location.x, location.y); }
