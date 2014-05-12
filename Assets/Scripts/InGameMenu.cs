@@ -45,6 +45,7 @@ public class InGameMenu : MonoBehaviour {
 		}
 		if(paused){
 			if(GUI.Button (new Rect(Screen.width/2-Screen.width/4, Screen.height/2, Screen.width/2, Screen.height/4), "Main Menu")){
+				GridManager.instance.clearEntities();
 				Application.LoadLevel("Main_Menu");
 			}
 			if(GUI.Button (new Rect(Screen.width/2-Screen.width/4, 3*Screen.height/4, Screen.width/2, Screen.height/4), "Return to Game")){
