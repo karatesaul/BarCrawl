@@ -36,7 +36,7 @@ public class Entity : MonoBehaviour {
 	// Update also MUST be called by superclasses!
 	protected virtual void Update() {
 		if (currentRed == 100)
-						animator.Play ("Hurt");
+			animator.Play ("Hurt");
 		if(currentRed > 0)
 			currentRed--;
 		
