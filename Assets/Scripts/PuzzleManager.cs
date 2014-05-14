@@ -494,7 +494,7 @@ public class PuzzleManager : MonoBehaviour {
 			//now add that number of tokens above to refill the lower rows
 			for (int j=5; j<5+refillCount[i]; j++){
 				//get a random token type here
-				int type = getTokenType();
+				int type = getInverseTokenType();
 				puzzleGrid[i,j].tokenVal = (TokenType)type;
 				puzzleGrid[i,j].ResetSprite();
 			}
@@ -557,6 +557,69 @@ public class PuzzleManager : MonoBehaviour {
 			rightVal += 1;
 			attackVal += 1;
 			healVal -= 5;
+		}
+		else {
+			type = 7;
+		}
+		return type;
+	}
+
+	private int getInverseTokenType(){
+		int roll = Random.Range(1,1000);
+		int type = 0;
+		if(roll < upVal){
+			type = 1;
+			upVal += 5;
+			downVal -= 1;
+			leftVal -= 1;
+			rightVal -= 1;
+			attackVal -= 1;
+			healVal -= 1;
+		}
+		else if(roll < (downVal+upVal)){
+			type = 2;
+			upVal -= 1;
+			downVal += 5;
+			leftVal -= 1;
+			rightVal -= 1;
+			attackVal -= 1;
+			healVal -= 1;
+		}
+		else if (roll < (leftVal+downVal+upVal)){
+			type = 3;
+			upVal -= 1;
+			downVal -= 1;
+			leftVal += 5;
+			rightVal -= 1;
+			attackVal -= 1;
+			healVal -= 1;
+		}
+		else if (roll < (rightVal+leftVal+downVal+upVal)){
+			type = 4;
+			upVal -= 1;
+			downVal -= 1;
+			leftVal -= 1;
+			rightVal += 5;
+			attackVal -= 1;
+			healVal -= 1;
+		}
+		else if (roll < (attackVal+rightVal+leftVal+downVal+upVal)){
+			type = 5;
+			upVal -= 1;
+			downVal -= 1;
+			leftVal -= 1;
+			rightVal -= 1;
+			attackVal += 5;
+			healVal -=1;
+		}
+		else if (roll < (healVal+attackVal+rightVal+leftVal+downVal+upVal)){
+			type = 6;
+			upVal -= 1;
+			downVal -= 1;
+			leftVal -= 1;
+			rightVal -= 1;
+			attackVal -= 1;
+			healVal += 5;
 		}
 		else {
 			type = 7;
