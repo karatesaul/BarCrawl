@@ -831,9 +831,9 @@ MonoBehaviour:
     anchorStyle: 261
     margins:
       left: 2.05078125
-      top: 2.08203125
+      top: 2.126302
       right: 2.21679688
-      bottom: 2.125
+      bottom: 2.16927075
     owner: {fileID: 280755439}
   renderOrder: 1
   isLocalized: 0
@@ -883,7 +883,7 @@ Transform:
   m_PrefabInternal: {fileID: 1307485886}
   m_GameObject: {fileID: 280755436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.239583328, y: .167187497, z: 0}
+  m_LocalPosition: {x: -.239583328, y: .149479181, z: 0}
   m_LocalScale: {x: .200000003, y: .200000003, z: .200000003}
   m_Children: []
   m_Father: {fileID: 1751292210}
@@ -3869,7 +3869,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 56af87c23bddbf34a9d844546970e185, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .167187497
+      value: .149479181
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 56af87c23bddbf34a9d844546970e185, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3918,6 +3918,14 @@ Prefab:
     - target: {fileID: 11400000, guid: 56af87c23bddbf34a9d844546970e185, type: 2}
       propertyPath: FormatString
       value: 'Time: {0}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 56af87c23bddbf34a9d844546970e185, type: 2}
+      propertyPath: layout.margins.top
+      value: 2.126302
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 56af87c23bddbf34a9d844546970e185, type: 2}
+      propertyPath: layout.margins.bottom
+      value: 2.16927075
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56af87c23bddbf34a9d844546970e185, type: 2}
@@ -5640,14 +5648,14 @@ Prefab:
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 15ec4961902cc5e41bf37d7b73a08882, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .00130208337
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.y
@@ -5742,8 +5750,8 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
-  - {fileID: 2100000, guid: 15ec4961902cc5e41bf37d7b73a08882, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -6175,7 +6183,7 @@ Transform:
   m_PrefabInternal: {fileID: 1750633300}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00130208337, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}

@@ -67,7 +67,10 @@ public class PuzzleManager : MonoBehaviour {
 	public bool tut1;
 	public bool tut2;
 	public bool tut3;
+	private bool drawn;
 	private bool set;
+	private int m = 0;
+	private int n = 0;
 	private float x = 0;
 	private float y = 0;
 	private float locx = 0;
@@ -145,6 +148,7 @@ public class PuzzleManager : MonoBehaviour {
 			tut2 = false;
 			tut3 = false;
 		}
+		drawn = false;
 		set = false;
 		
 		//Presets the board if tutorial is on
@@ -226,22 +230,24 @@ public class PuzzleManager : MonoBehaviour {
 			break;
 		}
 
-		//move tutorial sprite based on which part of the tutorial is activated
-		if (tut1) {
-			y -= Time.deltaTime * 75;
-			if (locy - y >= 125) y = locy;	
-		}
-		if (tut2) {
-			if (x - locx <= 175) x += Time.deltaTime * 100;
-			else y += Time.deltaTime * 100;
-			if (y - locy >= 200) {
-				x = locx;
-				y = locy;
+		if (drawn) {
+			//move tutorial sprite based on which part of the tutorial is activated
+			if (tut1) {
+				y -= Time.deltaTime * 75;
+				if (locy - y >= 125) y = locy;	
 			}
-		}
-		if (tut3) {
-			if (y - locy <= 200) y += Time.deltaTime * 100;
-			else y = locy;
+			if (tut2) {
+				if (y - locy <= 200) y += Time.deltaTime * 100;
+				else y = locy;
+			}
+			if (tut3) {
+				if (x - locx <= 175) x += Time.deltaTime * 100;
+				else y += Time.deltaTime * 100;
+				if (y - locy >= 200) {
+					x = locx;
+					y = locy;
+				}
+			}
 		}
 
 	}
@@ -763,8 +769,8 @@ public class PuzzleManager : MonoBehaviour {
 
 		//draw cursor based on which phase of the tutorial we are in
 		if (tut1) puzzleGrid[1,3].highlight = true;
-		else if (tut2) puzzleGrid[0,2].highlight = true;
-		else if (tut3) puzzleGrid[3,2].highlight = true;
+		else if (tut2) puzzleGrid[3,2].highlight = true;
+		else if (tut3) puzzleGrid[0,1].highlight = true;
 		
 		for (int i=0; i<6; i++) {
 			for (int j=0; j<5; j++){
@@ -780,9 +786,11 @@ public class PuzzleManager : MonoBehaviour {
 						y = puzzleGrid[i,j].location.y + 25;
 						locx = x;
 						locy = y;
+						m = i;
+						n = j;
 						set = true;
 					}
-					if (tut1 || tut2 || tut3) GUI.DrawTexture(new Rect(x, y, puzzleGrid[i,j].location.width, puzzleGrid[i,j].location.height), cursor);
+					//if (tut1 || tut2 || tut3) GUI.DrawTexture(new Rect(x, y, puzzleGrid[i,j].location.width, puzzleGrid[i,j].location.height), cursor);
 
 				}
 			}
@@ -818,17 +826,20 @@ public class PuzzleManager : MonoBehaviour {
 					tut1 = false;
 					tut2 = true;
 					set = false;
+					drawn = false;
 					puzzleGrid[1,3].highlight = false;
 				}
-				if (tut2 && activeToken == puzzleGrid[0,2]) {
+				if (tut2 && activeToken == puzzleGrid[3,2]) {
 					tut2 = false;
 					tut3 = true;
 					set = false;
-					puzzleGrid[0,2].highlight = false;
+					drawn = false;
+					puzzleGrid[3,2].highlight = false;
 				}
-				if (tut3 && activeToken == puzzleGrid[3,2]) {
+				if (tut3 && activeToken == puzzleGrid[0,1]) {
 					tut3 = false;
-					puzzleGrid[0,2].highlight = false;
+					drawn = false;
+					puzzleGrid[0,1].highlight = false;
 				}
 			}
 		}
@@ -840,18 +851,18 @@ public class PuzzleManager : MonoBehaviour {
 				activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 
 				//swap around the tiles
-				int x = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
-				int y = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
+				int a = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
+				int b = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
 				//keep the active token on the board
-				if (y > 4){
-					y = 4;
+				if (b > 4){
+					b = 4;
 				}
-				if (puzzleGrid[x, y] != activeToken){
-					puzzleGrid[activeX, activeY] = puzzleGrid[x, y];
+				if (puzzleGrid[a, b] != activeToken){
+					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
 					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
-					puzzleGrid [x, y] = activeToken;
-					activeX = x;
-					activeY = y;
+					puzzleGrid [a, b] = activeToken;
+					activeX = a;
+					activeY = b;
 					audioSource.Play();
 				}
 				
@@ -876,12 +887,12 @@ public class PuzzleManager : MonoBehaviour {
 
 			} else if (activeToken == null && Input.mousePosition.y < 5.0 / 6.0 * Screen.width) {
 				//get the token that the mouse is over, and pick it up
-				int x = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
-				int y = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
+				int a = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
+				int b = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
 				
-				activeToken = puzzleGrid [x, y];
-				activeX = x;
-				activeY = y;
+				activeToken = puzzleGrid [a, b];
+				activeX = a;
+				activeY = b;
 				//start the movement timer
 				currTime = timeLimit;
 				//get the difference between the mouse position and the token's origin
@@ -895,8 +906,15 @@ public class PuzzleManager : MonoBehaviour {
 				refillStep = 0;
 			}
 		}
-		if(GameObject.Find ("Player").GetComponent<TurnManager>().turn!=1)
+
+		if (refillStep==5 && activeToken == null && (tut1 || tut2 || tut3)) {
+			GUI.DrawTexture(new Rect(x, y, puzzleGrid[m,n].location.width, puzzleGrid[m,n].location.height), cursor);
+			drawn = true;
+		}
+
+		if(GameObject.Find ("Player").GetComponent<TurnManager>().turn!=1) {
 			GUI.Box (new Rect(0, Screen.height*.45f, Screen.width, Screen.height*.55f), "");
+		}
 
 	}
 
