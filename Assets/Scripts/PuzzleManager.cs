@@ -500,7 +500,7 @@ public class PuzzleManager : MonoBehaviour {
 			//now add that number of tokens above to refill the lower rows
 			for (int j=5; j<5+refillCount[i]; j++){
 				//get a random token type here
-				int type = getInverseTokenType();
+				int type = getTokenType();
 				puzzleGrid[i,j].tokenVal = (TokenType)type;
 				puzzleGrid[i,j].ResetSprite();
 			}

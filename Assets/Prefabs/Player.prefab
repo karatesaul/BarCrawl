@@ -115,9 +115,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
-  m_SortingLayerID: 110031569
+  m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: 5065aee39155e9c4a89df08a92d88a31, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
