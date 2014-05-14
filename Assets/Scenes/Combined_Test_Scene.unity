@@ -1309,9 +1309,9 @@ MonoBehaviour:
   tokenUp: {fileID: 2800000, guid: 878c9a44549ca8c45ae3a7d3a7105518, type: 3}
   tokenDown: {fileID: 2800000, guid: db49b3b687f30f645b0768f6fcd1fa5a, type: 3}
   tokenLeft: {fileID: 2800000, guid: 6a93cffe0f8a22045bcb56d44dc3aaa1, type: 3}
-  tokenRight: {fileID: 2800000, guid: 5ebb7673e971d2f47b1c6505b473c23a, type: 3}
+  tokenRight: {fileID: 2800000, guid: 691155165d6c8c545a3f4f871f99cf6c, type: 3}
   tokenAttack: {fileID: 2800000, guid: 2d84334807ab43848a4d81fa67284224, type: 3}
-  tokenHeal: {fileID: 2800000, guid: 0c4ee209d788d224394959b4d6fe1595, type: 3}
+  tokenHeal: {fileID: 2800000, guid: b15e2bfbbc74be54e839923b31befbcd, type: 3}
   tokenEmpty: {fileID: 2800000, guid: a9db8fe41f95342bcabb9bcbf0a38441, type: 3}
   gray: {fileID: 2800000, guid: e020a0e670d799742963efacb568c635, type: 3}
   cursor: {fileID: 2800000, guid: 6d1ef788bbc424e51b25114349101adc, type: 3}
@@ -1771,7 +1771,7 @@ Prefab:
     - target: {fileID: 11400000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
       propertyPath: tokenHeal
       value: 
-      objectReference: {fileID: 2800000, guid: 0c4ee209d788d224394959b4d6fe1595, type: 3}
+      objectReference: {fileID: 2800000, guid: b15e2bfbbc74be54e839923b31befbcd, type: 3}
     - target: {fileID: 11400000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
       propertyPath: tokenUp
       value: 
@@ -1787,7 +1787,7 @@ Prefab:
     - target: {fileID: 11400000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
       propertyPath: tokenRight
       value: 
-      objectReference: {fileID: 2800000, guid: 5ebb7673e971d2f47b1c6505b473c23a, type: 3}
+      objectReference: {fileID: 2800000, guid: 691155165d6c8c545a3f4f871f99cf6c, type: 3}
     - target: {fileID: 11400000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
       propertyPath: tokenAttack
       value: 
@@ -5620,11 +5620,11 @@ Prefab:
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: 15ec4961902cc5e41bf37d7b73a08882, type: 3}
     - target: {fileID: 400016, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5722,8 +5722,8 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
+  - {fileID: 2100000, guid: 15ec4961902cc5e41bf37d7b73a08882, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
