@@ -188,6 +188,7 @@ MonoBehaviour:
   health: 0
   currentRed: 0
   isPassable: 0
+  moveSpeed: .100000001
   isExecuting: 0
   lifespan: 0
   toBar: 3
@@ -295,6 +296,7 @@ MonoBehaviour:
   health: 0
   currentRed: 0
   isPassable: 0
+  moveSpeed: .100000001
   isExecuting: 0
   lifespan: 0
   toBar: 3
@@ -602,6 +604,7 @@ MonoBehaviour:
   health: 0
   currentRed: 0
   isPassable: 0
+  moveSpeed: .100000001
   isExecuting: 0
   lifespan: 0
   toBar: 3
@@ -881,6 +884,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 385235318}
   - 114: {fileID: 385235317}
+  - 82: {fileID: 385235319}
   m_Layer: 9
   m_Name: PuzzleManager
   m_TagString: PM
@@ -904,10 +908,12 @@ MonoBehaviour:
   tokenUp: {fileID: 2800000, guid: 878c9a44549ca8c45ae3a7d3a7105518, type: 3}
   tokenDown: {fileID: 2800000, guid: db49b3b687f30f645b0768f6fcd1fa5a, type: 3}
   tokenLeft: {fileID: 2800000, guid: 6a93cffe0f8a22045bcb56d44dc3aaa1, type: 3}
-  tokenRight: {fileID: 2800000, guid: 5ebb7673e971d2f47b1c6505b473c23a, type: 3}
+  tokenRight: {fileID: 2800000, guid: 691155165d6c8c545a3f4f871f99cf6c, type: 3}
   tokenAttack: {fileID: 2800000, guid: 2d84334807ab43848a4d81fa67284224, type: 3}
-  tokenHeal: {fileID: 2800000, guid: 0c4ee209d788d224394959b4d6fe1595, type: 3}
+  tokenHeal: {fileID: 2800000, guid: b15e2bfbbc74be54e839923b31befbcd, type: 3}
   tokenEmpty: {fileID: 2800000, guid: a9db8fe41f95342bcabb9bcbf0a38441, type: 3}
+  gray: {fileID: 2800000, guid: e020a0e670d799742963efacb568c635, type: 3}
+  cursor: {fileID: 0}
   upVal: 0
   downVal: 0
   leftVal: 0
@@ -916,9 +922,13 @@ MonoBehaviour:
   healVal: 0
   pc: {fileID: 1707795426}
   timeLimit: 900
+  currTime: 0
   refillStep: 0
   fallSpeed: 6
   setOfMoves: 
+  tut1: 0
+  tut2: 0
+  tut3: 0
 --- !u!4 &385235318
 Transform:
   m_ObjectHideFlags: 0
@@ -930,6 +940,65 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!82 &385235319
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: 075734469c8244059bf41279e8ce9386,
+    type: 2}
+  m_PrefabInternal: {fileID: 561429083}
+  m_GameObject: {fileID: 385235316}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 4ec33490f9ed045d9a2a88d830c7a9fc, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1001 &459616056
 Prefab:
   m_ObjectHideFlags: 0
@@ -1100,7 +1169,7 @@ Prefab:
     - target: {fileID: 11400000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
       propertyPath: tokenRight
       value: 
-      objectReference: {fileID: 2800000, guid: 5ebb7673e971d2f47b1c6505b473c23a, type: 3}
+      objectReference: {fileID: 2800000, guid: 691155165d6c8c545a3f4f871f99cf6c, type: 3}
     - target: {fileID: 11400000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
       propertyPath: tokenAttack
       value: 
@@ -1108,7 +1177,7 @@ Prefab:
     - target: {fileID: 11400000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
       propertyPath: tokenHeal
       value: 
-      objectReference: {fileID: 2800000, guid: 0c4ee209d788d224394959b4d6fe1595, type: 3}
+      objectReference: {fileID: 2800000, guid: b15e2bfbbc74be54e839923b31befbcd, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
   m_RootGameObject: {fileID: 385235316}
@@ -3229,6 +3298,8 @@ MonoBehaviour:
   health: 0
   currentRed: 0
   isPassable: 0
+  moveSpeed: .100000001
+  moveQueue: 
   moveInput: 
   fillUp: 0
   tm: {fileID: 0}
@@ -3264,7 +3335,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: ff647d0a443fde74b8cae505b792211b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5065aee39155e9c4a89df08a92d88a31, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1707795428
 Transform:
@@ -3297,6 +3368,7 @@ MonoBehaviour:
   coolDownTimer: 0
   meleeEnemyReference: {fileID: 100000, guid: 07d93c675daa2a8428c12d4ff1e4a0b6, type: 2}
   rangedEnemyReference: {fileID: 100000, guid: e7f320d7fad1fec4c8e5701472a50b23, type: 2}
+  gray: {fileID: 2800000, guid: e020a0e670d799742963efacb568c635, type: 3}
   maxEnemies: 0
   turn: 0
 --- !u!95 &1707795430
@@ -3860,7 +3932,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00130208337, y: .00130208337, z: 0}
+  m_LocalPosition: {x: .00130208337, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}
