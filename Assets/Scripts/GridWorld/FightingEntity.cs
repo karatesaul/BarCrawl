@@ -66,7 +66,6 @@ public class FightingEntity : Entity {
 						//Attack animation code should go somewhere under this if.
 						
 						target.health -= damageDealt;
-
 						//change color at the same time
 						target.currentRed = 100;
 						

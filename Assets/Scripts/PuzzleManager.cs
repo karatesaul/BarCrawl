@@ -20,6 +20,7 @@ public class PuzzleManager : MonoBehaviour {
 	public Texture tokenAttack;
 	public Texture tokenHeal;
 	public Texture tokenEmpty;
+	public Texture gray;
 
 	public Texture cursor;
 
@@ -35,7 +36,7 @@ public class PuzzleManager : MonoBehaviour {
 	private Token activeToken;
 	private int activeX, activeY;
 	public int timeLimit = 900;
-	private int currTime;
+	public int currTime;
 	private Vector2 mouseTokenRelativeLocation;
 	
 	/// <summary>
@@ -156,6 +157,7 @@ public class PuzzleManager : MonoBehaviour {
 
 	public void endTurn(){
 		refillStep = 5;
+		currTime = 900;
 	}
 
 	// Update is called once per frame
@@ -830,6 +832,9 @@ public class PuzzleManager : MonoBehaviour {
 				refillStep = 0;
 			}
 		}
+		if(GameObject.Find ("Player").GetComponent<TurnManager>().turn!=1)
+			GUI.Box (new Rect(0, Screen.height*.45f, Screen.width, Screen.height*.55f), "");
+
 	}
 
 	//function to set the score and display combo popups

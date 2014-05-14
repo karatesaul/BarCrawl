@@ -13,6 +13,7 @@ public class TurnManager : MonoBehaviour {
 	private GameObject enemyInstance;
 	public GameObject meleeEnemyReference;
 	public GameObject rangedEnemyReference;
+	public Texture gray;
 	public int maxEnemies;
 
 	//0 = none
@@ -25,6 +26,7 @@ public class TurnManager : MonoBehaviour {
 	void Start () {
 		maxEnemies = 4;
 		GameObject[] enemyObjs; 
+		//gray;// = GameObject.Find ("Grayout").GetComponent<SpriteRenderer>();
 
 		player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
 		puzzle = GameObject.Find ("PuzzleManager").GetComponent<PuzzleManager> ();
@@ -41,7 +43,6 @@ public class TurnManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-
 	void Update () {
 			if (turn == 1) {
 			//Debug.Log ("PLAYER TURN");
@@ -58,7 +59,11 @@ public class TurnManager : MonoBehaviour {
 				Debug.Log ("You can go now!");
 					puzzle.endTurn ();
 				}*/
+			//Vector4 x = new Vector4(0,0,0,0);
+			//gray.color = x;
 		} else if (turn == 2) {
+			//Vector4 x = new Vector4(0,0,0,5);
+			//gray.color = x;
 			//Debug.Log ("ENEMY TURN");
 			//player.score/100 = enemies defeated.
 
@@ -66,7 +71,7 @@ public class TurnManager : MonoBehaviour {
 			{
 
 				 //This should instead be called in Enemy, but I'll move it there later.
-				if(Random.Range(0,100) >= 25){
+				if(Random.Range(0,100) >= 15){
 					enemyInstance = Instantiate (meleeEnemyReference, new Vector2(2, 0), new Quaternion(0,0,0,0)) as GameObject;
 				}
 				else{

@@ -35,6 +35,8 @@ public class Entity : MonoBehaviour {
 	// Update is called once per frame
 	// Update also MUST be called by superclasses!
 	protected virtual void Update() {
+		if (currentRed == 100)
+						animator.Play ("Hurt");
 		if(currentRed > 0)
 			currentRed--;
 		
@@ -47,6 +49,7 @@ public class Entity : MonoBehaviour {
 		}
 
 		if (health <= 0) {
+			animator.Play ("Death");
 			Die ();
 		}
 
@@ -147,7 +150,6 @@ public class Entity : MonoBehaviour {
 	public virtual void Die()
 	{
 		//right now, that consists of removing it from the GridManager's entity list.
-
 		GridManager.instance.entities.Remove(this);
 		Debug.Log (gameObject.name + " has been defeated!");
 		Destroy (this.gameObject);
