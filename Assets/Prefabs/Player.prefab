@@ -73,8 +73,9 @@ MonoBehaviour:
   score: 0
   maxHealth: 100
   startingHealth: 100
+  healAmount: 5
+  healIncrease: 5
   blunderDamage: 5
-  healAmount: 10
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

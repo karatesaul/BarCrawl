@@ -65,10 +65,7 @@ public class FightingEntity : Entity {
 						//at this point, we have confirmed there is a fightable entity in this tile.
 						//Attack animation code should go somewhere under this if.
 						
-						target.health -= damageDealt;
-						//change color at the same time
-						target.currentRed = 100;
-						
+						target.takeDamage(damageDealt);
 						
 						facing = moveExtensions.getMove(fightOrder[i]);
 						if(facing == Move.Left || facing == Move.Right)
@@ -83,8 +80,6 @@ public class FightingEntity : Entity {
 						{
 							animator.Play("AttackUp");
 						}
-						Debug.Log (gameObject.name + " attacks! " + target.gameObject.name + " takes " + damageDealt + " damage, and has " +
-						           target.health + " health remaining!");
 						
 						return true;
 					}

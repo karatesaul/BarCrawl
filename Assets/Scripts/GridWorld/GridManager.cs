@@ -150,4 +150,26 @@ public class GridManager{
 	{
 		entities.Clear();
 	}
+
+	/// <summary>
+	/// Returns all entities in the defined rectangle, edges included.
+	/// </summary>
+	/// <returns>The entities in the rectangle.</returns>
+	/// <param name="leftX">Left x.</param>
+	/// <param name="rightX">Right x.</param>
+	/// <param name="topY">Top y.</param>
+	/// <param name="bottomY">Bottom y.</param>
+	public List<Entity> getEntitiesInRect(int leftX, int rightX, int topY, int bottomY)
+	{
+		List<Entity> result = new List<Entity> ();
+
+		foreach(Entity entity in entities)
+		{
+			if(entity.x <= rightX && entity.x >= leftX &&
+			   entity.y <= topY   && entity.y >= bottomY)
+				result.Add(entity);
+		}
+
+		return result;
+	}
 }

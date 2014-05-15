@@ -35,8 +35,6 @@ public class Entity : MonoBehaviour {
 	// Update is called once per frame
 	// Update also MUST be called by superclasses!
 	protected virtual void Update() {
-		if (currentRed == 100)
-			animator.Play ("Hurt");
 		if(currentRed > 0)
 			currentRed--;
 		
@@ -63,6 +61,7 @@ public class Entity : MonoBehaviour {
 			gameObject.transform.localScale = new Vector3(1, 1, 1);
 		}
 		//okay, tested and they work proper.  now how about we DON'T have that in the build.  (It is incredibly silly.)
+		//so yeah, if we had up/down idles I could display them proper, but we don't.
 		/*
 		else if (facing == Move.Up)
 		{
@@ -73,10 +72,14 @@ public class Entity : MonoBehaviour {
 			gameObject.transform.localScale = new Vector3(1, 0.5f, 1);
 		}
 		//*/
-		if (isMoving) {
-			if (transform.position == moveDest){
+		if (isMoving)
+		{
+			if (transform.position == moveDest)
+			{
 				isMoving = false;
-			} else {
+			}
+			else 
+			{
 				Vector3 diff = (moveDest - transform.position).normalized;
 				Vector3 move = new Vector3(diff.x * moveSpeed, diff.y * moveSpeed, 0);
 				//prevent an overshoot
@@ -92,10 +95,17 @@ public class Entity : MonoBehaviour {
 		}
 	}
 
+	public virtual void takeDamage(int damage)
+	{
+		health -= damage;
+		currentRed = 100;
+
+		animator.Play ("Hurt");
+	}
 
 
 	/// <summary>
-	/// Attempts to execute the specified move.  If there is something in the way, will not change position; will change facing if non-enemy.
+	/// Attempts to execute the specified move.  If there is something in the way, will not change position or facing, but will return false.
 	/// In Entity, this does not handle fighting.  Override it to incorporate that behavior.  
 	/// </summary>
 	/// <returns><c>true</c>, if the move was successfully executed, <c>false</c> otherwise.</returns>

@@ -24,8 +24,14 @@ public class PlayerCharacter : FightingEntity {
 	public int maxHealth = 100;
 	public int startingHealth = 100;
 
+	public int healAmount = 5;
+	public int healIncrease = 5;
+
 	public int blunderDamage = 5;
-	public int healAmount = 10;
+
+	private Move lastMove;
+	private int combo;
+
 	
 	// Use this for initialization
 	protected override void Start () {
@@ -68,6 +74,8 @@ public class PlayerCharacter : FightingEntity {
 				//is so friggin ugly
 				if(fillUp)
 				{
+					lastMove = Move.None;
+
 					for(int i = 0; i < moveInput.Length; i++)
 					{
 						switch(moveInput[i]){
@@ -146,8 +154,19 @@ public class PlayerCharacter : FightingEntity {
 
 	protected override bool AttemptMove(Move move)
 	{
+		if (move == lastMove)
+		{
+			combo++;
+		}
+		else
+		{
+			lastMove = move;
+			combo = 0;
+		}
+
 		if (move == Move.Heal) {
-			health += healAmount;
+			health += healAmount + (combo * healIncrease);
+			//1 and 2 are 5 less than before; 3 is the same; 4 and higher are more.
 			if(health > maxHealth)
 				health = maxHealth;
 			Instantiate(healingEffect, transform.position + new Vector3(0, 0, .5f), Quaternion.identity);
@@ -155,7 +174,30 @@ public class PlayerCharacter : FightingEntity {
 		}
 		else 
 		{
-			bool success = base.AttemptMove (move);
+			bool success = false;
+			if(move == Move.Fight && combo >= 3)
+			{
+				//i.e. the fourth or later punch in a row
+				List<Entity> closeEntities = GridManager.instance.getEntitiesInRect(x - 2, x + 2, y + 2, y - 2);
+
+				foreach(Entity entity in closeEntities)
+				{
+					if(entity != null)
+					{
+						if(entity.gameObject.tag == foeTag)
+						{
+							entity.takeDamage(10);
+
+							success = true;
+						}
+					}
+				}
+
+				animator.Play("AttackDown");
+				return success;
+			}
+
+			success = base.AttemptMove (move);
 			if(success)
 				return true;
 			//else
@@ -193,7 +235,14 @@ public class PlayerCharacter : FightingEntity {
 			}
 			else if(move == Move.Fight)
 			{
-				//do nothing, yet, anyway.  We'll see what we're doing with this.
+				//on a failed punch, if >0 previous punches,
+				//try again with range.
+
+				range = 2;
+
+				base.AttemptMove(move);
+
+				range = 1;
 			}
 
 			return false;
