@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-
-//Hmm.  At the moment the only difference between ranged & melee enemies is values - we could make them just prefabs and not need seperate classes.
-//But, I'm not going to do that.  Not yet, anyway.  We might decide that we do want more distinct behaviour.
-//And anyway, this makes it easier to tweak values when we get multiple prefabs (for different bars).
 public class Enemy : FightingEntity {
 
 	protected PlayerCharacter player;
@@ -14,6 +11,7 @@ public class Enemy : FightingEntity {
 	protected Move currMove;
 	private int timer;
 	protected int moveCount;
+
 	//lifespan = amount of turns enemy has been alive
 	public int lifespan;
 
@@ -148,6 +146,9 @@ public class Enemy : FightingEntity {
 		else 
 		{
 			//else, move
+
+			//currMove = getMoveTowardTarget(x, y, player.x, player.y, range);
+
 			//i should maybe get some actual pathfinding...
 			//but for now, better derp movement
 
@@ -268,6 +269,74 @@ public class Enemy : FightingEntity {
 			if (successful)
 				return;
 		}
+	}
+
+	private class AStarPoint : System.IComparable<AStarPoint>
+	{
+		public int cost;
+		public int totalCost;
+		public int x, y;
+
+		public AStarPoint(int _cost, int _heur, int _x, int _y)
+		{
+			cost = _cost;
+			totalCost = cost + _heur;
+			x = _x;
+			y = _y;
+		}
+
+		public int CompareTo(AStarPoint asp)
+		{
+			return totalCost - asp.totalCost;
+		}
+	}
+
+	protected virtual Move getMoveTowardTarget(int x, int y, int targetX, int targetY, int range)
+	{
+		//herp derp how do i A*
+
+		//apparently unity doesn't support sortedSets
+		//this means I have to use a less efficient method
+		// :<
+		//fix plz
+		List<AStarPoint> list = new List<AStarPoint> ();
+
+		list.Add (new AStarPoint(0, heuristic (x, y, targetX, targetY, range), x, y));
+
+		while (list.Count > 0)
+		{
+			list.Sort();
+			//and thus efficiency dies
+
+			AStarPoint from = list[0];
+			list.RemoveAt(0);
+		}
+
+		return Move.None;
+		//because compile
+	}
+
+	protected virtual int heuristic(int x, int y, int targetX, int targetY, int range)
+	{
+		int diffX = Mathf.Abs (x - targetX);
+		int diffY = Mathf.Abs (y - targetY);
+
+		if(diffX < range)
+		{
+			if(diffY < range)
+			{
+				if(diffX > diffY)
+					return diffY;
+				else
+					return diffX;
+			}
+			return diffY;
+		}
+		if (diffY < range)
+		{
+			return diffX;
+		}
+		return (diffX + diffY - range);
 	}
 
 	//this override exists only for debug logging purposes.
