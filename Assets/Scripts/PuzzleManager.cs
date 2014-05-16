@@ -776,7 +776,12 @@ public class PuzzleManager : MonoBehaviour {
 			for (int j=0; j<5; j++){
 				if (puzzleGrid[i,j].tokenVal == TokenType.Empty) continue;
 				if (puzzleGrid[i, j] != activeToken){
-					GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,j].drawAlpha);
+					if(GameObject.Find ("Player").GetComponent<TurnManager>().turn!=0 && refillStep == 4) {
+//						GUI.Box (new Rect(0, Screen.height*.45f, Screen.width, Screen.height*.55f), "");
+						GUI.color = Color.gray;
+					} else {
+						GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,j].drawAlpha);
+					}
 					GUI.DrawTexture(puzzleGrid[i,j].location, puzzleGrid[i,j].sprite);
 					//GUI.Box(puzzleGrid[i,j].location, "i: " + i.ToString() + "j: " + j.ToString());
 
@@ -911,11 +916,6 @@ public class PuzzleManager : MonoBehaviour {
 			GUI.DrawTexture(new Rect(x, y, puzzleGrid[m,n].location.width, puzzleGrid[m,n].location.height), cursor);
 			drawn = true;
 		}
-
-		if(GameObject.Find ("Player").GetComponent<TurnManager>().turn!=1) {
-			GUI.Box (new Rect(0, Screen.height*.45f, Screen.width, Screen.height*.55f), "");
-		}
-
 	}
 
 	//function to set the score and display combo popups
