@@ -75,6 +75,7 @@ public class PuzzleManager : MonoBehaviour {
 	private float y = 0;
 	private float locx = 0;
 	private float locy = 0;
+	private int swapCount = 0;
 
 	private AudioSource audioSource;
 
@@ -219,6 +220,7 @@ public class PuzzleManager : MonoBehaviour {
 					readyToShift = false;
 				}
 			}
+			swapCount = 0;
 			break;
 		case 4:
 			//executing moves
@@ -869,6 +871,7 @@ public class PuzzleManager : MonoBehaviour {
 					activeX = a;
 					activeY = b;
 					audioSource.Play();
+					swapCount++;
 				}
 				
 				//keep the token within the bounds
@@ -886,7 +889,8 @@ public class PuzzleManager : MonoBehaviour {
 				if (currTime <= 0) {
 					activeToken.Reposition(activeX, activeY);
 					activeToken = null;
-					refillStep = 0;
+					if (swapCount > 0)
+						refillStep = 0;
 				}
 				currTime--;
 
@@ -908,8 +912,10 @@ public class PuzzleManager : MonoBehaviour {
 			if (activeToken != null){
 				activeToken.Reposition(activeX, activeY);
 				activeToken = null;
-				refillStep = 0;
+				if (swapCount > 0)
+					refillStep = 0;
 			}
+			if (currTime != timeLimit) currTime = timeLimit;
 		}
 
 		if (refillStep==5 && activeToken == null && (tut1 || tut2 || tut3)) {
