@@ -31,6 +31,7 @@ public class PlayerCharacter : FightingEntity {
 
 	private Move lastMove;
 	private int combo;
+	private int fullCombo;
 
 	
 	// Use this for initialization
@@ -75,6 +76,7 @@ public class PlayerCharacter : FightingEntity {
 				if(fillUp)
 				{
 					lastMove = Move.None;
+					fullCombo = 0;
 
 					for(int i = 0; i < moveInput.Length; i++)
 					{
@@ -161,8 +163,9 @@ public class PlayerCharacter : FightingEntity {
 		else
 		{
 			lastMove = move;
-			combo = 0;
+			combo = fullCombo / 4;
 		}
+		fullCombo++;
 
 		if (move == Move.Heal) {
 			health += healAmount + (combo * healIncrease);
@@ -223,7 +226,7 @@ public class PlayerCharacter : FightingEntity {
 						target.health -= blunderDamage;
 						animator.Play ("AttackLeft");
 
-						Debug.Log("Player blunders into " + target.gameObject.name + ", dealing " + blunderDamage + " damage!  " + target.health + " health remains.");
+						//Debug.Log("Player blunders into " + target.gameObject.name + ", dealing " + blunderDamage + " damage!  " + target.health + " health remains.");
 
 						target.currentRed = 100;
 
@@ -233,9 +236,8 @@ public class PlayerCharacter : FightingEntity {
 
 				return false;
 			}
-			else if(move == Move.Fight)
+			else if(move == Move.Fight && combo > 0)
 			{
-				//on a failed punch, if >0 previous punches,
 				//try again with range.
 
 				range = 2;
