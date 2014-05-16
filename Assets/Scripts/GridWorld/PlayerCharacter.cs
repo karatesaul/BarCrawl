@@ -264,7 +264,7 @@ public class PlayerCharacter : FightingEntity {
 //			if (moveQueue[i] != Move.None) length++;
 //		}
 //
-		float centerX = Screen.width/2 - moveQueue.Count/2 * Screen.width/16;
+		float centerX = Screen.width/2 - (moveQueue.Count * Screen.width/16)/2;
 		if (centerX < 0) centerX = 0f;
 		float centerY = Screen.width * 5/6 - Screen.width/6;
 		int index = 0;
