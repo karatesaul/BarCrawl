@@ -30,6 +30,8 @@ public class PuzzleManager : MonoBehaviour {
 	public int rightVal;
 	public int attackVal;
 	public int healVal;
+	public int maxVal;
+	public int trackerVal;
 	
 	public PlayerCharacter pc;
 	
@@ -52,6 +54,8 @@ public class PuzzleManager : MonoBehaviour {
 	
 	private Token[,] puzzleGrid;
 	private int[] refillCount;
+	private int[] maxValue;
+	private int[] minValue;
 	private bool readyToShift;
 
 	public List<TokenType> setOfMoves;
@@ -96,6 +100,9 @@ public class PuzzleManager : MonoBehaviour {
 		currTime = 0;		
 		refillCount = new int[6];
 		refillStep = 4;
+
+		maxValue = new int[6];
+		minValue = new int[6];
 
 		upVal = 150;
 		downVal = 150;
@@ -634,6 +641,79 @@ public class PuzzleManager : MonoBehaviour {
 		}
 		return type;
 	}
+	private int codyTokenType(){
+		upVal = 1;
+		downVal = 1;
+		leftVal = 1;
+		rightVal = 1;
+		attackVal = 1;
+		healVal = 1;
+		maxVal = 0;
+		int roll = Random.Range(1,30);
+		int type = 0;
+		for (int i=0; i<6; i++) {
+			for (int j=0; j<5; j++){
+				if (puzzleGrid[i,j].tokenVal == TokenType.Up){
+					upVal++;
+				}
+				if (puzzleGrid[i,j].tokenVal == TokenType.Down){
+					downVal++;
+				}
+				if (puzzleGrid[i,j].tokenVal == TokenType.Left){
+					leftVal++;
+				}
+				if (puzzleGrid[i,j].tokenVal == TokenType.Right){
+					rightVal++;
+				}
+				if (puzzleGrid[i,j].tokenVal == TokenType.Attack){
+					attackVal++;
+				}
+				if (puzzleGrid[i,j].tokenVal == TokenType.Heal){
+					healVal++;
+				}
+			}
+		}
+		for (int i=0; i<6; i++) {
+			if(upVal > maxVal){ maxVal = upVal; trackerVal=1;}
+			if(downVal > maxVal){ maxVal = downVal; trackerVal=2;}
+			if(leftVal > maxVal){ maxVal = leftVal; trackerVal=3;}
+			if(rightVal > maxVal){ maxVal = rightVal; trackerVal=4;}
+			if(attackVal > maxVal){ maxVal = attackVal; trackerVal=5;}
+			if(healVal > maxVal){ maxVal = healVal; trackerVal=6;}
+			
+			maxValue[i] = maxVal;
+			minValue[5-i] = trackerVal;
+			
+			if(trackerVal==1) upVal=0;
+			if(trackerVal==2) downVal=0;
+			if(trackerVal==3) leftVal=0;
+			if(trackerVal==4) rightVal=0;
+			if(trackerVal==5) attackVal=0;
+			if(trackerVal==6) healVal=0;
+			maxVal=0;
+			trackerVal=0;
+		}
+		if (roll < maxValue [0]) {
+			type = minValue [0];
+		}
+		else if (roll < maxValue [1]) {
+			type = minValue[1];
+		}
+		else if (roll < maxValue [2]) {
+			type = minValue[2];
+		}
+		else if (roll < maxValue [3]) {
+			type = minValue[3];
+		}
+		else if (roll < maxValue [4]) {
+			type = minValue[4];
+		}
+		else if (roll < maxValue [5]) {
+			type = minValue[5];
+		}
+		return type;
+	}
+
 
 	private void tutorialBoard(){
 		puzzleGrid[0,0].tokenVal = TokenType.Heal;
