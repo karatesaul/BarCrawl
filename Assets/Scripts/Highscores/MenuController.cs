@@ -26,7 +26,8 @@ public class MenuController : MonoBehaviour {
 		//EventManager._instance._buttonClick += ButtonClicked;
 		
 		highscore = new List<Scores>();
-		
+
+		/*these should be running at the start of the game
 		//set up player preferences for later if they haven't already
 		if(!PlayerPrefs.HasKey("ViolenceMusic")){
 			PlayerPrefs.SetInt("ViolenceMusic", 0);
@@ -37,6 +38,7 @@ public class MenuController : MonoBehaviour {
 		if(!PlayerPrefs.HasKey ("ShowTutorial")){
 			PlayerPrefs.SetInt ("ShowTutorial", 1);
 		}
+		*/
 	}
 	
 	// Update is called once per frame

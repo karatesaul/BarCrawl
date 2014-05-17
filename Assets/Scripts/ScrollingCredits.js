@@ -34,6 +34,6 @@ function Update ()
     if (gameObject.transform.position.y > 3)
     {
         //crawling = false;
-        Application.LoadLevel(0);
+        Application.LoadLevel("Options");
     }
 }

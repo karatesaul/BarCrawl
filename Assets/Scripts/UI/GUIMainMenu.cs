@@ -19,6 +19,20 @@ public class GUIMainMenu : MonoBehaviour {
 		 * ***********************************************************************************************/
 		debuggingForceLoad = false;
 		forceLevel = "";
+
+		//set up player preferences for later if they haven't already
+		if(!PlayerPrefs.HasKey("ViolenceMusic")){
+			PlayerPrefs.SetInt("ViolenceMusic", 0);
+		}
+		if(!PlayerPrefs.HasKey ("Profanity")){
+			PlayerPrefs.SetInt ("Profanity", 0);
+		}
+		if(!PlayerPrefs.HasKey ("ShowTutorial")){
+			PlayerPrefs.SetInt ("ShowTutorial", 1);
+		}
+		if(!PlayerPrefs.HasKey ("HealthBarNumbers")){
+			PlayerPrefs.SetInt("HealthBarNumbers", 0);
+		}
 	}
 	
 	void Update(){
