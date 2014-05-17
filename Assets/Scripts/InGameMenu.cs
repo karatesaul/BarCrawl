@@ -9,13 +9,29 @@ public class InGameMenu : MonoBehaviour {
 	public GameObject puzzleManager;
 
 	private bool paused;
+	private bool showInstructions;
+
+	private string ins = "How to Play:\n" +
+						 "- Move a bottle cap as far as you want\n  with your finger\n" +
+						 "- Make matches of 3 to clear them\n  from the puzzle\n" +
+						 "- Matches of 4 or more allow you to move\n  farther, hit harder, and heal more\n  than matches of 3\n" +
+						 "- Moving into an enemy will cause you to\n  damage them instead\n" +
+						 "- You have a limited time to move each\n  bottlecap, as indicated by the timer\n" +
+						 "- Fight enemies for as long as possible\n  for a high score!\n";
+	private GUIStyle insFormatting;
 
 	// Use this for initialization
 	void Start () {
 		this.menuActive = false;
 		pauseButton.Resize (Screen.width/9, Screen.width/9);
 		paused = false;
+		showInstructions = false;
 		tm = GameObject.Find ("Player").GetComponent<TurnManager> ();
+
+		insFormatting = new GUIStyle();
+		insFormatting.alignment = TextAnchor.UpperLeft;
+		insFormatting.clipping = TextClipping.Clip;
+		insFormatting.wordWrap = true;
 	}
 	
 	// Update is called once per frame
@@ -43,14 +59,26 @@ public class InGameMenu : MonoBehaviour {
 				puzzleManager.GetComponent<PuzzleManager>().puzzleActive = true;
 			}
 		}
-		if(paused){
-			if(GUI.Button (new Rect(Screen.width/2-Screen.width/4, Screen.height/2, Screen.width/2, Screen.height/4), "Main Menu")){
+		if(paused && !showInstructions){
+			//return to game
+			if(GUI.Button (new Rect(Screen.width/2-Screen.width/4, Screen.height/2, Screen.width/2, Screen.height/6), "Return to Game")){
+				paused = false;
+				puzzleManager.GetComponent<PuzzleManager>().puzzleActive = true;
+			}
+			//how to play
+			if(GUI.Button (new Rect(Screen.width/2 - Screen.width/4, 4*Screen.height/6, Screen.width/2, Screen.height/6), "How to play")){
+				showInstructions = true;
+			}
+			//return to main menu
+			if(GUI.Button (new Rect(Screen.width/2-Screen.width/4, 5*Screen.height/6, Screen.width/2, Screen.height/6), "Main Menu")){
 				GridManager.instance.clearEntities();
 				Application.LoadLevel("Main_Menu");
 			}
-			if(GUI.Button (new Rect(Screen.width/2-Screen.width/4, 3*Screen.height/4, Screen.width/2, Screen.height/4), "Return to Game")){
-				paused = false;
-				puzzleManager.GetComponent<PuzzleManager>().puzzleActive = true;
+		}
+		if(paused && showInstructions){
+			GUI.Box (new Rect(Screen.width/6, Screen.height/2, 2 * Screen.width / 3, Screen.height/3), ins, insFormatting);
+			if(GUI.Button (new Rect(Screen.width/6, 5 * Screen.height/6, 2 * Screen.width / 3, Screen.height/6), "Return")){
+				showInstructions = false;
 			}
 		}
 	}	
