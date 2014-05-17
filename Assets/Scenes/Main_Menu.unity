@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4ef3904f195bc48874df71d294c08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teamLogo: {fileID: 2800000, guid: 6c49973a5eb190a47b867c79cfa056da, type: 3}
 --- !u!4 &2123286495
 Transform:
   m_ObjectHideFlags: 0

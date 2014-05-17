@@ -2,11 +2,14 @@
 using System.Collections;
 
 public class GUIMainMenu : MonoBehaviour {
+	public Texture teamLogo;
 
 	//add scene names to this
 	string[] possibleLevels = {"Combined_Test_Scene"};
 
 	static bool firstInit;//this will control the fancy MonoAxe Games presents stuff only on the first load
+	private const int maxDisplayLogoTime = 500;
+	private int currentDisplayLogoTime = 0;
 	bool debuggingForceLoad;
 	string forceLevel;
 
@@ -34,12 +37,15 @@ public class GUIMainMenu : MonoBehaviour {
 			PlayerPrefs.SetInt("HealthBarNumbers", 0);
 		}
 	}
-	
-	void Update(){
+
+	void OnGUI(){
 		if(firstInit){
-			//show the team logo and shit
-			//turn firstInit to false when done
-			firstInit = false;
+			GUI.Label(new Rect(Screen.width/2 - teamLogo.width/2, Screen.height/2 - teamLogo.height/2, 
+			                   teamLogo.width, teamLogo.height), teamLogo);
+			currentDisplayLogoTime++;
+			if(currentDisplayLogoTime >= maxDisplayLogoTime){
+				firstInit = false;
+			}
 		}else{
 			if(debuggingForceLoad){
 				Application.LoadLevel(forceLevel);
