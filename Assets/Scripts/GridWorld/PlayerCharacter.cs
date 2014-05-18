@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class PlayerCharacter : FightingEntity {
 
+	public static int TOTALSCORE;
+
 	public List<Move> moveQueue;
 
 	//oh my god, that is ugly.
@@ -256,6 +258,7 @@ public class PlayerCharacter : FightingEntity {
 		GridManager.instance.clearEntities();
 
 		//Application.LoadLevel("Main_Menu");
+		TOTALSCORE = score;
 		Application.LoadLevel ("High_Scores");
 	}
 

@@ -39,7 +39,7 @@ public class ThreeScoreSetter : MonoBehaviour {
 	int highscore4 = 0;
 
 	void Start(){
-		score4 = score1 + score2 + score3;
+		score4 = PlayerCharacter.TOTALSCORE;
 		//gets the saved score. If the saved score is undefined, set it to 0 (basescore).
 		highscore1 = PlayerPrefs.GetInt(scoreKey1,baseScore); 
 		highscore2 = PlayerPrefs.GetInt(scoreKey2,baseScore); 
