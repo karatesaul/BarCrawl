@@ -255,7 +255,8 @@ public class PlayerCharacter : FightingEntity {
 	{
 		GridManager.instance.clearEntities();
 
-		Application.LoadLevel("Main_Menu");
+		//Application.LoadLevel("Main_Menu");
+		Application.LoadLevel ("High_Scores");
 	}
 
 	public void OnGUI(){
