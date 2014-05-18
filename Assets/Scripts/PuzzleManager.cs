@@ -67,6 +67,10 @@ public class PuzzleManager : MonoBehaviour {
 	private GameObject cLabel5;
 	private GameObject ccLabel;
 
+	public GameObject tLabel1;
+	public GameObject tLabel2;
+	public GameObject tLabel3;
+
 	//for tutorial
 	public bool tut1;
 	public bool tut2;
@@ -149,7 +153,12 @@ public class PuzzleManager : MonoBehaviour {
 		cLabel4.SetActive(false);
 		cLabel5 = GameObject.Find("combo5");
 		cLabel5.SetActive(false);
-
+		
+		//set tutorial labels
+		tLabel1.SetActive(false);
+		tLabel2.SetActive(false);
+		tLabel3.SetActive(false);
+		
 		//set tutorial bools
 		if (PlayerPrefs.GetInt("ShowTutorial") == 1) {
 			tut1 = true;
@@ -246,11 +255,11 @@ public class PuzzleManager : MonoBehaviour {
 				if (locy - y >= 125) y = locy;	
 			}
 			if (tut2) {
-				if (y - locy <= 200) y += Time.deltaTime * 100;
+				if (y - locy <= 190) y += Time.deltaTime * 100;
 				else y = locy;
 			}
 			if (tut3) {
-				if (x - locx <= 175) x += Time.deltaTime * 100;
+				if (x - locx <= 150) x += Time.deltaTime * 100;
 				else y += Time.deltaTime * 100;
 				if (y - locy >= 200) {
 					x = locx;
@@ -848,11 +857,12 @@ public class PuzzleManager : MonoBehaviour {
 	public void OnGUI(){
 		//no need to draw this while menu is active
 		if(!puzzleActive) return;
-
+		
 		//draw cursor based on which phase of the tutorial we are in
 		if (tut1) puzzleGrid[1,3].highlight = true;
 		else if (tut2) puzzleGrid[3,2].highlight = true;
 		else if (tut3) puzzleGrid[0,1].highlight = true;
+		
 		
 		for (int i=0; i<6; i++) {
 			for (int j=0; j<5; j++){
@@ -927,6 +937,7 @@ public class PuzzleManager : MonoBehaviour {
 					tut3 = false;
 					drawn = false;
 					puzzleGrid[0,1].highlight = false;
+					PlayerPrefs.SetInt("ShowTutorial", 0);
 				}
 			}
 		}
@@ -997,10 +1008,14 @@ public class PuzzleManager : MonoBehaviour {
 			}
 			if (currTime != timeLimit) currTime = timeLimit;
 		}
-
+		
+		//draw tutorial cursor after turn is over
 		if (refillStep==5 && activeToken == null && (tut1 || tut2 || tut3)) {
 			GUI.DrawTexture(new Rect(x, y, puzzleGrid[m,n].location.width, puzzleGrid[m,n].location.height), cursor);
 			drawn = true;
+			if (tut1) tLabel1.SetActive(true);
+			if (tut2) tLabel2.SetActive(true);
+			if (tut3) tLabel3.SetActive(true);
 		}
 	}
 
