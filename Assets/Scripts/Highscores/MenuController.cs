@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,7 +16,7 @@ public class MenuController : MonoBehaviour {
 	public Font f;
 	string name = System.DateTime.Now.ToString ();
 	//string score="";
-	List<Scores> highscore;
+	List<Score> highscore;
 
 	public Texture2D checkScore;
     public Texture2D resetButtonTex;
@@ -25,7 +25,7 @@ public class MenuController : MonoBehaviour {
 	void Start () {
 		//EventManager._instance._buttonClick += ButtonClicked;
 		
-		highscore = new List<Scores>();
+		highscore = new List<Score>();
 
 		/*these should be running at the start of the game
 		//set up player preferences for later if they haven't already
@@ -85,7 +85,7 @@ public class MenuController : MonoBehaviour {
 		
 
 		GUILayout.Space(Screen.height/5*1.25f);
-		foreach(Scores _score in highscore)
+		foreach(Score _score in highscore)
 		{
 			GUILayout.BeginHorizontal();
 			GUI.color = Color.black;

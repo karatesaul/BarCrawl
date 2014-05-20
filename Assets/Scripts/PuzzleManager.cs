@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -1022,25 +1022,26 @@ public class PuzzleManager : MonoBehaviour {
 	//function to set the score and display combo popups
 	//author: Krishna Velury
 	private void SetScore(int moves) {
-		if (moves == 1) pc.score = pc.score + 25;
+		if (moves == 1)
+			Scores.total += 25;
 		else if (moves == 2) {
 			//Debug.Log("2x combo!");
-			pc.score = pc.score + 50;
+			Scores.total += 50;
 			cLabel2.SetActive(true);
 			StartCoroutine(Wait(cLabel2));
 		} else if (moves == 3) {
 			//Debug.Log("3x combo!");
-			pc.score = pc.score + 75;
+			Scores.total += 75;
 			cLabel3.SetActive(true);
 			StartCoroutine(Wait(cLabel3));
 		} else if (moves == 4) {
 			//Debug.Log("4x combo!");
-			pc.score = pc.score + 100;
+			Scores.total += 100;
 			cLabel4.SetActive(true);
 			StartCoroutine(Wait(cLabel4));
 		} else if (moves >= 5) {
 			//Debug.Log("Crazy combo!");
-			pc.score = pc.score + 125;
+			Scores.total += 125;
 			cLabel5.SetActive(true);
 			StartCoroutine(Wait(cLabel5));
 		}

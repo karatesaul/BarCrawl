@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -38,32 +38,32 @@ public class HighScoreManager : MonoBehaviour
 	
 	public void SaveHighScore (string name, int score)
 	{
-		List<Scores> HighScores = new List<Scores> ();
+		List<Score> HighScores = new List<Score> ();
 		
 		int i = 1;
 		while (i<=LeaderboardLength && PlayerPrefs.HasKey("HighScore"+i+"score")) {
-			Scores temp = new Scores ();
+			Score temp = new Score ();
 			temp.score = PlayerPrefs.GetInt ("HighScore" + i + "score");
 			temp.name = PlayerPrefs.GetString ("HighScore" + i + "name");
 			HighScores.Add (temp);
 			i++;
 		}
 		if (HighScores.Count == 0) {       
-			Scores _temp = new Scores ();
+			Score _temp = new Score ();
 			_temp.name = name;
 			_temp.score = score;
 			HighScores.Add (_temp);
 		} else {
 			for (i=1; i<=HighScores.Count && i<=LeaderboardLength; i++) {
 				if (score > HighScores [i - 1].score) {
-					Scores _temp = new Scores ();
+					Score _temp = new Score ();
 					_temp.name = name;
 					_temp.score = score;
 					HighScores.Insert (i - 1, _temp);
 					break;
 				}      
 				if (i == HighScores.Count && i < LeaderboardLength) {
-					Scores _temp = new Scores ();
+					Score _temp = new Score ();
 					_temp.name = name;
 					_temp.score = score;
 					HighScores.Add (_temp);
@@ -81,13 +81,13 @@ public class HighScoreManager : MonoBehaviour
 		
 	}
 	
-	public List<Scores>  GetHighScore ()
+	public List<Score>  GetHighScore ()
 	{
-		List<Scores> HighScores = new List<Scores> ();
+		List<Score> HighScores = new List<Score> ();
 		
 		int i = 1;
 		while (i<=LeaderboardLength && PlayerPrefs.HasKey("HighScore"+i+"score")) {
-			Scores temp = new Scores ();
+			Score temp = new Score ();
 			temp.score = PlayerPrefs.GetInt ("HighScore" + i + "score");
 			temp.name = PlayerPrefs.GetString ("HighScore" + i + "name");
 			HighScores.Add (temp);
@@ -100,7 +100,7 @@ public class HighScoreManager : MonoBehaviour
 	public void ClearLeaderBoard ()
 	{
 		//for(int i=0;i<HighScores.
-		List<Scores> HighScores = GetHighScore();
+		List<Score> HighScores = GetHighScore();
 		
 		for(int i=1;i<=HighScores.Count;i++)
 		{
@@ -115,7 +115,7 @@ public class HighScoreManager : MonoBehaviour
 	}
 }
 
-public class Scores
+public class Score
 {
 	public int score;
 	

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -359,7 +359,8 @@ public class Enemy : FightingEntity {
 
 	public override void Die(){
 		base.Die ();
-		player.GetComponent<PlayerCharacter> ().score += 100;
+		Scores.total += 100;
+		Scores.enemiesKilled += 1;
 		player.GetComponent<TurnManager>().shortenEnemyList();
 	}
 }

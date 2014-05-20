@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ThreeScoreSetter : MonoBehaviour {
@@ -39,7 +39,10 @@ public class ThreeScoreSetter : MonoBehaviour {
 	int highscore4 = 0;
 
 	void Start(){
-		score4 = PlayerCharacter.TOTALSCORE;
+		score1 = Scores.enemiesKilled;
+		score2 = Scores.maxCombo;
+		score3 = Scores.turnsSurvived;
+		score4 = Scores.total;
 		//gets the saved score. If the saved score is undefined, set it to 0 (basescore).
 		highscore1 = PlayerPrefs.GetInt(scoreKey1,baseScore); 
 		highscore2 = PlayerPrefs.GetInt(scoreKey2,baseScore); 

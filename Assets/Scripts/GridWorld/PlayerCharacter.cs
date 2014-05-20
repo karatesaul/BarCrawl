@@ -1,10 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerCharacter : FightingEntity {
-
-	public static int TOTALSCORE;
 
 	public List<Move> moveQueue;
 
@@ -20,8 +18,6 @@ public class PlayerCharacter : FightingEntity {
 
 	public bool executeMode;
 	private int timer;
-	
-	public int score;
 
 	public int maxHealth = 100;
 	public int startingHealth = 100;
@@ -42,11 +38,11 @@ public class PlayerCharacter : FightingEntity {
 		menu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
 
 		fillUp = false;
-		score = 0;
 		health = startingHealth;
 		timer = 30;
 		executeMode = false;
 	
+		Scores.clearScores (); //there's probably a better place to put this...
 
 		moveQueue = new List<Move> ();
 
@@ -133,6 +129,11 @@ public class PlayerCharacter : FightingEntity {
 
 					//end player turn
 					executeMode = false;
+
+					//increase scores
+					Scores.turnsSurvived++;
+					if(fullCombo > Scores.maxCombo)
+						Scores.maxCombo = fullCombo;
 
 					//prevent delay when player's next turn starts
 					timer = 30;
@@ -258,7 +259,7 @@ public class PlayerCharacter : FightingEntity {
 		GridManager.instance.clearEntities();
 
 		//Application.LoadLevel("Main_Menu");
-		TOTALSCORE = score;
+		//TOTALSCORE = score;
 		Application.LoadLevel ("High_Scores");
 	}
 
