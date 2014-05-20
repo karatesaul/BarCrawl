@@ -155,7 +155,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackDown
-  m_Speed: .75
+  m_Speed: .5
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: d705dc8f409174b488cdfe9e91402490, type: 2}
@@ -185,7 +185,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackUp
-  m_Speed: .75
+  m_Speed: .5
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: d1b5de9ed15465a46a59ee9391722a00, type: 2}

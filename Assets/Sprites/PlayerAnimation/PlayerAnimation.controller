@@ -236,7 +236,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackDown
-  m_Speed: .75
+  m_Speed: .5
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: d919c960ad3dc3f4a8c3c1349c4a9079, type: 2}
@@ -296,7 +296,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackUp
-  m_Speed: .75
+  m_Speed: .5
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 920aff26621b39448a7e1d4b0f2c248c, type: 2}
@@ -334,12 +334,6 @@ StateMachine:
       - {fileID: 110139796}
       - {fileID: 110110043}
       - {fileID: 110154550}
-    data:
-      first: {fileID: 0}
-      second: []
-    data:
-      first: {fileID: 0}
-      second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
