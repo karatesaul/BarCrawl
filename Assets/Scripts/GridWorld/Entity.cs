@@ -16,6 +16,7 @@ public class Entity : MonoBehaviour {
 	private bool isMoving = false;
 	private Vector3 moveDest;
 
+	private int deathState = 0;
 	
 	protected SpriteRenderer spriteRenderer;
 	protected Animator animator;
@@ -46,9 +47,15 @@ public class Entity : MonoBehaviour {
 			//Debug.Log("white");
 		}
 
-		if (health <= 0) {
+		//perform a couple checks to allow the death animation to play before doing the death handling.
+		if (deathState == 1 && !animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
+			deathState = 2;
+			Die();
+		}
+		if (health <= 0 && deathState == 0) {
 			animator.Play ("Death");
-			Die ();
+			deathState = 1;
+//			Die ();
 		}
 
 		//this may not be the best location for this, but...
@@ -161,7 +168,6 @@ public class Entity : MonoBehaviour {
 	{
 		//right now, that consists of removing it from the GridManager's entity list.
 		GridManager.instance.entities.Remove(this);
-		Debug.Log (gameObject.name + " has been defeated!");
 		Destroy (this.gameObject);
 	}
 }

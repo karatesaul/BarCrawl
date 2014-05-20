@@ -31,6 +31,9 @@ public class PlayerCharacter : FightingEntity {
 	private int combo;
 	private int fullCombo;
 
+	private bool deathFadeIsHappening = false;
+	private int deathFadeCount = 0;
+
 	
 	// Use this for initialization
 	protected override void Start () {
@@ -109,7 +112,6 @@ public class PlayerCharacter : FightingEntity {
 							moveQueue.Add(Move.Heal);
 							break;
 						default:
-							Debug.Log ("Move.None queued.  Why did this happen?");
 							moveQueue.Add(Move.None);
 							break;
 
@@ -125,7 +127,6 @@ public class PlayerCharacter : FightingEntity {
 
 				if (moveQueue.Count == 0) {
 
-					Debug.Log ("Player queue emptied.");
 
 					//end player turn
 					executeMode = false;
@@ -155,6 +156,13 @@ public class PlayerCharacter : FightingEntity {
 			}
 		}
 
+		if (deathFadeIsHappening) {
+			if (deathFadeCount > 60) {
+				GridManager.instance.clearEntities ();
+				Application.LoadLevel ("High_Scores");
+			}
+			deathFadeCount++;
+		}
 	}
 
 	protected override bool AttemptMove(Move move)
@@ -256,11 +264,11 @@ public class PlayerCharacter : FightingEntity {
 
 	public override void Die()
 	{
-		GridManager.instance.clearEntities();
-
+		deathFadeIsHappening = true;
+		deathFadeCount = 0;
+		Camera.main.SendMessage("fadeOut");
 		//Application.LoadLevel("Main_Menu");
 		//TOTALSCORE = score;
-		Application.LoadLevel ("High_Scores");
 	}
 
 	public void OnGUI(){
