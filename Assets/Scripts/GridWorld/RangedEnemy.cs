@@ -6,7 +6,7 @@ public class RangedEnemy : Enemy {
 	bool hasBottle;
 
 	public Bottle prefab;
-	private Vector3 bottleOffset = new Vector3(.25f, .1f, 0);
+	public Vector3 bottleOffset = new Vector3(.25f, .1f, 0);
 
 	// Use this for initialization
 	protected override void Start () {

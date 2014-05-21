@@ -613,6 +613,7 @@ MonoBehaviour:
   lifespan: 0
   toBar: 3
   prefab: {fileID: 11400000, guid: d78a9414d5d9ddf47b69233dfcadc7d8, type: 2}
+  bottleOffset: {x: .25, y: .100000001, z: 0}
 --- !u!212 &271715862
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1693,18 +1694,18 @@ Prefab:
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 15ec4961902cc5e41bf37d7b73a08882, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: .00130208337
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: .00130208337
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
@@ -2256,6 +2257,11 @@ Prefab:
       propertyPath: y
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 84589b969f74f2243a4bedc0cd3664e9, type: 2}
+      propertyPath: bottlePrefab
+      value: 
+      objectReference: {fileID: 11400000, guid: d78a9414d5d9ddf47b69233dfcadc7d8,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84589b969f74f2243a4bedc0cd3664e9, type: 2}
   m_RootGameObject: {fileID: 1707795425}
@@ -4145,6 +4151,8 @@ MonoBehaviour:
   healIncrease: 5
   blunderDamage: 5
   deathsprite: {fileID: 21300000, guid: 4dced42f123237d4b9422d8088172393, type: 3}
+  bottlePrefab: {fileID: 11400000, guid: d78a9414d5d9ddf47b69233dfcadc7d8, type: 2}
+  bottleOffset: {x: .25, y: .100000001, z: 0}
 --- !u!212 &1707795427
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4467,8 +4475,8 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 15ec4961902cc5e41bf37d7b73a08882, type: 3}
-  - {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -4960,7 +4968,7 @@ Transform:
   m_PrefabInternal: {fileID: 679555709}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: .00130208337, y: .00130208337, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}

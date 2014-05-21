@@ -10,7 +10,7 @@ public class Bottle : MonoBehaviour {
 
 	public bool spinClockwise;
 
-	public float throwSpeed = 0.1f;
+	public float throwSpeed = 0.05f;
 
 	// Use this for initialization
 	void Start () {

@@ -14,6 +14,10 @@ public class PlayerCharacter : FightingEntity {
 	public MainMenu menu;
 	public Vector3 cameraOffset;
 	public Camera worldCamera;
+	private int shakyCam = 0;
+	private float shakeSpace = 0.3f;
+	private int shakeTime = 30;
+
 	public ParticleSystem healingEffect;
 
 	public bool executeMode;
@@ -35,6 +39,9 @@ public class PlayerCharacter : FightingEntity {
 
 	private bool deathFadeIsHappening = false;
 	private int deathFadeCount = 0;
+
+	public Bottle bottlePrefab;
+	public Vector3 bottleOffset = new Vector3(.25f, .1f, 0);
 
 	
 	// Use this for initialization
@@ -67,7 +74,18 @@ public class PlayerCharacter : FightingEntity {
 		base.Update ();
 
 		//camera follows player!
-		worldCamera.gameObject.transform.position = gameObject.transform.position + cameraOffset;
+		if(shakyCam == 0)
+			worldCamera.gameObject.transform.position = gameObject.transform.position + cameraOffset;
+		else
+		{
+			shakyCam--;
+			Vector3 position = gameObject.transform.position + cameraOffset;
+			float shake = shakeSpace * (shakyCam * 1.0f / shakeTime);
+
+			position.x = position.x + Random.Range(-shake, shake);
+			position.y = position.y + Random.Range(-shake, shake);
+			worldCamera.gameObject.transform.position = position;
+		}
 
 		if (tm.turn == 1) 
 		{
@@ -78,8 +96,7 @@ public class PlayerCharacter : FightingEntity {
 				//is so friggin ugly
 				if(fillUp)
 				{
-					lastMove = Move.None;
-					fullCombo = 0;
+
 
 					for(int i = 0; i < moveInput.Length; i++)
 					{
@@ -138,12 +155,21 @@ public class PlayerCharacter : FightingEntity {
 					if(fullCombo > Scores.maxCombo)
 						Scores.maxCombo = fullCombo;
 
+					//reset combo stuff
+					lastMove = Move.None;
+					fullCombo = 0;
+					Debug.Log("Cleared!");
+
 					//prevent delay when player's next turn starts
 					timer = 30;
 
 					//signal enemies to take turn.
 					tm.turn = 2;
 					return;
+				}
+				else
+				{
+
 				}
 
 				//will probably want to change this to be controlled by the animations
@@ -172,11 +198,13 @@ public class PlayerCharacter : FightingEntity {
 		if (move == lastMove)
 		{
 			combo++;
+			Debug.Log(combo + "x COMBO!");
 		}
 		else
 		{
 			lastMove = move;
 			combo = fullCombo / 4;
+			Debug.Log("Combo reset to " + combo);
 		}
 		fullCombo++;
 
@@ -193,6 +221,8 @@ public class PlayerCharacter : FightingEntity {
 			bool success = false;
 			if(move == Move.Fight && combo >= 3)
 			{
+				Debug.Log("AoE triggered!");
+
 				//i.e. the fourth or later punch in a row
 				List<Entity> closeEntities = GridManager.instance.getEntitiesInRect(x - 2, x + 2, y + 2, y - 2);
 
@@ -210,6 +240,7 @@ public class PlayerCharacter : FightingEntity {
 				}
 
 				animator.Play("AttackDown");
+				shakyCam = shakeTime;
 				return success;
 			}
 
@@ -251,13 +282,42 @@ public class PlayerCharacter : FightingEntity {
 			}
 			else if(move == Move.Fight && combo > 0)
 			{
+				Debug.Log("Ranged attempt triggered");
+
 				//try again with range.
+				//copy of the normal fight code, because we need to know our target.
+				//this is bad practice
+				Vector2[] fightOrder = facing.attackOrder ();
+				for(int i = 0; i < 4; i++)
+				{
+					
+					for(int j = 1; j <= 2; j++)
+					{
+						
+						Vector2 fightDir = fightOrder[i];
+						int destX = x + ((int)fightDir.x * j);
+						int destY = y + ((int)fightDir.y * j);
+						
+						Entity target = GridManager.instance.getTarget(destX, destY);
+						if(target != null){
+							if(target.gameObject.tag == foeTag){
+						
+								target.takeDamage(damageDealt);
+								
+								facing = moveExtensions.getMove(fightOrder[i]);
+								animator.Play("AttackLeft");
 
-				range = 2;
+								Bottle proj = (Bottle)Instantiate(bottlePrefab, gameObject.transform.position + bottleOffset, Quaternion.identity);
+								proj.target_x = target.x;
+								proj.target_y = target.y;
+								
+								return true;
+							}
+						}
+					}
+				}
 
-				base.AttemptMove(move);
 
-				range = 1;
 			}
 
 			return false;

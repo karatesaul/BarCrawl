@@ -45,10 +45,12 @@ public class FightingEntity : Entity {
 		
 		//Debug.Log (gameObject.name + " attempts to fight!");
 
+		//defaults to playing attack left, if the other animations are not triggered or not present
+		animator.Play("AttackLeft");
+
 		//handles fighting
 		//this function orders the tiles so that the entity will attack those in front of it before ones to the side
 		Vector2[] fightOrder = facing.attackOrder ();
-		animator.Play("AttackLeft");
 		for(int i = 0; i < 4; i++)
 		{
 			
