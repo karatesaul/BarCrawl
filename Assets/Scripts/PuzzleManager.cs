@@ -196,6 +196,7 @@ public class PuzzleManager : MonoBehaviour {
 
 		switch (refillStep) {
 		case 0:
+			swapCount = 0;
 			//if the matching algorithm returns matches, go to the next steps.  Otherwise, await anomther move.
 			bool matchFound = QueueMove();
 			if (matchFound){
@@ -236,7 +237,6 @@ public class PuzzleManager : MonoBehaviour {
 					readyToShift = false;
 				}
 			}
-			swapCount = 0;
 			break;
 		case 4:
 			//executing moves
