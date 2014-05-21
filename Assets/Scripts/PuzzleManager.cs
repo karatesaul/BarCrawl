@@ -92,7 +92,7 @@ public class PuzzleManager : MonoBehaviour {
 	//coroutine for the text popup
 	//author: Krishna Velury
 	IEnumerator Wait(GameObject label) {
-		Debug.Log("WAITING");
+//		Debug.Log("WAITING");
 		yield return new WaitForSeconds(3.0f); // waits 3 seconds
 		label.SetActive(false);
 	}

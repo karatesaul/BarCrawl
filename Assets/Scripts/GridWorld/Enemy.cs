@@ -42,7 +42,7 @@ public class Enemy : FightingEntity {
 
 		if (!isExecuting) {
 			if(Input.GetKeyDown (KeyCode.O)){
-				Debug.Log ("Enemy takes a turn!");
+//				Debug.Log ("Enemy takes a turn!");
 				isExecuting = true;
 			}
 		}
@@ -52,7 +52,7 @@ public class Enemy : FightingEntity {
 			currMove = Move.None;
 			if(moveCount >= maxMoves)
 			{
-				Debug.Log ("Enemy's turn is over.");
+//				Debug.Log ("Enemy's turn is over.");
 
 				moveCount = 0;
 				timer = 0;
@@ -92,7 +92,7 @@ public class Enemy : FightingEntity {
 		{
 			//at some later point, might change this to distribute the bikers more
 
-			Debug.Log("Wandering");
+//			Debug.Log("Wandering");
 
 			bool success = false; //to ensure they actually make a move
 			int loop = 0;

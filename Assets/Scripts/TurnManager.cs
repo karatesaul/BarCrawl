@@ -67,7 +67,7 @@ public class TurnManager : MonoBehaviour {
 			//Debug.Log ("ENEMY TURN");
 			//player.score/100 = enemies defeated.
 
-			if((spawnTimer > 2 && enemyCount < (Scores.total/100) && enemyCount < maxEnemies) || enemyCount < 0)
+			if(((spawnTimer > 2 && enemyCount < (Scores.total/100) && enemyCount < maxEnemies) || enemyCount < 0) && GridManager.instance.isPassable(4, 0))
 			{
 
 				 //This should instead be called in Enemy, but I'll move it there later.
