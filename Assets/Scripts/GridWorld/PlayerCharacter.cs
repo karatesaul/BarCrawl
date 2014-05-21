@@ -31,6 +31,8 @@ public class PlayerCharacter : FightingEntity {
 	private int combo;
 	private int fullCombo;
 
+	public Sprite deathsprite;
+
 	private bool deathFadeIsHappening = false;
 	private int deathFadeCount = 0;
 
@@ -264,6 +266,7 @@ public class PlayerCharacter : FightingEntity {
 
 	public override void Die()
 	{
+		animator.Play ("Death");
 		deathFadeIsHappening = true;
 		deathFadeCount = 0;
 		Camera.main.SendMessage("fadeOut");

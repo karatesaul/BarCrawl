@@ -70,12 +70,12 @@ MonoBehaviour:
   worldCamera: {fileID: 0}
   healingEffect: {fileID: 19800002, guid: 178cae534ce4a4f688846c94608a2d70, type: 2}
   executeMode: 0
-  score: 0
   maxHealth: 100
   startingHealth: 100
   healAmount: 5
   healIncrease: 5
   blunderDamage: 5
+  deathsprite: {fileID: 21300000, guid: 4dced42f123237d4b9422d8088172393, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
