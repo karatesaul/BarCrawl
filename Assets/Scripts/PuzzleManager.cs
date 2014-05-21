@@ -980,8 +980,10 @@ public class PuzzleManager : MonoBehaviour {
 				if (currTime <= 0) {
 					activeToken.Reposition(activeX, activeY);
 					activeToken = null;
-					if (swapCount > 0)
+					if (swapCount > 0){
 						refillStep = 0;
+						swapCount = 0;
+					}
 				}
 				currTime--;
 
@@ -1003,8 +1005,10 @@ public class PuzzleManager : MonoBehaviour {
 			if (activeToken != null){
 				activeToken.Reposition(activeX, activeY);
 				activeToken = null;
-				if (swapCount > 0)
+				if (swapCount > 0){
 					refillStep = 0;
+					swapCount = 0;
+				}
 			}
 			if (currTime != timeLimit) currTime = timeLimit;
 		}
