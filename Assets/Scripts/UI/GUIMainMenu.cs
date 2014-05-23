@@ -31,6 +31,10 @@ public class GUIMainMenu : MonoBehaviour {
 		if(!PlayerPrefs.HasKey ("HealthBarNumbers")){
 			PlayerPrefs.SetInt("HealthBarNumbers", 0);
 		}
+
+		//make sure there's no GridManager hanging around causing bugs
+		GridManager.clearInstance ();
+
 		//transition into the level
 		if(debuggingForceLoad){
 			Application.LoadLevel(forceLevel);
