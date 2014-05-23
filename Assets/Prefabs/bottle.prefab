@@ -43,7 +43,7 @@ MonoBehaviour:
   target_y: 0
   targetOffset: {x: .25, y: .100000001, z: 0}
   spinClockwise: 0
-  throwSpeed: .100000001
+  throwSpeed: .0500000007
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

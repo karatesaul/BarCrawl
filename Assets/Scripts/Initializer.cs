@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GUIMainMenu : MonoBehaviour {
+public class Initializer : MonoBehaviour {
 
 	//add scene names to this
-	string[] possibleLevels = {"Biker_Bar_Scene1"};
+	string[] possibleLevels = {"Combined_Test_Scene 1"};
 
 	bool debuggingForceLoad;
 	string forceLevel;
@@ -32,7 +32,7 @@ public class GUIMainMenu : MonoBehaviour {
 			PlayerPrefs.SetInt("HealthBarNumbers", 0);
 		}
 
-		//make sure there's no GridManager hanging around causing bugs
+		//make sure there's no old instances hanging around causing bugs
 		GridManager.clearInstance ();
 
 		//transition into the level

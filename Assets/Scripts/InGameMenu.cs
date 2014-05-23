@@ -82,7 +82,6 @@ public class InGameMenu : MonoBehaviour {
 			}
 			//return to main menu
 			if(GUI.Button (new Rect(Screen.width/2-Screen.width/4, 5*Screen.height/6, Screen.width/2, Screen.height/6), "Main Menu", gs)){
-				GridManager.instance.clearEntities();
 				Application.LoadLevel("Main_Menu");
 			}
 		}
