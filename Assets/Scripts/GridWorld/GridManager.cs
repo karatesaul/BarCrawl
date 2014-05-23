@@ -37,6 +37,11 @@ public class GridManager{
 		}
 	}
 
+	public static void clearInstance()
+	{
+		m_instance = null;
+	}
+
 	GridManager() {
 		entities = new List<Entity>();
 	}
