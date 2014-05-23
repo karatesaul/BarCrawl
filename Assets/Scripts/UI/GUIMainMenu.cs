@@ -4,7 +4,7 @@ using System.Collections;
 public class GUIMainMenu : MonoBehaviour {
 
 	//add scene names to this
-	string[] possibleLevels = {"Combined_Test_Scene"};
+	string[] possibleLevels = {"Biker_Bar_Scene1"};
 
 	bool debuggingForceLoad;
 	string forceLevel;

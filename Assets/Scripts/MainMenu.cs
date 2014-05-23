@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour {
 	public bool displayMenu;
 	//images and tutorial settings
 	public Texture title;
+	public Font chewy;
 	//public Texture yesTutorial;
 	//public Texture noTutorial;
 	//public bool tutorial;
@@ -35,6 +36,15 @@ public class MainMenu : MonoBehaviour {
 		if(!displayMenu){
 			return;
 		}
+
+		//prepare the GUIStyle
+		GUIStyle gs = new GUIStyle();
+		gs.font = chewy;
+		gs.fontSize = 36;
+		gs.alignment = TextAnchor.MiddleCenter;
+		gs.stretchWidth = true;
+		gs.stretchHeight = true;
+
 		//draw title
 		GUI.DrawTexture(new Rect(0, -Screen.height/3, Screen.width, Screen.height), title, ScaleMode.ScaleToFit);
 		//find desired button size
@@ -43,7 +53,7 @@ public class MainMenu : MonoBehaviour {
 		int buttonWidth  = Mathf.RoundToInt(x * 2.0f/3.0f);
 		int buttonHeight = Mathf.RoundToInt(y * 1.0f/6.0f);
 		//start game button
-		if(GUI.Button (new Rect(x/2 - buttonWidth/2, y/2, buttonWidth, buttonHeight), "Start game")){
+		if(GUI.Button (new Rect(x/2 - buttonWidth/2, y/2, buttonWidth, buttonHeight), "Start game", gs)){
 			//turn the menu off
 			displayMenu = false;
 			//turn the puzzle on
@@ -57,11 +67,11 @@ public class MainMenu : MonoBehaviour {
 			UI.SetActive (true);
 		}
 		//high score screen button
-		if(GUI.Button (new Rect(x/2 - buttonWidth/2, 2*y/3, buttonWidth, buttonHeight), "High Scores")){
+		if(GUI.Button (new Rect(x/2 - buttonWidth/2, 2*y/3, buttonWidth, buttonHeight), "High Scores", gs)){
 			//transition to high score screen
 			Application.LoadLevel("High_Scores");
 		}
-		if(GUI.Button (new Rect(x/2 - buttonWidth/2, 2*y/3 + buttonHeight, buttonWidth, buttonHeight), "Options")){
+		if(GUI.Button (new Rect(x/2 - buttonWidth/2, 2*y/3 + buttonHeight, buttonWidth, buttonHeight), "Options", gs)){
 			//go to the options screen
 			Application.LoadLevel ("Options");
 		}
