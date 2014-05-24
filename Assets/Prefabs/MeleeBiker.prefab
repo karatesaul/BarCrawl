@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 95: {fileID: 9500000}
   m_Layer: 8
-  m_Name: RangedEnemy
+  m_Name: MeleeBiker
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ Animator:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d428700b5210d934f9a955fc3c6bef52, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9ae7687d88cf0be4483a3033ab631d41, type: 2}
   m_CullingMode: 0
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d08379104815f849bef5a362e9999fa, type: 3}
+  m_Script: {fileID: 11500000, guid: cf496e6ded7f57340b5d637064bcc04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   x: 0
@@ -63,7 +63,6 @@ MonoBehaviour:
   isExecuting: 0
   lifespan: 0
   toBar: 3
-  prefab: {fileID: 11400000, guid: d78a9414d5d9ddf47b69233dfcadc7d8, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -85,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 8e88a606df96d8f4fbfbe7dae7b55ac8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ec7bdef1c6f37964ea36da2ddfa8545c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

@@ -10,11 +10,15 @@ public class TurnManager : MonoBehaviour {
 	public List<Enemy> enemies;
 	public int spawnTimer;
 	public int coolDownTimer;
-	private GameObject enemyInstance;
-	public GameObject meleeEnemyReference;
-	public GameObject rangedEnemyReference;
+
+	public Tile[] enemySpawnLocations;
+	public MeleeEnemy meleeEnemyReference;
+	public RangedEnemy rangedEnemyReference;
+
 	public Texture gray;
 	public int maxEnemies;
+
+
 
 	//0 = none
 	//1 = player turn
@@ -67,22 +71,36 @@ public class TurnManager : MonoBehaviour {
 			//Debug.Log ("ENEMY TURN");
 			//player.score/100 = enemies defeated.
 
-			if(((spawnTimer > 2 && enemyCount < (Scores.total/100) && enemyCount < maxEnemies) || enemyCount < 0) && GridManager.instance.isPassable(4, 0))
+			Enemy enemyInstance;
+
+			if(((spawnTimer > 2 && enemyCount < (Scores.total/100) && enemyCount < maxEnemies) || enemyCount < 0))
 			{
 
 				 //This should instead be called in Enemy, but I'll move it there later.
 				if(Random.Range(0,100) >= 15){
-					enemyInstance = Instantiate (meleeEnemyReference, new Vector2(2, 0), new Quaternion(0,0,0,0)) as GameObject;
+					enemyInstance = Instantiate (meleeEnemyReference, new Vector2(2, 0), new Quaternion(0,0,0,0)) as Enemy;
 				}
 				else{
-					enemyInstance = Instantiate (rangedEnemyReference, new Vector2(2, 0), new Quaternion(0,0,0,0)) as GameObject;
+					enemyInstance = Instantiate (rangedEnemyReference, new Vector2(2, 0), new Quaternion(0,0,0,0)) as Enemy;
 				}
-				enemyInstance.GetComponent<Entity>().x = 4;
-				enemyInstance.GetComponent<Entity>().y = 0;
+				for(int i=0; i<10; i++)
+				{
+					int rand = Random.Range(0, enemySpawnLocations.Length);
+					Tile spawnLoc = enemySpawnLocations[rand];
 
-				enemies.Add(enemyInstance.GetComponent<Enemy>());
+					if(GridManager.instance.isPassable(spawnLoc.x, spawnLoc.y))
+					{
+						enemyInstance.x = spawnLoc.x;
+						enemyInstance.y = spawnLoc.y;
+						enemyInstance.transform.position = GridManager.getTransformPosition(spawnLoc.x, spawnLoc.y);
 
-				spawnTimer = 0;
+						enemies.Add(enemyInstance.GetComponent<Enemy>());
+						
+						spawnTimer = 0;
+						break;
+					}
+				}
+
 			}
 
 			foreach(Enemy enemy in enemies)
