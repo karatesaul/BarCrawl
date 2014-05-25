@@ -37,7 +37,7 @@ public class PuzzleManager : MonoBehaviour {
 	
 	private Token activeToken;
 	private int activeX, activeY;
-	public int timeLimit = 900;
+	public int timeLimit = 600;
 	public int currTime;
 	private Vector2 mouseTokenRelativeLocation;
 	
@@ -942,7 +942,7 @@ public class PuzzleManager : MonoBehaviour {
 			}
 		}
 		
-		if (refillStep == 5 && Input.GetMouseButton (0)) { //or if there is a touch present
+		if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0) { //or if there is a touch present
 			if (activeToken != null) {
 				//drag around the currently selected token
 				activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
@@ -1020,6 +1020,14 @@ public class PuzzleManager : MonoBehaviour {
 			if (tut1) tLabel1.SetActive(true);
 			if (tut2) tLabel2.SetActive(true);
 			if (tut3) tLabel3.SetActive(true);
+		}
+
+		//enable or disable the timer visibility based on time
+		GameObject timer = GameObject.Find("timer");
+		if (currTime <= 300) {
+			timer.GetComponent<dfLabel> ().enabled = true;
+		} else {
+			timer.GetComponent<dfLabel> ().enabled = false;
 		}
 	}
 
