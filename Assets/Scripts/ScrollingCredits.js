@@ -19,7 +19,7 @@ function Start()
     creds += "Lead Artist Coordinator\nand Level Designer\nMark McGowan\n\n\n";
     creds += "Lead Level Programmer\nSteven Hack\n\n\n";
     creds += "Lead Artist\nRebecca Alto\n\n\n";
-    creds += "Other Visual Artists\nAlexis Williams\nPhoebe Rothfeld\nJes Udelle\nJon Le\n\n\n";
+    creds += "Visual Artists\nAlexis Williams\nPhoebe Rothfeld\nJes Udelle\nJon Le\n\n\n";
     creds += "Lead Audio Designer\nChristopher Miller\n\n\n";
     creds += "Additional Music\nLiquid Courage by Vio-Lence\n\n\n";
     creds += "Voice acting\nLucahjin\n\n\n";
