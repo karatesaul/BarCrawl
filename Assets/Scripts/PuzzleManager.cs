@@ -70,13 +70,26 @@ public class PuzzleManager : MonoBehaviour {
 	public GameObject tLabel1;
 	public GameObject tLabel2;
 	public GameObject tLabel3;
-
-	//for tutorial
+	
+	/* [tutorial states]
+	 * 0 - not in tutorial
+	 * 1 - part 1, before picking up
+	 * 2 - part 1, picked up correct token
+	 * 3 - part 1, swap happened
+	 * 4 - part 2, before picking up
+	 * 5 - part 2, picked up correct token
+	 * 6 - part 2, swap happened 
+	 * 7 - part 3, before picking up
+	 * 8 - part 3, picked up correct token
+	 * 9 - part 3, swap happened, tutorial over
+	 */
+	public int tutorialState;
 	public bool tut1;
 	public bool tut2;
 	public bool tut3;
-	private bool drawn;
-	private bool set;
+	private bool drawn; //set to true once the cursor is drawn to set off the animation
+	private bool set; //set to true so the cursor can be drawn at the right position
+	private bool pickedUp; //set to true when the player picks up the correct token
 	private int m = 0;
 	private int n = 0;
 	private float x = 0;
@@ -159,19 +172,14 @@ public class PuzzleManager : MonoBehaviour {
 		tLabel2.SetActive(false);
 		tLabel3.SetActive(false);
 		
-		//set tutorial bools
+		//set tutorial bools and preset board
 		if (PlayerPrefs.GetInt("ShowTutorial") == 1) {
-			tut1 = true;
-			tut2 = false;
-			tut3 = false;
-		}
-		drawn = false;
-		set = false;
-		
-		//Presets the board if tutorial is on
-		if (PlayerPrefs.GetInt("ShowTutorial") == 1){
+			tutorialState = 1;
 			tutorialBoard();
 		}
+		//drawn = false;
+		//set = false;
+		//pickedUp = false;
 
 		audioSource = GetComponentInChildren<AudioSource> ();
 	}
@@ -247,6 +255,8 @@ public class PuzzleManager : MonoBehaviour {
 		default:
 			break;
 		}
+
+		//switch(tutorialState)
 
 		if (drawn) {
 			//move tutorial sprite based on which part of the tutorial is activated
@@ -858,10 +868,43 @@ public class PuzzleManager : MonoBehaviour {
 		//no need to draw this while menu is active
 		if(!puzzleActive) return;
 		
-		//draw cursor based on which phase of the tutorial we are in
-		if (tut1) puzzleGrid[1,3].highlight = true;
-		else if (tut2) puzzleGrid[3,2].highlight = true;
-		else if (tut3) puzzleGrid[0,1].highlight = true;
+		if (PlayerPrefs.GetInt("ShowTutorial") == 1) {
+			switch(tutorialState) {
+			case 0:
+				break;
+			case 1: 
+				//part 1
+				timeLimit = 0;
+				puzzleGrid[1,3].highlight = true;
+				break;
+			case 2: 
+				puzzleGrid[1,3].highlight = false;
+				break;
+			case 3: 
+				break;
+			case 4:
+				//part 2
+				timeLimit = 0;
+				puzzleGrid[3,2].highlight = true;
+				break;
+			case 5: 
+				puzzleGrid[3,2].highlight = false;
+				break;
+			case 6: 
+				break;
+			case 7: 
+				//part 3
+				timeLimit = 0;
+				puzzleGrid[0,1].highlight = true;
+				break;
+			case 8: 
+				puzzleGrid[0,1].highlight = false;
+				break;
+			case 9: 
+				break;
+			}
+
+		}
 		
 		
 		for (int i=0; i<6; i++) {
@@ -878,14 +921,14 @@ public class PuzzleManager : MonoBehaviour {
 					//GUI.Box(puzzleGrid[i,j].location, "i: " + i.ToString() + "j: " + j.ToString());
 
 					//set cursor position based on which token is highlighted
-					if (PlayerPrefs.GetInt("ShowTutorial") == 1 && !set && puzzleGrid[i,j].highlight) {
+					if (PlayerPrefs.GetInt("ShowTutorial") == 1 && puzzleGrid[i,j].highlight) {
 						x = puzzleGrid[i,j].location.x;
 						y = puzzleGrid[i,j].location.y + 25;
 						locx = x;
 						locy = y;
 						m = i;
 						n = j;
-						set = true;
+						//set = true;
 					}
 					//if (tut1 || tut2 || tut3) GUI.DrawTexture(new Rect(x, y, puzzleGrid[i,j].location.width, puzzleGrid[i,j].location.height), cursor);
 
@@ -917,28 +960,35 @@ public class PuzzleManager : MonoBehaviour {
 			GUI.color = new Color(1.0f, 1.0f, 1.0f, activeToken.drawAlpha);
 			GUI.DrawTexture(activeToken.location, activeToken.sprite);
 
-			//activate next phase of tutorial if player touches highlighted tile
+			switch(tutorialState) {
+			case 1: 
+			
+			}
+
 			if (PlayerPrefs.GetInt("ShowTutorial") == 1) {
-				if (tut1 && activeToken == puzzleGrid[1,3]) {
-					tut1 = false;
-					tut2 = true;
-					set = false;
-					drawn = false;
-					puzzleGrid[1,3].highlight = false;
+				
+				if (tut1) {
+					if (activeToken == puzzleGrid[1,3]) {
+						pickedUp = true;
+						timeLimit = 900;
+					}
+					//else activeToken = null;
 				}
-				if (tut2 && activeToken == puzzleGrid[3,2]) {
-					tut2 = false;
-					tut3 = true;
-					set = false;
-					drawn = false;
-					puzzleGrid[3,2].highlight = false;
+				if (tut2) {
+					if (activeToken == puzzleGrid[3,2]) {
+						pickedUp = true;
+						timeLimit = 900;
+					}
+					//else activeToken = null;
 				}
-				if (tut3 && activeToken == puzzleGrid[0,1]) {
-					tut3 = false;
-					drawn = false;
-					puzzleGrid[0,1].highlight = false;
-					PlayerPrefs.SetInt("ShowTutorial", 0);
+				if (tut3) {
+					if (activeToken == puzzleGrid[0,1]) {
+						pickedUp = true;
+						timeLimit = 900;
+					}
+					//else activeToken = null;
 				}
+				
 			}
 		}
 		
@@ -956,6 +1006,7 @@ public class PuzzleManager : MonoBehaviour {
 					b = 4;
 				}
 				if (puzzleGrid[a, b] != activeToken){
+
 					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
 					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
 					puzzleGrid [a, b] = activeToken;
@@ -963,6 +1014,52 @@ public class PuzzleManager : MonoBehaviour {
 					activeY = b;
 					audioSource.Play();
 					swapCount++;
+
+					//check if player placed the tutorial token in the right position
+					if (tut1) {
+						if (pickedUp && activeX==1 && activeY==4) {
+							tut1 = false;
+							tut2 = true;
+							set = false;
+							drawn = false;
+							pickedUp = false;
+							puzzleGrid[1,3].highlight = false;
+							activeToken.Reposition(1, 4);
+							//activeToken = null;
+						} else { 
+							//a = 1;
+							//b = 3;
+							//pickedUp = false;
+						}
+					}
+					else if (tut2) {
+						if (pickedUp && activeX==3 && activeY==0) {
+							tut2 = false;
+							tut3 = true;
+							set = false;
+							drawn = false;
+							pickedUp = false;
+							puzzleGrid[3,2].highlight = false;
+							activeToken.Reposition(activeX, activeY);
+							//activeToken = null;
+						} else {
+
+						}
+					}
+					else if (tut3) {
+						if (pickedUp && activeX==2 && activeY==0) {
+							tut3 = false;
+							drawn = false;
+							pickedUp = false;
+							puzzleGrid[0,1].highlight = false;
+							activeToken.Reposition(activeX, activeY);
+							//activeToken = null;
+							PlayerPrefs.SetInt("ShowTutorial", 0);
+						} else {
+
+						}
+					}
+
 				}
 				
 				//keep the token within the bounds
