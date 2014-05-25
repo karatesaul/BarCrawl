@@ -61,6 +61,7 @@ MonoBehaviour:
   currentRed: 0
   isPassable: 0
   moveSpeed: .100000001
+  bloodSpatter: {fileID: 19800000, guid: 684261b06538d4df2ba10b7bab60c501, type: 2}
   moveQueue: 
   moveInput: 
   fillUp: 0
@@ -95,8 +96,9 @@ MonoBehaviour:
   enemies: []
   spawnTimer: 0
   coolDownTimer: 0
-  meleeEnemyReference: {fileID: 100000, guid: 07d93c675daa2a8428c12d4ff1e4a0b6, type: 2}
-  rangedEnemyReference: {fileID: 100000, guid: e7f320d7fad1fec4c8e5701472a50b23, type: 2}
+  enemySpawnLocations: []
+  meleeEnemyReference: {fileID: 0}
+  rangedEnemyReference: {fileID: 0}
   gray: {fileID: 2800000, guid: e020a0e670d799742963efacb568c635, type: 3}
   maxEnemies: 0
   turn: 0

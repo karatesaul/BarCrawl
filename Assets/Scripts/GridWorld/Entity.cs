@@ -13,6 +13,8 @@ public class Entity : MonoBehaviour {
 	public bool isPassable = false;
 	public float moveSpeed = .1f;
 
+	public ParticleSystem bloodSpatter;
+
 	private bool isMoving = false;
 	private Vector3 moveDest;
 
@@ -108,6 +110,8 @@ public class Entity : MonoBehaviour {
 		currentRed = 100;
 
 		animator.Play ("Hurt");
+		Instantiate (bloodSpatter, transform.position, Quaternion.identity);
+
 	}
 
 

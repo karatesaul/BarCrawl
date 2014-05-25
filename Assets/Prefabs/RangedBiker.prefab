@@ -60,6 +60,7 @@ MonoBehaviour:
   currentRed: 0
   isPassable: 0
   moveSpeed: .100000001
+  bloodSpatter: {fileID: 19800000, guid: 684261b06538d4df2ba10b7bab60c501, type: 2}
   isExecuting: 0
   lifespan: 0
   toBar: 3
