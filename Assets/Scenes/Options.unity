@@ -185,8 +185,8 @@ MonoBehaviour:
   options: {fileID: 2800000, guid: 02a2926b737936b4190112c6a18251fb, type: 3}
   yesTutorial: {fileID: 2800000, guid: 9ef5f68b014c27447b372925bcd1e0c0, type: 3}
   noTutorial: {fileID: 2800000, guid: 7abd1c283520d9b4d85a2ac5794d6b1f, type: 3}
-  yesProfanity: {fileID: 2800000, guid: e672c96b32c10164abf751566d34e625, type: 3}
-  noProfanity: {fileID: 2800000, guid: fffbbd11234a1bf448c0cd4296463340, type: 3}
+  yesProfanity: {fileID: 2800000, guid: 268cae65bb9ef7d4f9d988a572485566, type: 3}
+  noProfanity: {fileID: 2800000, guid: 32e61aa1c0e695a43be6a08182b4500c, type: 3}
   moreVioLence: {fileID: 2800000, guid: 9a3c3310b9cae544f99e362a112ef1d4, type: 3}
   lessViolence: {fileID: 2800000, guid: a017b01fcf9f51f4f84919e1fff60ca0, type: 3}
   healthBarNumbers: {fileID: 2800000, guid: d2bc817095860344fb4f013d37956637, type: 3}
