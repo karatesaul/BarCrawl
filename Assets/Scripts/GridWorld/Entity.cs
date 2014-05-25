@@ -110,7 +110,10 @@ public class Entity : MonoBehaviour {
 		currentRed = 100;
 
 		animator.Play ("Hurt");
-		Instantiate (bloodSpatter, transform.position, Quaternion.identity);
+		if (PlayerPrefs.GetInt ("Profanity") == 1) {
+			//play the blood spatter
+			Instantiate (bloodSpatter, transform.position, Quaternion.identity);
+		}
 
 	}
 
