@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 
 public class Entity : MonoBehaviour {
@@ -19,7 +20,7 @@ public class Entity : MonoBehaviour {
 	private Vector3 moveDest;
 
 	private int deathState = 0;
-	
+
 	protected SpriteRenderer spriteRenderer;
 	protected Animator animator;
 
@@ -31,7 +32,6 @@ public class Entity : MonoBehaviour {
 	protected virtual void Start () {
 		GridManager.instance.entities.Add(this);
 		spriteRenderer = GetComponent<SpriteRenderer>();
-
 		animator = gameObject.GetComponent<Animator> ();
 	}
 	

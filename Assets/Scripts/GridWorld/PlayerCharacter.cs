@@ -348,6 +348,7 @@ public class PlayerCharacter : FightingEntity {
 		Camera.main.SendMessage("fadeOut");
 		//Application.LoadLevel("Main_Menu");
 		//TOTALSCORE = score;
+		base.Die ();
 	}
 
 	public override void takeDamage (int damage)
