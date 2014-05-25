@@ -187,6 +187,7 @@ public class PlayerCharacter : FightingEntity {
 		}
 
 		if (deathFadeIsHappening) {
+			Debug.Log ("???");
 			if (deathFadeCount > 60) {
 				GridManager.instance.clearEntities ();
 				Application.LoadLevel ("High_Scores");
@@ -348,6 +349,7 @@ public class PlayerCharacter : FightingEntity {
 		Camera.main.SendMessage("fadeOut");
 		//Application.LoadLevel("Main_Menu");
 		//TOTALSCORE = score;
+		//base.Die ();
 	}
 
 	public override void takeDamage (int damage)

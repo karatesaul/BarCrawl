@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 
 public class Entity : MonoBehaviour {
@@ -11,6 +12,7 @@ public class Entity : MonoBehaviour {
 	public const int maxRed = 100;
 	public int currentRed = 0;
 	public bool isPassable = false;
+	public bool dead = false;
 	public float moveSpeed = .1f;
 
 	public ParticleSystem bloodSpatter;
@@ -19,19 +21,19 @@ public class Entity : MonoBehaviour {
 	private Vector3 moveDest;
 
 	private int deathState = 0;
-	
+
 	protected SpriteRenderer spriteRenderer;
 	protected Animator animator;
 
 	//for display & fight logic purposes.
 	protected Move facing;
+	int deathticker = 0;
 
 	// Use this for initialization
 	// Start MUST be called by superclasses!
 	protected virtual void Start () {
 		GridManager.instance.entities.Add(this);
 		spriteRenderer = GetComponent<SpriteRenderer>();
-
 		animator = gameObject.GetComponent<Animator> ();
 	}
 	
@@ -48,13 +50,16 @@ public class Entity : MonoBehaviour {
 			spriteRenderer.color = Color.white;
 			//Debug.Log("white");
 		}
-
+		if (deathticker > 0)
+						deathticker++;
 		//perform a couple checks to allow the death animation to play before doing the death handling.
-		if (deathState == 1 && !animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
+		if (deathticker > 2 && deathState == 1 && !animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
+			animator.StopPlayback();
 			deathState = 2;
 			Die();
 		}
 		if (health <= 0 && deathState == 0) {
+			deathticker = 1;
 			animator.Play ("Death");
 			deathState = 1;
 //			Die ();

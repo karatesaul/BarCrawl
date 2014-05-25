@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: bikerDeath
+  m_Name: BeachMeleeAttackUp
   serializedVersion: 4
   m_AnimationType: 2
   m_Compressed: 0
@@ -18,9 +18,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 8be3ac480a4bf4c8f997e39f02a9b164, type: 3}
+      value: {fileID: 21300000, guid: c0efaa3aba0324a05b003b495e804ef8, type: 3}
     - time: .0833333358
-      value: {fileID: 21300000, guid: fa5c462c724f94b34bd686f81d2df313, type: 3}
+      value: {fileID: 21300002, guid: c0efaa3aba0324a05b003b495e804ef8, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -37,7 +37,7 @@ AnimationClip:
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
