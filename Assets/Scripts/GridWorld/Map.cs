@@ -10,18 +10,62 @@ public class Map : MonoBehaviour {
 
 	public Tile prefab;
 	//prefab
-
-	// Use this for initialization
+	
 	void Start () {
+
+		//loop one: let tiles in arrays know where they are
+		for (int x=0; x < width; x++) {
+			for (int y=0; y < height; y++) {
+				if(this[x,y] != null)
+				{
+					this[x,y].x = x;
+					this[x,y].y = y;
+					this[x,y].placed = true;
+				}
+			}
+		}
+
+		//loop two: check for other tiles and place them in arrays based on position if appropriate
+		Tile[] tiles = FindObjectsOfType<Tile>();
+
+		Debug.Log (tiles.Length);
+
+		foreach (Tile tile in tiles)
+		{
+
+			if(!tile.placed)
+			{
+				int x = GridManager.getX(tile.transform.position);
+				int y = GridManager.getY(tile.transform.position);
+
+				if(x >= width || y >= height || x < 0 || y < 0)
+					continue;
+			
+				if(this[x,y] == null)
+				{
+					this[x,y] = tile;
+					tile.x = x;
+					tile.y = y;
+					tile.placed = true;
+				}
+			}
+		}
+
+		//loop three: move placed tiles to proper positions, fill empty slots with empty tiles
 		for (int x=0; x < width; x++) {
 			for (int y=0; y < height; y++) {
 				if(this[x,y] == null)
+				{
 					this[x,y] = (Tile)Instantiate(prefab, new Vector3(GridManager.tileSizeX * x, GridManager.tileSizeY * y, -0.1f), Quaternion.identity);
+
+					this[x,y].x = x;
+					this[x,y].y = y;
+					this[x,y].placed = true;
+				}
 				else
 					this[x,y].transform.position = new Vector3(GridManager.tileSizeX * x, GridManager.tileSizeY * y, -0.1f);
-				//let the tile know where it is
-				this[x,y].x = x;
-				this[x,y].y = y;
+
+
 			}
 		}
 

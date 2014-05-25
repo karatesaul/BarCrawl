@@ -140,6 +140,28 @@ public class GridManager{
 	}
 
 	/// <summary>
+	/// Gets the x coordinate of the tile that the indicated Vector3 is in.
+	/// </summary>
+	/// <returns>The x coordinate.</returns>
+	/// <param name="transformPosition">Transform position.</param>
+	public static int getX(Vector3 transformPosition)
+	{
+		float x = transformPosition.x / tileSizeX;
+		return (int)System.Math.Round(x);
+	}
+	
+	/// <summary>
+	/// Gets the y coordinate of the tile that the indicated Vector3 is in.
+	/// </summary>
+	/// <returns>The y coordinate.</returns>
+	/// <param name="transformPosition">Transform position.</param>
+	public static int getY(Vector3 transformPosition)
+	{
+		float y = transformPosition.y / tileSizeY;
+		return (int)System.Math.Round(y);
+	}
+
+	/// <summary>
 	/// Gets the x and y coordinates of the tile that transformPosition is in.
 	/// </summary>
 	/// <returns>The coordinates as a Vector2.  It should be safe to cast them to ints.</returns>
