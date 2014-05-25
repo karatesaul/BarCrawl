@@ -942,7 +942,7 @@ public class PuzzleManager : MonoBehaviour {
 			}
 		}
 		
-		if (refillStep == 5 && Input.GetMouseButton (0)) { //or if there is a touch present
+		if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0) { //or if there is a touch present
 			if (activeToken != null) {
 				//drag around the currently selected token
 				activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
