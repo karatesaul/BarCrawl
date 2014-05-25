@@ -14,6 +14,8 @@ public class PlayerCharacter : FightingEntity {
 	public MainMenu menu;
 	public Vector3 cameraOffset;
 	public Camera worldCamera;
+	public ParticleSystem aoeEffect;
+
 	private int shakyCam = 0;
 	private float shakeSpace = 0.3f;
 	private int shakeTime = 30;
@@ -241,6 +243,7 @@ public class PlayerCharacter : FightingEntity {
 
 				animator.Play("AttackDown");
 				shakyCam = shakeTime;
+				Instantiate(aoeEffect, transform.position, Quaternion.identity);
 				return success;
 			}
 
