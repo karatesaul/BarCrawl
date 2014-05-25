@@ -261,6 +261,7 @@ MonoBehaviour:
   currentRed: 0
   isPassable: 0
   moveSpeed: .100000001
+  bloodSpatter: {fileID: 19800000, guid: 684261b06538d4df2ba10b7bab60c501, type: 2}
   isExecuting: 0
   lifespan: 0
   toBar: 3
@@ -521,6 +522,7 @@ MonoBehaviour:
   currentRed: 0
   isPassable: 0
   moveSpeed: .100000001
+  bloodSpatter: {fileID: 19800000, guid: 684261b06538d4df2ba10b7bab60c501, type: 2}
   isExecuting: 0
   lifespan: 0
   toBar: 3
@@ -1305,6 +1307,7 @@ MonoBehaviour:
   currentRed: 0
   isPassable: 0
   moveSpeed: .100000001
+  bloodSpatter: {fileID: 19800000, guid: 684261b06538d4df2ba10b7bab60c501, type: 2}
   isExecuting: 0
   lifespan: 0
   toBar: 3
@@ -5780,7 +5783,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1581097123}
+  - 114: {fileID: 1581097122}
   - 82: {fileID: 1581097121}
+  - 114: {fileID: 1581097124}
   m_Layer: 0
   m_Name: MusicController
   m_TagString: Untagged
@@ -5796,11 +5801,11 @@ AudioSource:
   m_GameObject: {fileID: 1581097120}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 556f74ff3d9649d46894c8a40da1b975, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Priority: 128
   DopplerLevel: 1
@@ -5846,6 +5851,17 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1581097122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1581097120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a7fc58826225354c9ced89a41835e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1581097123
 Transform:
   m_ObjectHideFlags: 0
@@ -5857,6 +5873,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1581097124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1581097120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3d993575c13af4fac5d36757000396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vioLence: {fileID: 8300000, guid: 556f74ff3d9649d46894c8a40da1b975, type: 3}
+  nonVioLence: {fileID: 0}
 --- !u!1 &1587066806
 GameObject:
   m_ObjectHideFlags: 0
@@ -6277,6 +6306,7 @@ MonoBehaviour:
   currentRed: 0
   isPassable: 0
   moveSpeed: .100000001
+  bloodSpatter: {fileID: 19800000, guid: 684261b06538d4df2ba10b7bab60c501, type: 2}
   moveQueue: 
   moveInput: 
   fillUp: 0
@@ -6284,6 +6314,7 @@ MonoBehaviour:
   menu: {fileID: 0}
   cameraOffset: {x: 0, y: 0, z: 0}
   worldCamera: {fileID: 1248361084}
+  aoeEffect: {fileID: 19800000, guid: 92ca61aab7db44773b3cf7cefddd84e0, type: 2}
   healingEffect: {fileID: 19800002, guid: 178cae534ce4a4f688846c94608a2d70, type: 2}
   executeMode: 0
   maxHealth: 100
