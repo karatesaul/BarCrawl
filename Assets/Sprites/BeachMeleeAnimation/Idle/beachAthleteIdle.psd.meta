@@ -1,0 +1,85 @@
+fileFormatVersion: 2
+guid: cf7332d6c8133448881022fa10effc8d
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 220
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: beachAthleteIdle_0
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 15
+        width: 80
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: beachAthleteIdle_1
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 13
+        width: 82
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: beachAthleteIdle_2
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 12
+        width: 87
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: beachAthleteIdle_3
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 12
+        width: 81
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 
