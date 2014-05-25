@@ -63,7 +63,7 @@ public class OptionsMenu : MonoBehaviour {
 
 		//option to allow profanity in game
 		GUI.Label (new Rect(Screen.width/2 - profanityTexture.width/2, Screen.height/7,
-		                    profanityTexture.width, profanityTexture.height), style + "To swear or not to swear, that is the question" + endStyle, otherText);
+		                    profanityTexture.width, profanityTexture.height), style + "I'm an adult" + (profanity?" God damn it!":"!") + endStyle, otherText);
 		if(GUI.Button (new Rect(Screen.width/2 - profanityTexture.width/2, Screen.height/7 + 25,
 		                        profanityTexture.width, profanityTexture.height), profanityTexture, buttonStyle)){
 			profanity = !profanity;
