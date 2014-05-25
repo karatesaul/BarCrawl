@@ -12,6 +12,7 @@ public class Entity : MonoBehaviour {
 	public const int maxRed = 100;
 	public int currentRed = 0;
 	public bool isPassable = false;
+	public bool dead = false;
 	public float moveSpeed = .1f;
 
 	public ParticleSystem bloodSpatter;
@@ -26,6 +27,7 @@ public class Entity : MonoBehaviour {
 
 	//for display & fight logic purposes.
 	protected Move facing;
+	int deathticker = 0;
 
 	// Use this for initialization
 	// Start MUST be called by superclasses!
@@ -48,13 +50,16 @@ public class Entity : MonoBehaviour {
 			spriteRenderer.color = Color.white;
 			//Debug.Log("white");
 		}
-
+		if (deathticker > 0)
+						deathticker++;
 		//perform a couple checks to allow the death animation to play before doing the death handling.
-		if (deathState == 1 && !animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
+		if (deathticker > 2 && deathState == 1 && !animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
+			animator.StopPlayback();
 			deathState = 2;
 			Die();
 		}
 		if (health <= 0 && deathState == 0) {
+			deathticker = 1;
 			animator.Play ("Death");
 			deathState = 1;
 //			Die ();

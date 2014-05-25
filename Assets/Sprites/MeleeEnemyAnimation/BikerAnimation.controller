@@ -218,7 +218,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Death
-  m_Speed: .00999999978
+  m_Speed: .200000003
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: d18164e151a5146ecb1a5f72eeff1521, type: 2}
