@@ -221,6 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: .0500000007
   crawling: 1
+  chewy: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
 --- !u!132 &1393430908
 GUIText:
   m_ObjectHideFlags: 0

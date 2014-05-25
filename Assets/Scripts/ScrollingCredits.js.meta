@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: e40c41a6fe265d8479da1278f0e61508
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - chewy: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

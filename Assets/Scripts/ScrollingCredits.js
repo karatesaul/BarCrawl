@@ -3,6 +3,7 @@
 
 var speed = 0.05;
 var crawling = true;
+var chewy : Font;
  
 function Start()
 {
@@ -18,12 +19,17 @@ function Start()
     creds += "Lead Artist Coordinator\nand Level Designer\nMark McGowan\n\n\n";
     creds += "Lead Level Programmer\nSteven Hack\n\n\n";
     creds += "Lead Artist\nRebecca Alto\n\n\n";
-    creds += "Other Visual Artist\nAlexis Williams\nPhoebe Rothfeld\nJes Udelle\nInsert Ian's guy here\n\n\n";
+    creds += "Other Visual Artists\nAlexis Williams\nPhoebe Rothfeld\nJes Udelle\nJon Le\n\n\n";
     creds += "Lead Audio Designer\nChristopher Miller\n\n\n";
     creds += "Additional Music\nLiquid Courage by Vio-Lence\n\n\n";
     creds += "Voice acting\nLucahjin\n\n\n";
     creds += "Special Thanks\nDavid Wessman\nVio-Lence\n\n\n";
     tc.text= creds; 
+    tc.color = Color.white;
+    tc.font = chewy;
+    //tc.fontSize = 20;
+    tc.fontSize = Screen.width/20;//hopefully this will make it scale with screens correctly
+    
 }
 
 function Update ()
@@ -31,9 +37,8 @@ function Update ()
     if (!crawling)
         return;
     transform.Translate(Vector3.up * Time.deltaTime * speed);
-    if (gameObject.transform.position.y > 3)
+    if (gameObject.transform.position.y > 3.2)
     {
-        //crawling = false;
         Application.LoadLevel("Options");
     }
 }

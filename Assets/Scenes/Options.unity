@@ -123,7 +123,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -181,16 +181,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554da2d9d1141814c93087045c5fc720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  options: {fileID: 2800000, guid: f3ec4dc112659ca4fba76b6285fb7f78, type: 3}
-  yesTutorial: {fileID: 2800000, guid: 59d931fd00e2c2f499a7a7379e41563e, type: 3}
-  noTutorial: {fileID: 2800000, guid: 72d21de1a0544fd4bbafee8a2a49b2f8, type: 3}
-  yesProfanity: {fileID: 2800000, guid: e6d04d07c5e999c419a70731cdd19db3, type: 3}
-  noProfanity: {fileID: 2800000, guid: 20e9052bac8e73b458180169b91b17eb, type: 3}
-  moreVioLence: {fileID: 2800000, guid: 8eec68c075678dc40a127c85ed529360, type: 3}
-  lessViolence: {fileID: 2800000, guid: 90f44cfa95a9eb344a1e4a3935b19ce8, type: 3}
+  chewy: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
+  options: {fileID: 2800000, guid: 02a2926b737936b4190112c6a18251fb, type: 3}
+  yesTutorial: {fileID: 2800000, guid: 9ef5f68b014c27447b372925bcd1e0c0, type: 3}
+  noTutorial: {fileID: 2800000, guid: 7abd1c283520d9b4d85a2ac5794d6b1f, type: 3}
+  yesProfanity: {fileID: 2800000, guid: e672c96b32c10164abf751566d34e625, type: 3}
+  noProfanity: {fileID: 2800000, guid: fffbbd11234a1bf448c0cd4296463340, type: 3}
+  moreVioLence: {fileID: 2800000, guid: 9a3c3310b9cae544f99e362a112ef1d4, type: 3}
+  lessViolence: {fileID: 2800000, guid: a017b01fcf9f51f4f84919e1fff60ca0, type: 3}
+  healthBarNumbers: {fileID: 2800000, guid: d2bc817095860344fb4f013d37956637, type: 3}
+  noHealthBarNumbers: {fileID: 2800000, guid: eed1fd15f7473aa4c94a8361294bbd47, type: 3}
+  credits: {fileID: 2800000, guid: cbb33d24d1ccefd439a7b14365498a7d, type: 3}
+  mainMenu: {fileID: 2800000, guid: fc212e2cff8095041853989b294c3623, type: 3}
   tutorial: 1
   profanity: 0
   violenceSoundtrack: 0
+  showNumericHealth: 0
 --- !u!4 &1427470837
 Transform:
   m_ObjectHideFlags: 0
