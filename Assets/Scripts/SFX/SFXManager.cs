@@ -16,7 +16,7 @@ public class SFXManager : MonoBehaviour {
 		//audioSource = GetComponentInChildren<AudioSource> ();
 	}
 
-	static void PlayerVoice(){
+	public static void PlayerVoice(){
 		switch(PlayerPrefs.GetInt ("Profanity")){
 		case 0:
 			playCensored();

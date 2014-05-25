@@ -225,6 +225,10 @@ public class PlayerCharacter : FightingEntity {
 			{
 				Debug.Log("AoE triggered!");
 
+				//play an obscenity
+				if (Random.Range(0, 3) == 0)
+					SFXManager.PlayerVoice();
+
 				//i.e. the fourth or later punch in a row
 				List<Entity> closeEntities = GridManager.instance.getEntitiesInRect(x - 2, x + 2, y + 2, y - 2);
 
@@ -287,6 +291,10 @@ public class PlayerCharacter : FightingEntity {
 			{
 				Debug.Log("Ranged attempt triggered");
 
+				//play an obscenity
+				if (Random.Range(0, 3) == 0)
+					SFXManager.PlayerVoice();
+
 				//try again with range.
 				//copy of the normal fight code, because we need to know our target.
 				//this is bad practice
@@ -330,11 +338,25 @@ public class PlayerCharacter : FightingEntity {
 	public override void Die()
 	{
 		animator.Play ("Death");
+
+		//play an obscenity
+		if (Random.Range(0, 3) == 0)
+			SFXManager.PlayerVoice();
+
 		deathFadeIsHappening = true;
 		deathFadeCount = 0;
 		Camera.main.SendMessage("fadeOut");
 		//Application.LoadLevel("Main_Menu");
 		//TOTALSCORE = score;
+	}
+
+	public override void takeDamage (int damage)
+	{
+		//play an obscenity
+		if (Random.Range(0, 3) == 0)
+			SFXManager.PlayerVoice();
+
+		base.takeDamage (damage);
 	}
 
 	public void OnGUI(){
