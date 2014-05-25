@@ -37,7 +37,7 @@ public class PuzzleManager : MonoBehaviour {
 	
 	private Token activeToken;
 	private int activeX, activeY;
-	public int timeLimit = 900;
+	public int timeLimit = 600;
 	public int currTime;
 	private Vector2 mouseTokenRelativeLocation;
 	
@@ -1020,6 +1020,14 @@ public class PuzzleManager : MonoBehaviour {
 			if (tut1) tLabel1.SetActive(true);
 			if (tut2) tLabel2.SetActive(true);
 			if (tut3) tLabel3.SetActive(true);
+		}
+
+		//enable or disable the timer visibility based on time
+		GameObject timer = GameObject.Find("timer");
+		if (currTime <= 300) {
+			timer.GetComponent<dfLabel> ().enabled = true;
+		} else {
+			timer.GetComponent<dfLabel> ().enabled = false;
 		}
 	}
 
