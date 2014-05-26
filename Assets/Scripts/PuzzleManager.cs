@@ -863,7 +863,7 @@ public class PuzzleManager : MonoBehaviour {
 					continue;
 				if (puzzleGrid [i, j] != activeToken) {
 					//draw the tokens gray if disabled
-					if (GameObject.Find ("Player").GetComponent<TurnManager> ().turn != 0 && refillStep == 4) {
+					if (GameObject.Find ("Player").GetComponent<TurnManager> ().turn != 1 || GameObject.Find("Player").GetComponent<PlayerCharacter>().executeMode == true){//&& refillStep == 4) {
 						GUI.color = Color.gray;
 					} else {
 						GUI.color = new Color (1.0f, 1.0f, 1.0f, puzzleGrid [i, j].drawAlpha);
@@ -910,7 +910,7 @@ public class PuzzleManager : MonoBehaviour {
 	
 	private void handleNormalBoardLogic(){
 		//if in the proper phase and there is a click/touch and the player is alive
-		if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0) {
+		if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0 && pc.GetComponent<PlayerCharacter>().executeMode!=true && pc.GetComponent<TurnManager>().turn == 1) {
 			//and if there is already an active token
 			if (activeToken != null) {
 				//drag around the currently selected token
