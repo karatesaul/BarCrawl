@@ -227,8 +227,6 @@ public class PlayerCharacter : FightingEntity {
 				Debug.Log("AoE triggered!");
 
 				//play an obscenity
-				if (Random.Range(0, 3) == 0)
-					SFXManager.PlayerVoice();
 
 				//i.e. the fourth or later punch in a row
 				List<Entity> closeEntities = GridManager.instance.getEntitiesInRect(x - 2, x + 2, y + 2, y - 2);
@@ -246,9 +244,13 @@ public class PlayerCharacter : FightingEntity {
 					}
 				}
 
+
 				animator.Play("AttackDown");
 				shakyCam = shakeTime;
 				Instantiate(aoeEffect, transform.position, Quaternion.identity);
+				
+				if (Random.Range(0, 3) == 0)
+					SFXManager.PlayerVoice();
 				return success;
 			}
 
@@ -312,8 +314,7 @@ public class PlayerCharacter : FightingEntity {
 							if(target.gameObject.tag == foeTag){
 						
 								//play an obscenity IFF a bottle is actually thrown.
-								if (Random.Range(0, 3) == 0)
-									SFXManager.PlayerVoice();
+
 
 								target.takeDamage(damageDealt);
 								
@@ -325,7 +326,8 @@ public class PlayerCharacter : FightingEntity {
 								Bottle proj = (Bottle)Instantiate(bottlePrefab, gameObject.transform.position + bottleOffset, Quaternion.identity);
 								proj.target_x = target.x;
 								proj.target_y = target.y;
-								
+								if (Random.Range(0, 3) == 0)
+									SFXManager.PlayerVoice();
 								return true;
 							}
 						}
@@ -357,11 +359,12 @@ public class PlayerCharacter : FightingEntity {
 
 	public override void takeDamage (int damage)
 	{
+		
+		base.takeDamage (damage);
 		//play an obscenity
 		if (Random.Range(0, 3) == 0)
 			SFXManager.PlayerVoice();
 
-		base.takeDamage (damage);
 	}
 
 	public void OnGUI(){

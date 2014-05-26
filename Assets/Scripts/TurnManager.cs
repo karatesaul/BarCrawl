@@ -77,12 +77,7 @@ public class TurnManager : MonoBehaviour {
 			{
 
 				 //This should instead be called in Enemy, but I'll move it there later.
-				if(Random.Range(0,100) >= 15){
-					enemyInstance = Instantiate (meleeEnemyReference, new Vector2(2, 0), new Quaternion(0,0,0,0)) as Enemy;
-				}
-				else{
-					enemyInstance = Instantiate (rangedEnemyReference, new Vector2(2, 0), new Quaternion(0,0,0,0)) as Enemy;
-				}
+		
 				for(int i=0; i<10; i++)
 				{
 					int rand = Random.Range(0, enemySpawnLocations.Length);
@@ -90,6 +85,12 @@ public class TurnManager : MonoBehaviour {
 
 					if(GridManager.instance.isPassable(spawnLoc.x, spawnLoc.y))
 					{
+						if(Random.Range(0,100) >= 15){
+							enemyInstance = Instantiate (meleeEnemyReference, new Vector2(2, 0), new Quaternion(0,0,0,0)) as Enemy;
+						}
+						else{
+							enemyInstance = Instantiate (rangedEnemyReference, new Vector2(2, 0), new Quaternion(0,0,0,0)) as Enemy;
+						}
 						enemyInstance.x = spawnLoc.x;
 						enemyInstance.y = spawnLoc.y;
 						enemyInstance.transform.position = GridManager.getTransformPosition(spawnLoc.x, spawnLoc.y);
