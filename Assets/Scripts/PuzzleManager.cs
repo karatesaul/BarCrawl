@@ -89,8 +89,6 @@ public class PuzzleManager : MonoBehaviour {
 	/// </summary>
 	public int tutorialState;
 	private bool drawn; //set to true once the cursor is drawn to set off the animation
-	private bool set; //set to true so the cursor can be drawn at the right position
-	private bool pickedUp; //set to true when the player picks up the correct token
 	private int m = 0;
 	private int n = 0;
 	private float x = 0;
@@ -179,10 +177,7 @@ public class PuzzleManager : MonoBehaviour {
 			tutorialState = 1;
 			tutorialBoard();
 		}
-		//drawn = false;
-		//set = false;
-		//pickedUp = false;
-
+		drawn = false;
 		audioSource = GetComponentInChildren<AudioSource> ();
 	}
 
@@ -257,29 +252,6 @@ public class PuzzleManager : MonoBehaviour {
 		default:
 			break;
 		}
-
-		//switch(tutorialState)
-
-//		if (drawn) {
-//			//move tutorial sprite based on which part of the tutorial is activated
-//			if (tut1) {
-//				y -= Time.deltaTime * 75;
-//				if (locy - y >= 125) y = locy;	
-//			}
-//			if (tut2) {
-//				if (y - locy <= 190) y += Time.deltaTime * 100;
-//				else y = locy;
-//			}
-//			if (tut3) {
-//				if (x - locx <= 150) x += Time.deltaTime * 100;
-//				else y += Time.deltaTime * 100;
-//				if (y - locy >= 200) {
-//					x = locx;
-//					y = locy;
-//				}
-//			}
-//		}
-
 	}
 
 	#region QueueMove
@@ -1056,6 +1028,7 @@ public class PuzzleManager : MonoBehaviour {
 		if (activeToken != null) {
 			GUI.color = new Color (1.0f, 1.0f, 1.0f, activeToken.drawAlpha);
 			GUI.DrawTexture (activeToken.location, activeToken.sprite);
+			drawn = true;
 		}
 
 		//draw the queue of moves
@@ -1089,6 +1062,19 @@ public class PuzzleManager : MonoBehaviour {
 			//part 1
 			//activate the text
 			tLabel1.SetActive(true);
+			//set cursor postions
+			if (!drawn) {
+				m = 1;
+				n = 3;
+				x = puzzleGrid[m,n].location.x;
+				y = puzzleGrid[m,n].location.y + 25;
+				locx = x;
+				locy = y;
+			} else if (drawn) { 
+				//animate the cursor if positions were already set and it was alreay drawn at the intial position
+				y -= Time.deltaTime * 75;
+				if (locy - y >= 125) y = locy;
+			}
 			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
 			if (Input.GetMouseButton(0)){
 				//if they clicked on token [1, 3], the correct token
@@ -1142,12 +1128,26 @@ public class PuzzleManager : MonoBehaviour {
 				tutorialState = 4;
 				refillStep = 0;
 			}
+			drawn = false;
 			break;
 		case 4:
 			//part 2
 			//activate the proper tutorial text
 			tLabel1.SetActive(false);
 			tLabel2.SetActive(true);
+			//set cursor postions
+			if (!drawn) {
+				m = 3;
+				n = 2;
+				x = puzzleGrid[m,n].location.x;
+				y = puzzleGrid[m,n].location.y + 25;
+				locx = x;
+				locy = y;
+			} else if (drawn) {
+				//animate the cursor if positions were already set and it was alreay drawn at the intial position
+				if (y - locy <= 190) y += Time.deltaTime * 100;
+				else y = locy;
+			}
 			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
 			if (Input.GetMouseButton(0)){
 				//if they clicked on token [1, 3], the correct token
@@ -1233,12 +1233,29 @@ public class PuzzleManager : MonoBehaviour {
 				refillStep = 0;
 			}
 			puzzleGrid[3, 0].highlight = false;
+			drawn = false;
 			break;
 		case 8: 
 			//part 3
 			//activate the proper tutorial text
 			tLabel2.SetActive(false);
 			tLabel3.SetActive(true);
+			//set cursor postions
+			if (!drawn) {
+				m = 0;
+				n = 1;
+				x = puzzleGrid[m,n].location.x;
+				y = puzzleGrid[m,n].location.y + 25;
+				locx = x;
+				locy = y;
+			} else if (drawn) {
+				if (x - locx <= 150) x += Time.deltaTime * 100;
+				else y += Time.deltaTime * 100;
+				if (y - locy >= 200) {
+					x = locx;
+					y = locy;
+				}
+			}
 			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
 			if (Input.GetMouseButton(0)){
 				//if they clicked on token [1, 3], the correct token
