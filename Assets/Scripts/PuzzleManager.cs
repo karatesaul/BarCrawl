@@ -117,7 +117,7 @@ public class PuzzleManager : MonoBehaviour {
 		
 		currTime = 0;		
 		refillCount = new int[6];
-		refillStep = 4;
+		refillStep = 5;
 
 		maxValue = new int[6];
 		minValue = new int[6];
@@ -218,7 +218,7 @@ public class PuzzleManager : MonoBehaviour {
 				SetScore (setOfMoves.Count);
 
 				//Debug.Log ("sent " + setOfMoves.Count+ " commands");
-				refillStep = 4;
+				refillStep = 5;
 				pc.moveInput = setOfMoves.ToArray ();
 				setOfMoves.Clear ();
 				pc.fillUp = true;
@@ -877,131 +877,6 @@ public class PuzzleManager : MonoBehaviour {
 			handleTutorialBoardLogic();
 			drawTutorialGUI ();
 		}
-
-//		if (activeToken != null){
-//			GUI.color = new Color(1.0f, 1.0f, 1.0f, activeToken.drawAlpha);
-//			GUI.DrawTexture(activeToken.location, activeToken.sprite);
-//							
-//			if (tut2) {
-//				if (activeToken == puzzleGrid[3,2]) {
-//					pickedUp = true;
-//					timeLimit = 900;
-//				}
-//				//else activeToken = null;
-//			}
-//			if (tut3) {
-//				if (activeToken == puzzleGrid[0,1]) {
-//					pickedUp = true;
-//					timeLimit = 900;
-//				}
-//				//else activeToken = null;
-//			}
-//		}
-//		
-//		if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0) { //or if there is a touch present
-//			if (activeToken != null) {
-//				//drag around the currently selected token
-//				activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
-//				activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
-//
-//				//swap around the tiles
-//				int a = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
-//				int b = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
-//				//keep the active token on the board
-//				if (b > 4){
-//					b = 4;
-//				}
-//				if (puzzleGrid[a, b] != activeToken){
-//
-//					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
-//					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
-//					puzzleGrid [a, b] = activeToken;
-//					activeX = a;
-//					activeY = b;
-//					audioSource.Play();
-//					swapCount++;
-//
-//					//check if player placed the tutorial token in the right position
-//					if (tut1) {
-//						if (pickedUp && activeX==1 && activeY==4) {
-//							tut1 = false;
-//							tut2 = true;
-//							set = false;
-//							drawn = false;
-//							pickedUp = false;
-//							puzzleGrid[1,3].highlight = false;
-//							activeToken.Reposition(1, 4);
-//							//activeToken = null;
-//						} else { 
-//							//a = 1;
-//							//b = 3;
-//							//pickedUp = false;
-//						}
-//					}
-//					else if (tut2) {
-//						if (pickedUp && activeX==3 && activeY==0) {
-//							tut2 = false;
-//							tut3 = true;
-//							set = false;
-//							drawn = false;
-//							pickedUp = false;
-//							puzzleGrid[3,2].highlight = false;
-//							activeToken.Reposition(activeX, activeY);
-//							//activeToken = null;
-//						} else {
-//
-//						}
-//					}
-//					else if (tut3) {
-//						if (pickedUp && activeX==2 && activeY==0) {
-//							tut3 = false;
-//							drawn = false;
-//							pickedUp = false;
-//							puzzleGrid[0,1].highlight = false;
-//							activeToken.Reposition(activeX, activeY);
-//							//activeToken = null;
-//							PlayerPrefs.SetInt("ShowTutorial", 0);
-//						} else {
-//
-//						}
-//					}
-//
-//				}
-//				
-//
-//			} else if (activeToken == null && Input.mousePosition.y < 5.0 / 6.0 * Screen.width) {
-//				//get the token that the mouse is over, and pick it up
-//				int a = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
-//				int b = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
-//				
-//				activeToken = puzzleGrid [a, b];
-//				activeX = a;
-//				activeY = b;
-//				//start the movement timer
-//				currTime = timeLimit;
-//				//get the difference between the mouse position and the token's origin
-//				mouseTokenRelativeLocation = new Vector2 (activeToken.location.x, Screen.height - activeToken.location.y) - new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
-//			}
-//			
-//		} else {
-//			if (activeToken != null){
-//				activeToken.Reposition(activeX, activeY);
-//				activeToken = null;
-//				if (swapCount > 0){
-//					refillStep = 0;
-//					swapCount = 0;
-//				}
-//			}
-//			if (currTime != timeLimit) currTime = timeLimit;
-//		}
-//
-//		//enable or disable the timer visibility based on time
-//		GameObject timer = GameObject.Find("timer");
-//		if (currTime <= 300) {
-//			timer.GetComponent<dfLabel> ().enabled = true;
-//		} else {
-//			timer.GetComponent<dfLabel> ().enabled = false;
-//		}
 	}
 
 	private void drawNormalGUI(){
@@ -1146,7 +1021,7 @@ public class PuzzleManager : MonoBehaviour {
 			for (int j=0; j<5; j++){
 				if (puzzleGrid[i,j].tokenVal == TokenType.Empty) continue;
 				if (puzzleGrid[i, j] != activeToken){
-					if(GameObject.Find ("Player").GetComponent<TurnManager>().turn!=0 && refillStep == 4) {
+					if((GameObject.Find ("Player").GetComponent<TurnManager>().turn!=0 && refillStep == 4)|| (puzzleGrid[i,j].highlight == false && refillStep == 5)) {
 						//gray out the tokens if disabled
 						GUI.color = Color.gray;
 					} else {
@@ -1312,7 +1187,9 @@ public class PuzzleManager : MonoBehaviour {
 				}
 			}
 			//set the correct highlights
-			puzzleGrid[3,2].highlight = false;
+			puzzleGrid[3, 2].highlight = false;
+			puzzleGrid[3, 1].highlight = true;
+			puzzleGrid[3, 0].highlight = true;
 			break;
 		case 6: 
 			//drag around the currently selected token
@@ -1342,6 +1219,7 @@ public class PuzzleManager : MonoBehaviour {
 					tutorialState = 7;
 				}
 			}
+			puzzleGrid[3, 1].highlight = false;
 			break;
 		case 7:
 			//drag around the currently selected token
@@ -1354,6 +1232,7 @@ public class PuzzleManager : MonoBehaviour {
 				tutorialState = 8;
 				refillStep = 0;
 			}
+			puzzleGrid[3, 0].highlight = false;
 			break;
 		case 8: 
 			//part 3
@@ -1397,7 +1276,10 @@ public class PuzzleManager : MonoBehaviour {
 					tutorialState = 10;
 				}
 			}
-			puzzleGrid[0,1].highlight = false;
+			puzzleGrid[0, 1].highlight = false;
+			puzzleGrid[1, 1].highlight = true;
+			puzzleGrid[2, 1].highlight = true;
+			puzzleGrid[2, 0].highlight = true;
 			break;
 		case 10: 
 			//drag around the currently selected token
@@ -1427,6 +1309,7 @@ public class PuzzleManager : MonoBehaviour {
 					tutorialState = 11;
 				}
 			}
+			puzzleGrid[1, 1].highlight = false;
 			break;
 		case 11:
 			//drag around the currently selected token
@@ -1458,6 +1341,7 @@ public class PuzzleManager : MonoBehaviour {
 					tutorialState = 12;
 				}
 			}
+			puzzleGrid[2, 1].highlight = false;
 			break;
 		case 12:
 			//drag around the currently selected token
@@ -1472,6 +1356,7 @@ public class PuzzleManager : MonoBehaviour {
 				refillStep = 0;
 				tLabel3.SetActive(false);
 			}
+			puzzleGrid[2, 0].highlight = false;
 			break;
 		}	
 	}
@@ -1535,7 +1420,12 @@ public class Token{
 	public static Vector2 GetCoordsOfPosition(int i, int j){
 		return new Vector2 (Screen.width * (i / 6.0f), Screen.height - Screen.width / 6.0f * (1 + j));
 	}
-	
+
+	/// <summary>
+	/// Gets the i, j board position of a location om the screen
+	/// </summary>
+	/// <returns>The position of coords.</returns>
+	/// <param name="coords">Coords.</param>
 	public static Vector2 GetPositionOfCoords(Vector2 coords){
 		return new Vector2 (Mathf.FloorToInt (coords.x * 6.0f / Screen.width), Mathf.FloorToInt ((Screen.height - coords.y) * 6.0f / Screen.width - 1));
 	}
