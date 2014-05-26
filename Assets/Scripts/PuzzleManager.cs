@@ -39,6 +39,7 @@ public class PuzzleManager : MonoBehaviour {
 	private int activeX, activeY;
 	public int timeLimit = 600;
 	public int currTime;
+	public int totalScore = Scores.total;
 	private Vector2 mouseTokenRelativeLocation;
 	
 	/// <summary>
@@ -190,7 +191,10 @@ public class PuzzleManager : MonoBehaviour {
 	void Update () {
 		//no need to update while still on the menu
 		if(!puzzleActive) return;
-		
+
+		//update the score
+		totalScore = Scores.total;
+
 		if (Input.GetKey (KeyCode.I)) {
 			Debug.Log(refillStep.ToString());
 		}
