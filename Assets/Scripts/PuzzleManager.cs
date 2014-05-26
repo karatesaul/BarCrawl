@@ -70,23 +70,24 @@ public class PuzzleManager : MonoBehaviour {
 	public GameObject tLabel1;
 	public GameObject tLabel2;
 	public GameObject tLabel3;
-	
-	/* [tutorial states]
-	 * 0 - not in tutorial
-	 * 1 - part 1, before picking up
-	 * 2 - part 1, picked up correct token
-	 * 3 - part 1, swap happened
-	 * 4 - part 2, before picking up
-	 * 5 - part 2, picked up correct token
-	 * 6 - part 2, swap happened 
-	 * 7 - part 3, before picking up
-	 * 8 - part 3, picked up correct token
-	 * 9 - part 3, swap happened, tutorial over
-	 */
+
+	/// <summary>
+	/// The state of the tutorial.
+	/// 0 - not in tutorial
+	/// 1 - part 1, before picking up
+	/// 2 - part 1, picked up correct token, allow only a swap
+	/// 3 - part 1, swap happened, ready to drop
+	/// 4 - part 2, before picking up
+	/// 5 - part 2, picked up correct token, allow only first swap
+	/// 6 - part 2, swap happened, allow only second swap
+	/// 7 - part 2, second swap happened, ready to drop
+	/// 8 - part 3, before picking up
+	/// 9 - part 3, picked up correct token, allow only first swap
+	/// 10 - part 3, first swap happened, allow only second swap
+	/// 11 - part 3, second swap happened, allow only third swap
+	/// 12 - part 3, third swap happened, ready to drop
+	/// </summary>
 	public int tutorialState;
-	public bool tut1;
-	public bool tut2;
-	public bool tut3;
 	private bool drawn; //set to true once the cursor is drawn to set off the animation
 	private bool set; //set to true so the cursor can be drawn at the right position
 	private bool pickedUp; //set to true when the player picks up the correct token
@@ -174,6 +175,7 @@ public class PuzzleManager : MonoBehaviour {
 		
 		//set tutorial bools and preset board
 		if (PlayerPrefs.GetInt("ShowTutorial") == 1) {
+			Debug.Log("Beginning with a tutorial");
 			tutorialState = 1;
 			tutorialBoard();
 		}
@@ -258,25 +260,25 @@ public class PuzzleManager : MonoBehaviour {
 
 		//switch(tutorialState)
 
-		if (drawn) {
-			//move tutorial sprite based on which part of the tutorial is activated
-			if (tut1) {
-				y -= Time.deltaTime * 75;
-				if (locy - y >= 125) y = locy;	
-			}
-			if (tut2) {
-				if (y - locy <= 190) y += Time.deltaTime * 100;
-				else y = locy;
-			}
-			if (tut3) {
-				if (x - locx <= 150) x += Time.deltaTime * 100;
-				else y += Time.deltaTime * 100;
-				if (y - locy >= 200) {
-					x = locx;
-					y = locy;
-				}
-			}
-		}
+//		if (drawn) {
+//			//move tutorial sprite based on which part of the tutorial is activated
+//			if (tut1) {
+//				y -= Time.deltaTime * 75;
+//				if (locy - y >= 125) y = locy;	
+//			}
+//			if (tut2) {
+//				if (y - locy <= 190) y += Time.deltaTime * 100;
+//				else y = locy;
+//			}
+//			if (tut3) {
+//				if (x - locx <= 150) x += Time.deltaTime * 100;
+//				else y += Time.deltaTime * 100;
+//				if (y - locy >= 200) {
+//					x = locx;
+//					y = locy;
+//				}
+//			}
+//		}
 
 	}
 
@@ -867,79 +869,163 @@ public class PuzzleManager : MonoBehaviour {
 	public void OnGUI(){
 		//no need to draw this while menu is active
 		if(!puzzleActive) return;
-		
-		if (PlayerPrefs.GetInt("ShowTutorial") == 1) {
-			switch(tutorialState) {
-			case 0:
-				break;
-			case 1: 
-				//part 1
-				timeLimit = 0;
-				puzzleGrid[1,3].highlight = true;
-				break;
-			case 2: 
-				puzzleGrid[1,3].highlight = false;
-				break;
-			case 3: 
-				break;
-			case 4:
-				//part 2
-				timeLimit = 0;
-				puzzleGrid[3,2].highlight = true;
-				break;
-			case 5: 
-				puzzleGrid[3,2].highlight = false;
-				break;
-			case 6: 
-				break;
-			case 7: 
-				//part 3
-				timeLimit = 0;
-				puzzleGrid[0,1].highlight = true;
-				break;
-			case 8: 
-				puzzleGrid[0,1].highlight = false;
-				break;
-			case 9: 
-				break;
-			}
 
+		if (tutorialState == 0) {
+			handleNormalBoardLogic();
+			drawNormalGUI();
+		} else {
+			handleTutorialBoardLogic();
+			drawTutorialGUI ();
 		}
-		
-		
+
+//		if (activeToken != null){
+//			GUI.color = new Color(1.0f, 1.0f, 1.0f, activeToken.drawAlpha);
+//			GUI.DrawTexture(activeToken.location, activeToken.sprite);
+//							
+//			if (tut2) {
+//				if (activeToken == puzzleGrid[3,2]) {
+//					pickedUp = true;
+//					timeLimit = 900;
+//				}
+//				//else activeToken = null;
+//			}
+//			if (tut3) {
+//				if (activeToken == puzzleGrid[0,1]) {
+//					pickedUp = true;
+//					timeLimit = 900;
+//				}
+//				//else activeToken = null;
+//			}
+//		}
+//		
+//		if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0) { //or if there is a touch present
+//			if (activeToken != null) {
+//				//drag around the currently selected token
+//				activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
+//				activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
+//
+//				//swap around the tiles
+//				int a = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
+//				int b = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
+//				//keep the active token on the board
+//				if (b > 4){
+//					b = 4;
+//				}
+//				if (puzzleGrid[a, b] != activeToken){
+//
+//					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
+//					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+//					puzzleGrid [a, b] = activeToken;
+//					activeX = a;
+//					activeY = b;
+//					audioSource.Play();
+//					swapCount++;
+//
+//					//check if player placed the tutorial token in the right position
+//					if (tut1) {
+//						if (pickedUp && activeX==1 && activeY==4) {
+//							tut1 = false;
+//							tut2 = true;
+//							set = false;
+//							drawn = false;
+//							pickedUp = false;
+//							puzzleGrid[1,3].highlight = false;
+//							activeToken.Reposition(1, 4);
+//							//activeToken = null;
+//						} else { 
+//							//a = 1;
+//							//b = 3;
+//							//pickedUp = false;
+//						}
+//					}
+//					else if (tut2) {
+//						if (pickedUp && activeX==3 && activeY==0) {
+//							tut2 = false;
+//							tut3 = true;
+//							set = false;
+//							drawn = false;
+//							pickedUp = false;
+//							puzzleGrid[3,2].highlight = false;
+//							activeToken.Reposition(activeX, activeY);
+//							//activeToken = null;
+//						} else {
+//
+//						}
+//					}
+//					else if (tut3) {
+//						if (pickedUp && activeX==2 && activeY==0) {
+//							tut3 = false;
+//							drawn = false;
+//							pickedUp = false;
+//							puzzleGrid[0,1].highlight = false;
+//							activeToken.Reposition(activeX, activeY);
+//							//activeToken = null;
+//							PlayerPrefs.SetInt("ShowTutorial", 0);
+//						} else {
+//
+//						}
+//					}
+//
+//				}
+//				
+//
+//			} else if (activeToken == null && Input.mousePosition.y < 5.0 / 6.0 * Screen.width) {
+//				//get the token that the mouse is over, and pick it up
+//				int a = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
+//				int b = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
+//				
+//				activeToken = puzzleGrid [a, b];
+//				activeX = a;
+//				activeY = b;
+//				//start the movement timer
+//				currTime = timeLimit;
+//				//get the difference between the mouse position and the token's origin
+//				mouseTokenRelativeLocation = new Vector2 (activeToken.location.x, Screen.height - activeToken.location.y) - new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+//			}
+//			
+//		} else {
+//			if (activeToken != null){
+//				activeToken.Reposition(activeX, activeY);
+//				activeToken = null;
+//				if (swapCount > 0){
+//					refillStep = 0;
+//					swapCount = 0;
+//				}
+//			}
+//			if (currTime != timeLimit) currTime = timeLimit;
+//		}
+//
+//		//enable or disable the timer visibility based on time
+//		GameObject timer = GameObject.Find("timer");
+//		if (currTime <= 300) {
+//			timer.GetComponent<dfLabel> ().enabled = true;
+//		} else {
+//			timer.GetComponent<dfLabel> ().enabled = false;
+//		}
+	}
+
+	private void drawNormalGUI(){
+		//draw the board
 		for (int i=0; i<6; i++) {
-			for (int j=0; j<5; j++){
-				if (puzzleGrid[i,j].tokenVal == TokenType.Empty) continue;
-				if (puzzleGrid[i, j] != activeToken){
-					if(GameObject.Find ("Player").GetComponent<TurnManager>().turn!=0 && refillStep == 4) {
-//						GUI.Box (new Rect(0, Screen.height*.45f, Screen.width, Screen.height*.55f), "");
+			for (int j=0; j<5; j++) {
+				if (puzzleGrid [i, j].tokenVal == TokenType.Empty)
+					continue;
+				if (puzzleGrid [i, j] != activeToken) {
+					//draw the tokens gray if disabled
+					if (GameObject.Find ("Player").GetComponent<TurnManager> ().turn != 0 && refillStep == 4) {
 						GUI.color = Color.gray;
 					} else {
-						GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,j].drawAlpha);
+						GUI.color = new Color (1.0f, 1.0f, 1.0f, puzzleGrid [i, j].drawAlpha);
 					}
-					GUI.DrawTexture(puzzleGrid[i,j].location, puzzleGrid[i,j].sprite);
-					//GUI.Box(puzzleGrid[i,j].location, "i: " + i.ToString() + "j: " + j.ToString());
-
-					//set cursor position based on which token is highlighted
-					if (PlayerPrefs.GetInt("ShowTutorial") == 1 && puzzleGrid[i,j].highlight) {
-						x = puzzleGrid[i,j].location.x;
-						y = puzzleGrid[i,j].location.y + 25;
-						locx = x;
-						locy = y;
-						m = i;
-						n = j;
-						//set = true;
-					}
-					//if (tut1 || tut2 || tut3) GUI.DrawTexture(new Rect(x, y, puzzleGrid[i,j].location.width, puzzleGrid[i,j].location.height), cursor);
-
+					GUI.DrawTexture (puzzleGrid [i, j].location, puzzleGrid [i, j].sprite);
 				}
 			}
+			//draw the 6th row if refilling
 			if (refillStep == 3){
 				if (puzzleGrid[i,6].tokenVal == TokenType.Empty) continue;
 				if (puzzleGrid[i, 6] != activeToken){
 					GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,6].drawAlpha);
 					GUI.DrawTexture(puzzleGrid[i,6].location, puzzleGrid[i,6].sprite);
-					//GUI.Box(puzzleGrid[i,j].location, "i: " + i.ToString() + "j: " + j.ToString());
 				}
 			}
 		}
@@ -956,57 +1042,42 @@ public class PuzzleManager : MonoBehaviour {
 			index++;
 		}
 
-		if (activeToken != null){
-			GUI.color = new Color(1.0f, 1.0f, 1.0f, activeToken.drawAlpha);
-			GUI.DrawTexture(activeToken.location, activeToken.sprite);
-
-			switch(tutorialState) {
-			case 1: 
-			
-			}
-
-			if (PlayerPrefs.GetInt("ShowTutorial") == 1) {
-				
-				if (tut1) {
-					if (activeToken == puzzleGrid[1,3]) {
-						pickedUp = true;
-						timeLimit = 900;
-					}
-					//else activeToken = null;
-				}
-				if (tut2) {
-					if (activeToken == puzzleGrid[3,2]) {
-						pickedUp = true;
-						timeLimit = 900;
-					}
-					//else activeToken = null;
-				}
-				if (tut3) {
-					if (activeToken == puzzleGrid[0,1]) {
-						pickedUp = true;
-						timeLimit = 900;
-					}
-					//else activeToken = null;
-				}
-				
-			}
+		//draw the active token
+		if (activeToken != null) {
+			GUI.color = new Color (1.0f, 1.0f, 1.0f, activeToken.drawAlpha);
+			GUI.DrawTexture (activeToken.location, activeToken.sprite);
 		}
-		
-		if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0) { //or if there is a touch present
+
+		//enable or disable the timer visibility based on time
+		GameObject timer = GameObject.Find("timer");
+		if (currTime <= 300) {
+			timer.GetComponent<dfLabel> ().enabled = true;
+		} else {
+			timer.GetComponent<dfLabel> ().enabled = false;
+		}
+	}
+
+	private void handleNormalBoardLogic(){
+		//if in the proper phase and there is a click/touch and the player is alive
+		if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0) {
+			//and if there is already an active token
 			if (activeToken != null) {
 				//drag around the currently selected token
 				activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
 				activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
-
+				
 				//swap around the tiles
 				int a = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
 				int b = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
+				
 				//keep the active token on the board
 				if (b > 4){
 					b = 4;
 				}
+				
+				//if the token has moved
 				if (puzzleGrid[a, b] != activeToken){
-
+					//perform a swap
 					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
 					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
 					puzzleGrid [a, b] = activeToken;
@@ -1014,52 +1085,6 @@ public class PuzzleManager : MonoBehaviour {
 					activeY = b;
 					audioSource.Play();
 					swapCount++;
-
-					//check if player placed the tutorial token in the right position
-					if (tut1) {
-						if (pickedUp && activeX==1 && activeY==4) {
-							tut1 = false;
-							tut2 = true;
-							set = false;
-							drawn = false;
-							pickedUp = false;
-							puzzleGrid[1,3].highlight = false;
-							activeToken.Reposition(1, 4);
-							//activeToken = null;
-						} else { 
-							//a = 1;
-							//b = 3;
-							//pickedUp = false;
-						}
-					}
-					else if (tut2) {
-						if (pickedUp && activeX==3 && activeY==0) {
-							tut2 = false;
-							tut3 = true;
-							set = false;
-							drawn = false;
-							pickedUp = false;
-							puzzleGrid[3,2].highlight = false;
-							activeToken.Reposition(activeX, activeY);
-							//activeToken = null;
-						} else {
-
-						}
-					}
-					else if (tut3) {
-						if (pickedUp && activeX==2 && activeY==0) {
-							tut3 = false;
-							drawn = false;
-							pickedUp = false;
-							puzzleGrid[0,1].highlight = false;
-							activeToken.Reposition(activeX, activeY);
-							//activeToken = null;
-							PlayerPrefs.SetInt("ShowTutorial", 0);
-						} else {
-
-						}
-					}
-
 				}
 				
 				//keep the token within the bounds
@@ -1072,7 +1097,7 @@ public class PuzzleManager : MonoBehaviour {
 				}
 				if (activeToken.location.y > Screen.height - activeToken.location.height)
 					activeToken.location.y = Screen.height - activeToken.location.height;
-
+				
 				//if time is up, drop the token
 				if (currTime <= 0) {
 					activeToken.Reposition(activeX, activeY);
@@ -1082,13 +1107,14 @@ public class PuzzleManager : MonoBehaviour {
 						swapCount = 0;
 					}
 				}
+				//advance the timer
 				currTime--;
-
+			
+			//else, if we don't already have an active token	
 			} else if (activeToken == null && Input.mousePosition.y < 5.0 / 6.0 * Screen.width) {
 				//get the token that the mouse is over, and pick it up
 				int a = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
 				int b = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
-				
 				activeToken = puzzleGrid [a, b];
 				activeX = a;
 				activeY = b;
@@ -1097,8 +1123,9 @@ public class PuzzleManager : MonoBehaviour {
 				//get the difference between the mouse position and the token's origin
 				mouseTokenRelativeLocation = new Vector2 (activeToken.location.x, Screen.height - activeToken.location.y) - new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 			}
-			
+		//else, if there is no touches
 		} else {
+			//if there is an active token, drop it
 			if (activeToken != null){
 				activeToken.Reposition(activeX, activeY);
 				activeToken = null;
@@ -1107,25 +1134,316 @@ public class PuzzleManager : MonoBehaviour {
 					swapCount = 0;
 				}
 			}
+			//reset the time limit
 			if (currTime != timeLimit) currTime = timeLimit;
 		}
-		
-		//draw tutorial cursor after turn is over
-		if (refillStep==5 && activeToken == null && (tut1 || tut2 || tut3)) {
-			GUI.DrawTexture(new Rect(x, y, puzzleGrid[m,n].location.width, puzzleGrid[m,n].location.height), cursor);
-			drawn = true;
-			if (tut1) tLabel1.SetActive(true);
-			if (tut2) tLabel2.SetActive(true);
-			if (tut3) tLabel3.SetActive(true);
+	}
+
+	private void drawTutorialGUI(){
+
+		//draw the board
+		for (int i=0; i<6; i++) {
+			for (int j=0; j<5; j++){
+				if (puzzleGrid[i,j].tokenVal == TokenType.Empty) continue;
+				if (puzzleGrid[i, j] != activeToken){
+					if(GameObject.Find ("Player").GetComponent<TurnManager>().turn!=0 && refillStep == 4) {
+						//gray out the tokens if disabled
+						GUI.color = Color.gray;
+					} else {
+						GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,j].drawAlpha);
+					}
+					GUI.DrawTexture(puzzleGrid[i,j].location, puzzleGrid[i,j].sprite);
+					//set cursor position based on which token is highlighted
+//					if (puzzleGrid[i,j].highlight) {
+//						x = puzzleGrid[i,j].location.x;
+//						y = puzzleGrid[i,j].location.y + 25;
+//						locx = x;
+//						locy = y;
+//						m = i;
+//						n = j;
+//						//set = true;
+//					}
+					//if (tut1 || tut2 || tut3) GUI.DrawTexture(new Rect(x, y, puzzleGrid[i,j].location.width, puzzleGrid[i,j].location.height), cursor);	
+				}
+			}
+			//draw the 6th row if refilling
+			if (refillStep == 3){
+				if (puzzleGrid[i,6].tokenVal == TokenType.Empty) continue;
+				if (puzzleGrid[i, 6] != activeToken){
+					GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,6].drawAlpha);
+					GUI.DrawTexture(puzzleGrid[i,6].location, puzzleGrid[i,6].sprite);
+					//GUI.Box(puzzleGrid[i,j].location, "i: " + i.ToString() + "j: " + j.ToString());
+				}
+			}
 		}
 
-		//enable or disable the timer visibility based on time
-		GameObject timer = GameObject.Find("timer");
-		if (currTime <= 300) {
-			timer.GetComponent<dfLabel> ().enabled = true;
-		} else {
-			timer.GetComponent<dfLabel> ().enabled = false;
+		//draw the active token
+		if (activeToken != null) {
+			GUI.color = new Color (1.0f, 1.0f, 1.0f, activeToken.drawAlpha);
+			GUI.DrawTexture (activeToken.location, activeToken.sprite);
 		}
+
+		//draw the queue of moves
+		//center-align the queue
+		float centerX = Screen.width/2 - (setOfMoves.Count * Screen.width/16)/2;
+		if (centerX < 0) centerX = 0f;
+		float centerY = Screen.width * 5/6 - Screen.width/6;
+		int index = 0;
+		foreach (TokenType t in setOfMoves) {
+			GUI.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+			GUI.DrawTexture(new Rect(centerX + Screen.width/16 * index, centerY, Screen.width/16, Screen.width/16), Token.SpriteOf(t));
+			index++;
+		}
+
+		//draw tutorial cursor after turn is over
+		if (refillStep==5 && activeToken == null) {
+			GUI.DrawTexture(new Rect(x, y, puzzleGrid[m,n].location.width, puzzleGrid[m,n].location.height), cursor);
+			drawn = true;
+		}
+	}
+
+	private void handleTutorialBoardLogic(){
+		//get the token space that the mouse is over
+		int a = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
+		int b = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
+
+		switch(tutorialState) {
+		case 0:
+			break;
+		case 1: 
+			//part 1
+			//activate the text
+			tLabel1.SetActive(true);
+			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
+			if (Input.GetMouseButton(0)){
+				//if they clicked on token [1, 3], the correct token
+				if (a == 1 && b == 3){
+					activeToken = puzzleGrid[a,b];
+					activeX = a;
+					activeY = b;
+					mouseTokenRelativeLocation = new Vector2 (activeToken.location.x, Screen.height - activeToken.location.y) - new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+					tutorialState = 2;
+				}
+			}
+			//set the correct highlights
+			puzzleGrid[1,3].highlight = true;
+			break;
+		case 2: 
+			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
+			if (!Input.GetMouseButton(0)){
+				//drop the token
+				activeToken.Reposition(activeX, activeY);
+				activeToken = null;
+				tutorialState = 1;
+			} else {
+				//if the token has moved, and to the right spot
+				if (puzzleGrid[a, b] != activeToken && a == 1 && b == 4){
+					//perform a swap
+					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
+					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+					puzzleGrid [a, b] = activeToken;
+					activeX = a;
+					activeY = b;
+					audioSource.Play();
+					//swapCount++;
+					tutorialState = 3;
+				}
+			}
+			//set the correct highlights
+			puzzleGrid[1,3].highlight = false;
+			puzzleGrid[1,4].highlight = true;
+			break;
+		case 3: 
+			//they have done the correct swap, so only let them drop the token
+			if (!Input.GetMouseButton(0)){
+				activeToken.Reposition(activeX, activeY);
+				activeToken = null;
+				tutorialState = 4;
+				refillStep = 0;
+			}
+			break;
+		case 4:
+			//part 2
+			//activate the proper tutorial text
+			tLabel1.SetActive(false);
+			tLabel2.SetActive(true);
+			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
+			if (Input.GetMouseButton(0)){
+				//if they clicked on token [1, 3], the correct token
+				if (a == 3 && b == 2){
+					activeToken = puzzleGrid[a,b];
+					activeX = a;
+					activeY = b;
+					mouseTokenRelativeLocation = new Vector2 (activeToken.location.x, Screen.height - activeToken.location.y) - new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+					tutorialState = 5;
+				}
+			}
+			//set the correct highlights
+			puzzleGrid[3,2].highlight = true;
+			break;
+		case 5: 
+			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
+			if (!Input.GetMouseButton(0)){
+				//drop the token
+				activeToken.Reposition(activeX, activeY);
+				activeToken = null;
+				tutorialState = 4;
+			} else {
+				//if the token has moved, and to the right spot
+				if (puzzleGrid[a, b] != activeToken && a == 3 && b == 1){
+					//perform a swap
+					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
+					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+					puzzleGrid [a, b] = activeToken;
+					activeX = a;
+					activeY = b;
+					audioSource.Play();
+					//swapCount++;
+					tutorialState = 6;
+				}
+			}
+			//set the correct highlights
+			puzzleGrid[3,2].highlight = false;
+			break;
+		case 6: 
+			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
+			if (!Input.GetMouseButton(0)){
+				//drop the token
+				activeToken.Reposition(3, 2);
+				activeToken = null;
+				tutorialState = 4;
+				//reposition the other token we swapped
+				puzzleGrid[3, 1] = puzzleGrid[3, 2];
+				puzzleGrid[3, 1].Reposition(3, 1);
+			} else {
+				//if the token has moved, and to the right spot
+				if (puzzleGrid[a, b] != activeToken && a == 3 && b == 0){
+					//perform a swap
+					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
+					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+					puzzleGrid [a, b] = activeToken;
+					activeX = a;
+					activeY = b;
+					audioSource.Play();
+					//swapCount++;
+					tutorialState = 7;
+				}
+			}
+			break;
+		case 7:
+			//they have done the correct swap, so only let them drop the token
+			if (!Input.GetMouseButton(0)){
+				activeToken.Reposition(activeX, activeY);
+				activeToken = null;
+				tutorialState = 8;
+				refillStep = 0;
+			}
+			break;
+		case 8: 
+			//part 3
+			//activate the proper tutorial text
+			tLabel2.SetActive(false);
+			tLabel3.SetActive(true);
+			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
+			if (Input.GetMouseButton(0)){
+				//if they clicked on token [1, 3], the correct token
+				if (a == 0 && b == 1){
+					activeToken = puzzleGrid[a,b];
+					activeX = a;
+					activeY = b;
+					mouseTokenRelativeLocation = new Vector2 (activeToken.location.x, Screen.height - activeToken.location.y) - new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+					tutorialState = 9;
+				}
+			}
+			puzzleGrid[0,1].highlight = true;
+			break;
+		case 9: 
+			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
+			if (!Input.GetMouseButton(0)){
+				//drop the token
+				activeToken.Reposition(activeX, activeY);
+				activeToken = null;
+				tutorialState = 8;
+			} else {
+				//if the token has moved, and to the right spot
+				if (puzzleGrid[a, b] != activeToken && a == 1 && b == 1){
+					//perform a swap
+					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
+					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+					puzzleGrid [a, b] = activeToken;
+					activeX = a;
+					activeY = b;
+					audioSource.Play();
+					//swapCount++;
+					tutorialState = 10;
+				}
+			}
+			puzzleGrid[0,1].highlight = false;
+			break;
+		case 10: 
+			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
+			if (!Input.GetMouseButton(0)){
+				//drop the token
+				activeToken.Reposition(0, 1);
+				activeToken = null;
+				tutorialState = 4;	
+				//reposition the other token we swapped
+				puzzleGrid[1, 1] = puzzleGrid[0, 1];
+				puzzleGrid[1, 1].Reposition(1, 1);
+			} else {
+				//if the token has moved, and to the right spot
+				if (puzzleGrid[a, b] != activeToken && a == 2 && b == 1){
+					//perform a swap
+					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
+					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+					puzzleGrid [a, b] = activeToken;
+					activeX = a;
+					activeY = b;
+					audioSource.Play();
+					//swapCount++;
+					tutorialState = 11;
+				}
+			}
+			break;
+		case 11:
+			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
+			if (!Input.GetMouseButton(0)){
+				//drop the token
+				activeToken.Reposition(0, 1);
+				activeToken = null;
+				tutorialState = 4;
+				//reposition the other tokens we swapped
+				puzzleGrid[2, 1] = puzzleGrid[1, 1];
+				puzzleGrid[2, 1].Reposition(2, 1);
+				puzzleGrid[1, 1] = puzzleGrid[0, 1];
+				puzzleGrid[1, 1].Reposition(1, 1);
+			} else {
+				//if the token has moved, and to the right spot
+				if (puzzleGrid[a, b] != activeToken && a == 2 && b == 0){
+					//perform a swap
+					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
+					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+					puzzleGrid [a, b] = activeToken;
+					activeX = a;
+					activeY = b;
+					audioSource.Play();
+					//swapCount++;
+					tutorialState = 12;
+				}
+			}
+			break;
+		case 12:
+			//they have done the correct swap, so only let them drop the token
+			if (!Input.GetMouseButton(0)){
+				activeToken.Reposition(activeX, activeY);
+				activeToken = null;
+				tutorialState = 0;
+				PlayerPrefs.SetInt("ShowTutorial", 0);
+				refillStep = 0;
+				tLabel3.SetActive(false);
+			}
+			break;
+		}	
 	}
 
 	//function to set the score and display combo popups
