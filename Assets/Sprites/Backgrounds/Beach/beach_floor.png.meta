@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fee08647c864f45d98c6177dce446aec
+guid: a9e7e80d1a986a941b4ba50d43f521bf
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -24,18 +24,18 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spritePixelsToUnits: 440
+  spritePixelsToUnits: 220
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings:
@@ -44,42 +44,6 @@ TextureImporter:
     textureFormat: -2
     compressionQuality: 50
   spriteSheet:
-    sprites:
-    - name: BeachMeleeWalk_0
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 0
-        width: 81
-        height: 219
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: BeachMeleeWalk_1
-      rect:
-        serializedVersion: 2
-        x: 246
-        y: 0
-        width: 88
-        height: 218
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: BeachMeleeWalk_2
-      rect:
-        serializedVersion: 2
-        x: 482
-        y: 2
-        width: 68
-        height: 215
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: BeachMeleeWalk_3
-      rect:
-        serializedVersion: 2
-        x: 649
-        y: 0
-        width: 64
-        height: 218
-      alignment: 0
-      pivot: {x: 0, y: 0}
+    sprites: []
   spritePackingTag: 
   userData: 
