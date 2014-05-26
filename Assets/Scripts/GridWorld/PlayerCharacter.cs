@@ -222,7 +222,7 @@ public class PlayerCharacter : FightingEntity {
 		else 
 		{
 			bool success = false;
-			if(move == Move.Fight && combo >= 3)
+			if(move == Move.Fight && combo > 2)
 			{
 				Debug.Log("AoE triggered!");
 
@@ -275,7 +275,7 @@ public class PlayerCharacter : FightingEntity {
 						//a fightable enemy!
 						//deal it some damage.
 
-						target.health -= blunderDamage;
+						target.takeDamage(blunderDamage);
 						animator.Play ("AttackLeft");
 
 						//Debug.Log("Player blunders into " + target.gameObject.name + ", dealing " + blunderDamage + " damage!  " + target.health + " health remains.");
@@ -292,9 +292,6 @@ public class PlayerCharacter : FightingEntity {
 			{
 				Debug.Log("Ranged attempt triggered");
 
-				//play an obscenity
-				if (Random.Range(0, 3) == 0)
-					SFXManager.PlayerVoice();
 
 				//try again with range.
 				//copy of the normal fight code, because we need to know our target.
@@ -314,10 +311,16 @@ public class PlayerCharacter : FightingEntity {
 						if(target != null){
 							if(target.gameObject.tag == foeTag){
 						
+								//play an obscenity IFF a bottle is actually thrown.
+								if (Random.Range(0, 3) == 0)
+									SFXManager.PlayerVoice();
+
 								target.takeDamage(damageDealt);
 								
 								facing = moveExtensions.getMove(fightOrder[i]);
 								animator.Play("AttackLeft");
+								//changing this to an actual bottle throwing animation would be nice
+								//but unlikely
 
 								Bottle proj = (Bottle)Instantiate(bottlePrefab, gameObject.transform.position + bottleOffset, Quaternion.identity);
 								proj.target_x = target.x;
