@@ -948,7 +948,7 @@ MonoBehaviour:
   TwoWay: 0
 --- !u!65 &280755438
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500000, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -1256,6 +1256,7 @@ MonoBehaviour:
   pc: {fileID: 1707795426}
   timeLimit: 900
   currTime: 0
+  totalScore: 0
   refillStep: 0
   fallSpeed: 6
   setOfMoves: 
@@ -2292,7 +2293,7 @@ Prefab:
     - target: {fileID: 11400012, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: DataSource.Component
       value: 
-      objectReference: {fileID: 1707795426}
+      objectReference: {fileID: 385235317}
     - target: {fileID: 11400016, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: DataSource.Component
       value: 
@@ -2335,7 +2336,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
     - target: {fileID: 400020, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .00130208337
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2364,6 +2365,10 @@ Prefab:
     - target: {fileID: 11400034, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: DataTarget.MemberName
       value: BackgroundSprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: DataSource.MemberName
+      value: totalScore
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400038, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
@@ -2677,7 +2682,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &861084197
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500002, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -3298,7 +3303,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &1089260919
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500004, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -4373,7 +4378,7 @@ MonoBehaviour:
   tabStops: 
 --- !u!65 &1466020672
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500006, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -4601,7 +4606,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &1488221189
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500008, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -4705,8 +4710,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DataSource:
-    Component: {fileID: 1707795426}
-    MemberName: score
+    Component: {fileID: 385235317}
+    MemberName: totalScore
   DataTarget:
     Component: {fileID: 1488221190}
     MemberName: Text
@@ -4786,7 +4791,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &1526376642
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500010, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -4930,7 +4935,7 @@ MonoBehaviour:
   TwoWay: 0
 --- !u!65 &1553442013
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500012, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -5788,7 +5793,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &1736264075
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500014, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -6002,7 +6007,7 @@ MonoBehaviour:
   touchClickRadius: 25
 --- !u!65 &1751292215
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500016, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -6174,7 +6179,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &1932889787
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500018, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -6555,7 +6560,7 @@ Transform:
   m_PrefabInternal: {fileID: 679555709}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00130208337, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}
@@ -6657,7 +6662,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &2063711350
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500020, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -7035,7 +7040,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &2112684537
 BoxCollider:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 6500022, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
