@@ -346,12 +346,13 @@ public class PlayerCharacter : FightingEntity {
 		animator.Play ("Death");
 
 		//play an obscenity
-		if (Random.Range(0, 3) == 0)
-			SFXManager.PlayerVoice();
 
 		deathFadeIsHappening = true;
 		deathFadeCount = 0;
 		Camera.main.SendMessage("fadeOut");
+		
+		if (Random.Range(0, 3) == 0)
+			SFXManager.PlayerVoice();
 		//Application.LoadLevel("Main_Menu");
 		//TOTALSCORE = score;
 		//base.Die ();
