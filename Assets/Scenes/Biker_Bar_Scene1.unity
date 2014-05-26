@@ -1773,9 +1773,7 @@ MonoBehaviour:
   tLabel1: {fileID: 2063711347}
   tLabel2: {fileID: 1932889784}
   tLabel3: {fileID: 2112684534}
-  tut1: 0
-  tut2: 0
-  tut3: 0
+  tutorialState: 0
 --- !u!4 &385235318
 Transform:
   m_ObjectHideFlags: 0
@@ -2992,9 +2990,28 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .00130208337
+      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11400028, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: DataSource.MemberName
+      value: attackVal
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400028, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: DataTarget.MemberName
+      value: BackgroundSprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400038, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: DataSource.MemberName
+      value: attackVal
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400038, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: DataTarget.MemberName
+      value: BackgroundSprite
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11400034, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+    - {fileID: 11400028, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+    - {fileID: 11400038, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
   m_RootGameObject: {fileID: 1751292209}
   m_IsPrefabParent: 0
@@ -6968,7 +6985,6 @@ GameObject:
   - 4: {fileID: 1932889785}
   - 114: {fileID: 1932889788}
   - 65: {fileID: 1932889787}
-  - 114: {fileID: 1932889786}
   m_Layer: 10
   m_Name: tut2
   m_TagString: Untagged
@@ -6987,26 +7003,6 @@ Transform:
   m_LocalScale: {x: .200000003, y: .200000003, z: .200000003}
   m_Children: []
   m_Father: {fileID: 1751292210}
---- !u!114 &1932889786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400028, guid: 5bd0c16a15399415084f23039b374cc6,
-    type: 2}
-  m_PrefabInternal: {fileID: 679555709}
-  m_GameObject: {fileID: 1932889784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63ef4a1e2b81b534890a74ccb941acb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DataSource:
-    Component: {fileID: 385235317}
-    MemberName: tut2
-  DataTarget:
-    Component: {fileID: 1932889788}
-    MemberName: IsVisible
-  FormatString: 
-  TwoWay: 0
 --- !u!65 &1932889787
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7410,7 +7406,7 @@ Transform:
   m_PrefabInternal: {fileID: 679555709}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00130208337, y: .00130208337, z: 0}
+  m_LocalPosition: {x: .00130208337, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}
@@ -7424,7 +7420,6 @@ GameObject:
   - 4: {fileID: 2063711348}
   - 114: {fileID: 2063711351}
   - 65: {fileID: 2063711350}
-  - 114: {fileID: 2063711349}
   m_Layer: 10
   m_Name: tut1
   m_TagString: Untagged
@@ -7443,26 +7438,6 @@ Transform:
   m_LocalScale: {x: .200000003, y: .200000003, z: .200000003}
   m_Children: []
   m_Father: {fileID: 1751292210}
---- !u!114 &2063711349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400034, guid: 5bd0c16a15399415084f23039b374cc6,
-    type: 2}
-  m_PrefabInternal: {fileID: 679555709}
-  m_GameObject: {fileID: 2063711347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63ef4a1e2b81b534890a74ccb941acb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DataSource:
-    Component: {fileID: 385235317}
-    MemberName: tut1
-  DataTarget:
-    Component: {fileID: 2063711351}
-    MemberName: IsVisible
-  FormatString: 
-  TwoWay: 0
 --- !u!65 &2063711350
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7891,7 +7866,6 @@ GameObject:
   - 4: {fileID: 2112684535}
   - 114: {fileID: 2112684538}
   - 65: {fileID: 2112684537}
-  - 114: {fileID: 2112684536}
   m_Layer: 10
   m_Name: tut3
   m_TagString: Untagged
@@ -7910,26 +7884,6 @@ Transform:
   m_LocalScale: {x: .200000003, y: .200000003, z: .200000003}
   m_Children: []
   m_Father: {fileID: 1751292210}
---- !u!114 &2112684536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400038, guid: 5bd0c16a15399415084f23039b374cc6,
-    type: 2}
-  m_PrefabInternal: {fileID: 679555709}
-  m_GameObject: {fileID: 2112684534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63ef4a1e2b81b534890a74ccb941acb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DataSource:
-    Component: {fileID: 385235317}
-    MemberName: tut3
-  DataTarget:
-    Component: {fileID: 2112684538}
-    MemberName: IsVisible
-  FormatString: 
-  TwoWay: 0
 --- !u!65 &2112684537
 BoxCollider:
   m_ObjectHideFlags: 0
