@@ -193,6 +193,7 @@ MonoBehaviour:
   health: 0
   currentRed: 0
   isPassable: 0
+  dead: 0
   moveSpeed: .100000001
   bloodSpatter: {fileID: 19800000, guid: 684261b06538d4df2ba10b7bab60c501, type: 2}
   isExecuting: 0
@@ -412,6 +413,7 @@ MonoBehaviour:
   health: 0
   currentRed: 0
   isPassable: 0
+  dead: 0
   moveSpeed: .100000001
   bloodSpatter: {fileID: 19800000, guid: 684261b06538d4df2ba10b7bab60c501, type: 2}
   isExecuting: 0
@@ -780,6 +782,7 @@ MonoBehaviour:
   health: 0
   currentRed: 0
   isPassable: 0
+  dead: 0
   moveSpeed: .100000001
   bloodSpatter: {fileID: 19800000, guid: 684261b06538d4df2ba10b7bab60c501, type: 2}
   isExecuting: 0
@@ -993,7 +996,7 @@ MonoBehaviour:
   TwoWay: 0
 --- !u!65 &280755438
 BoxCollider:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6500000, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -2163,9 +2166,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
+  m_SortingLayer: -1
   m_SortingOrder: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 926474707
   m_Sprite: {fileID: 21300000, guid: 4d32b3764f20a594e9a05f42075ee3a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &605270508
@@ -2465,18 +2468,18 @@ Prefab:
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: 15ec4961902cc5e41bf37d7b73a08882, type: 3}
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
     - target: {fileID: 400020, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .00130208337
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .00130208337
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
@@ -3035,7 +3038,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &861084197
 BoxCollider:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6500002, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -3632,7 +3635,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &1089260919
 BoxCollider:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6500004, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -4773,7 +4776,7 @@ MonoBehaviour:
   tabStops: 
 --- !u!65 &1466020672
 BoxCollider:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6500006, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -4865,7 +4868,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &1488221189
 BoxCollider:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6500008, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -5118,7 +5121,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &1526376642
 BoxCollider:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6500010, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -5262,7 +5265,7 @@ MonoBehaviour:
   TwoWay: 0
 --- !u!65 &1553442013
 BoxCollider:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6500012, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -5926,6 +5929,7 @@ MonoBehaviour:
   health: 0
   currentRed: 0
   isPassable: 0
+  dead: 0
   moveSpeed: .100000001
   bloodSpatter: {fileID: 19800000, guid: 684261b06538d4df2ba10b7bab60c501, type: 2}
   moveQueue: 
@@ -6097,7 +6101,7 @@ Transform:
   m_Father: {fileID: 1751292210}
 --- !u!65 &1736264075
 BoxCollider:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6500014, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -6319,8 +6323,8 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 15ec4961902cc5e41bf37d7b73a08882, type: 3}
+  - {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
   - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -6379,7 +6383,7 @@ MonoBehaviour:
   touchClickRadius: 25
 --- !u!65 &1751292215
 BoxCollider:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6500016, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -6572,7 +6576,7 @@ MonoBehaviour:
   TwoWay: 0
 --- !u!65 &1932889787
 BoxCollider:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6500018, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -6841,7 +6845,7 @@ Transform:
   m_PrefabInternal: {fileID: 679555709}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00130208337, y: .00130208337, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}
@@ -7032,7 +7036,7 @@ MonoBehaviour:
   TwoWay: 0
 --- !u!65 &2063711350
 BoxCollider:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6500020, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
@@ -7363,7 +7367,7 @@ MonoBehaviour:
   TwoWay: 0
 --- !u!65 &2112684537
 BoxCollider:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6500022, guid: 5bd0c16a15399415084f23039b374cc6,
     type: 2}
   m_PrefabInternal: {fileID: 679555709}
