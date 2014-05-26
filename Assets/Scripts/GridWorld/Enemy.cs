@@ -40,6 +40,9 @@ public class Enemy : FightingEntity {
 	protected override void Update () {
 		base.Update();
 
+		if (deathState != 0)
+			return;
+
 		if (!isExecuting) {
 			if(Input.GetKeyDown (KeyCode.O)){
 //				Debug.Log ("Enemy takes a turn!");
@@ -357,7 +360,9 @@ public class Enemy : FightingEntity {
 	}
 	//*/
 
-	public override void Die(){
+	public override void Die()
+	{
+
 		base.Die ();
 		Scores.total += 100;
 		Scores.enemiesKilled += 1;

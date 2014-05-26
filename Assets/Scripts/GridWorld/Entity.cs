@@ -20,7 +20,7 @@ public class Entity : MonoBehaviour {
 	private bool isMoving = false;
 	private Vector3 moveDest;
 
-	private int deathState = 0;
+	protected int deathState = 0;
 
 	protected SpriteRenderer spriteRenderer;
 	protected Animator animator;
@@ -62,6 +62,8 @@ public class Entity : MonoBehaviour {
 			deathticker = 1;
 			animator.Play ("Death");
 			deathState = 1;
+			dead = true;
+			GridManager.instance.entities.Remove(this);
 //			Die ();
 		}
 
@@ -179,7 +181,7 @@ public class Entity : MonoBehaviour {
 	public virtual void Die()
 	{
 		//right now, that consists of removing it from the GridManager's entity list.
-		GridManager.instance.entities.Remove(this);
+
 		Destroy (this.gameObject);
 	}
 }
