@@ -1229,6 +1229,9 @@ public class PuzzleManager : MonoBehaviour {
 			puzzleGrid[1,3].highlight = true;
 			break;
 		case 2: 
+			//drag around the currently selected token
+			activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
+			activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
 			if (!Input.GetMouseButton(0)){
 				//drop the token
@@ -1254,6 +1257,9 @@ public class PuzzleManager : MonoBehaviour {
 			puzzleGrid[1,4].highlight = true;
 			break;
 		case 3: 
+			//drag around the currently selected token
+			activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
+			activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 			//they have done the correct swap, so only let them drop the token
 			if (!Input.GetMouseButton(0)){
 				activeToken.Reposition(activeX, activeY);
@@ -1282,6 +1288,9 @@ public class PuzzleManager : MonoBehaviour {
 			puzzleGrid[3,2].highlight = true;
 			break;
 		case 5: 
+			//drag around the currently selected token
+			activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
+			activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
 			if (!Input.GetMouseButton(0)){
 				//drop the token
@@ -1306,15 +1315,19 @@ public class PuzzleManager : MonoBehaviour {
 			puzzleGrid[3,2].highlight = false;
 			break;
 		case 6: 
+			//drag around the currently selected token
+			activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
+			activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
 			if (!Input.GetMouseButton(0)){
-				//drop the token
-				activeToken.Reposition(3, 2);
-				activeToken = null;
-				tutorialState = 4;
 				//reposition the other token we swapped
 				puzzleGrid[3, 1] = puzzleGrid[3, 2];
 				puzzleGrid[3, 1].Reposition(3, 1);
+				//drop the token
+				puzzleGrid[3, 2] = activeToken;
+				puzzleGrid[3, 2].Reposition(3, 2);
+				activeToken = null;
+				tutorialState = 4;
 			} else {
 				//if the token has moved, and to the right spot
 				if (puzzleGrid[a, b] != activeToken && a == 3 && b == 0){
@@ -1331,6 +1344,9 @@ public class PuzzleManager : MonoBehaviour {
 			}
 			break;
 		case 7:
+			//drag around the currently selected token
+			activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
+			activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 			//they have done the correct swap, so only let them drop the token
 			if (!Input.GetMouseButton(0)){
 				activeToken.Reposition(activeX, activeY);
@@ -1358,6 +1374,9 @@ public class PuzzleManager : MonoBehaviour {
 			puzzleGrid[0,1].highlight = true;
 			break;
 		case 9: 
+			//drag around the currently selected token
+			activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
+			activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
 			if (!Input.GetMouseButton(0)){
 				//drop the token
@@ -1381,15 +1400,19 @@ public class PuzzleManager : MonoBehaviour {
 			puzzleGrid[0,1].highlight = false;
 			break;
 		case 10: 
+			//drag around the currently selected token
+			activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
+			activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
 			if (!Input.GetMouseButton(0)){
-				//drop the token
-				activeToken.Reposition(0, 1);
-				activeToken = null;
-				tutorialState = 4;	
 				//reposition the other token we swapped
 				puzzleGrid[1, 1] = puzzleGrid[0, 1];
 				puzzleGrid[1, 1].Reposition(1, 1);
+				//drop the active token
+				puzzleGrid[0, 1] = activeToken;
+				puzzleGrid[0, 1].Reposition(0, 1);
+				activeToken = null;
+				tutorialState = 8;
 			} else {
 				//if the token has moved, and to the right spot
 				if (puzzleGrid[a, b] != activeToken && a == 2 && b == 1){
@@ -1406,17 +1429,21 @@ public class PuzzleManager : MonoBehaviour {
 			}
 			break;
 		case 11:
+			//drag around the currently selected token
+			activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
+			activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
 			if (!Input.GetMouseButton(0)){
-				//drop the token
-				activeToken.Reposition(0, 1);
-				activeToken = null;
-				tutorialState = 4;
 				//reposition the other tokens we swapped
 				puzzleGrid[2, 1] = puzzleGrid[1, 1];
 				puzzleGrid[2, 1].Reposition(2, 1);
 				puzzleGrid[1, 1] = puzzleGrid[0, 1];
 				puzzleGrid[1, 1].Reposition(1, 1);
+				//drop the token
+				puzzleGrid[0, 1] = activeToken;
+				puzzleGrid[0, 1].Reposition(0, 1);
+				activeToken = null;
+				tutorialState = 8;
 			} else {
 				//if the token has moved, and to the right spot
 				if (puzzleGrid[a, b] != activeToken && a == 2 && b == 0){
@@ -1433,6 +1460,9 @@ public class PuzzleManager : MonoBehaviour {
 			}
 			break;
 		case 12:
+			//drag around the currently selected token
+			activeToken.location.x = Input.mousePosition.x + mouseTokenRelativeLocation.x;
+			activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 			//they have done the correct swap, so only let them drop the token
 			if (!Input.GetMouseButton(0)){
 				activeToken.Reposition(activeX, activeY);
