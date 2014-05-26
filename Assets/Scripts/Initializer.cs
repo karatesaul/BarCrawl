@@ -4,7 +4,7 @@ using System.Collections;
 public class Initializer : MonoBehaviour {
 
 	//add scene names to this
-	string[] possibleLevels = {"Biker_Bar_Scene1"};
+	string[] possibleLevels = {"Biker_Bar_Scene1", "Biker_Bar_Scene2", "Biker_Bar_Scene3", "Beach_Bar_Scene1"};
 
 	bool debuggingForceLoad;
 	string forceLevel;
