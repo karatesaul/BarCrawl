@@ -841,7 +841,9 @@ public class PuzzleManager : MonoBehaviour {
 	}
 	
 	#endregion
-	
+
+	#region GUI Methods
+
 	public void OnGUI(){
 		//no need to draw this while menu is active
 		if(!puzzleActive) return;
@@ -1122,6 +1124,7 @@ public class PuzzleManager : MonoBehaviour {
 				refillStep = 0;
 			}
 			drawn = false;
+			puzzleGrid[1, 4].highlight = false;
 			break;
 		case 4:
 			//part 2
@@ -1370,6 +1373,8 @@ public class PuzzleManager : MonoBehaviour {
 			break;
 		}	
 	}
+
+	#endregion
 	
 	//function to set the score and display combo popups
 	private void SetScore(int moves) {
