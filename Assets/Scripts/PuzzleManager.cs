@@ -426,9 +426,8 @@ public class PuzzleManager : MonoBehaviour {
 
 		foreach(Token testAgainst in originalMatch)
 		{
-			Vector2 pos = Token.GetPositionOfCoords(testAgainst.Origin);
-			int x = (int)pos.x;
-			int y = (int)pos.y;
+			int x = testAgainst.puzzX;
+			int y = testAgainst.puzzY;
 
 			List<Token> matches = new List<Token>();
 			
@@ -588,9 +587,8 @@ public class PuzzleManager : MonoBehaviour {
 
 			foreach(Token token in matches)
 			{
-				Vector2 pos = Token.GetPositionOfCoords(token.Origin);
-				int x = (int)pos.x;
-				int y = (int)pos.y;
+				int x = token.puzzX;
+				int y = token.puzzY;
 
 				if(!usedXs.Contains(x))
 				{
@@ -620,6 +618,8 @@ public class PuzzleManager : MonoBehaviour {
 
 				if(!usedYs.Contains(y))
 				{
+					Debug.Log ("y val: " + y);
+
 					List<Token> match = CheckForInternalMatchesHorizontally(x,y,matches);
 					
 					if(match.Count > 1)
@@ -1844,6 +1844,10 @@ public class Token{
 	public bool used;
 	public bool active;
 	public List<Token> match = null;
+
+	//have them keep track of their x,y
+	public int puzzX;
+	public int puzzY;
 	
 	public TokenType tokenVal;
 	public Rect location;
@@ -1859,7 +1863,7 @@ public class Token{
 	}
 	
 	public static Vector2 GetCoordsOfPosition(int i, int j){
-		return new Vector2 (Screen.width * (i / 6.0f), Screen.height - Screen.width / 6.0f * (1 + j));
+		return new Vector2 (i * (Screen.width / 6.0f), Screen.height - (1 + j) * (Screen.width / 6.0f));
 	}
 	
 	/// <summary>
@@ -1868,7 +1872,7 @@ public class Token{
 	/// <returns>The position of coords.</returns>
 	/// <param name="coords">Coords.</param>
 	public static Vector2 GetPositionOfCoords(Vector2 coords){
-		return new Vector2 (Mathf.FloorToInt (coords.x * 6.0f / Screen.width), Mathf.FloorToInt ((Screen.height - coords.y) * 6.0f / Screen.width - 1));
+		return new Vector2 (Mathf.FloorToInt (coords.x * (6.0f / Screen.width)), Mathf.FloorToInt((Screen.height - coords.y) * (6.0f / Screen.width) - 1));
 	}
 	
 	public static Texture SpriteOf(TokenType t){
@@ -1906,6 +1910,9 @@ public class Token{
 		this.used = false;
 		this.tokenVal = (TokenType)type;
 		this.drawAlpha = 1.0f;
+
+		puzzX = xLoc;
+		puzzY = yLoc;
 		
 		location = new Rect (Screen.width * (xLoc / 6.0f), Screen.height - Screen.width / 6.0f * (1 + yLoc), Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f);
 		
@@ -1966,6 +1973,10 @@ public class Token{
 	
 	public void Reposition(int xLoc, int yLoc){
 		location = new Rect (Screen.width * (xLoc / 6.0f), Screen.height - Screen.width / 6.0f * (1 + yLoc), Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f);
+
+		puzzX = xLoc;
+		puzzY = yLoc;
+
 	}
 	
 }
