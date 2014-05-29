@@ -362,7 +362,8 @@ public class Enemy : FightingEntity {
 
 	public override void Die()
 	{
-
+		if(Random.Range (0, 5) == 0)
+			SFXManager.PlayerVoice ();
 		base.Die ();
 		Scores.total += 100;
 		Scores.enemiesKilled += 1;

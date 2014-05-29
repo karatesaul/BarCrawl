@@ -53,7 +53,7 @@ public class Entity : MonoBehaviour {
 		if (deathticker > 0)
 						deathticker++;
 		//perform a couple checks to allow the death animation to play before doing the death handling.
-		if (deathticker > 2 && deathState == 1 && !animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
+		if (deathticker > 60 && deathState == 1){ //&& !animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
 			animator.StopPlayback();
 			deathState = 2;
 			Die();

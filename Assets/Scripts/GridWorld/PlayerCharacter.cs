@@ -187,7 +187,7 @@ public class PlayerCharacter : FightingEntity {
 		}
 
 		if (deathFadeIsHappening) {
-			Debug.Log ("???");
+//			Debug.Log ("???");
 			if (deathFadeCount > 60) {
 				GridManager.instance.clearEntities ();
 				Application.LoadLevel ("High_Scores");
@@ -249,7 +249,7 @@ public class PlayerCharacter : FightingEntity {
 				shakyCam = shakeTime;
 				Instantiate(aoeEffect, transform.position, Quaternion.identity);
 				
-				if (Random.Range(0, 3) == 0)
+				if (Random.Range(0, 5) == 0)
 					SFXManager.PlayerVoice();
 				return success;
 			}
@@ -326,7 +326,7 @@ public class PlayerCharacter : FightingEntity {
 								Bottle proj = (Bottle)Instantiate(bottlePrefab, gameObject.transform.position + bottleOffset, Quaternion.identity);
 								proj.target_x = target.x;
 								proj.target_y = target.y;
-								if (Random.Range(0, 3) == 0)
+								if (Random.Range(0, 5) == 0)
 									SFXManager.PlayerVoice();
 								return true;
 							}
@@ -351,8 +351,8 @@ public class PlayerCharacter : FightingEntity {
 		deathFadeCount = 0;
 		Camera.main.SendMessage("fadeOut");
 		
-		if (Random.Range(0, 3) == 0)
-			SFXManager.PlayerVoice();
+		//if (Random.Range(0, 3) == 0)
+		//	SFXManager.PlayerVoice();
 		//Application.LoadLevel("Main_Menu");
 		//TOTALSCORE = score;
 		//base.Die ();
@@ -363,7 +363,7 @@ public class PlayerCharacter : FightingEntity {
 		
 		base.takeDamage (damage);
 		//play an obscenity
-		if (Random.Range(0, 3) == 0)
+		if (Random.Range(0, 5) == 0)
 			SFXManager.PlayerVoice();
 
 	}
