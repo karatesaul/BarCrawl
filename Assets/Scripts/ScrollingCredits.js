@@ -18,6 +18,7 @@ function Start()
     creds += "Lead User Interface Designer\nKrishna Velury\n\n\n";
     creds += "Lead Artist Coordinator\nand Level Designer\nMark McGowan\n\n\n";
     creds += "Lead Level Programmer\nSteven Hack\n\n\n";
+    creds += "Self Proclaimed Creative Overlord\nWessmaniac\n\n\n";
     creds += "Lead Artist\nRebecca Alto\n\n\n";
     creds += "Visual Artists\nAlexis Williams\nPhoebe Rothfeld\nJes Udelle\nJon Le\n\n\n";
     creds += "Lead Audio Designer\nChristopher Miller\n\n\n";
@@ -32,12 +33,16 @@ function Start()
     
 }
 
-function Update ()
+function OnGUI ()
 {
     if (!crawling)
         return;
-    transform.Translate(Vector3.up * Time.deltaTime * speed);
-    if (gameObject.transform.position.y > 3.2)
+    var speedUp : int = 1; ;
+    if( Input.GetMouseButton(0)){
+    	speedUp = 5;
+    }
+    transform.Translate(Vector3.up * Time.deltaTime * speed * speedUp);
+    if (gameObject.transform.position.y > 3.5)
     {
         Application.LoadLevel("Options");
     }

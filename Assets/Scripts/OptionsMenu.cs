@@ -74,7 +74,7 @@ public class OptionsMenu : MonoBehaviour {
 
 		//option to override our music with vio-lence
 		GUI.Label (new Rect(Screen.width/2 - violenceTexture.width/2, 2 * Screen.height/7,
-		                    violenceTexture.width, violenceTexture.height), style + "I want more Vio-Lence!" + endStyle, otherText);
+		                    violenceTexture.width, violenceTexture.height), style + (violenceSoundtrack?"I want more Vio-Lence!":"Bang that head that doesn't bang") + endStyle, otherText);
 		if(GUI.Button (new Rect(Screen.width/2 - violenceTexture.width/2, 2 * Screen.height/7 + 25,
 		                        violenceTexture.width, violenceTexture.height), violenceTexture, buttonStyle)){
 			violenceSoundtrack = !violenceSoundtrack;
@@ -85,7 +85,7 @@ public class OptionsMenu : MonoBehaviour {
 
 		//show tutorial setting
 		GUI.Label (new Rect(Screen.width/2-tutorialTexture.width/2, 3 * Screen.height/7, 
-		                    tutorialTexture.width, tutorialTexture.height), style + "Help me play this complicated game!" + endStyle, otherText);
+		                    tutorialTexture.width, tutorialTexture.height), style + (tutorial?"Help me play this complicated game!":"I got it") + endStyle, otherText);
 		if(GUI.Button (new Rect(Screen.width/2-tutorialTexture.width/2, 3 * Screen.height/7 + 25, 
 		                        tutorialTexture.width, tutorialTexture.height), tutorialTexture, buttonStyle)){
 			tutorial = !tutorial;
@@ -96,7 +96,7 @@ public class OptionsMenu : MonoBehaviour {
 
 		//show numeric health values setting
 		GUI.Label(new Rect(Screen.width/2 - numericHealthTexture.width/2, 4 * Screen.height/7,
-		                   numericHealthTexture.width, numericHealthTexture.height), style + "Quantify my drunkenness" + endStyle, otherText);
+		                   numericHealthTexture.width, numericHealthTexture.height), style + (showNumericHealth?"Quantify my drunkenness":"I don't need no stinkin' numbers") + endStyle, otherText);
 		if(GUI.Button (new Rect(Screen.width/2 - numericHealthTexture.width/2, 4 * Screen.height/7 + 25,
 		                        numericHealthTexture.width, numericHealthTexture.height), numericHealthTexture, buttonStyle)){
 			showNumericHealth = !showNumericHealth;
