@@ -15,6 +15,7 @@ public class ToggleVioLence : MonoBehaviour {
 			audio.clip = nonVioLence;
 			audio.Play();
 		}
+
 	}
 	
 	// Update is called once per frame

@@ -18,6 +18,7 @@ public class BarMusic : MonoBehaviour {
 				GlobalMusic.ViolenceMusic();
 			}
 		}
+
 		//Debug.Log ("Levelnum: " + GlobalMusic.LEVELNUM);
 	}
 	
