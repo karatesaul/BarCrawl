@@ -610,15 +610,10 @@ public class PuzzleManager : MonoBehaviour {
 						Debug.Log(moves + " " + token.tokenVal + "s on x");
 
 					}
-					else
-						Debug.Log("No moves on x");
 				}
-				else
-					Debug.Log ("Rejected on x");
 
 				if(!usedYs.Contains(y))
 				{
-					Debug.Log ("y val: " + y);
 
 					List<Token> match = CheckForInternalMatchesHorizontally(x,y,matches);
 					
@@ -637,12 +632,7 @@ public class PuzzleManager : MonoBehaviour {
 						}
 						Debug.Log(moves + " " + token.tokenVal + "s on y");
 					}
-					else
-						Debug.Log("No moves on y");
 				}
-				else
-					Debug.Log ("Rejected on y");
-
 			}
 		}
 	}
