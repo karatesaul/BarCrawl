@@ -186,6 +186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backButton: {fileID: 2800000, guid: e0bab627a0c5eb94d9e123821b8bf75b, type: 3}
   fbPlaceholder: {fileID: 2800000, guid: a36151655717ef946b59f0f305355b22, type: 3}
+  findUsOnFacebook: {fileID: 2800000, guid: 323118100f726c344b84c2fd521043eb, type: 3}
+  chewy: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
 --- !u!1 &89862223
 GameObject:
   m_ObjectHideFlags: 0

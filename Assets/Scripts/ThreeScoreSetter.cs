@@ -91,29 +91,15 @@ public class ThreeScoreSetter : MonoBehaviour {
 		highscore4 = PlayerPrefs.GetInt(scoreKey4,baseScore); 
 
 		//display scores to viewport
-		scoreText1.text = "bKnockouts:\n" + highscore1.ToString();
-		scoreText2.text = "bHighest Combo:\n" + highscore2.ToString();
-		scoreText3.text = "bTurns Lasted:\n" + highscore3.ToString();
-		scoreText4.text = "bComposite:\n" + highscore4.ToString();
+		scoreText1.text = "Knockouts:\n" + highscore1.ToString();
+		scoreText2.text = "Highest Combo:\n" + highscore2.ToString();
+		scoreText3.text = "Turns Lasted:\n" + highscore3.ToString();
+		scoreText4.text = "Composite:\n" + highscore4.ToString();
 	}
 
 
 	void OnGUI(){
-
-		//Reset scores to original values
 		/*
-		if (GUI.Button (new Rect (10, 10, 120, 30), "Reset Scores")) {
-			PlayerPrefs.DeleteKey(scoreKey1);
-			PlayerPrefs.DeleteKey(scoreKey2);
-			PlayerPrefs.DeleteKey(scoreKey3);
-			PlayerPrefs.DeleteKey(scoreKey4);
-			score1 = 10;
-			score2 = 20;
-			score3 = 50;
-			score4 = score1 + score2 + score3;
-		}
-		*/
-
 		//buttons for deleting individual highscores
 		if (GUI.Button (new Rect (10, Screen.height-40, 120, 30), "Clear Scores1")) {
 			PlayerPrefs.DeleteKey(scoreKey1);
@@ -131,28 +117,6 @@ public class ThreeScoreSetter : MonoBehaviour {
 			PlayerPrefs.DeleteKey(scoreKey4);
 			score4 = 0;
 		}
-
-		/*
-		//testing score replacement
-		if (GUI.Button (new Rect (10, Screen.height-200, 120, 30), "Player Scored 5")) {
-			score1 = 5;
-			score2 = 5;
-			score3 = 5;
-			score4 = score1 + score2 + score3;
-		}
-		if (GUI.Button (new Rect (130, Screen.height-200, 120, 30), "Player Scored 25")) {
-			score1 = 25;
-			score2 = 25;
-			score3 = 25;
-			score4 = score1 + score2 + score3;
-		}
-		if (GUI.Button (new Rect (250, Screen.height-200, 120, 30), "Player Scored 55")) {
-			score1 = 55;
-			score2 = 55;
-			score3 = 55;
-			score4 = score1 + score2 + score3;
-		}
 		*/
-
 	}
 }
