@@ -113,15 +113,21 @@ MonoBehaviour:
   rightVal: 0
   attackVal: 0
   healVal: 0
+  maxVal: 0
+  trackerVal: 0
   pc: {fileID: 0}
+  matchFadeEffect: {fileID: 19800000, guid: 6f45a22ff4bf64240acb5c0536b399c3, type: 2}
+  puzzleCamera: {fileID: 0}
   timeLimit: 900
   currTime: 0
+  totalScore: 0
   refillStep: 0
   fallSpeed: 6
   setOfMoves: 
-  tut1: 0
-  tut2: 0
-  tut3: 0
+  tLabel1: {fileID: 0}
+  tLabel2: {fileID: 0}
+  tLabel3: {fileID: 0}
+  tutorialState: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

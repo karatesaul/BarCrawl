@@ -463,11 +463,10 @@ public class PuzzleManager : MonoBehaviour {
 					t.drawAlpha = 1.0f;
 					t.tokenVal = TokenType.Empty;
 					t.ResetSprite();
-//					Instantiate(matchFadeEffect, Camera.main.ScreenToWorldPoint(t.Origin + new Vector2(Screen.width/12, Screen.width/12)) - new Vector3(0, 5, 0), Quaternion.identity);
-//					Vector3 instanceLocation = puzzleCamera.ScreenToWorldPoint(t.Origin);
-//					Vector3 instanceLocation = new Vector3(-5f, -3f, .5f);
-//					instanceLocation.z = .5f; 
-//					Instantiate(matchFadeEffect, instanceLocation, Quaternion.identity);
+					Vector3 instanceLocation = puzzleCamera.ScreenToWorldPoint(t.Origin);
+					instanceLocation.y *= -1;
+					instanceLocation.y -= 1;
+					Instantiate(matchFadeEffect, instanceLocation, Quaternion.identity);
 					//					setDone = true;
 				} else {
 					setDone = false;
