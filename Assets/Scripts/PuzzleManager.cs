@@ -73,6 +73,8 @@ public class PuzzleManager : MonoBehaviour {
 	public GameObject tLabel1;
 	public GameObject tLabel2;
 	public GameObject tLabel3;
+
+	public bool showNumericHealth = PlayerPrefs.GetInt("HealthBarNumbers") == 1;
 	
 	/// <summary>
 	/// The state of the tutorial.
@@ -196,10 +198,12 @@ public class PuzzleManager : MonoBehaviour {
 	void Update () {
 		//no need to update while still on the menu
 		if(!puzzleActive) return;
-
+		
 		//update the score
 		totalScore = Scores.total;
-
+		//update healthbar label bool
+		showNumericHealth = PlayerPrefs.GetInt("HealthBarNumbers") == 1;
+		
 		if (Input.GetKey (KeyCode.I)) {
 			Debug.Log(refillStep.ToString());
 		}
@@ -850,9 +854,9 @@ public class PuzzleManager : MonoBehaviour {
 	}
 	
 	#endregion
-
+	
 	#region GUI Methods
-
+	
 	public void OnGUI(){
 		//no need to draw this while menu is active
 		if(!puzzleActive) return;
@@ -1382,7 +1386,7 @@ public class PuzzleManager : MonoBehaviour {
 			break;
 		}	
 	}
-
+	
 	#endregion
 	
 	//function to set the score and display combo popups

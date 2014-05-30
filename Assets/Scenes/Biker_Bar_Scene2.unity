@@ -1050,7 +1050,7 @@ MonoBehaviour:
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
+  font: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -1355,6 +1355,7 @@ MonoBehaviour:
   tLabel1: {fileID: 2063711347}
   tLabel2: {fileID: 1932889784}
   tLabel3: {fileID: 2112684534}
+  showNumericHealth: 0
   tutorialState: 0
 --- !u!4 &385235318
 Transform:
@@ -2396,6 +2397,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: m_Materials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -2467,7 +2472,7 @@ Prefab:
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 15ec4961902cc5e41bf37d7b73a08882, type: 3}
+      objectReference: {fileID: 2100000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
     - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -2478,7 +2483,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: .00130208337
       objectReference: {fileID: 0}
     - target: {fileID: 11400038, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: DataSource.MemberName
@@ -2507,6 +2512,112 @@ Prefab:
     - target: {fileID: 11400012, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: DataSource.MemberName
       value: totalScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8,
+        type: 2}
+    - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: textScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400022, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8,
+        type: 2}
+    - target: {fileID: 11400022, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: textScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8,
+        type: 2}
+    - target: {fileID: 11400006, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: textScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8,
+        type: 2}
+    - target: {fileID: 11400004, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: textScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8,
+        type: 2}
+    - target: {fileID: 11400008, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: textScale
+      value: .875
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8,
+        type: 2}
+    - target: {fileID: 11400010, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: textScale
+      value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8,
+        type: 2}
+    - target: {fileID: 11400036, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8,
+        type: 2}
+    - target: {fileID: 2300000, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400036, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: textScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400030, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8,
+        type: 2}
+    - target: {fileID: 11400030, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: textScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400040, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8,
+        type: 2}
+    - target: {fileID: 11400040, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: textScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400042, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: DataTarget.Component
+      value: 
+      objectReference: {fileID: 1466020671}
+    - target: {fileID: 11400042, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: DataSource.MemberName
+      value: showNumericHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400042, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: DataTarget.MemberName
+      value: IsVisible
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400038, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
@@ -3122,7 +3233,7 @@ MonoBehaviour:
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
+  font: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -3136,7 +3247,7 @@ MonoBehaviour:
     rgba: 4294967295
   align: 0
   vertAlign: 0
-  textScale: .916666687
+  textScale: 1
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
@@ -3719,7 +3830,7 @@ MonoBehaviour:
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
+  font: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -3733,7 +3844,7 @@ MonoBehaviour:
     rgba: 4294967295
   align: 0
   vertAlign: 0
-  textScale: .916666687
+  textScale: 1
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
@@ -4767,7 +4878,7 @@ MonoBehaviour:
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 3cb180835b6012248ac156418cd077ef, type: 2}
-  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
+  font: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -4781,7 +4892,7 @@ MonoBehaviour:
     rgba: 4294967295
   align: 1
   vertAlign: 0
-  textScale: .666666687
+  textScale: .875
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
@@ -4952,7 +5063,7 @@ MonoBehaviour:
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
+  font: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -4966,7 +5077,7 @@ MonoBehaviour:
     rgba: 4294967295
   align: 0
   vertAlign: 0
-  textScale: 1
+  textScale: 1.125
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
@@ -5205,7 +5316,7 @@ MonoBehaviour:
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
+  font: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -5219,7 +5330,7 @@ MonoBehaviour:
     rgba: 4294967295
   align: 0
   vertAlign: 0
-  textScale: .916666687
+  textScale: 1
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
@@ -5254,6 +5365,7 @@ GameObject:
   - 65: {fileID: 1553442013}
   - 114: {fileID: 1553442012}
   - 114: {fileID: 1553442015}
+  - 114: {fileID: 1553442016}
   m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
@@ -5383,6 +5495,26 @@ MonoBehaviour:
     Component: {fileID: 1466020671}
     MemberName: Text
   FormatString: '{0}/100'
+  TwoWay: 0
+--- !u!114 &1553442016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400042, guid: 5bd0c16a15399415084f23039b374cc6,
+    type: 2}
+  m_PrefabInternal: {fileID: 679555709}
+  m_GameObject: {fileID: 1553442010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ef4a1e2b81b534890a74ccb941acb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DataSource:
+    Component: {fileID: 11400000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
+    MemberName: showNumericHealth
+  DataTarget:
+    Component: {fileID: 1466020671}
+    MemberName: IsVisible
+  FormatString: 
   TwoWay: 0
 --- !u!1 &1560876657
 GameObject:
@@ -5935,6 +6067,7 @@ GameObject:
   - 114: {fileID: 1707795426}
   - 114: {fileID: 1707795429}
   - 95: {fileID: 1707795430}
+  - 114: {fileID: 1707795431}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -6057,6 +6190,18 @@ Animator:
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
+--- !u!114 &1707795431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: 84589b969f74f2243a4bedc0cd3664e9,
+    type: 2}
+  m_PrefabInternal: {fileID: 890802758}
+  m_GameObject: {fileID: 1707795425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 142bd178ab351ff4c88673feac26c2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1735684825
 Prefab:
   m_ObjectHideFlags: 0
@@ -6185,7 +6330,7 @@ MonoBehaviour:
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
+  font: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -6199,7 +6344,7 @@ MonoBehaviour:
     rgba: 4294967295
   align: 0
   vertAlign: 0
-  textScale: .916666687
+  textScale: 1
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
@@ -6353,7 +6498,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 15ec4961902cc5e41bf37d7b73a08882, type: 3}
+  - {fileID: 2100000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
   - {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
   - {fileID: 0}
   m_SubsetIndices: 
@@ -6639,7 +6784,7 @@ MonoBehaviour:
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
+  font: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -6653,7 +6798,7 @@ MonoBehaviour:
     rgba: 4294967295
   align: 1
   vertAlign: 1
-  textScale: .666666687
+  textScale: 1
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
@@ -6854,7 +6999,7 @@ Transform:
   m_PrefabInternal: {fileID: 679555709}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: .00130208337, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}
@@ -7078,7 +7223,7 @@ MonoBehaviour:
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
+  font: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -7092,7 +7237,7 @@ MonoBehaviour:
     rgba: 4294967295
   align: 1
   vertAlign: 1
-  textScale: .666666687
+  textScale: 1
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0
@@ -7388,7 +7533,7 @@ MonoBehaviour:
   isLocalized: 0
   hotZoneScale: {x: 1, y: 1}
   atlas: {fileID: 11400000, guid: 061b63b910d71734eb8a953efb83a358, type: 2}
-  font: {fileID: 11400000, guid: 2a81b54b5f7b64244a608964d52d89e3, type: 2}
+  font: {fileID: 11400000, guid: a284118906b644688b8c8ef2f6c220a8, type: 2}
   backgroundSprite: 
   backgroundColor:
     serializedVersion: 2
@@ -7403,7 +7548,7 @@ MonoBehaviour:
     rgba: 4294967295
   align: 1
   vertAlign: 1
-  textScale: .666666687
+  textScale: 1
   textScaleMode: 0
   charSpacing: 0
   colorizeSymbols: 0

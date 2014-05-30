@@ -116,6 +116,7 @@ GameObject:
   - 65: {fileID: 6500012}
   - 114: {fileID: 11400016}
   - 114: {fileID: 11400020}
+  - 114: {fileID: 11400042}
   m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
@@ -601,7 +602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DataSource:
-    Component: {fileID: 0}
+    Component: {fileID: 11400000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
     MemberName: currTime
   DataTarget:
     Component: {fileID: 11400002}
@@ -1015,8 +1016,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DataSource:
-    Component: {fileID: 0}
-    MemberName: score
+    Component: {fileID: 11400000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
+    MemberName: totalScore
   DataTarget:
     Component: {fileID: 11400010}
     MemberName: Text
@@ -1113,7 +1114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DataSource:
-    Component: {fileID: 0}
+    Component: {fileID: 11400000, guid: 84589b969f74f2243a4bedc0cd3664e9, type: 2}
     MemberName: health
   DataTarget:
     Component: {fileID: 11400018}
@@ -1189,7 +1190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DataSource:
-    Component: {fileID: 0}
+    Component: {fileID: 11400000, guid: 84589b969f74f2243a4bedc0cd3664e9, type: 2}
     MemberName: health
   DataTarget:
     Component: {fileID: 11400008}
@@ -1332,11 +1333,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DataSource:
-    Component: {fileID: 0}
-    MemberName: tut2
+    Component: {fileID: 11400030}
+    MemberName: Anchor
   DataTarget:
     Component: {fileID: 11400030}
-    MemberName: IsVisible
+    MemberName: Anchor
   FormatString: 
   TwoWay: 0
 --- !u!114 &11400030
@@ -1441,11 +1442,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DataSource:
-    Component: {fileID: 0}
-    MemberName: tut1
+    Component: {fileID: 11400036}
+    MemberName: Anchor
   DataTarget:
     Component: {fileID: 11400036}
-    MemberName: IsVisible
+    MemberName: Anchor
   FormatString: 
   TwoWay: 0
 --- !u!114 &11400036
@@ -1539,11 +1540,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DataSource:
-    Component: {fileID: 0}
-    MemberName: tut3
+    Component: {fileID: 11400040}
+    MemberName: Anchor
   DataTarget:
     Component: {fileID: 11400040}
-    MemberName: IsVisible
+    MemberName: Anchor
   FormatString: 
   TwoWay: 0
 --- !u!114 &11400040
@@ -1626,6 +1627,25 @@ MonoBehaviour:
     m_Bottom: 0
   tabSize: 48
   tabStops: 
+--- !u!114 &11400042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ef4a1e2b81b534890a74ccb941acb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DataSource:
+    Component: {fileID: 11400000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
+    MemberName: attackVal
+  DataTarget:
+    Component: {fileID: 11400018}
+    MemberName: BackgroundSprite
+  FormatString: 
+  TwoWay: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

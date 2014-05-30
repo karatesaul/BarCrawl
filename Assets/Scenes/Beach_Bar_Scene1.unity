@@ -559,6 +559,7 @@ MonoBehaviour:
   tLabel1: {fileID: 2063711347}
   tLabel2: {fileID: 1932889784}
   tLabel3: {fileID: 2112684534}
+  showNumericHealth: 0
   tutorialState: 0
 --- !u!4 &385235318
 Transform:
@@ -1030,7 +1031,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: .00130208337
       objectReference: {fileID: 0}
     - target: {fileID: 11400034, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: DataSource.MemberName
@@ -1059,6 +1060,18 @@ Prefab:
     - target: {fileID: 11400012, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: DataSource.MemberName
       value: totalScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400042, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: DataTarget.Component
+      value: 
+      objectReference: {fileID: 1466020671}
+    - target: {fileID: 11400042, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: DataSource.MemberName
+      value: showNumericHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400042, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
+      propertyPath: DataTarget.MemberName
+      value: IsVisible
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400034, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
@@ -2508,6 +2521,7 @@ GameObject:
   - 65: {fileID: 1553442013}
   - 114: {fileID: 1553442012}
   - 114: {fileID: 1553442015}
+  - 114: {fileID: 1553442016}
   m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
@@ -2637,6 +2651,26 @@ MonoBehaviour:
     Component: {fileID: 1466020671}
     MemberName: Text
   FormatString: '{0}/100'
+  TwoWay: 0
+--- !u!114 &1553442016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400042, guid: 5bd0c16a15399415084f23039b374cc6,
+    type: 2}
+  m_PrefabInternal: {fileID: 679555709}
+  m_GameObject: {fileID: 1553442010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ef4a1e2b81b534890a74ccb941acb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DataSource:
+    Component: {fileID: 11400000, guid: 075734469c8244059bf41279e8ce9386, type: 2}
+    MemberName: showNumericHealth
+  DataTarget:
+    Component: {fileID: 1466020671}
+    MemberName: IsVisible
+  FormatString: 
   TwoWay: 0
 --- !u!1 &1560876657
 GameObject:
@@ -2957,6 +2991,7 @@ GameObject:
   - 114: {fileID: 1707795426}
   - 114: {fileID: 1707795429}
   - 95: {fileID: 1707795430}
+  - 114: {fileID: 1707795431}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -3079,6 +3114,18 @@ Animator:
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
+--- !u!114 &1707795431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: 84589b969f74f2243a4bedc0cd3664e9,
+    type: 2}
+  m_PrefabInternal: {fileID: 890802758}
+  m_GameObject: {fileID: 1707795425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 142bd178ab351ff4c88673feac26c2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1736264072
 GameObject:
   m_ObjectHideFlags: 0
@@ -3708,7 +3755,7 @@ Transform:
   m_PrefabInternal: {fileID: 679555709}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: .00130208337, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}
