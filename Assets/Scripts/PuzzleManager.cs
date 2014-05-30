@@ -34,7 +34,9 @@ public class PuzzleManager : MonoBehaviour {
 	public int trackerVal;
 	
 	public PlayerCharacter pc;
-	
+	public ParticleSystem matchFadeEffect;
+	public Camera puzzleCamera;
+
 	private Token activeToken;
 	private int activeX, activeY;
 	public int timeLimit = 600;
@@ -132,6 +134,9 @@ public class PuzzleManager : MonoBehaviour {
 		setOfMoves = new List<TokenType> ();
 		setOfTokens = new List<List<Token>> ();
 		//Debug.Log (puzzleGrid [0, 0].tokenVal);
+
+		puzzleCamera = GameObject.Find("Puzzle Camera").camera;
+		//puzzleWorldOrigin = GameObject.Find ("Wood Backdrop").transform.position;
 		
 		//initialize the tokens
 		puzzleGrid = new Token[6, 10];
@@ -458,6 +463,11 @@ public class PuzzleManager : MonoBehaviour {
 					t.drawAlpha = 1.0f;
 					t.tokenVal = TokenType.Empty;
 					t.ResetSprite();
+//					Instantiate(matchFadeEffect, Camera.main.ScreenToWorldPoint(t.Origin + new Vector2(Screen.width/12, Screen.width/12)) - new Vector3(0, 5, 0), Quaternion.identity);
+//					Vector3 instanceLocation = puzzleCamera.ScreenToWorldPoint(t.Origin);
+//					Vector3 instanceLocation = new Vector3(-5f, -3f, .5f);
+//					instanceLocation.z = .5f; 
+//					Instantiate(matchFadeEffect, instanceLocation, Quaternion.identity);
 					//					setDone = true;
 				} else {
 					setDone = false;
