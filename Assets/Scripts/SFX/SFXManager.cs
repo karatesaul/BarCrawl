@@ -13,7 +13,7 @@ public class SFXManager : MonoBehaviour {
 		player = gameObject;
 		uncensored = new AudioClip[17];
 		//This should iterate to the number of voice files.
-		for (int i = 0; i < 17; i++) {
+		for (int i = 0; i < 18; i++) {
 			uncensored[i] = AssetDatabase.LoadAssetAtPath("Assets/Sound/Voice/Uncensored/"+(i+1).ToString ()+".wav", typeof(AudioClip)) as AudioClip;
 		}
 
