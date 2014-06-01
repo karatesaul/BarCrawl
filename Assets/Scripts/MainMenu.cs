@@ -40,7 +40,7 @@ public class MainMenu : MonoBehaviour {
 		//prepare the GUIStyle
 		GUIStyle gs = new GUIStyle();
 		gs.font = chewy;
-		gs.fontSize = 36;
+		gs.fontSize = Screen.width/10;
 		gs.alignment = TextAnchor.MiddleCenter;
 		gs.stretchWidth = true;
 		gs.stretchHeight = true;

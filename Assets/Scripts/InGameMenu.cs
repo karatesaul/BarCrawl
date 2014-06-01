@@ -13,12 +13,12 @@ public class InGameMenu : MonoBehaviour {
 	private bool showInstructions;
 
 	private string ins = "How to Play:\n" +
-						 "- Move a bottle cap as far as you want with your finger\n" +
-						 "- Make matches of 3 to clear them from the puzzle\n" +
-						 "- Matches of 4 or more allow you to move farther, hit harder, and heal more than matches of 3\n" +
-						 "- Moving into an enemy will cause you to damage them instead\n" +
-						 "- You have a limited time to move each bottlecap, as indicated by the timer\n" +
-						 "- Fight enemies for as long as possible for a high score!\n";
+						 "- Move a bottle cap as far as you want\n" +
+						 "- Make matches of 3 or more\n" +
+						 "- Matches of 4 or more can start combos\n" +
+						 "- Moving into an enemy will damage them\n" +
+						 "- You have a limited time to move each bottlecap\n" +
+						 "- Drunkenly brawl for as long as possible!\n";
 	private GUIStyle insFormatting;
 	private GUIStyle gs;
 
@@ -35,11 +35,11 @@ public class InGameMenu : MonoBehaviour {
 		insFormatting.clipping = TextClipping.Clip;
 		insFormatting.wordWrap = true;
 		insFormatting.font = chewy;
-		insFormatting.fontSize = 14;
+		insFormatting.fontSize = Screen.width/20;
 
 		gs = new GUIStyle();
 		gs.font = chewy;
-		gs.fontSize = 36;
+		gs.fontSize = Screen.width/10;
 		gs.alignment = TextAnchor.MiddleCenter;
 		gs.stretchWidth = true;
 		gs.stretchHeight = true;
@@ -86,7 +86,7 @@ public class InGameMenu : MonoBehaviour {
 			}
 		}
 		if(paused && showInstructions){
-			GUI.Box (new Rect(Screen.width/6, Screen.height/2, 2 * Screen.width / 3, Screen.height/3), ins, insFormatting);
+			GUI.Box (new Rect(5, Screen.height/2, Screen.width - 5, Screen.height/2), ins, insFormatting);
 			if(GUI.Button (new Rect(Screen.width/6, 5 * Screen.height/6, 2 * Screen.width / 3, Screen.height/6), "Return", gs)){
 				showInstructions = false;
 			}
