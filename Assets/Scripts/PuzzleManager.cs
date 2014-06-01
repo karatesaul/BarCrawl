@@ -74,7 +74,7 @@ public class PuzzleManager : MonoBehaviour {
 	public GameObject tLabel2;
 	public GameObject tLabel3;
 
-	public bool showNumericHealth = PlayerPrefs.GetInt("HealthBarNumbers") == 1;
+	public bool showNumericHealth;
 	
 	/// <summary>
 	/// The state of the tutorial.
@@ -187,6 +187,7 @@ public class PuzzleManager : MonoBehaviour {
 		}
 		drawn = false;
 		audioSource = GetComponentInChildren<AudioSource> ();
+		showNumericHealth = PlayerPrefs.GetInt("HealthBarNumbers") == 1;
 	}
 	
 	public void endTurn(){
