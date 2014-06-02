@@ -302,6 +302,8 @@ public class PuzzleManager : MonoBehaviour {
 			}
 		}
 
+		//Debug.Log ("Assimilating " + earlierMatches.Count + " old matches:");
+
 		int index;
 
 		//if there were, mash all the matches into our working match
@@ -311,9 +313,10 @@ public class PuzzleManager : MonoBehaviour {
 			earlierMatches.Sort();
 			for(int i = earlierMatches.Count - 1; i >= 0; i--)
 			{
-				//Debug.Log(earlierMatches[i]);
 				List<Token> earlierMatch = setOfTokens[earlierMatches[i]];
-				setOfTokens.RemoveAt(i);
+				setOfTokens.RemoveAt(earlierMatches[i]);
+				//Debug.Log("-Match of " + earlierMatch.Count +" " + earlierMatch[0].tokenVal + "s, match num is " + earlierMatches[i]);
+
 				foreach(Token token in earlierMatch)
 				{
 					//again preventing duplicates
@@ -330,6 +333,8 @@ public class PuzzleManager : MonoBehaviour {
 
 		//add the match!
 		setOfTokens.Insert(index, matches);
+
+		//Debug.Log ("Into match of " + matches.Count + " " + matches[0].tokenVal + "s, match num is " + setOfTokens.IndexOf(matches));
 
 		//we're not done yet!  Have to tell the tokens their states.
 		foreach(Token token in matches)
@@ -413,8 +418,24 @@ public class PuzzleManager : MonoBehaviour {
 	/// <param name="matchNum">The index of the match to check in SetOfTokens.</param>
 	private void ReevaluateMatch(List<Token> originalMatch)
 	{
+		//Debug.Log ("Breaking match of " + originalMatch.Count + " " + originalMatch [0].tokenVal + "s");
+
 		int originalMatchNum = setOfTokens.IndexOf (originalMatch);
-		setOfTokens.RemoveAt (originalMatchNum);
+
+		if(originalMatchNum == -1)
+		{
+			//i don't know why this comes up
+			//but this should at least prevent it crashing
+			//to solve the bugs, though, we really need to figure out why matches are being made, but not put into setOfTokens
+			//(or is that the matches are being removed?)
+			Debug.Log("Match is not in setOfTokens?!");
+			originalMatchNum = setOfTokens.Count;
+		}
+		else
+		{
+			//Debug.Log ("Match num is " + originalMatchNum);
+			setOfTokens.RemoveAt (originalMatchNum);
+		}
 
 		List<List<Token>> newMatches = new List<List<Token>> ();
 		foreach(Token token in originalMatch)
@@ -472,7 +493,7 @@ public class PuzzleManager : MonoBehaviour {
 				earlierMatches.Sort();
 				for(int i = earlierMatches.Count - 1; i >= 0; i--)
 				{
-					Debug.Log(earlierMatches[i]);
+					//Debug.Log(earlierMatches[i]);
 					List<Token> earlierMatch = newMatches[earlierMatches[i]];
 					newMatches.RemoveAt(i);
 					foreach(Token token in earlierMatch)
@@ -496,9 +517,16 @@ public class PuzzleManager : MonoBehaviour {
 			}
 		}
 
+		//Debug.Log ("into " + newMatches.Count + " matches:");
+
 		//now we have the set of matches
 		//add them to the full set
 		setOfTokens.InsertRange (originalMatchNum, newMatches);
+
+		foreach(List<Token> match in newMatches)
+		{
+			//Debug.Log("-match of " + match.Count + ", match num is" + setOfTokens.IndexOf(match));
+		}
 
 	}
 
@@ -580,7 +608,7 @@ public class PuzzleManager : MonoBehaviour {
 			//kind of cheating to get this working quicker
 			//would not work if either dimension had 7 (or more) tokens
 
-			Debug.Log("SET OF " + matches[0].tokenVal + "S");
+			//Debug.Log("SET OF " + matches[0].tokenVal + "S");
 
 			List<int> usedXs = new List<int>();
 			List<int> usedYs = new List<int>();
@@ -607,7 +635,7 @@ public class PuzzleManager : MonoBehaviour {
 						{
 							setOfMoves.Add(token.tokenVal);
 						}
-						Debug.Log(moves + " " + token.tokenVal + "s on x");
+						//Debug.Log(moves + " " + token.tokenVal + "s on x");
 
 					}
 				}
@@ -630,7 +658,7 @@ public class PuzzleManager : MonoBehaviour {
 						{
 							setOfMoves.Add(token.tokenVal);
 						}
-						Debug.Log(moves + " " + token.tokenVal + "s on y");
+						//Debug.Log(moves + " " + token.tokenVal + "s on y");
 					}
 				}
 			}
@@ -1308,6 +1336,14 @@ public class PuzzleManager : MonoBehaviour {
 				if (b > 4){
 					b = 4;
 				}
+
+				//these keep the active token on the board, but only come up when running it in Unity on the computer.
+				if(b < 0)
+					b=0;
+				if(a > 5)
+					a=5;
+				if(a < 0)
+					a=0;
 				
 				//if the token has moved
 				if (puzzleGrid[a, b] != activeToken){
@@ -1315,6 +1351,8 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
 					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
 					puzzleGrid [a, b] = activeToken;
+
+					//Debug.Log ("SWAP");
 
 					//if was in a previous match, check that match's viability
 					if(puzzleGrid[activeX, activeY].match != null)
@@ -1356,7 +1394,7 @@ public class PuzzleManager : MonoBehaviour {
 							refillStep = 1;
 						}
 						else
-							refillStep = 0; //although it seems like it should be 4?
+							refillStep = 0;
 
 						swapCount = 0;
 					}
@@ -1397,7 +1435,7 @@ public class PuzzleManager : MonoBehaviour {
 						refillStep = 1;
 					}
 					else
-						refillStep = 0; //although it seems like it should be 4?
+						refillStep = 0;
 
 					swapCount = 0;
 				}
