@@ -28,7 +28,7 @@ public class Map : MonoBehaviour {
 		//loop two: check for other tiles and place them in arrays based on position if appropriate
 		Tile[] tiles = FindObjectsOfType<Tile>();
 
-		Debug.Log (tiles.Length);
+		//Debug.Log (tiles.Length);
 
 		foreach (Tile tile in tiles)
 		{

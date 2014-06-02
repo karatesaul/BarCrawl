@@ -160,7 +160,7 @@ public class PlayerCharacter : FightingEntity {
 					//reset combo stuff
 					lastMove = Move.None;
 					fullCombo = 0;
-					Debug.Log("Cleared!");
+					//Debug.Log("Cleared!");
 
 					//prevent delay when player's next turn starts
 					timer = 30;
@@ -201,13 +201,13 @@ public class PlayerCharacter : FightingEntity {
 		if (move == lastMove)
 		{
 			combo++;
-			Debug.Log(combo + "x COMBO!");
+			//Debug.Log(combo + "x COMBO!");
 		}
 		else
 		{
 			lastMove = move;
 			combo = fullCombo / 4;
-			Debug.Log("Combo reset to " + combo);
+			//Debug.Log("Combo reset to " + combo);
 		}
 		fullCombo++;
 
@@ -224,7 +224,7 @@ public class PlayerCharacter : FightingEntity {
 			bool success = false;
 			if(move == Move.Fight && combo > 2)
 			{
-				Debug.Log("AoE triggered!");
+				//Debug.Log("AoE triggered!");
 
 				//play an obscenity
 
@@ -292,7 +292,7 @@ public class PlayerCharacter : FightingEntity {
 			}
 			else if(move == Move.Fight && combo > 0)
 			{
-				Debug.Log("Ranged attempt triggered");
+				//Debug.Log("Ranged attempt triggered");
 
 
 				//try again with range.

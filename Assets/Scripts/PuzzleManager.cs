@@ -268,8 +268,413 @@ public class PuzzleManager : MonoBehaviour {
 		}
 	}
 	
-	#region QueueMove
+	#region Match Finding (The region formerly known as QueueMove)
+
+	/// <summary>
+	/// Checks for matches with the token at the specified coordinates.
+	/// </summary>
+	/// <param name="x">The x coordinate.</param>
+	/// <param name="y">The y coordinate.</param>
+	private void CheckForMatches(int x, int y)
+	{
+		List<Token> matches = new List<Token>();
+
+		//find if it caused any matches
+		matches.AddRange(CheckForMatchesHorizontally(x,y));
+		matches.AddRange(CheckForMatchesVertically(x,y));
+
+		//if no matches, quit now.
+		if(matches.Count == 0)
+			return;
+
+		//make sure to include the token itself
+		matches.Add(puzzleGrid[x,y]);
+
+		List<int> earlierMatches = new List<int>();
+
+		//if there are matches, check if any were already matched.
+		foreach(Token token in matches)
+		{
+			if(token.match != null)
+			{
+				int matchNum = setOfTokens.IndexOf(token.match);
+				if(matchNum == -1)
+				{
+					Debug.Log("Missing match?");
+					continue;
+				}
+
+				//prevent duplicate entries
+				if(!earlierMatches.Contains(matchNum))
+				{
+					earlierMatches.Add(matchNum);
+				}
+			}
+		}
+
+		//Debug.Log ("Assimilating " + earlierMatches.Count + " old matches:");
+
+		int index;
+
+		//if there were, mash all the matches into our working match
+		if(earlierMatches.Count > 0)
+		{
+			//add all the tokens to our match
+			earlierMatches.Sort();
+			for(int i = earlierMatches.Count - 1; i >= 0; i--)
+			{
+				List<Token> earlierMatch = setOfTokens[earlierMatches[i]];
+				setOfTokens.RemoveAt(earlierMatches[i]);
+				//Debug.Log("-Match of " + earlierMatch.Count +" " + earlierMatch[0].tokenVal + "s, match num is " + earlierMatches[i]);
+
+				foreach(Token token in earlierMatch)
+				{
+					//again preventing duplicates
+					if(!matches.Contains(token))
+						matches.Add(token);
+				}
+			}
+
+			//and then put the whole conglomerate at the position of the EARLIEST match
+			index = earlierMatches[0];
+		}
+		else
+			index = setOfTokens.Count;
+
+		//add the match!
+		setOfTokens.Insert(index, matches);
+
+		//Debug.Log ("Into match of " + matches.Count + " " + matches[0].tokenVal + "s, match num is " + setOfTokens.IndexOf(matches));
+
+		//we're not done yet!  Have to tell the tokens their states.
+		foreach(Token token in matches)
+		{
+			token.used = true;
+			token.match = matches;
+		}
+	}
+
+	/// <summary>
+	/// Checks for matches horizontally.
+	/// </summary>
+	/// <returns>Any tokens which form a match horizontally with the given token, BUT NOT THAT TOKEN ITSELF.</returns>
+	/// <param name="x">The x coordinate.</param>
+	/// <param name="y">The y coordinate.</param>
+	private List<Token> CheckForMatchesHorizontally(int x, int y)
+	{
+		List<Token> matches = new List<Token>();
+
+		//first the lower
+		for(int i = x - 1; i >= 0; i--)
+		{
+			if(puzzleGrid[i,y].tokenVal.Equals(puzzleGrid[x,y].tokenVal) && !puzzleGrid[i,y].active)
+				matches.Add(puzzleGrid[i,y]);
+			else
+				break;
+		}
+		//then the higher
+		for(int i = x + 1; i < 6; i++)
+		{
+			if(puzzleGrid[i,y].tokenVal.Equals(puzzleGrid[x,y].tokenVal) && !puzzleGrid[i,y].active)
+				matches.Add(puzzleGrid[i,y]);
+			else
+				break;
+		}
+
+		//disregard any pairs
+		if(matches.Count < 2)
+			matches.Clear();
+
+		return matches;
+	}
+
+	/// <summary>
+	/// Checks for matches vertically.
+	/// </summary>
+	/// <returns>Any tokens which form a match vertically with the given token, BUT NOT THAT TOKEN ITSELF.</returns>
+	/// <param name="x">The x coordinate.</param>
+	/// <param name="y">The y coordinate.</param>
+	private List<Token> CheckForMatchesVertically(int x, int y)
+	{
+		List<Token> matches = new List<Token>();
+		
+		//first the lower
+		for(int i = y - 1; i >= 0; i--)
+		{
+			if(puzzleGrid[x,i].tokenVal.Equals(puzzleGrid[x,y].tokenVal) && !puzzleGrid[x,i].active)
+				matches.Add(puzzleGrid[x,i]);
+			else
+				break;
+		}
+		//then the higher
+		for(int i = y + 1; i < 5; i++)
+		{
+			if(puzzleGrid[x,i].tokenVal.Equals(puzzleGrid[x,y].tokenVal) && !puzzleGrid[x,i].active)
+				matches.Add(puzzleGrid[x,i]);
+			else
+				break;
+		}
+		
+		//disregard any pairs
+		if(matches.Count < 2)
+			matches.Clear();
+		
+		return matches;
+	}
+
+	/// <summary>
+	/// Checks a match that has been broken to see if any submatches still remain.
+	/// </summary>
+	/// <param name="matchNum">The index of the match to check in SetOfTokens.</param>
+	private void ReevaluateMatch(List<Token> originalMatch)
+	{
+		//Debug.Log ("Breaking match of " + originalMatch.Count + " " + originalMatch [0].tokenVal + "s");
+
+		int originalMatchNum = setOfTokens.IndexOf (originalMatch);
+
+		if(originalMatchNum == -1)
+		{
+			//i don't know why this comes up
+			//but this should at least prevent it crashing
+			//to solve the bugs, though, we really need to figure out why matches are being made, but not put into setOfTokens
+			//(or is that the matches are being removed?)
+			Debug.Log("Match is not in setOfTokens?!");
+			originalMatchNum = setOfTokens.Count;
+		}
+		else
+		{
+			//Debug.Log ("Match num is " + originalMatchNum);
+			setOfTokens.RemoveAt (originalMatchNum);
+		}
+
+		List<List<Token>> newMatches = new List<List<Token>> ();
+		foreach(Token token in originalMatch)
+		{
+			//first, set them all to a dummy base state
+			token.match = null;
+			token.used = false;
+		}
+
+		foreach(Token testAgainst in originalMatch)
+		{
+			int x = testAgainst.puzzX;
+			int y = testAgainst.puzzY;
+
+			List<Token> matches = new List<Token>();
+			
+			//find if it caused any matches
+			matches.AddRange(CheckForInternalMatchesHorizontally(x,y, originalMatch));
+			matches.AddRange(CheckForInternalMatchesVertically(x,y, originalMatch));
+			
+			//if no matches, quit now.
+			if(matches.Count == 0)
+				continue;
+			
+			//make sure to include the token itself
+			matches.Add(puzzleGrid[x,y]);
+			
+			List<int> earlierMatches = new List<int>();
+			
+			//if there are matches, check if any were already matched.
+			foreach(Token token in matches)
+			{
+				if(token.match != null)
+				{
+					int matchNum = newMatches.IndexOf(token.match);
+					if(matchNum == -1)
+					{
+						Debug.Log("Missing match?");
+						continue;
+					}
+					
+					//prevent duplicate entries
+					if(!earlierMatches.Contains(matchNum))
+					{
+						earlierMatches.Add(matchNum);
+					}
+				}
+			}
+
+			
+			//if there were, mash all the matches into our working match
+			if(earlierMatches.Count > 0)
+			{
+				//add all the tokens to our match
+				earlierMatches.Sort();
+				for(int i = earlierMatches.Count - 1; i >= 0; i--)
+				{
+					//Debug.Log(earlierMatches[i]);
+					List<Token> earlierMatch = newMatches[earlierMatches[i]];
+					newMatches.RemoveAt(i);
+					foreach(Token token in earlierMatch)
+					{
+						//again preventing duplicates
+						if(!matches.Contains(token))
+							matches.Add(token);
+					}
+				}
+
+			}
+			
+			//add the match!
+			newMatches.Add(matches);
+			
+			//we're not done yet!  Have to tell the tokens their states.
+			foreach(Token token in matches)
+			{
+				token.used = true;
+				token.match = matches;
+			}
+		}
+
+		//Debug.Log ("into " + newMatches.Count + " matches:");
+
+		//now we have the set of matches
+		//add them to the full set
+		setOfTokens.InsertRange (originalMatchNum, newMatches);
+
+		foreach(List<Token> match in newMatches)
+		{
+			//Debug.Log("-match of " + match.Count + ", match num is" + setOfTokens.IndexOf(match));
+		}
+
+	}
+
+	/// <summary>
+	/// Checks for matches horizontally from a specified set of tokens.
+	/// </summary>
+	/// <returns>Any tokens which form a match horizontally with the given token, BUT NOT THAT TOKEN ITSELF.</returns>
+	/// <param name="x">The x coordinate.</param>
+	/// <param name="y">The y coordinate.</param>
+	private List<Token> CheckForInternalMatchesHorizontally(int x, int y, List<Token> sourceSet)
+	{
+		List<Token> matches = new List<Token>();
+		
+		//first the lower
+		for(int i = x - 1; i >= 0; i--)
+		{
+			if(puzzleGrid[i,y].tokenVal.Equals(puzzleGrid[x,y].tokenVal) && sourceSet.Contains(puzzleGrid[i,y]))
+				matches.Add(puzzleGrid[i,y]);
+			else
+				break;
+		}
+		//then the higher
+		for(int i = x + 1; i < 6; i++)
+		{
+			if(puzzleGrid[i,y].tokenVal.Equals(puzzleGrid[x,y].tokenVal) && sourceSet.Contains(puzzleGrid[i,y]))
+				matches.Add(puzzleGrid[i,y]);
+			else
+				break;
+		}
+		
+		//disregard any pairs
+		if(matches.Count < 2)
+			matches.Clear();
+		
+		return matches;
+	}
 	
+	/// <summary>
+	/// Checks for matches vertically from a specified set of tokens.
+	/// </summary>
+	/// <returns>Any tokens which form a match vertically with the given token, BUT NOT THAT TOKEN ITSELF.</returns>
+	/// <param name="x">The x coordinate.</param>
+	/// <param name="y">The y coordinate.</param>
+	private List<Token> CheckForInternalMatchesVertically(int x, int y, List<Token> sourceSet)
+	{
+		List<Token> matches = new List<Token>();
+		
+		//first the lower
+		for(int i = y - 1; i >= 0; i--)
+		{
+			if(puzzleGrid[x,i].tokenVal.Equals(puzzleGrid[x,y].tokenVal) && sourceSet.Contains(puzzleGrid[x,i]))
+				matches.Add(puzzleGrid[x,i]);
+			else
+				break;
+		}
+		//then the higher
+		for(int i = y + 1; i < 5; i++)
+		{
+			if(puzzleGrid[x,i].tokenVal.Equals(puzzleGrid[x,y].tokenVal) && sourceSet.Contains(puzzleGrid[x,i]))
+				matches.Add(puzzleGrid[x,i]);
+			else
+				break;
+		}
+		
+		//disregard any pairs
+		if(matches.Count < 2)
+			matches.Clear();
+		
+		return matches;
+	}
+
+	/// <summary>
+	/// Populates SetOfMoves based on the contents of SetOfTokens.
+	/// </summary>
+	private void CreateMovesBasedOnMatches()
+	{
+		foreach(List<Token> matches in setOfTokens)
+		{
+			//kind of cheating to get this working quicker
+			//would not work if either dimension had 7 (or more) tokens
+
+			//Debug.Log("SET OF " + matches[0].tokenVal + "S");
+
+			List<int> usedXs = new List<int>();
+			List<int> usedYs = new List<int>();
+
+			foreach(Token token in matches)
+			{
+				int x = token.puzzX;
+				int y = token.puzzY;
+
+				if(!usedXs.Contains(x))
+				{
+					List<Token> match = CheckForInternalMatchesVertically(x,y,matches);
+
+					if(match.Count > 1)
+					{
+						//-1 because it does not include the token we're checking against
+						//thus for a match of, say, four tokens, we would have 3 in the array
+						int moves = match.Count - 1;
+
+						//prevent repeat counts
+						usedXs.Add(x);
+
+						for(int i = 0; i < moves; i++)
+						{
+							setOfMoves.Add(token.tokenVal);
+						}
+						//Debug.Log(moves + " " + token.tokenVal + "s on x");
+
+					}
+				}
+
+				if(!usedYs.Contains(y))
+				{
+
+					List<Token> match = CheckForInternalMatchesHorizontally(x,y,matches);
+					
+					if(match.Count > 1)
+					{
+						//-1 because it does not include the token we're checking against
+						//thus for a match of, say, four tokens, we would have 3 in the array
+						int moves = match.Count - 1;
+						
+						//prevent repeat counts
+						usedYs.Add(y);
+						
+						for(int i = 0; i < moves; i++)
+						{
+							setOfMoves.Add(token.tokenVal);
+						}
+						//Debug.Log(moves + " " + token.tokenVal + "s on y");
+					}
+				}
+			}
+		}
+	}
+
 	public bool QueueMove (){
 		//Debug.Log ("Running Algorithm");
 		int slotNum = 0;
@@ -523,6 +928,10 @@ public class PuzzleManager : MonoBehaviour {
 				int type = getTokenType();
 				puzzleGrid[i,j].tokenVal = (TokenType)type;
 				puzzleGrid[i,j].ResetSprite();
+
+				//so they don't fuck up the match logic
+				//puzzleGrid[i,j].used = false;
+				puzzleGrid[i,j].match = null;
 			}
 		}
 	}
@@ -941,6 +1350,14 @@ public class PuzzleManager : MonoBehaviour {
 				if (b > 4){
 					b = 4;
 				}
+
+				//these keep the active token on the board, but only come up when running it in Unity on the computer.
+				if(b < 0)
+					b=0;
+				if(a > 5)
+					a=5;
+				if(a < 0)
+					a=0;
 				
 				//if the token has moved
 				if (puzzleGrid[a, b] != activeToken){
@@ -948,6 +1365,16 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
 					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
 					puzzleGrid [a, b] = activeToken;
+
+					//Debug.Log ("SWAP");
+
+					//if was in a previous match, check that match's viability
+					if(puzzleGrid[activeX, activeY].match != null)
+						ReevaluateMatch(puzzleGrid[activeX, activeY].match);
+
+					//check if match made
+					CheckForMatches(activeX, activeY);
+
 					activeX = a;
 					activeY = b;
 					audioSource.Play();
@@ -968,9 +1395,21 @@ public class PuzzleManager : MonoBehaviour {
 				//if time is up, drop the token
 				if (currTime <= 0) {
 					activeToken.Reposition(activeX, activeY);
+					activeToken.active = false;
 					activeToken = null;
+
 					if (swapCount > 0){
-						refillStep = 0;
+						//check if match made by dropping
+						CheckForMatches(activeX, activeY);
+
+						if(setOfTokens.Count > 0)
+						{
+							CreateMovesBasedOnMatches();
+							refillStep = 1;
+						}
+						else
+							refillStep = 0;
+
 						swapCount = 0;
 					}
 				}
@@ -978,11 +1417,13 @@ public class PuzzleManager : MonoBehaviour {
 				currTime--;
 				
 				//else, if we don't already have an active token	
-			} else if (activeToken == null && Input.mousePosition.y < 5.0 / 6.0 * Screen.width) {
+			} 
+			else if (activeToken == null && Input.mousePosition.y < 5.0 / 6.0 * Screen.width) {
 				//get the token that the mouse is over, and pick it up
 				int a = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
 				int b = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
 				activeToken = puzzleGrid [a, b];
+				activeToken.active = true;
 				activeX = a;
 				activeY = b;
 				//start the movement timer
@@ -994,10 +1435,22 @@ public class PuzzleManager : MonoBehaviour {
 		} else {
 			//if there is an active token, drop it
 			if (activeToken != null){
+				activeToken.active = false;
 				activeToken.Reposition(activeX, activeY);
 				activeToken = null;
+
 				if (swapCount > 0){
-					refillStep = 0;
+					//check if match made by dropping
+					CheckForMatches(activeX, activeY);
+					
+					if(setOfTokens.Count > 0)
+					{
+						CreateMovesBasedOnMatches();
+						refillStep = 1;
+					}
+					else
+						refillStep = 0;
+
 					swapCount = 0;
 				}
 			}
@@ -1431,6 +1884,12 @@ public class PuzzleManager : MonoBehaviour {
 public class Token{
 	public bool seen;
 	public bool used;
+	public bool active;
+	public List<Token> match = null;
+
+	//have them keep track of their x,y
+	public int puzzX;
+	public int puzzY;
 	
 	public TokenType tokenVal;
 	public Rect location;
@@ -1446,7 +1905,7 @@ public class Token{
 	}
 	
 	public static Vector2 GetCoordsOfPosition(int i, int j){
-		return new Vector2 (Screen.width * (i / 6.0f), Screen.height - Screen.width / 6.0f * (1 + j));
+		return new Vector2 (i * (Screen.width / 6.0f), Screen.height - (1 + j) * (Screen.width / 6.0f));
 	}
 	
 	/// <summary>
@@ -1455,7 +1914,7 @@ public class Token{
 	/// <returns>The position of coords.</returns>
 	/// <param name="coords">Coords.</param>
 	public static Vector2 GetPositionOfCoords(Vector2 coords){
-		return new Vector2 (Mathf.FloorToInt (coords.x * 6.0f / Screen.width), Mathf.FloorToInt ((Screen.height - coords.y) * 6.0f / Screen.width - 1));
+		return new Vector2 (Mathf.FloorToInt (coords.x * (6.0f / Screen.width)), Mathf.FloorToInt((Screen.height - coords.y) * (6.0f / Screen.width) - 1));
 	}
 	
 	public static Texture SpriteOf(TokenType t){
@@ -1493,6 +1952,9 @@ public class Token{
 		this.used = false;
 		this.tokenVal = (TokenType)type;
 		this.drawAlpha = 1.0f;
+
+		puzzX = xLoc;
+		puzzY = yLoc;
 		
 		location = new Rect (Screen.width * (xLoc / 6.0f), Screen.height - Screen.width / 6.0f * (1 + yLoc), Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f);
 		
@@ -1553,6 +2015,10 @@ public class Token{
 	
 	public void Reposition(int xLoc, int yLoc){
 		location = new Rect (Screen.width * (xLoc / 6.0f), Screen.height - Screen.width / 6.0f * (1 + yLoc), Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f);
+
+		puzzX = xLoc;
+		puzzY = yLoc;
+
 	}
 	
 }
