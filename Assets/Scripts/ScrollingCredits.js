@@ -18,6 +18,7 @@ function Start()
     creds += "Lead User Interface Designer\nKrishna Velury\n\n\n";
     creds += "Lead Artist Coordinator\nand Level Designer\nMark McGowan\n\n\n";
     creds += "Lead Level Programmer\nSteven Hack\n\n\n";
+    creds += "Facebook Integration\nAlec Reeves\n\n\n";
     creds += "Self Proclaimed Creative Overlord\nWessmaniac\n\n\n";
     creds += "Lead Artist\nRebecca Alto\n\n\n";
     creds += "Visual Artists\nAlexis Williams\nPhoebe Rothfeld\nJes Udelle\nJon Le\n\n\n";
