@@ -118,6 +118,30 @@ Prefab:
       value: 
       objectReference: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486,
         type: 3}
+    - target: {fileID: 11400000, guid: 32f96b8df398b9a4f99f3889724393ba, type: 2}
+      propertyPath: emptybar
+      value: 
+      objectReference: {fileID: 2800000, guid: 01bc90cc3de716e42a8d7766c019b30a, type: 3}
+    - target: {fileID: 11400000, guid: 32f96b8df398b9a4f99f3889724393ba, type: 2}
+      propertyPath: healthbar
+      value: 
+      objectReference: {fileID: 2800000, guid: b55929bde7d8feb46afeb005e6b74148, type: 3}
+    - target: {fileID: 11400000, guid: 32f96b8df398b9a4f99f3889724393ba, type: 2}
+      propertyPath: clock1
+      value: 
+      objectReference: {fileID: 2800000, guid: 92758ab4e33410749a401b52ba4138bd, type: 3}
+    - target: {fileID: 11400000, guid: 32f96b8df398b9a4f99f3889724393ba, type: 2}
+      propertyPath: clock2
+      value: 
+      objectReference: {fileID: 2800000, guid: 2c70194d01001084ba33e688df2d45fe, type: 3}
+    - target: {fileID: 11400000, guid: 32f96b8df398b9a4f99f3889724393ba, type: 2}
+      propertyPath: clock3
+      value: 
+      objectReference: {fileID: 2800000, guid: 6af43b4610f9102499cccf8c013d86b4, type: 3}
+    - target: {fileID: 11400000, guid: 32f96b8df398b9a4f99f3889724393ba, type: 2}
+      propertyPath: clock4
+      value: 
+      objectReference: {fileID: 2800000, guid: 07bbf01a2c9a6e34cae06e8c5e7fbf4f, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 32f96b8df398b9a4f99f3889724393ba, type: 2}
   m_RootGameObject: {fileID: 1874422197}
@@ -1347,6 +1371,7 @@ MonoBehaviour:
   trackerVal: 0
   pc: {fileID: 1707795426}
   matchFadeEffect: {fileID: 19800000, guid: 6f45a22ff4bf64240acb5c0536b399c3, type: 2}
+  menu: {fileID: 0}
   puzzleCamera: {fileID: 0}
   timeLimit: 900
   currTime: 0
@@ -2481,7 +2506,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: e773281c06b5e024db5e1a4f549afe5d, type: 2}
     - target: {fileID: 400020, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: .00130208337
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 5bd0c16a15399415084f23039b374cc6, type: 2}
       propertyPath: m_LocalPosition.y
@@ -6643,9 +6668,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuActive: 0
   tm: {fileID: 0}
+  pc: {fileID: 0}
+  pm: {fileID: 0}
   pauseButton: {fileID: 2800000, guid: dfab3ec7b55402f428d67debce1bffb7, type: 3}
+  healthbar: {fileID: 2800000, guid: b55929bde7d8feb46afeb005e6b74148, type: 3}
+  emptybar: {fileID: 2800000, guid: 01bc90cc3de716e42a8d7766c019b30a, type: 3}
+  clock1: {fileID: 2800000, guid: 92758ab4e33410749a401b52ba4138bd, type: 3}
+  clock2: {fileID: 2800000, guid: 2c70194d01001084ba33e688df2d45fe, type: 3}
+  clock3: {fileID: 2800000, guid: 6af43b4610f9102499cccf8c013d86b4, type: 3}
+  clock4: {fileID: 2800000, guid: 07bbf01a2c9a6e34cae06e8c5e7fbf4f, type: 3}
   puzzleManager: {fileID: 385235316}
   chewy: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
+  combo2: 0
+  combo3: 0
+  combo4: 0
+  combo5: 0
+  tut1: 0
+  tut2: 0
+  tut3: 0
 --- !u!4 &1874422199
 Transform:
   m_ObjectHideFlags: 0
@@ -7000,7 +7040,7 @@ Transform:
   m_PrefabInternal: {fileID: 679555709}
   m_GameObject: {fileID: 2033607308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .00130208337, z: 0}
+  m_LocalPosition: {x: .00130208337, y: .00130208337, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751292210}

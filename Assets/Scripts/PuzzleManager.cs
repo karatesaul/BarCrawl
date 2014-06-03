@@ -35,6 +35,7 @@ public class PuzzleManager : MonoBehaviour {
 	
 	public PlayerCharacter pc;
 	public ParticleSystem matchFadeEffect;
+	public InGameMenu menu;
 	public Camera puzzleCamera;
 
 	private Token activeToken;
@@ -188,6 +189,8 @@ public class PuzzleManager : MonoBehaviour {
 		drawn = false;
 		audioSource = GetComponentInChildren<AudioSource> ();
 		showNumericHealth = PlayerPrefs.GetInt("HealthBarNumbers") == 1;
+
+		menu = GameObject.Find ("PauseMenu").GetComponent<InGameMenu> ();
 	}
 	
 	public void endTurn(){
@@ -1524,6 +1527,7 @@ public class PuzzleManager : MonoBehaviour {
 			//part 1
 			//activate the text
 			tLabel1.SetActive(true);
+			menu.tut1 = true;
 			//set cursor postions
 			if (!drawn) {
 				m = 1;
@@ -1598,6 +1602,8 @@ public class PuzzleManager : MonoBehaviour {
 			//activate the proper tutorial text
 			tLabel1.SetActive(false);
 			tLabel2.SetActive(true);
+			menu.tut1 = false;
+			menu.tut2 = true;
 			//set cursor postions
 			if (!drawn) {
 				m = 3;
@@ -1703,6 +1709,8 @@ public class PuzzleManager : MonoBehaviour {
 			//activate the proper tutorial text
 			tLabel2.SetActive(false);
 			tLabel3.SetActive(true);
+			menu.tut2 = false;
+			menu.tut3 = true;
 			//set cursor postions
 			if (!drawn) {
 				m = 0;
@@ -1835,6 +1843,7 @@ public class PuzzleManager : MonoBehaviour {
 				PlayerPrefs.SetInt("ShowTutorial", 0);
 				refillStep = 0;
 				tLabel3.SetActive(false);
+				menu.tut3 = false;
 			}
 			puzzleGrid[2, 0].highlight = false;
 			break;
@@ -1852,21 +1861,25 @@ public class PuzzleManager : MonoBehaviour {
 			Scores.total += 50;
 			cLabel2.SetActive(true);
 			StartCoroutine(Wait(cLabel2));
+			menu.combo2 = true;
 		} else if (moves == 3) {
 			//Debug.Log("3x combo!");
 			Scores.total += 75;
 			cLabel3.SetActive(true);
 			StartCoroutine(Wait(cLabel3));
+			menu.combo3 = true;
 		} else if (moves == 4) {
 			//Debug.Log("4x combo!");
 			Scores.total += 100;
 			cLabel4.SetActive(true);
 			StartCoroutine(Wait(cLabel4));
+			menu.combo4 = true;
 		} else if (moves >= 5) {
 			//Debug.Log("Crazy combo!");
 			Scores.total += 125;
 			cLabel5.SetActive(true);
 			StartCoroutine(Wait(cLabel5));
+			menu.combo5 = true;
 		}
 	}
 	
