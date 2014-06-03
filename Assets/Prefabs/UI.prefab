@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 10
+  m_Name: UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .5, y: .5, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb28158cce7c467a813031f99209250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showUI: 0
+  tm: {fileID: 0}
+  pc: {fileID: 0}
+  pm: {fileID: 0}
+  healthbar: {fileID: 2800000, guid: 34868d0d26259472c9eb305a01dae7b1, type: 3}
+  emptybar: {fileID: 2800000, guid: a14f42e3bf1d3441b942448c546cbb39, type: 3}
+  clock1: {fileID: 2800000, guid: 2cdf398fa52f5413ebb2ad96c8401d4d, type: 3}
+  clock2: {fileID: 2800000, guid: 579ea1632f6514877a3d75976910f23b, type: 3}
+  clock3: {fileID: 2800000, guid: ec6ebc4a6669542e4a700241eb02fac9, type: 3}
+  clock4: {fileID: 2800000, guid: 933129ab399a2403e8ddab3b0d387767, type: 3}
+  chewy: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
+  combo2: 0
+  combo3: 0
+  combo4: 0
+  combo5: 0
+  tut1: 0
+  tut2: 0
+  tut3: 0
+  showNumericHealth: 0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

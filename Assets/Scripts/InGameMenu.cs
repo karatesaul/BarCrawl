@@ -53,15 +53,6 @@ public class InGameMenu : MonoBehaviour {
 	void OnGUI(){
 		if(!menuActive) return;
 
-		if (tm.coolDownTimer > 4) {
-			if(GUI.Button (new Rect(Screen.width/25, Screen.height/45, 4*Screen.width/25, 4*Screen.height/45), "Reset the\nPuzzle!") && tm.turn == 1){
-				puzzleManager.GetComponent<PuzzleManager>().ResetPuzzle();
-				tm.coolDownTimer = 0;
-			}
-		}
-		else{
-			GUI.Box (new Rect(Screen.width/25, Screen.height/45, 4*Screen.width/25, 4*Screen.height/45), "Reset\nRecharging!");
-		}
 		if(GUI.Button(new Rect(Screen.width-pauseButton.width, 0, pauseButton.width, pauseButton.height), pauseButton)){
 			paused = !paused;
 			if(paused){

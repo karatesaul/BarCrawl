@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour {
 	//public bool tutorial;
 	
 	public GameObject pauseMenu;
-	public GameObject UI;
+	public UI ui;
 	
 	// Use this for initialization
 	void Start () {
@@ -23,7 +23,8 @@ public class MainMenu : MonoBehaviour {
 		//checkbox on this screen to turn it back on
 
 		//hide UI in main menu
-		UI.SetActive (false);
+		ui = GameObject.Find ("UI").GetComponent<UI> ();
+		ui.showUI = false;
 	}
 	
 	// Update is called once per frame
@@ -64,7 +65,7 @@ public class MainMenu : MonoBehaviour {
 			//turn on the pause menu as well
 			pauseMenu.GetComponent<InGameMenu>().menuActive = true;
 			//finally turn on the UI
-			UI.SetActive (true);
+			ui.showUI = true;
 		}
 		//high score screen button
 		if(GUI.Button (new Rect(x/2 - buttonWidth/2, 2*y/3, buttonWidth, buttonHeight), "High Scores", gs)){

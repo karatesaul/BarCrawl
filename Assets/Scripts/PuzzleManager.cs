@@ -35,8 +35,9 @@ public class PuzzleManager : MonoBehaviour {
 	
 	public PlayerCharacter pc;
 	public ParticleSystem matchFadeEffect;
+	public UI ui;
 	public Camera puzzleCamera;
-
+	
 	private Token activeToken;
 	private int activeX, activeY;
 	public int timeLimit = 600;
@@ -64,16 +65,6 @@ public class PuzzleManager : MonoBehaviour {
 	public List<TokenType> setOfMoves;
 	private List<List<Token>> setOfTokens;
 	
-	private GameObject cLabel2;
-	private GameObject cLabel3;
-	private GameObject cLabel4;
-	private GameObject cLabel5;
-	private GameObject ccLabel;
-	
-	public GameObject tLabel1;
-	public GameObject tLabel2;
-	public GameObject tLabel3;
-
 	public bool showNumericHealth;
 	
 	/// <summary>
@@ -106,14 +97,6 @@ public class PuzzleManager : MonoBehaviour {
 	
 	#endregion 
 	
-	//coroutine for the text popup
-	//author: Krishna Velury
-	IEnumerator Wait(GameObject label) {
-		//		Debug.Log("WAITING");
-		yield return new WaitForSeconds(3.0f); // waits 3 seconds
-		label.SetActive(false);
-	}
-	
 	// Use this for initialization
 	void Start () {
 		puzzleActive = false;
@@ -136,7 +119,7 @@ public class PuzzleManager : MonoBehaviour {
 		setOfMoves = new List<TokenType> ();
 		setOfTokens = new List<List<Token>> ();
 		//Debug.Log (puzzleGrid [0, 0].tokenVal);
-
+		
 		puzzleCamera = GameObject.Find("Puzzle Camera").camera;
 		//puzzleWorldOrigin = GameObject.Find ("Wood Backdrop").transform.position;
 		
@@ -164,30 +147,16 @@ public class PuzzleManager : MonoBehaviour {
 		setOfMoves.Clear ();
 		endTurn ();
 		
-		//get scoring labels
-		cLabel2 = GameObject.Find("combo2");
-		cLabel2.SetActive(false);
-		cLabel3 = GameObject.Find("combo3");
-		cLabel3.SetActive(false);
-		cLabel4 = GameObject.Find("combo4");
-		cLabel4.SetActive(false);
-		cLabel5 = GameObject.Find("combo5");
-		cLabel5.SetActive(false);
-		
-		//set tutorial labels
-		tLabel1.SetActive(false);
-		tLabel2.SetActive(false);
-		tLabel3.SetActive(false);
-		
 		//set tutorial bools and preset board
 		if (PlayerPrefs.GetInt("ShowTutorial") == 1) {
-			Debug.Log("Beginning with a tutorial");
 			tutorialState = 1;
 			tutorialBoard();
 		}
 		drawn = false;
 		audioSource = GetComponentInChildren<AudioSource> ();
 		showNumericHealth = PlayerPrefs.GetInt("HealthBarNumbers") == 1;
+		
+		ui = GameObject.Find ("UI").GetComponent<UI> ();
 	}
 	
 	public void endTurn(){
@@ -269,7 +238,7 @@ public class PuzzleManager : MonoBehaviour {
 	}
 	
 	#region Match Finding (The region formerly known as QueueMove)
-
+	
 	/// <summary>
 	/// Checks for matches with the token at the specified coordinates.
 	/// </summary>
@@ -278,20 +247,20 @@ public class PuzzleManager : MonoBehaviour {
 	private void CheckForMatches(int x, int y)
 	{
 		List<Token> matches = new List<Token>();
-
+		
 		//find if it caused any matches
 		matches.AddRange(CheckForMatchesHorizontally(x,y));
 		matches.AddRange(CheckForMatchesVertically(x,y));
-
+		
 		//if no matches, quit now.
 		if(matches.Count == 0)
 			return;
-
+		
 		//make sure to include the token itself
 		matches.Add(puzzleGrid[x,y]);
-
+		
 		List<int> earlierMatches = new List<int>();
-
+		
 		//if there are matches, check if any were already matched.
 		foreach(Token token in matches)
 		{
@@ -303,7 +272,7 @@ public class PuzzleManager : MonoBehaviour {
 					Debug.Log("Missing match?");
 					continue;
 				}
-
+				
 				//prevent duplicate entries
 				if(!earlierMatches.Contains(matchNum))
 				{
@@ -311,11 +280,11 @@ public class PuzzleManager : MonoBehaviour {
 				}
 			}
 		}
-
+		
 		//Debug.Log ("Assimilating " + earlierMatches.Count + " old matches:");
-
+		
 		int index;
-
+		
 		//if there were, mash all the matches into our working match
 		if(earlierMatches.Count > 0)
 		{
@@ -326,7 +295,7 @@ public class PuzzleManager : MonoBehaviour {
 				List<Token> earlierMatch = setOfTokens[earlierMatches[i]];
 				setOfTokens.RemoveAt(earlierMatches[i]);
 				//Debug.Log("-Match of " + earlierMatch.Count +" " + earlierMatch[0].tokenVal + "s, match num is " + earlierMatches[i]);
-
+				
 				foreach(Token token in earlierMatch)
 				{
 					//again preventing duplicates
@@ -334,18 +303,18 @@ public class PuzzleManager : MonoBehaviour {
 						matches.Add(token);
 				}
 			}
-
+			
 			//and then put the whole conglomerate at the position of the EARLIEST match
 			index = earlierMatches[0];
 		}
 		else
 			index = setOfTokens.Count;
-
+		
 		//add the match!
 		setOfTokens.Insert(index, matches);
-
+		
 		//Debug.Log ("Into match of " + matches.Count + " " + matches[0].tokenVal + "s, match num is " + setOfTokens.IndexOf(matches));
-
+		
 		//we're not done yet!  Have to tell the tokens their states.
 		foreach(Token token in matches)
 		{
@@ -353,7 +322,7 @@ public class PuzzleManager : MonoBehaviour {
 			token.match = matches;
 		}
 	}
-
+	
 	/// <summary>
 	/// Checks for matches horizontally.
 	/// </summary>
@@ -363,7 +332,7 @@ public class PuzzleManager : MonoBehaviour {
 	private List<Token> CheckForMatchesHorizontally(int x, int y)
 	{
 		List<Token> matches = new List<Token>();
-
+		
 		//first the lower
 		for(int i = x - 1; i >= 0; i--)
 		{
@@ -380,14 +349,14 @@ public class PuzzleManager : MonoBehaviour {
 			else
 				break;
 		}
-
+		
 		//disregard any pairs
 		if(matches.Count < 2)
 			matches.Clear();
-
+		
 		return matches;
 	}
-
+	
 	/// <summary>
 	/// Checks for matches vertically.
 	/// </summary>
@@ -421,7 +390,7 @@ public class PuzzleManager : MonoBehaviour {
 		
 		return matches;
 	}
-
+	
 	/// <summary>
 	/// Checks a match that has been broken to see if any submatches still remain.
 	/// </summary>
@@ -429,9 +398,9 @@ public class PuzzleManager : MonoBehaviour {
 	private void ReevaluateMatch(List<Token> originalMatch)
 	{
 		//Debug.Log ("Breaking match of " + originalMatch.Count + " " + originalMatch [0].tokenVal + "s");
-
+		
 		int originalMatchNum = setOfTokens.IndexOf (originalMatch);
-
+		
 		if(originalMatchNum == -1)
 		{
 			//i don't know why this comes up
@@ -446,7 +415,7 @@ public class PuzzleManager : MonoBehaviour {
 			//Debug.Log ("Match num is " + originalMatchNum);
 			setOfTokens.RemoveAt (originalMatchNum);
 		}
-
+		
 		List<List<Token>> newMatches = new List<List<Token>> ();
 		foreach(Token token in originalMatch)
 		{
@@ -454,12 +423,12 @@ public class PuzzleManager : MonoBehaviour {
 			token.match = null;
 			token.used = false;
 		}
-
+		
 		foreach(Token testAgainst in originalMatch)
 		{
 			int x = testAgainst.puzzX;
 			int y = testAgainst.puzzY;
-
+			
 			List<Token> matches = new List<Token>();
 			
 			//find if it caused any matches
@@ -494,7 +463,7 @@ public class PuzzleManager : MonoBehaviour {
 					}
 				}
 			}
-
+			
 			
 			//if there were, mash all the matches into our working match
 			if(earlierMatches.Count > 0)
@@ -513,7 +482,7 @@ public class PuzzleManager : MonoBehaviour {
 							matches.Add(token);
 					}
 				}
-
+				
 			}
 			
 			//add the match!
@@ -526,20 +495,20 @@ public class PuzzleManager : MonoBehaviour {
 				token.match = matches;
 			}
 		}
-
+		
 		//Debug.Log ("into " + newMatches.Count + " matches:");
-
+		
 		//now we have the set of matches
 		//add them to the full set
 		setOfTokens.InsertRange (originalMatchNum, newMatches);
-
+		
 		foreach(List<Token> match in newMatches)
 		{
 			//Debug.Log("-match of " + match.Count + ", match num is" + setOfTokens.IndexOf(match));
 		}
-
+		
 	}
-
+	
 	/// <summary>
 	/// Checks for matches horizontally from a specified set of tokens.
 	/// </summary>
@@ -607,7 +576,7 @@ public class PuzzleManager : MonoBehaviour {
 		
 		return matches;
 	}
-
+	
 	/// <summary>
 	/// Populates SetOfMoves based on the contents of SetOfTokens.
 	/// </summary>
@@ -617,42 +586,42 @@ public class PuzzleManager : MonoBehaviour {
 		{
 			//kind of cheating to get this working quicker
 			//would not work if either dimension had 7 (or more) tokens
-
+			
 			//Debug.Log("SET OF " + matches[0].tokenVal + "S");
-
+			
 			List<int> usedXs = new List<int>();
 			List<int> usedYs = new List<int>();
-
+			
 			foreach(Token token in matches)
 			{
 				int x = token.puzzX;
 				int y = token.puzzY;
-
+				
 				if(!usedXs.Contains(x))
 				{
 					List<Token> match = CheckForInternalMatchesVertically(x,y,matches);
-
+					
 					if(match.Count > 1)
 					{
 						//-1 because it does not include the token we're checking against
 						//thus for a match of, say, four tokens, we would have 3 in the array
 						int moves = match.Count - 1;
-
+						
 						//prevent repeat counts
 						usedXs.Add(x);
-
+						
 						for(int i = 0; i < moves; i++)
 						{
 							setOfMoves.Add(token.tokenVal);
 						}
 						//Debug.Log(moves + " " + token.tokenVal + "s on x");
-
+						
 					}
 				}
-
+				
 				if(!usedYs.Contains(y))
 				{
-
+					
 					List<Token> match = CheckForInternalMatchesHorizontally(x,y,matches);
 					
 					if(match.Count > 1)
@@ -674,7 +643,7 @@ public class PuzzleManager : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	public bool QueueMove (){
 		//Debug.Log ("Running Algorithm");
 		int slotNum = 0;
@@ -928,7 +897,7 @@ public class PuzzleManager : MonoBehaviour {
 				int type = getTokenType();
 				puzzleGrid[i,j].tokenVal = (TokenType)type;
 				puzzleGrid[i,j].ResetSprite();
-
+				
 				//so they don't fuck up the match logic
 				//puzzleGrid[i,j].used = false;
 				puzzleGrid[i,j].match = null;
@@ -1324,6 +1293,7 @@ public class PuzzleManager : MonoBehaviour {
 			GUI.DrawTexture (activeToken.location, activeToken.sprite);
 		}
 		
+		/*
 		//enable or disable the timer visibility based on time
 		GameObject timer = GameObject.Find("timer");
 		if (currTime <= 300) {
@@ -1331,6 +1301,7 @@ public class PuzzleManager : MonoBehaviour {
 		} else {
 			timer.GetComponent<dfLabel> ().enabled = false;
 		}
+		*/
 	}
 	
 	private void handleNormalBoardLogic(){
@@ -1350,7 +1321,7 @@ public class PuzzleManager : MonoBehaviour {
 				if (b > 4){
 					b = 4;
 				}
-
+				
 				//these keep the active token on the board, but only come up when running it in Unity on the computer.
 				if(b < 0)
 					b=0;
@@ -1365,16 +1336,16 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
 					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
 					puzzleGrid [a, b] = activeToken;
-
+					
 					//Debug.Log ("SWAP");
-
+					
 					//if was in a previous match, check that match's viability
 					if(puzzleGrid[activeX, activeY].match != null)
 						ReevaluateMatch(puzzleGrid[activeX, activeY].match);
-
+					
 					//check if match made
 					CheckForMatches(activeX, activeY);
-
+					
 					activeX = a;
 					activeY = b;
 					audioSource.Play();
@@ -1397,11 +1368,11 @@ public class PuzzleManager : MonoBehaviour {
 					activeToken.Reposition(activeX, activeY);
 					activeToken.active = false;
 					activeToken = null;
-
+					
 					if (swapCount > 0){
 						//check if match made by dropping
 						CheckForMatches(activeX, activeY);
-
+						
 						if(setOfTokens.Count > 0)
 						{
 							CreateMovesBasedOnMatches();
@@ -1409,7 +1380,7 @@ public class PuzzleManager : MonoBehaviour {
 						}
 						else
 							refillStep = 0;
-
+						
 						swapCount = 0;
 					}
 				}
@@ -1438,7 +1409,7 @@ public class PuzzleManager : MonoBehaviour {
 				activeToken.active = false;
 				activeToken.Reposition(activeX, activeY);
 				activeToken = null;
-
+				
 				if (swapCount > 0){
 					//check if match made by dropping
 					CheckForMatches(activeX, activeY);
@@ -1450,7 +1421,7 @@ public class PuzzleManager : MonoBehaviour {
 					}
 					else
 						refillStep = 0;
-
+					
 					swapCount = 0;
 				}
 			}
@@ -1523,7 +1494,7 @@ public class PuzzleManager : MonoBehaviour {
 		case 1: 
 			//part 1
 			//activate the text
-			tLabel1.SetActive(true);
+			ui.tut1 = true;
 			//set cursor postions
 			if (!drawn) {
 				m = 1;
@@ -1596,8 +1567,8 @@ public class PuzzleManager : MonoBehaviour {
 		case 4:
 			//part 2
 			//activate the proper tutorial text
-			tLabel1.SetActive(false);
-			tLabel2.SetActive(true);
+			ui.tut1 = false;
+			ui.tut2 = true;
 			//set cursor postions
 			if (!drawn) {
 				m = 3;
@@ -1701,8 +1672,8 @@ public class PuzzleManager : MonoBehaviour {
 		case 8: 
 			//part 3
 			//activate the proper tutorial text
-			tLabel2.SetActive(false);
-			tLabel3.SetActive(true);
+			ui.tut2 = false;
+			ui.tut3 = true;
 			//set cursor postions
 			if (!drawn) {
 				m = 0;
@@ -1834,7 +1805,7 @@ public class PuzzleManager : MonoBehaviour {
 				tutorialState = 0;
 				PlayerPrefs.SetInt("ShowTutorial", 0);
 				refillStep = 0;
-				tLabel3.SetActive(false);
+				ui.tut3 = false;
 			}
 			puzzleGrid[2, 0].highlight = false;
 			break;
@@ -1850,23 +1821,19 @@ public class PuzzleManager : MonoBehaviour {
 		else if (moves == 2) {
 			//Debug.Log("2x combo!");
 			Scores.total += 50;
-			cLabel2.SetActive(true);
-			StartCoroutine(Wait(cLabel2));
+			ui.combo2 = true;
 		} else if (moves == 3) {
 			//Debug.Log("3x combo!");
 			Scores.total += 75;
-			cLabel3.SetActive(true);
-			StartCoroutine(Wait(cLabel3));
+			ui.combo3 = true;
 		} else if (moves == 4) {
 			//Debug.Log("4x combo!");
 			Scores.total += 100;
-			cLabel4.SetActive(true);
-			StartCoroutine(Wait(cLabel4));
+			ui.combo4 = true;
 		} else if (moves >= 5) {
 			//Debug.Log("Crazy combo!");
 			Scores.total += 125;
-			cLabel5.SetActive(true);
-			StartCoroutine(Wait(cLabel5));
+			ui.combo5 = true;
 		}
 	}
 	
@@ -1886,7 +1853,7 @@ public class Token{
 	public bool used;
 	public bool active;
 	public List<Token> match = null;
-
+	
 	//have them keep track of their x,y
 	public int puzzX;
 	public int puzzY;
@@ -1952,7 +1919,7 @@ public class Token{
 		this.used = false;
 		this.tokenVal = (TokenType)type;
 		this.drawAlpha = 1.0f;
-
+		
 		puzzX = xLoc;
 		puzzY = yLoc;
 		
@@ -2015,10 +1982,10 @@ public class Token{
 	
 	public void Reposition(int xLoc, int yLoc){
 		location = new Rect (Screen.width * (xLoc / 6.0f), Screen.height - Screen.width / 6.0f * (1 + yLoc), Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f);
-
+		
 		puzzX = xLoc;
 		puzzY = yLoc;
-
+		
 	}
 	
 }
