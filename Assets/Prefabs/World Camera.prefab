@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 173d0687b53454dec938c69dcda07ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeOutTexture: {fileID: 2800000, guid: ab6cf834781162249a21121be854fc9b, type: 3}
+  fadeOutTexture: {fileID: 2800000, guid: 792c8f5efb2c26240af0d7a3d2575a79, type: 3}
   fadeSpeed: .100000001
   drawDepth: -1000
 --- !u!124 &12400000
