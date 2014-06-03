@@ -39,8 +39,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuActive: 0
+  tm: {fileID: 0}
   pauseButton: {fileID: 2800000, guid: dfab3ec7b55402f428d67debce1bffb7, type: 3}
   puzzleManager: {fileID: 0}
+  chewy: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
