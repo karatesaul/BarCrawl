@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEditor;
+//using UnityEditor;
 using System.Collections;
 
 public class SFXManager : MonoBehaviour {
@@ -11,10 +11,10 @@ public class SFXManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = gameObject;
-		uncensored = new AudioClip[17];
+		uncensored = new AudioClip[18];
 		//This should iterate to the number of voice files.
 		for (int i = 0; i < 18; i++) {
-			uncensored[i] = AssetDatabase.LoadAssetAtPath("Assets/Sound/Voice/Uncensored/"+(i+1).ToString ()+".wav", typeof(AudioClip)) as AudioClip;
+			uncensored[i] = Resources.Load("Uncensored/"+(i+1).ToString (), typeof(AudioClip)) as AudioClip;
 		}
 
 	}
