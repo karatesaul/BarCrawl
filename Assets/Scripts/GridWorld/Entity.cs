@@ -24,6 +24,7 @@ public class Entity : MonoBehaviour {
 
 	protected SpriteRenderer spriteRenderer;
 	protected Animator animator;
+	protected AudioSource audioSource;
 
 	//for display & fight logic purposes.
 	protected Move facing;
@@ -35,6 +36,7 @@ public class Entity : MonoBehaviour {
 		GridManager.instance.entities.Add(this);
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		animator = gameObject.GetComponent<Animator> ();
+		audioSource = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -117,6 +119,8 @@ public class Entity : MonoBehaviour {
 		currentRed = 100;
 
 		animator.Play ("Hurt");
+		audioSource.Play ();
+
 		if (PlayerPrefs.GetInt ("Profanity") == 1) {
 			//play the blood spatter
 			Instantiate (bloodSpatter, transform.position, Quaternion.identity);
