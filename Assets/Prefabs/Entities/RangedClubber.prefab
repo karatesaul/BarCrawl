@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 95: {fileID: 9500000}
   m_Layer: 8
-  m_Name: RangedBiker
+  m_Name: RangedClubber
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ Animator:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d428700b5210d934f9a955fc3c6bef52, type: 2}
+  m_Controller: {fileID: 9100000, guid: d45bd3e17599b2449a828c152e84becf, type: 2}
   m_CullingMode: 0
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   isExecuting: 0
   lifespan: 0
   toBar: 3
-  bottlesource: {fileID: 100000, guid: d78a9414d5d9ddf47b69233dfcadc7d8, type: 2}
+  bottlesource: {fileID: 100000, guid: 42977473ef525a546822d449c0cf068b, type: 2}
   prefab: {fileID: 0}
   bottleOffset: {x: .25, y: .100000001, z: 0}
 --- !u!212 &21200000
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: cf72ff816ebe7d740846c75a3b862cff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d1e749a10d926342afc7afca7787f6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
