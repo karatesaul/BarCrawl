@@ -54,7 +54,7 @@ public class MainMenu : MonoBehaviour {
 		int buttonWidth  = Mathf.RoundToInt(x * 2.0f/3.0f);
 		int buttonHeight = Mathf.RoundToInt(y * 1.0f/6.0f);
 		//start game button
-		if(GUI.Button (new Rect(x/2 - buttonWidth/2, y/2, buttonWidth, buttonHeight), "Start game", gs)){
+		if(GUI.Button (new Rect(x/2 - buttonWidth/2, y/2, buttonWidth, buttonHeight), "START GAME", gs)){
 			//turn the menu off
 			displayMenu = false;
 			//turn the puzzle on
@@ -68,11 +68,11 @@ public class MainMenu : MonoBehaviour {
 			ui.showUI = true;
 		}
 		//high score screen button
-		if(GUI.Button (new Rect(x/2 - buttonWidth/2, 2*y/3, buttonWidth, buttonHeight), "High Scores", gs)){
+		if(GUI.Button (new Rect(x/2 - buttonWidth/2, 2*y/3, buttonWidth, buttonHeight), "HIGH SCORES", gs)){
 			//transition to high score screen
 			Application.LoadLevel("High_Scores");
 		}
-		if(GUI.Button (new Rect(x/2 - buttonWidth/2, 2*y/3 + buttonHeight, buttonWidth, buttonHeight), "Options", gs)){
+		if(GUI.Button (new Rect(x/2 - buttonWidth/2, 2*y/3 + buttonHeight, buttonWidth, buttonHeight), "OPTIONS", gs)){
 			//go to the options screen
 			Application.LoadLevel ("Options");
 		}
