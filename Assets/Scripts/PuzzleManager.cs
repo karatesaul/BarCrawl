@@ -93,7 +93,7 @@ public class PuzzleManager : MonoBehaviour {
 	private float locy = 0;
 	private int swapCount = 0;
 	
-	private AudioSource audioSource;
+	private AudioSource[] audioSources;
 	
 	#endregion 
 	
@@ -153,7 +153,7 @@ public class PuzzleManager : MonoBehaviour {
 			tutorialBoard();
 		}
 		drawn = false;
-		audioSource = GetComponentInChildren<AudioSource> ();
+		audioSources = GetComponents<AudioSource> ();
 		showNumericHealth = PlayerPrefs.GetInt("HealthBarNumbers") == 1;
 		
 		ui = GameObject.Find ("UI").GetComponent<UI> ();
@@ -837,6 +837,9 @@ public class PuzzleManager : MonoBehaviour {
 		foreach (Token t in setOfTokens[0]) {
 			//fade the move
 			if (t.tokenVal != TokenType.Empty){
+				if (t.drawAlpha >= 1.0f /*&& !audioSources[1].isPlaying*/){
+					audioSources[1].Play();
+				}
 				t.drawAlpha -= 0.05f;
 				if (t.drawAlpha <= 0.0f){
 					t.drawAlpha = 1.0f;
@@ -1348,7 +1351,7 @@ public class PuzzleManager : MonoBehaviour {
 					
 					activeX = a;
 					activeY = b;
-					audioSource.Play();
+					audioSources[0].Play();
 					swapCount++;
 				}
 				
@@ -1541,7 +1544,7 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid [a, b] = activeToken;
 					activeX = a;
 					activeY = b;
-					audioSource.Play();
+					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 3;
 				}
@@ -1615,7 +1618,7 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid [a, b] = activeToken;
 					activeX = a;
 					activeY = b;
-					audioSource.Play();
+					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 6;
 				}
@@ -1648,7 +1651,7 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid [a, b] = activeToken;
 					activeX = a;
 					activeY = b;
-					audioSource.Play();
+					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 7;
 				}
@@ -1722,7 +1725,7 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid [a, b] = activeToken;
 					activeX = a;
 					activeY = b;
-					audioSource.Play();
+					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 10;
 				}
@@ -1755,7 +1758,7 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid [a, b] = activeToken;
 					activeX = a;
 					activeY = b;
-					audioSource.Play();
+					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 11;
 				}
@@ -1787,7 +1790,7 @@ public class PuzzleManager : MonoBehaviour {
 					puzzleGrid [a, b] = activeToken;
 					activeX = a;
 					activeY = b;
-					audioSource.Play();
+					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 12;
 				}
