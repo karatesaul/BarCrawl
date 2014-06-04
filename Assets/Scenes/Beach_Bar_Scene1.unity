@@ -1013,7 +1013,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 4b6009c6d068a4a67b1ff54939b1aefa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4493d33ea487bb4385e4e133b02f500, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &870603782
 MonoBehaviour:
@@ -1038,7 +1038,8 @@ MonoBehaviour:
   isExecuting: 0
   lifespan: 0
   toBar: 3
-  prefab: {fileID: 11400000, guid: d78a9414d5d9ddf47b69233dfcadc7d8, type: 2}
+  bottlesource: {fileID: 100000, guid: bb44481562897804b92ddaacd1ad9dbc, type: 2}
+  prefab: {fileID: 0}
   bottleOffset: {x: .25, y: .100000001, z: 0}
 --- !u!4 &870603783
 Transform:

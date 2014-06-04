@@ -8,12 +8,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
-  - 95: {fileID: 9500000}
-  m_Layer: 8
-  m_Name: RangedBiker
-  m_TagString: enemy
+  - 212: {fileID: 21200000}
+  m_Layer: 0
+  m_Name: ukelele
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,24 +24,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 5.2824316, y: .574128091, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!95 &9500000
-Animator:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d428700b5210d934f9a955fc3c6bef52, type: 2}
-  m_CullingMode: 0
-  m_ApplyRootMotion: 1
-  m_AnimatePhysics: 0
-  m_HasTransformHierarchy: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,23 +36,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d08379104815f849bef5a362e9999fa, type: 3}
+  m_Script: {fileID: 11500000, guid: d79c132848839d940bf2bb16eadd2e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  y: 0
-  health: 0
-  currentRed: 0
-  isPassable: 0
-  dead: 0
-  moveSpeed: .100000001
-  bloodSpatter: {fileID: 19800000, guid: 684261b06538d4df2ba10b7bab60c501, type: 2}
-  isExecuting: 0
-  lifespan: 0
-  toBar: 3
-  bottlesource: {fileID: 100000, guid: d78a9414d5d9ddf47b69233dfcadc7d8, type: 2}
-  prefab: {fileID: 0}
-  bottleOffset: {x: .25, y: .100000001, z: 0}
+  target_x: 0
+  target_y: 0
+  targetOffset: {x: .25, y: .100000001, z: 0}
+  spinClockwise: 0
+  throwSpeed: .0500000007
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -89,7 +65,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 8e88a606df96d8f4fbfbe7dae7b55ac8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 692e2ee7598f3304fb4e46f7cfd02a99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

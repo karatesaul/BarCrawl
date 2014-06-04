@@ -137,7 +137,7 @@ State:
   m_Speed: .75
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: bef55ed0678eb471f8707f816f60d70d, type: 2}
+  - {fileID: 7400000, guid: 32d37c765f9abaa44a68510cabab592d, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -72, y: 60, z: 0}
   m_IKOnFeet: 0
@@ -149,10 +149,10 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackDown
-  m_Speed: 1
+  m_Speed: .800000012
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 68c8ee23f7f1549f8b9d0eb858c56a1b, type: 2}
+  - {fileID: 7400000, guid: d7bd249bd9f6e204cb61a2a2a27e706e, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -156, y: 12, z: 0}
   m_IKOnFeet: 0
@@ -164,10 +164,10 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackUp
-  m_Speed: 1
+  m_Speed: .800000012
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: e42faeb3f667b4e82bc91861633b36b1, type: 2}
+  - {fileID: 7400000, guid: 3753dd6714ac2364aba64df4405de8d2, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 132, y: 60, z: 0}
   m_IKOnFeet: 0
@@ -179,10 +179,10 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Death
-  m_Speed: 1
+  m_Speed: .200000003
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: d247ee04aebaa4599ac354d338976b25, type: 2}
+  - {fileID: 7400000, guid: 719351786cf801a4bbdae4adeadbbb2c, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -72, y: -36, z: 0}
   m_IKOnFeet: 0
@@ -194,10 +194,10 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Idle
-  m_Speed: .75
+  m_Speed: .5
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 4346203a1b3724574bcca607e73c50e5, type: 2}
+  - {fileID: 7400000, guid: 0e87dcfee91490f4ba9df1e3d239bc3e, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 132, y: -36, z: 0}
   m_IKOnFeet: 0
@@ -209,10 +209,10 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackLeft
-  m_Speed: 1
+  m_Speed: .800000012
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: f2006071eb5e947afb1e2b0efa185227, type: 2}
+  - {fileID: 7400000, guid: b80909432a7f0f54db9a2d0d3b382dc1, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 216, y: 12, z: 0}
   m_IKOnFeet: 0
