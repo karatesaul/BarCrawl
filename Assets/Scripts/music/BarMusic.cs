@@ -4,9 +4,10 @@ using System.Collections;
 public class BarMusic : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	void Awake() {
 		if (PlayerPrefs.GetInt ("ViolenceMusic") == 1) {
 			GlobalMusic.ViolenceMusic();
+			Debug.Log("Violence Music: " + PlayerPrefs.GetInt ("ViolenceMusic"));
 		} else {
 			if(Application.loadedLevelName == "Biker_Bar_Scene1" || Application.loadedLevelName == "Biker_Bar_Scene2" || Application.loadedLevelName == "Biker_Bar_Scene3"){
 				GlobalMusic.BikerBarMusic();
