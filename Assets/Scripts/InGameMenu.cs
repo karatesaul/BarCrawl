@@ -53,7 +53,7 @@ public class InGameMenu : MonoBehaviour {
 	void OnGUI(){
 		if(!menuActive) return;
 
-		if(GUI.Button(new Rect(Screen.width - 5*Screen.width/25, Screen.height/45, 4*Screen.width/25, 4*Screen.height/45/*Screen.width-pauseButton.width, 0, pauseButton.width, pauseButton.height*/), pauseButton)){
+		if(GUI.Button(new Rect(Screen.width - 5*Screen.width/25, Screen.height/45, 4*Screen.width/25, 4*Screen.height/45/*Screen.width-pauseButton.width, 0, pauseButton.width, pauseButton.height*/), pauseButton, new GUIStyle() )){
 			paused = !paused;
 			if(paused){
 				puzzleManager.GetComponent<PuzzleManager>().puzzleActive = false;
