@@ -10,7 +10,7 @@ public class BarMusic : MonoBehaviour {
 		} else {
 			if(Application.loadedLevelName == "Biker_Bar_Scene1" || Application.loadedLevelName == "Biker_Bar_Scene2" || Application.loadedLevelName == "Biker_Bar_Scene3"){
 				GlobalMusic.BikerBarMusic();
-			}else if(Application.loadedLevelName == "Luau_Bar_Scene1" || Application.loadedLevelName == "Luau_Bar_Scene2" || Application.loadedLevelName == "Luau_Bar_Scene3"){
+			}else if(Application.loadedLevelName == "Beach_Bar_Scene1" || Application.loadedLevelName == "Beach_Bar_Scene2" || Application.loadedLevelName == "Beach_Bar_Scene3"){
 				GlobalMusic.LuauMusic();
 			}else if(Application.loadedLevelName == "Rave_Bar_Scene1" || Application.loadedLevelName == "Rave_Bar_Scene2" || Application.loadedLevelName == "Rave_Bar_Scene3"){
 				GlobalMusic.RaveMusic();
