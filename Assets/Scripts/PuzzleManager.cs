@@ -238,7 +238,26 @@ public class PuzzleManager : MonoBehaviour {
 	}
 	
 	#region Match Finding (The region formerly known as QueueMove)
-	
+
+	/// <summary>
+	/// Moves the given token, checking for broken/formed matches as well as moving it both logically and graphically
+	/// </summary>
+	/// <param name="destX">Destination x.</param>
+	/// <param name="destY">Destination y.</param>
+	/// <param name="token">The token to move.</param>
+	private void moveToken(int destX, int destY, Token token)
+	{
+		puzzleGrid[destX, destY] = token;
+		token.Reposition(destX, destY);
+		
+		//if was in a previous match, check that match's viability
+		if(token.match != null)
+			ReevaluateMatch(token.match);
+		
+		//check if match made
+		CheckForMatches(destX, destY);
+	}
+
 	/// <summary>
 	/// Checks for matches with the token at the specified coordinates.
 	/// </summary>
@@ -645,6 +664,15 @@ public class PuzzleManager : MonoBehaviour {
 	}
 	
 	public bool QueueMove (){
+
+		//first check if we already know them
+		if(setOfTokens.Count > 0)
+		{
+			CreateMovesBasedOnMatches();
+			return true;
+		}
+
+
 		//Debug.Log ("Running Algorithm");
 		int slotNum = 0;
 		bool foundMove = false;
@@ -1336,18 +1364,10 @@ public class PuzzleManager : MonoBehaviour {
 				//if the token has moved
 				if (puzzleGrid[a, b] != activeToken){
 					//perform a swap
-					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
-					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+					Token swapWith = puzzleGrid[a, b];
 					puzzleGrid [a, b] = activeToken;
-					
-					//Debug.Log ("SWAP");
-					
-					//if was in a previous match, check that match's viability
-					if(puzzleGrid[activeX, activeY].match != null)
-						ReevaluateMatch(puzzleGrid[activeX, activeY].match);
-					
-					//check if match made
-					CheckForMatches(activeX, activeY);
+
+					moveToken(activeX, activeY, swapWith);
 					
 					activeX = a;
 					activeY = b;
@@ -1368,22 +1388,14 @@ public class PuzzleManager : MonoBehaviour {
 				
 				//if time is up, drop the token
 				if (currTime <= 0) {
-					activeToken.Reposition(activeX, activeY);
 					activeToken.active = false;
+					moveToken(activeX, activeY, activeToken);
+
 					activeToken = null;
 					
 					if (swapCount > 0){
-						//check if match made by dropping
-						CheckForMatches(activeX, activeY);
-						
-						if(setOfTokens.Count > 0)
-						{
-							CreateMovesBasedOnMatches();
-							refillStep = 1;
-						}
-						else
-							refillStep = 0;
-						
+						refillStep = 0;
+
 						swapCount = 0;
 					}
 				}
@@ -1410,20 +1422,11 @@ public class PuzzleManager : MonoBehaviour {
 			//if there is an active token, drop it
 			if (activeToken != null){
 				activeToken.active = false;
-				activeToken.Reposition(activeX, activeY);
+				moveToken(activeX, activeY, activeToken);
 				activeToken = null;
 				
 				if (swapCount > 0){
-					//check if match made by dropping
-					CheckForMatches(activeX, activeY);
-					
-					if(setOfTokens.Count > 0)
-					{
-						CreateMovesBasedOnMatches();
-						refillStep = 1;
-					}
-					else
-						refillStep = 0;
+					refillStep = 0;
 					
 					swapCount = 0;
 				}

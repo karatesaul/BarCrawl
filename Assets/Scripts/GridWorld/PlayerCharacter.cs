@@ -66,6 +66,7 @@ public class PlayerCharacter : FightingEntity {
 
 		base.Start();
 
+		facing = Move.Right;
 	}
 
 
