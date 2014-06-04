@@ -550,12 +550,19 @@ MonoBehaviour:
   tm: {fileID: 0}
   pc: {fileID: 0}
   pm: {fileID: 0}
-  healthbar: {fileID: 2800000, guid: 34868d0d26259472c9eb305a01dae7b1, type: 3}
-  emptybar: {fileID: 2800000, guid: a14f42e3bf1d3441b942448c546cbb39, type: 3}
-  clock1: {fileID: 2800000, guid: 2cdf398fa52f5413ebb2ad96c8401d4d, type: 3}
-  clock2: {fileID: 2800000, guid: 579ea1632f6514877a3d75976910f23b, type: 3}
-  clock3: {fileID: 2800000, guid: ec6ebc4a6669542e4a700241eb02fac9, type: 3}
-  clock4: {fileID: 2800000, guid: 933129ab399a2403e8ddab3b0d387767, type: 3}
+  healthbar: {fileID: 2800000, guid: 648a5df99aed5438e8ae9e749f4deb3f, type: 3}
+  healthbg: {fileID: 2800000, guid: 03048ba9d8405459f9c37d7bfb605402, type: 3}
+  emptybar: {fileID: 2800000, guid: e85394fb1926c4b1c913de3f4b147076, type: 3}
+  clock1: {fileID: 2800000, guid: 1a8de498491d7472890b643a07f16307, type: 3}
+  clock2: {fileID: 2800000, guid: 6dc7b59074525454c8fad4271e29b770, type: 3}
+  clock3: {fileID: 2800000, guid: f0e2e7b58f6df4252ac17927675fc6ba, type: 3}
+  clock4: {fileID: 2800000, guid: 27a0805058a9f4fb8b5ef7e449edb097, type: 3}
+  clock5: {fileID: 2800000, guid: 549a796c1441945da8f4d2583a7f29e3, type: 3}
+  clock6: {fileID: 2800000, guid: 70fe8922e08364e86887e292eb0eb8ca, type: 3}
+  beer0: {fileID: 2800000, guid: e38f53eb0afd0482fb1f0ae7b2c97563, type: 3}
+  beer1: {fileID: 2800000, guid: b466284896701413fbacdab626cf5c3d, type: 3}
+  beer2: {fileID: 2800000, guid: 08726dd45df1a464faa26a982a3ca41a, type: 3}
+  beer3: {fileID: 2800000, guid: 9851d128be0f14f3fbca119e1b683365, type: 3}
   chewy: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
   combo2: 0
   combo3: 0
@@ -3263,7 +3270,7 @@ SpriteRenderer:
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_SortingLayerID: 926474707
-  m_Sprite: {fileID: 21300000, guid: 5ba31a5e7112cc6438f439a641ac2a3e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0fc616df69f29764fb5f5b1868d4a75b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1487198778
 Transform:
@@ -3272,7 +3279,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1487198776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.38646507, y: -278, z: 1}
+  m_LocalPosition: {x: -5.38646507, y: -2.77999997, z: 1}
   m_LocalScale: {x: 2.29999995, y: 2.29999995, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
