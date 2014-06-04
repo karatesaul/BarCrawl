@@ -15,6 +15,7 @@ public class PlayerCharacter : FightingEntity {
 	public Vector3 cameraOffset;
 	public Camera worldCamera;
 	private GameObject floor;
+	private GameObject bar;
 	public ParticleSystem aoeEffect;
 
 	private int shakyCam = 0;
@@ -52,6 +53,7 @@ public class PlayerCharacter : FightingEntity {
 		tm = GameObject.Find("Player").GetComponent<TurnManager>();
 		menu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
 		floor = GameObject.Find("Floor");
+		bar = GameObject.Find("bar");
 
 		fillUp = false;
 		health = startingHealth;
@@ -89,19 +91,19 @@ public class PlayerCharacter : FightingEntity {
 			Vector3 floorMax = new Vector3(floor.renderer.bounds.max.x, floor.renderer.bounds.max.y, 0);
 			if (cameraMin.x < floorMin.x){
 				//Debug.Log("Correcting a negative x");
-				correction.x = floorMin.x - cameraMin.x;
+				correction.x += floorMin.x - cameraMin.x;
 			}
 			if (cameraMax.x > floorMax.x){
 				//Debug.Log("Correcting a positive x");
-				correction.x = floorMax.x - cameraMax.x;
+				correction.x += floorMax.x - cameraMax.x;
 			}
 			if (worldCamera.transform.position.y < floorMin.y){
 				//Debug.Log("Correcting a negative y");
-				correction.y = floorMin.y - worldCamera.transform.position.y;
+				correction.y += floorMin.y - worldCamera.transform.position.y;
 			}
-			if (cameraMax.y > floorMax.x){
-				//Debug.Log("Correcting a positive x");
-				correction.y = floorMax.y - cameraMax.y;
+			if (cameraMax.y > bar.renderer.bounds.max.y){
+				//Debug.Log("Correcting a positive y");
+				correction.y += bar.renderer.bounds.max.y - cameraMax.y;
 			}
 			//Debug.Log("Correction: " + correction);
 			worldCamera.transform.position += correction;
