@@ -14,6 +14,7 @@ public class PlayerCharacter : FightingEntity {
 	public MainMenu menu;
 	public Vector3 cameraOffset;
 	public Camera worldCamera;
+	private GameObject floor;
 	public ParticleSystem aoeEffect;
 
 	private int shakyCam = 0;
@@ -50,6 +51,7 @@ public class PlayerCharacter : FightingEntity {
 	protected override void Start () {
 		tm = GameObject.Find("Player").GetComponent<TurnManager>();
 		menu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
+		floor = GameObject.Find("Floor");
 
 		fillUp = false;
 		health = startingHealth;
@@ -77,10 +79,33 @@ public class PlayerCharacter : FightingEntity {
 		base.Update ();
 
 		//camera follows player!
-		if(shakyCam == 0)
+		if (shakyCam == 0) {
 			worldCamera.gameObject.transform.position = gameObject.transform.position + cameraOffset;
-		else
-		{
+			//Debug.Log("Camera Min: " + (worldCamera.transform.position.x - worldCamera.rect.width) + "Floor Min: " + floor.renderer.bounds.min);
+			Vector3 correction = new Vector3(0, 0, 0);
+			Vector3 cameraMin = new Vector3(worldCamera.transform.position.x - worldCamera.orthographicSize * Screen.width/Screen.height, worldCamera.transform.position.y - worldCamera.orthographicSize, 0);
+			Vector3 cameraMax = new Vector3(worldCamera.transform.position.x + worldCamera.orthographicSize * Screen.width/Screen.height, worldCamera.transform.position.y + worldCamera.orthographicSize, 0);
+			Vector3 floorMin = new Vector3(floor.renderer.bounds.min.x, floor.renderer.bounds.min.y, 0);
+			Vector3 floorMax = new Vector3(floor.renderer.bounds.max.x, floor.renderer.bounds.max.y, 0);
+			if (cameraMin.x < floorMin.x){
+				Debug.Log("Correcting a negative x");
+				correction.x = floorMin.x - cameraMin.x;
+			}
+			if (cameraMax.x > floorMax.x){
+				Debug.Log("Correcting a positive x");
+				correction.x = floorMax.x - cameraMax.x;
+			}
+			if (worldCamera.transform.position.y < floorMin.y){
+				Debug.Log("Correcting a negative y");
+				correction.y = floorMin.y - worldCamera.transform.position.y;
+			}
+			if (cameraMax.y > floorMax.x){
+				Debug.Log("Correcting a positive x");
+				correction.y = floorMax.y - cameraMax.y;
+			}
+			Debug.Log("Correction: " + correction);
+			worldCamera.transform.position += correction;
+		} else {
 			shakyCam--;
 			Vector3 position = gameObject.transform.position + cameraOffset;
 			float shake = shakeSpace * (shakyCam * 1.0f / shakeTime);
