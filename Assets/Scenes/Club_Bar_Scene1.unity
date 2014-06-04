@@ -215,6 +215,118 @@ Prefab:
   m_RootGameObject: {fileID: 1806852662}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1001 &79426370
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1587066807}
+    m_Modifications:
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_Name
+      value: clubChairLeft_2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+  m_RootGameObject: {fileID: 1126718492}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
+--- !u!1 &108209158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+  m_PrefabInternal: {fileID: 688038061}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 108209159}
+  - 212: {fileID: 108209161}
+  - 114: {fileID: 108209160}
+  m_Layer: 4
+  m_Name: clubChairRight_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &108209159
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+  m_PrefabInternal: {fileID: 688038061}
+  m_GameObject: {fileID: 108209158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -.100000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 258505644}
+--- !u!114 &108209160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 2c56b03d262f4e34d85b286363e801ee,
+    type: 2}
+  m_PrefabInternal: {fileID: 688038061}
+  m_GameObject: {fileID: 108209158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee87285de9b10b4484c980a01cad936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPassable: 0
+  placed: 0
+  x: 0
+  y: 0
+--- !u!212 &108209161
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200000, guid: 2c56b03d262f4e34d85b286363e801ee,
+    type: 2}
+  m_PrefabInternal: {fileID: 688038061}
+  m_GameObject: {fileID: 108209158}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 3d10b68bb291efe43bace470aa1040dd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &258505643
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,7 +352,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.72340751, y: 2.21071887, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 350091485}
+  - {fileID: 108209159}
+  - {fileID: 2098411617}
   m_Father: {fileID: 1450026598}
 --- !u!114 &258505645
 MonoBehaviour:
@@ -263,10 +378,146 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 108209160}
+  - {fileID: 2098411618}
+  - {fileID: 350091486}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+--- !u!1 &350091484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+  m_PrefabInternal: {fileID: 570975438}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 350091485}
+  - 212: {fileID: 350091487}
+  - 114: {fileID: 350091486}
+  m_Layer: 8
+  m_Name: clubChairLeft_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &350091485
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+  m_PrefabInternal: {fileID: 570975438}
+  m_GameObject: {fileID: 350091484}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -.100000001}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 258505644}
+--- !u!114 &350091486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 570975438}
+  m_GameObject: {fileID: 350091484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee87285de9b10b4484c980a01cad936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPassable: 0
+  placed: 0
+  x: 0
+  y: 0
+--- !u!212 &350091487
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200000, guid: e5c7b567f6a2adc429e96c131a3bf3d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 570975438}
+  m_GameObject: {fileID: 350091484}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: e3d36914fc9e47042ac2ae3df31edfa5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &352205834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+  m_PrefabInternal: {fileID: 1111234408}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 352205835}
+  - 212: {fileID: 352205837}
+  - 114: {fileID: 352205836}
+  m_Layer: 8
+  m_Name: clubChairLeft_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &352205835
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+  m_PrefabInternal: {fileID: 1111234408}
+  m_GameObject: {fileID: 352205834}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -.100000001}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 630479106}
+--- !u!114 &352205836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1111234408}
+  m_GameObject: {fileID: 352205834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee87285de9b10b4484c980a01cad936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPassable: 0
+  placed: 0
+  x: 0
+  y: 0
+--- !u!212 &352205837
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200000, guid: e5c7b567f6a2adc429e96c131a3bf3d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1111234408}
+  m_GameObject: {fileID: 352205834}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: e3d36914fc9e47042ac2ae3df31edfa5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &355872758
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,6 +576,74 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &362057422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+  m_PrefabInternal: {fileID: 594748917}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 362057423}
+  - 212: {fileID: 362057425}
+  - 114: {fileID: 362057424}
+  m_Layer: 8
+  m_Name: clubTable_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &362057423
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+  m_PrefabInternal: {fileID: 594748917}
+  m_GameObject: {fileID: 362057422}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -.100000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1587066807}
+--- !u!114 &362057424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e,
+    type: 2}
+  m_PrefabInternal: {fileID: 594748917}
+  m_GameObject: {fileID: 362057422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee87285de9b10b4484c980a01cad936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPassable: 0
+  placed: 0
+  x: 0
+  y: 0
+--- !u!212 &362057425
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e,
+    type: 2}
+  m_PrefabInternal: {fileID: 594748917}
+  m_GameObject: {fileID: 362057422}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 5e28e995baeb86442b59425fe8e0a391, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &385235316
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +833,74 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1 &406446294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+  m_PrefabInternal: {fileID: 2114443213}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 406446295}
+  - 212: {fileID: 406446297}
+  - 114: {fileID: 406446296}
+  m_Layer: 4
+  m_Name: clubChairRight_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &406446295
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+  m_PrefabInternal: {fileID: 2114443213}
+  m_GameObject: {fileID: 406446294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -.100000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 630479106}
+--- !u!114 &406446296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 2c56b03d262f4e34d85b286363e801ee,
+    type: 2}
+  m_PrefabInternal: {fileID: 2114443213}
+  m_GameObject: {fileID: 406446294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee87285de9b10b4484c980a01cad936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPassable: 0
+  placed: 0
+  x: 0
+  y: 0
+--- !u!212 &406446297
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200000, guid: 2c56b03d262f4e34d85b286363e801ee,
+    type: 2}
+  m_PrefabInternal: {fileID: 2114443213}
+  m_GameObject: {fileID: 406446294}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 3d10b68bb291efe43bace470aa1040dd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &442328720
 Prefab:
   m_ObjectHideFlags: 0
@@ -568,6 +955,50 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8062695f402ec7644acc2260cafd644d, type: 2}
   m_RootGameObject: {fileID: 1248361080}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
+--- !u!1001 &477685313
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 863127385}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_Name
+      value: clubChairRight_1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+  m_RootGameObject: {fileID: 618986625}
   m_IsPrefabParent: 0
   m_IsExploded: 1
 --- !u!1001 &557180507
@@ -723,6 +1154,94 @@ Prefab:
   m_RootGameObject: {fileID: 385235316}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1001 &570975438
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 258505644}
+    m_Modifications:
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_Name
+      value: clubChairLeft_4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+  m_RootGameObject: {fileID: 350091484}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
+--- !u!1001 &594748917
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1587066807}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_Name
+      value: clubTable_2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+  m_RootGameObject: {fileID: 362057422}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &605270506
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +1292,74 @@ Transform:
   m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &618986625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+  m_PrefabInternal: {fileID: 477685313}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 618986626}
+  - 212: {fileID: 618986628}
+  - 114: {fileID: 618986627}
+  m_Layer: 4
+  m_Name: clubChairRight_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &618986626
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+  m_PrefabInternal: {fileID: 477685313}
+  m_GameObject: {fileID: 618986625}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -.100000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 863127385}
+--- !u!114 &618986627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 2c56b03d262f4e34d85b286363e801ee,
+    type: 2}
+  m_PrefabInternal: {fileID: 477685313}
+  m_GameObject: {fileID: 618986625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee87285de9b10b4484c980a01cad936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPassable: 0
+  placed: 0
+  x: 0
+  y: 0
+--- !u!212 &618986628
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200000, guid: 2c56b03d262f4e34d85b286363e801ee,
+    type: 2}
+  m_PrefabInternal: {fileID: 477685313}
+  m_GameObject: {fileID: 618986625}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 3d10b68bb291efe43bace470aa1040dd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &630479105
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +1385,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.72340751, y: 2.21071887, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 352205835}
+  - {fileID: 406446295}
+  - {fileID: 1770463877}
   m_Father: {fileID: 1450026598}
 --- !u!114 &630479107
 MonoBehaviour:
@@ -814,6 +1404,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - {fileID: 0}
+  - {fileID: 406446296}
+  - {fileID: 1770463878}
+  - {fileID: 352205836}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -822,9 +1415,94 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+--- !u!1001 &647902186
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 863127385}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_Name
+      value: clubTable_1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+  m_RootGameObject: {fileID: 1886380709}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
+--- !u!1001 &688038061
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 258505644}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_Name
+      value: clubChairRight_4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+  m_RootGameObject: {fileID: 108209158}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &776303251
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,7 +1674,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.72340751, y: 2.21071887, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1279274457}
+  - {fileID: 618986626}
+  - {fileID: 1886380710}
   m_Father: {fileID: 1450026598}
 --- !u!114 &863127386
 MonoBehaviour:
@@ -1012,9 +1693,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 618986627}
+  - {fileID: 1886380711}
+  - {fileID: 1279274458}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1183,6 +1864,118 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1001 &1111234408
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 630479106}
+    m_Modifications:
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_Name
+      value: clubChairLeft_3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+  m_RootGameObject: {fileID: 352205834}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
+--- !u!1 &1126718492
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+  m_PrefabInternal: {fileID: 79426370}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1126718493}
+  - 212: {fileID: 1126718495}
+  - 114: {fileID: 1126718494}
+  m_Layer: 8
+  m_Name: clubChairLeft_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1126718493
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+  m_PrefabInternal: {fileID: 79426370}
+  m_GameObject: {fileID: 1126718492}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -.100000001}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1587066807}
+--- !u!114 &1126718494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 79426370}
+  m_GameObject: {fileID: 1126718492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee87285de9b10b4484c980a01cad936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPassable: 0
+  placed: 0
+  x: 0
+  y: 0
+--- !u!212 &1126718495
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200000, guid: e5c7b567f6a2adc429e96c131a3bf3d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 79426370}
+  m_GameObject: {fileID: 1126718492}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: e3d36914fc9e47042ac2ae3df31edfa5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1129802164
 GameObject:
   m_ObjectHideFlags: 0
@@ -1394,6 +2187,74 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1 &1135969729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+  m_PrefabInternal: {fileID: 1145236920}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1135969730}
+  - 212: {fileID: 1135969732}
+  - 114: {fileID: 1135969731}
+  m_Layer: 4
+  m_Name: clubChairRight_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1135969730
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+  m_PrefabInternal: {fileID: 1145236920}
+  m_GameObject: {fileID: 1135969729}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -.100000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1587066807}
+--- !u!114 &1135969731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 2c56b03d262f4e34d85b286363e801ee,
+    type: 2}
+  m_PrefabInternal: {fileID: 1145236920}
+  m_GameObject: {fileID: 1135969729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee87285de9b10b4484c980a01cad936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPassable: 0
+  placed: 0
+  x: 0
+  y: 0
+--- !u!212 &1135969732
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200000, guid: 2c56b03d262f4e34d85b286363e801ee,
+    type: 2}
+  m_PrefabInternal: {fileID: 1145236920}
+  m_GameObject: {fileID: 1135969729}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 3d10b68bb291efe43bace470aa1040dd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &1140755165
 Prefab:
   m_ObjectHideFlags: 0
@@ -1432,6 +2293,50 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a7db7adc9e27ae429a416434dc7692c, type: 2}
   m_RootGameObject: {fileID: 1517267695}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
+--- !u!1001 &1145236920
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1587066807}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_Name
+      value: clubChairRight_2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+  m_RootGameObject: {fileID: 1135969729}
   m_IsPrefabParent: 0
   m_IsExploded: 1
 --- !u!1001 &1191565021
@@ -1574,6 +2479,74 @@ MonoBehaviour:
   fadeOutTexture: {fileID: 2800000, guid: 792c8f5efb2c26240af0d7a3d2575a79, type: 3}
   fadeSpeed: .100000001
   drawDepth: -1000
+--- !u!1 &1279274456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+  m_PrefabInternal: {fileID: 1334114139}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1279274457}
+  - 212: {fileID: 1279274459}
+  - 114: {fileID: 1279274458}
+  m_Layer: 8
+  m_Name: clubChairLeft_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1279274457
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+  m_PrefabInternal: {fileID: 1334114139}
+  m_GameObject: {fileID: 1279274456}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -.100000001}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 863127385}
+--- !u!114 &1279274458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1334114139}
+  m_GameObject: {fileID: 1279274456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee87285de9b10b4484c980a01cad936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPassable: 0
+  placed: 0
+  x: 0
+  y: 0
+--- !u!212 &1279274459
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200000, guid: e5c7b567f6a2adc429e96c131a3bf3d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1334114139}
+  m_GameObject: {fileID: 1279274456}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: e3d36914fc9e47042ac2ae3df31edfa5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1329229032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,6 +2758,50 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1001 &1334114139
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 863127385}
+    m_Modifications:
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+      propertyPath: m_Name
+      value: clubChairLeft_1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e5c7b567f6a2adc429e96c131a3bf3d8, type: 2}
+  m_RootGameObject: {fileID: 1279274456}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1351628344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1837,6 +2854,50 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!1001 &1366216997
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 258505644}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_Name
+      value: clubTable_4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+  m_RootGameObject: {fileID: 2098411616}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1406643919
 GameObject:
   m_ObjectHideFlags: 0
@@ -2215,6 +3276,50 @@ Transform:
   m_LocalScale: {x: .238670424, y: .238671243, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1001 &1497879097
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 630479106}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+      propertyPath: m_Name
+      value: clubTable_3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+  m_RootGameObject: {fileID: 1770463876}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1517267695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2400,7 +3505,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.72340751, y: 2.21071887, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1126718493}
+  - {fileID: 1135969730}
+  - {fileID: 362057423}
   m_Father: {fileID: 1450026598}
 --- !u!114 &1587066808
 MonoBehaviour:
@@ -2423,9 +3531,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1135969731}
+  - {fileID: 362057424}
+  - {fileID: 1126718494}
   - {fileID: 0}
 --- !u!1 &1597032894
 GameObject:
@@ -2746,6 +3854,74 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1 &1770463876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+  m_PrefabInternal: {fileID: 1497879097}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1770463877}
+  - 212: {fileID: 1770463879}
+  - 114: {fileID: 1770463878}
+  m_Layer: 8
+  m_Name: clubTable_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1770463877
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+  m_PrefabInternal: {fileID: 1497879097}
+  m_GameObject: {fileID: 1770463876}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -.100000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 630479106}
+--- !u!114 &1770463878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1497879097}
+  m_GameObject: {fileID: 1770463876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee87285de9b10b4484c980a01cad936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPassable: 0
+  placed: 0
+  x: 0
+  y: 0
+--- !u!212 &1770463879
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1497879097}
+  m_GameObject: {fileID: 1770463876}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 5e28e995baeb86442b59425fe8e0a391, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1806852662
 GameObject:
   m_ObjectHideFlags: 0
@@ -2833,6 +4009,74 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &1886380709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+  m_PrefabInternal: {fileID: 647902186}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1886380710}
+  - 212: {fileID: 1886380712}
+  - 114: {fileID: 1886380711}
+  m_Layer: 8
+  m_Name: clubTable_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1886380710
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+  m_PrefabInternal: {fileID: 647902186}
+  m_GameObject: {fileID: 1886380709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -.100000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 863127385}
+--- !u!114 &1886380711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e,
+    type: 2}
+  m_PrefabInternal: {fileID: 647902186}
+  m_GameObject: {fileID: 1886380709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee87285de9b10b4484c980a01cad936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPassable: 0
+  placed: 0
+  x: 0
+  y: 0
+--- !u!212 &1886380712
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e,
+    type: 2}
+  m_PrefabInternal: {fileID: 647902186}
+  m_GameObject: {fileID: 1886380709}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 5e28e995baeb86442b59425fe8e0a391, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2013112754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2933,6 +4177,74 @@ Prefab:
   m_RootGameObject: {fileID: 1406643919}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &2098411616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+  m_PrefabInternal: {fileID: 1366216997}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2098411617}
+  - 212: {fileID: 2098411619}
+  - 114: {fileID: 2098411618}
+  m_Layer: 8
+  m_Name: clubTable_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2098411617
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e, type: 2}
+  m_PrefabInternal: {fileID: 1366216997}
+  m_GameObject: {fileID: 2098411616}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -.100000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 258505644}
+--- !u!114 &2098411618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1366216997}
+  m_GameObject: {fileID: 2098411616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee87285de9b10b4484c980a01cad936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPassable: 0
+  placed: 0
+  x: 0
+  y: 0
+--- !u!212 &2098411619
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200000, guid: 1d9d8b875e3fd1d47a1a6bdd7de09e4e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1366216997}
+  m_GameObject: {fileID: 2098411616}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 5e28e995baeb86442b59425fe8e0a391, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2102327324
 GameObject:
   m_ObjectHideFlags: 0
@@ -3010,3 +4322,47 @@ Animator:
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
+--- !u!1001 &2114443213
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 630479106}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+      propertyPath: m_Name
+      value: clubChairRight_3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2c56b03d262f4e34d85b286363e801ee, type: 2}
+  m_RootGameObject: {fileID: 406446294}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
