@@ -59,12 +59,14 @@ MonoBehaviour:
   health: 0
   currentRed: 0
   isPassable: 0
+  dead: 0
   moveSpeed: .100000001
   bloodSpatter: {fileID: 19800000, guid: 684261b06538d4df2ba10b7bab60c501, type: 2}
   isExecuting: 0
   lifespan: 0
   toBar: 3
-  prefab: {fileID: 11400000, guid: d78a9414d5d9ddf47b69233dfcadc7d8, type: 2}
+  bottlesource: {fileID: 100000, guid: d78a9414d5d9ddf47b69233dfcadc7d8, type: 2}
+  prefab: {fileID: 0}
   bottleOffset: {x: .25, y: .100000001, z: 0}
 --- !u!212 &21200000
 SpriteRenderer:

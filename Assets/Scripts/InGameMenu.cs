@@ -25,7 +25,7 @@ public class InGameMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.menuActive = false;
-		pauseButton.Resize (Screen.width/9, Screen.width/9);
+//		pauseButton.Resize (Screen.width/9, Screen.width/9);
 		paused = false;
 		showInstructions = false;
 		tm = GameObject.Find ("Player").GetComponent<TurnManager> ();

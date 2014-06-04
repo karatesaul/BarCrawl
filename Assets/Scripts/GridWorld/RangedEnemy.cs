@@ -5,11 +5,13 @@ public class RangedEnemy : Enemy {
 
 	bool hasBottle;
 
+	public GameObject bottlesource;
 	public Bottle prefab;
 	public Vector3 bottleOffset = new Vector3(.25f, .1f, 0);
 
 	// Use this for initialization
 	protected override void Start () {
+		prefab = bottlesource.GetComponent<Bottle> ();
 
 		health = 10;
 		damageDealt = 5;

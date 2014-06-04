@@ -44,7 +44,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Idle
-  m_Speed: .75
+  m_Speed: .5
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 8ccd100c17b348c409e5f6ea1d7ff491, type: 2}
@@ -59,10 +59,10 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackUp
-  m_Speed: 1
+  m_Speed: .800000012
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 8c30a01dca90c4863989524c896ec901, type: 2}
+  - {fileID: 7400000, guid: 461df69d7c8c01746ac26ba6e0ae804e, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -96, y: -48, z: 0}
   m_IKOnFeet: 0
@@ -74,10 +74,10 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Walk
-  m_Speed: 1
+  m_Speed: .75
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: edb84b9c8cab24c79951821a40da4604, type: 2}
+  - {fileID: 7400000, guid: a4b2e24208181904195156ce24a34d3d, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -96, y: -96, z: 0}
   m_IKOnFeet: 0
@@ -89,12 +89,27 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackLeft
-  m_Speed: 1
+  m_Speed: .800000012
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 697f160fc775641e99d930fd3efab18d, type: 2}
+  - {fileID: 7400000, guid: d4a323ddc5cdf2644bf744f2eebbbae6, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 120, y: -144, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110213743
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hurt
+  m_Speed: .400000006
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: b55b816463d32234ca41e9eb800e5730, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -96, y: -144, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -104,10 +119,10 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackDown
-  m_Speed: 1
+  m_Speed: .800000012
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 82c5a4a91e1ab40bdaeeb57f0cd35867, type: 2}
+  - {fileID: 7400000, guid: 1f9e65f0b75644540bd4fa9f6e0b1f99, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 120, y: -96, z: 0}
   m_IKOnFeet: 0
@@ -119,10 +134,10 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Death
-  m_Speed: 1
+  m_Speed: .100000001
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 50fb508e5b0d44ac7b85d3da10334af4, type: 2}
+  - {fileID: 7400000, guid: b43c42190edd35248962c282d2d81942, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 120, y: -48, z: 0}
   m_IKOnFeet: 0
@@ -143,6 +158,7 @@ StateMachine:
   - {fileID: 110205925}
   - {fileID: 110251895}
   - {fileID: 110213608}
+  - {fileID: 110213743}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:

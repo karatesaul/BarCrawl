@@ -12,9 +12,19 @@ public class SFXManager : MonoBehaviour {
 	void Start () {
 		player = gameObject;
 		uncensored = new AudioClip[18];
+		censored = new AudioClip[18];
 		//This should iterate to the number of voice files.
-		for (int i = 0; i < 18; i++) {
+		for (int i = 0; i < 8; i++) {
 			uncensored[i] = Resources.Load("Uncensored/"+(i+1).ToString (), typeof(AudioClip)) as AudioClip;
+		}
+		for (int i = 0; i < 8; i++) {
+			censored[i] = Resources.Load("Censored/"+(i+1).ToString (), typeof(AudioClip)) as AudioClip;
+		}
+		for (int i = 8; i < 18; i++) {
+			uncensored[i] = Resources.Load("Nonvulgar/"+(i+1).ToString (), typeof(AudioClip)) as AudioClip;
+		}
+		for (int i = 8; i < 18; i++) {
+			censored[i] = Resources.Load("Nonvulgar/"+(i+1).ToString (), typeof(AudioClip)) as AudioClip;
 		}
 
 	}
