@@ -259,6 +259,24 @@ public class PuzzleManager : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// Moves the given token, assuming it is the currently active token.
+	/// This means it checks for formed matches, but not broken; and it does some cleanup stuff.
+	/// </summary>
+	/// <param name="destX">Destination x.</param>
+	/// <param name="destY">Destination y.</param>
+	/// <param name="token">The token to move.</param>
+	private void dropToken(int destX, int destY, Token token)
+	{
+		token.active = false;
+
+		puzzleGrid[destX, destY] = token;
+		token.Reposition(destX, destY);
+		
+		//check if match made
+		CheckForMatchesFinal(destX, destY);
+	}
+
+	/// <summary>
 	/// Checks for matches with the token at the specified coordinates.
 	/// </summary>
 	/// <param name="x">The x coordinate.</param>
@@ -341,7 +359,85 @@ public class PuzzleManager : MonoBehaviour {
 			token.match = matches;
 		}
 	}
-	
+
+	/// <summary>
+	/// Checks for matches with the token at the specified coordinates.
+	/// Unlike the standard CheckForMatches, always puts the created combo at the BEGINNING of the queue.
+	/// </summary>
+	/// <param name="x">The x coordinate.</param>
+	/// <param name="y">The y coordinate.</param>
+	private void CheckForMatchesFinal(int x, int y)
+	{
+		List<Token> matches = new List<Token>();
+		
+		//find if it caused any matches
+		matches.AddRange(CheckForMatchesHorizontally(x,y));
+		matches.AddRange(CheckForMatchesVertically(x,y));
+		
+		//if no matches, quit now.
+		if(matches.Count == 0)
+			return;
+		
+		//make sure to include the token itself
+		matches.Add(puzzleGrid[x,y]);
+		
+		List<int> earlierMatches = new List<int>();
+		
+		//if there are matches, check if any were already matched.
+		foreach(Token token in matches)
+		{
+			if(token.match != null)
+			{
+				int matchNum = setOfTokens.IndexOf(token.match);
+				if(matchNum == -1)
+				{
+					Debug.Log("Missing match?");
+					continue;
+				}
+				
+				//prevent duplicate entries
+				if(!earlierMatches.Contains(matchNum))
+				{
+					earlierMatches.Add(matchNum);
+				}
+			}
+		}
+		
+		//Debug.Log ("Assimilating " + earlierMatches.Count + " old matches:");
+		
+		//if there were, mash all the matches into our working match
+		if(earlierMatches.Count > 0)
+		{
+			//add all the tokens to our match
+			earlierMatches.Sort();
+			for(int i = earlierMatches.Count - 1; i >= 0; i--)
+			{
+				List<Token> earlierMatch = setOfTokens[earlierMatches[i]];
+				setOfTokens.RemoveAt(earlierMatches[i]);
+				//Debug.Log("-Match of " + earlierMatch.Count +" " + earlierMatch[0].tokenVal + "s, match num is " + earlierMatches[i]);
+				
+				foreach(Token token in earlierMatch)
+				{
+					//again preventing duplicates
+					if(!matches.Contains(token))
+						matches.Add(token);
+				}
+			}
+		}
+		
+		//add the match!
+		setOfTokens.Insert(0, matches);
+		
+		//Debug.Log ("Into match of " + matches.Count + " " + matches[0].tokenVal + "s, match num is " + setOfTokens.IndexOf(matches));
+		
+		//we're not done yet!  Have to tell the tokens their states.
+		foreach(Token token in matches)
+		{
+			token.used = true;
+			token.match = matches;
+		}
+	}
+
 	/// <summary>
 	/// Checks for matches horizontally.
 	/// </summary>
@@ -1388,8 +1484,8 @@ public class PuzzleManager : MonoBehaviour {
 				
 				//if time is up, drop the token
 				if (currTime <= 0) {
-					activeToken.active = false;
-					moveToken(activeX, activeY, activeToken);
+
+					dropToken(activeX, activeY, activeToken);
 
 					activeToken = null;
 					
@@ -1421,8 +1517,8 @@ public class PuzzleManager : MonoBehaviour {
 		} else {
 			//if there is an active token, drop it
 			if (activeToken != null){
-				activeToken.active = false;
-				moveToken(activeX, activeY, activeToken);
+
+				dropToken(activeX, activeY, activeToken);
 				activeToken = null;
 				
 				if (swapCount > 0){
@@ -1522,6 +1618,7 @@ public class PuzzleManager : MonoBehaviour {
 					activeX = a;
 					activeY = b;
 					mouseTokenRelativeLocation = new Vector2 (activeToken.location.x, Screen.height - activeToken.location.y) - new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+					activeToken.active = true;
 					tutorialState = 2;
 				}
 			}
@@ -1535,16 +1632,18 @@ public class PuzzleManager : MonoBehaviour {
 			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
 			if (!Input.GetMouseButton(0)){
 				//drop the token
-				activeToken.Reposition(activeX, activeY);
+				dropToken(activeX, activeY, activeToken);
 				activeToken = null;
 				tutorialState = 1;
 			} else {
 				//if the token has moved, and to the right spot
 				if (puzzleGrid[a, b] != activeToken && a == 1 && b == 4){
 					//perform a swap
-					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
-					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+					Token swapWith = puzzleGrid[a, b];
 					puzzleGrid [a, b] = activeToken;
+					
+					moveToken(activeX, activeY, swapWith);
+					
 					activeX = a;
 					activeY = b;
 					audioSources[0].Play();
@@ -1562,10 +1661,11 @@ public class PuzzleManager : MonoBehaviour {
 			activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 			//they have done the correct swap, so only let them drop the token
 			if (!Input.GetMouseButton(0)){
-				activeToken.Reposition(activeX, activeY);
+				dropToken(activeX, activeY, activeToken);
 				activeToken = null;
-				tutorialState = 4;
 				refillStep = 0;
+
+				tutorialState = 4;
 			}
 			drawn = false;
 			puzzleGrid[1, 4].highlight = false;
@@ -1609,16 +1709,17 @@ public class PuzzleManager : MonoBehaviour {
 			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
 			if (!Input.GetMouseButton(0)){
 				//drop the token
-				activeToken.Reposition(activeX, activeY);
+				dropToken(activeX, activeY, activeToken);
 				activeToken = null;
+				setOfTokens.Clear();
 				tutorialState = 4;
 			} else {
 				//if the token has moved, and to the right spot
 				if (puzzleGrid[a, b] != activeToken && a == 3 && b == 1){
 					//perform a swap
-					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
-					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+					Token swapWith = puzzleGrid[a, b];
 					puzzleGrid [a, b] = activeToken;
+					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
 					audioSources[0].Play();
@@ -1638,20 +1739,22 @@ public class PuzzleManager : MonoBehaviour {
 			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
 			if (!Input.GetMouseButton(0)){
 				//reposition the other token we swapped
-				puzzleGrid[3, 1] = puzzleGrid[3, 2];
-				puzzleGrid[3, 1].Reposition(3, 1);
+				moveToken(3, 1, puzzleGrid[3, 2]);
+
 				//drop the token
-				puzzleGrid[3, 2] = activeToken;
-				puzzleGrid[3, 2].Reposition(3, 2);
+				dropToken(3, 2, activeToken);
 				activeToken = null;
+
+				//reset state
+				setOfTokens.Clear();
 				tutorialState = 4;
 			} else {
 				//if the token has moved, and to the right spot
 				if (puzzleGrid[a, b] != activeToken && a == 3 && b == 0){
 					//perform a swap
-					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
-					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+					Token swapWith = puzzleGrid[a, b];
 					puzzleGrid [a, b] = activeToken;
+					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
 					audioSources[0].Play();
@@ -1667,10 +1770,12 @@ public class PuzzleManager : MonoBehaviour {
 			activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 			//they have done the correct swap, so only let them drop the token
 			if (!Input.GetMouseButton(0)){
-				activeToken.Reposition(activeX, activeY);
+
+				dropToken(activeX, activeY, activeToken);
 				activeToken = null;
-				tutorialState = 8;
 				refillStep = 0;
+
+				tutorialState = 8;
 			}
 			puzzleGrid[3, 0].highlight = false;
 			drawn = false;
@@ -1716,16 +1821,16 @@ public class PuzzleManager : MonoBehaviour {
 			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
 			if (!Input.GetMouseButton(0)){
 				//drop the token
-				activeToken.Reposition(activeX, activeY);
+				dropToken(activeX, activeY, activeToken);
 				activeToken = null;
 				tutorialState = 8;
 			} else {
 				//if the token has moved, and to the right spot
 				if (puzzleGrid[a, b] != activeToken && a == 1 && b == 1){
 					//perform a swap
-					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
-					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+					Token swapWith = puzzleGrid[a, b];
 					puzzleGrid [a, b] = activeToken;
+					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
 					audioSources[0].Play();
@@ -1745,20 +1850,19 @@ public class PuzzleManager : MonoBehaviour {
 			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
 			if (!Input.GetMouseButton(0)){
 				//reposition the other token we swapped
-				puzzleGrid[1, 1] = puzzleGrid[0, 1];
-				puzzleGrid[1, 1].Reposition(1, 1);
+				moveToken(1, 1, puzzleGrid[0, 1]);
+
 				//drop the active token
-				puzzleGrid[0, 1] = activeToken;
-				puzzleGrid[0, 1].Reposition(0, 1);
+				dropToken(0, 1, activeToken);
 				activeToken = null;
 				tutorialState = 8;
 			} else {
 				//if the token has moved, and to the right spot
 				if (puzzleGrid[a, b] != activeToken && a == 2 && b == 1){
 					//perform a swap
-					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
-					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+					Token swapWith = puzzleGrid[a, b];
 					puzzleGrid [a, b] = activeToken;
+					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
 					audioSources[0].Play();
@@ -1775,22 +1879,19 @@ public class PuzzleManager : MonoBehaviour {
 			//we have the correct token picked up, so only allow swaps to the right location or to drop the token
 			if (!Input.GetMouseButton(0)){
 				//reposition the other tokens we swapped
-				puzzleGrid[2, 1] = puzzleGrid[1, 1];
-				puzzleGrid[2, 1].Reposition(2, 1);
-				puzzleGrid[1, 1] = puzzleGrid[0, 1];
-				puzzleGrid[1, 1].Reposition(1, 1);
+				moveToken(2, 1,puzzleGrid[1, 1]);
+				moveToken(1, 1, puzzleGrid[0, 1]);
 				//drop the token
-				puzzleGrid[0, 1] = activeToken;
-				puzzleGrid[0, 1].Reposition(0, 1);
+				dropToken(0, 1, activeToken);
 				activeToken = null;
 				tutorialState = 8;
 			} else {
 				//if the token has moved, and to the right spot
 				if (puzzleGrid[a, b] != activeToken && a == 2 && b == 0){
 					//perform a swap
-					puzzleGrid[activeX, activeY] = puzzleGrid[a, b];
-					puzzleGrid[activeX, activeY].Reposition(activeX, activeY);
+					Token swapWith = puzzleGrid[a, b];
 					puzzleGrid [a, b] = activeToken;
+					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
 					audioSources[0].Play();
@@ -1806,11 +1907,12 @@ public class PuzzleManager : MonoBehaviour {
 			activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 			//they have done the correct swap, so only let them drop the token
 			if (!Input.GetMouseButton(0)){
-				activeToken.Reposition(activeX, activeY);
+				dropToken(activeX, activeY, activeToken);
 				activeToken = null;
+				refillStep = 0;
+
 				tutorialState = 0;
 				PlayerPrefs.SetInt("ShowTutorial", 0);
-				refillStep = 0;
 				ui.tut3 = false;
 			}
 			puzzleGrid[2, 0].highlight = false;
