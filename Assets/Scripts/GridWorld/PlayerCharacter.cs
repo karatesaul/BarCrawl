@@ -88,22 +88,22 @@ public class PlayerCharacter : FightingEntity {
 			Vector3 floorMin = new Vector3(floor.renderer.bounds.min.x, floor.renderer.bounds.min.y, 0);
 			Vector3 floorMax = new Vector3(floor.renderer.bounds.max.x, floor.renderer.bounds.max.y, 0);
 			if (cameraMin.x < floorMin.x){
-				Debug.Log("Correcting a negative x");
+				//Debug.Log("Correcting a negative x");
 				correction.x = floorMin.x - cameraMin.x;
 			}
 			if (cameraMax.x > floorMax.x){
-				Debug.Log("Correcting a positive x");
+				//Debug.Log("Correcting a positive x");
 				correction.x = floorMax.x - cameraMax.x;
 			}
 			if (worldCamera.transform.position.y < floorMin.y){
-				Debug.Log("Correcting a negative y");
+				//Debug.Log("Correcting a negative y");
 				correction.y = floorMin.y - worldCamera.transform.position.y;
 			}
 			if (cameraMax.y > floorMax.x){
-				Debug.Log("Correcting a positive x");
+				//Debug.Log("Correcting a positive x");
 				correction.y = floorMax.y - cameraMax.y;
 			}
-			Debug.Log("Correction: " + correction);
+			//Debug.Log("Correction: " + correction);
 			worldCamera.transform.position += correction;
 		} else {
 			shakyCam--;
