@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Idle
+  m_Name: Walk
   serializedVersion: 4
   m_AnimationType: 2
   m_Compressed: 0
@@ -18,13 +18,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: bb9bab875499d5e4eaa99cbaa140e27f, type: 3}
+      value: {fileID: 21300000, guid: 13da74f28974790488485d2504ea27ab, type: 3}
     - time: .0833333358
-      value: {fileID: 21300000, guid: 6488ed3fb3461fe43bea26138a94d4a9, type: 3}
+      value: {fileID: 21300000, guid: 5a900b801f78445439035189c87799bb, type: 3}
     - time: .166666672
-      value: {fileID: 21300000, guid: 9586379e1fdd3e64cbabc8d9aefda6e4, type: 3}
+      value: {fileID: 21300000, guid: 8ae0776e644405346a9c705b5b2ca03b, type: 3}
     - time: .25
-      value: {fileID: 21300000, guid: a733931d20b1e86438164552f9e0141f, type: 3}
+      value: {fileID: 21300000, guid: 36dfcaeb77ed8f748b8334688fb4221a, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
