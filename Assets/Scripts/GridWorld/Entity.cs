@@ -24,7 +24,7 @@ public class Entity : MonoBehaviour {
 
 	protected SpriteRenderer spriteRenderer;
 	protected Animator animator;
-	protected AudioSource audioSource;
+	protected AudioSource[] audioSources;
 
 	//for display & fight logic purposes.
 	protected Move facing;
@@ -36,7 +36,7 @@ public class Entity : MonoBehaviour {
 		GridManager.instance.entities.Add(this);
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		animator = gameObject.GetComponent<Animator> ();
-		audioSource = GetComponent<AudioSource> ();
+		audioSources = GetComponents<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -63,6 +63,7 @@ public class Entity : MonoBehaviour {
 		if (health <= 0 && deathState == 0) {
 			deathticker = 1;
 			animator.Play ("Death");
+			audioSources [1].Play ();
 			deathState = 1;
 			dead = true;
 			GridManager.instance.entities.Remove(this);
@@ -119,7 +120,7 @@ public class Entity : MonoBehaviour {
 		currentRed = 100;
 
 		animator.Play ("Hurt");
-		audioSource.Play ();
+		audioSources[0].Play ();
 
 		if (PlayerPrefs.GetInt ("Profanity") == 1) {
 			//play the blood spatter
@@ -185,7 +186,6 @@ public class Entity : MonoBehaviour {
 	public virtual void Die()
 	{
 		//right now, that consists of removing it from the GridManager's entity list.
-
 		Destroy (this.gameObject);
 	}
 }
