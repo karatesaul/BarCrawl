@@ -6,6 +6,7 @@ public class SFXManager : MonoBehaviour {
 
 	public static AudioClip[] uncensored = {null/*others*/};
 	public static AudioClip[] censored = {null/*others*/};
+	public static GameObject currentAudio;
 	public static GameObject player;
 
 	// Use this for initialization
@@ -47,11 +48,21 @@ public class SFXManager : MonoBehaviour {
 
 	private static void playCensored(){
 		int rand = Mathf.RoundToInt(Random.Range(0, censored.Length - 1));
-		AudioSource.PlayClipAtPoint (censored [rand], player.transform.position);
+		if (currentAudio == null) {
+			AudioSource.PlayClipAtPoint (censored [rand], player.transform.position);
+			currentAudio = GameObject.Find ("One shot audio");
+		} 
+		else
+			Debug.Log ("Voice overlap prevented!");
 	}
 
 	private static void playUncensored(){
 		int rand = Mathf.RoundToInt(Random.Range(0, uncensored.Length - 1));
-		AudioSource.PlayClipAtPoint(uncensored[rand], player.transform.position);
+		if (currentAudio == null) {
+		AudioSource.PlayClipAtPoint (uncensored [rand], player.transform.position);
+			currentAudio = GameObject.Find ("One shot audio");
+		} 
+		else
+			Debug.Log ("Voice overlap prevented!");
 	}
 }
