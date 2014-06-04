@@ -81,41 +81,31 @@ public class PlayerCharacter : FightingEntity {
 		base.Update ();
 
 		//camera follows player!
-		if (shakyCam == 0) {
-			worldCamera.gameObject.transform.position = gameObject.transform.position + cameraOffset;
-			//Debug.Log("Camera Min: " + (worldCamera.transform.position.x - worldCamera.rect.width) + "Floor Min: " + floor.renderer.bounds.min);
-			Vector3 correction = new Vector3(0, 0, 0);
-			Vector3 cameraMin = new Vector3(worldCamera.transform.position.x - worldCamera.orthographicSize * Screen.width/Screen.height, worldCamera.transform.position.y - worldCamera.orthographicSize, 0);
-			Vector3 cameraMax = new Vector3(worldCamera.transform.position.x + worldCamera.orthographicSize * Screen.width/Screen.height, worldCamera.transform.position.y + worldCamera.orthographicSize, 0);
-			Vector3 floorMin = new Vector3(floor.renderer.bounds.min.x, floor.renderer.bounds.min.y, 0);
-			Vector3 floorMax = new Vector3(floor.renderer.bounds.max.x, floor.renderer.bounds.max.y, 0);
-			if (cameraMin.x < floorMin.x){
-				//Debug.Log("Correcting a negative x");
-				correction.x += floorMin.x - cameraMin.x;
-			}
-			if (cameraMax.x > floorMax.x){
-				//Debug.Log("Correcting a positive x");
-				correction.x += floorMax.x - cameraMax.x;
-			}
-			if (worldCamera.transform.position.y < floorMin.y){
-				//Debug.Log("Correcting a negative y");
-				correction.y += floorMin.y - worldCamera.transform.position.y;
-			}
-			if (cameraMax.y > bar.renderer.bounds.max.y){
-				//Debug.Log("Correcting a positive y");
-				correction.y += bar.renderer.bounds.max.y - cameraMax.y;
-			}
-			//Debug.Log("Correction: " + correction);
-			worldCamera.transform.position += correction;
-		} else {
-			shakyCam--;
-			Vector3 position = gameObject.transform.position + cameraOffset;
-			float shake = shakeSpace * (shakyCam * 1.0f / shakeTime);
-
-			position.x = position.x + Random.Range(-shake, shake);
-			position.y = position.y + Random.Range(-shake, shake);
-			worldCamera.gameObject.transform.position = position;
+		worldCamera.gameObject.transform.position = gameObject.transform.position + cameraOffset;
+		Vector3 correction = new Vector3(0, 0, 0);
+		Vector3 cameraMin = new Vector3(worldCamera.transform.position.x - worldCamera.orthographicSize * Screen.width/Screen.height, worldCamera.transform.position.y - worldCamera.orthographicSize, 0);
+		Vector3 cameraMax = new Vector3(worldCamera.transform.position.x + worldCamera.orthographicSize * Screen.width/Screen.height, worldCamera.transform.position.y + worldCamera.orthographicSize, 0);
+		Vector3 floorMin = new Vector3(floor.renderer.bounds.min.x, floor.renderer.bounds.min.y, 0);
+		Vector3 floorMax = new Vector3(floor.renderer.bounds.max.x, floor.renderer.bounds.max.y, 0);
+		if (cameraMin.x < floorMin.x){
+			correction.x += floorMin.x - cameraMin.x;
 		}
+		if (cameraMax.x > floorMax.x){
+			correction.x += floorMax.x - cameraMax.x;
+		}
+		if (worldCamera.transform.position.y < floorMin.y){
+			correction.y += floorMin.y - worldCamera.transform.position.y;
+		}
+		if (cameraMax.y > bar.renderer.bounds.max.y){
+			correction.y += bar.renderer.bounds.max.y - cameraMax.y;
+		}
+		if (shakyCam != 0) {
+			shakyCam--;
+			float shake = shakeSpace * (shakyCam * 1.0f / shakeTime);
+			correction.x += Random.Range(-shake, shake);
+			correction.y += Random.Range(-shake, shake);
+		}
+		worldCamera.transform.position += correction;
 
 		if (tm.turn == 1) 
 		{
