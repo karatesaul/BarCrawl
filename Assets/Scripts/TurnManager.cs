@@ -14,6 +14,8 @@ public class TurnManager : MonoBehaviour {
 	public Tile[] enemySpawnLocations;
 	public MeleeEnemy meleeEnemyReference;
 	public RangedEnemy rangedEnemyReference;
+	public GameObject meleeprefab;
+	public GameObject rangedprefab;
 
 	public Texture gray;
 	public int maxEnemies;
@@ -29,6 +31,8 @@ public class TurnManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		maxEnemies = 4;
+		meleeEnemyReference = meleeprefab.GetComponent<MeleeEnemy> ();
+		rangedEnemyReference = rangedprefab.GetComponent<RangedEnemy> ();
 		GameObject[] enemyObjs; 
 		//gray;// = GameObject.Find ("Grayout").GetComponent<SpriteRenderer>();
 
