@@ -147,8 +147,14 @@ public class UI : MonoBehaviour {
 			//reset button
 			if (tm.coolDownTimer > 4) {
 				if (GUI.Button (new Rect(Screen.width/25, Screen.height/45, 4*Screen.width/25, 4*Screen.height/45), beer3, buttonStyle) && tm.turn ==1) {
-					pm.ResetPuzzle();
-					tm.coolDownTimer = 0;
+					if (pm.tutorialState == 0){
+						pm.ResetPuzzle();
+						tm.coolDownTimer = 0;
+					} else if (pm.tutorialState == 13){
+						pm.ResetPuzzle();
+						pm.tutorialState = 0;
+						tm.coolDownTimer = 0;
+					}
 				}
 			}
 			else if (tm.coolDownTimer == 4) GUI.Box (new Rect(Screen.width/25, Screen.height/45, 4*Screen.width/25, 4*Screen.height/45), beer2, buttonStyle);

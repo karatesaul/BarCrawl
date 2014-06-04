@@ -82,6 +82,7 @@ public class PuzzleManager : MonoBehaviour {
 	/// 10 - part 3, first swap happened, allow only second swap
 	/// 11 - part 3, second swap happened, allow only third swap
 	/// 12 - part 3, third swap happened, ready to drop
+	/// 13 - part 4, before reset pressed
 	/// </summary>
 	public int tutorialState;
 	private bool drawn; //set to true once the cursor is drawn to set off the animation
@@ -1911,13 +1912,17 @@ public class PuzzleManager : MonoBehaviour {
 				activeToken = null;
 				refillStep = 0;
 
-				tutorialState = 0;
+				tutorialState = 13;
 				PlayerPrefs.SetInt("ShowTutorial", 0);
 				ui.tut3 = false;
 			}
 			puzzleGrid[2, 0].highlight = false;
 			break;
-		}	
+		case 13:
+			//wait for the player to click on the reset button
+			//this is handled in UI.cs
+			break;
+		}
 	}
 	
 	#endregion
