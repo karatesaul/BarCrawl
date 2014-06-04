@@ -79,6 +79,7 @@ public class Enemy : FightingEntity {
 		int diffX = Mathf.Abs (player.x - this.x);
 		int diffY = Mathf.Abs (player.y - this.y);
 
+		/*
 		if (!playerDetected) 
 		{
 			int distance = diffX + diffY;
@@ -89,7 +90,6 @@ public class Enemy : FightingEntity {
 
 			if(lifespan >= 10)
 				playerDetected = true;
-			//*/
 		}
 		if (!playerDetected)
 		{
@@ -136,6 +136,7 @@ public class Enemy : FightingEntity {
 			}
 			return;
 		}
+		//*/
 
 		//reaching this point implies that the player has been detected
 
