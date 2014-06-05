@@ -13,6 +13,10 @@ public class MainMenu : MonoBehaviour {
 	
 	public GameObject pauseMenu;
 	public UI ui;
+
+	//for initial punch
+	public PlayerCharacter player;
+	public Enemy barEnemy;
 	
 	// Use this for initialization
 	void Start () {
@@ -67,6 +71,10 @@ public class MainMenu : MonoBehaviour {
 			pauseMenu.GetComponent<InGameMenu>().menuActive = true;
 			//finally turn on the UI
 			ui.showUI = true;
+
+			//make the player punch the nearby enemy.
+			player.throwFalsePunch();
+			barEnemy.takeDamage(0);
 		}
 		//high score screen button
 		if(GUI.Button (new Rect(x/2 - buttonWidth/2, 2*y/3, buttonWidth, buttonHeight), "<color=#ffffff>HIGH SCORES</color>", gs)){
