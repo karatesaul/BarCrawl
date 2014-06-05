@@ -9,6 +9,8 @@ public class InGameMenu : MonoBehaviour {
 	public GameObject puzzleManager;
 	public Font chewy;
 
+	public Texture backdrop;
+
 	private bool paused;
 	private bool showInstructions;
 	private bool adjustVolume;
@@ -24,6 +26,7 @@ public class InGameMenu : MonoBehaviour {
 						 "</color>";
 	private GUIStyle insFormatting;
 	private GUIStyle gs;
+	private GUIStyle gs2;
 
 	// Use this for initialization
 	void Start () {
@@ -41,6 +44,12 @@ public class InGameMenu : MonoBehaviour {
 		insFormatting.font = chewy;
 		insFormatting.fontSize = Screen.width/20;
 		insFormatting.richText = true;
+		
+		gs2 = new GUIStyle();
+		gs2.stretchWidth = true;
+		gs2.stretchHeight = true;
+		gs2.fixedHeight = 5 * Screen.width / 6;
+		gs2.fixedWidth = Screen.width;
 
 		gs = new GUIStyle();
 		gs.font = chewy;
@@ -59,6 +68,8 @@ public class InGameMenu : MonoBehaviour {
 	void OnGUI(){
 		//if no menu, no need to run this method
 		if(!menuActive) return;
+		
+		GUI.Box (new Rect (0, Screen.height - (5 * Screen.width / 6), Screen.width, 5 * Screen.height / 6), backdrop, gs2);
 
 		//pause button in the upper right
 		if(GUI.Button(new Rect(Screen.width - 5*Screen.width/25, Screen.height/45, 4*Screen.width/25, 4*Screen.height/45/*Screen.width-pauseButton.width, 0, pauseButton.width, pauseButton.height*/), pauseButton, new GUIStyle() )){

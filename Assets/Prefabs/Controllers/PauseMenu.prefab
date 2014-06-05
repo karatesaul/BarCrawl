@@ -43,6 +43,7 @@ MonoBehaviour:
   pauseButton: {fileID: 2800000, guid: dfab3ec7b55402f428d67debce1bffb7, type: 3}
   puzzleManager: {fileID: 0}
   chewy: {fileID: 0}
+  backdrop: {fileID: 2800000, guid: 5689963a718de13479c1e46f9a1dbd23, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

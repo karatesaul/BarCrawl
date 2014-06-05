@@ -1485,6 +1485,7 @@ MonoBehaviour:
   tokenAttack: {fileID: 2800000, guid: 2d84334807ab43848a4d81fa67284224, type: 3}
   tokenHeal: {fileID: 2800000, guid: b15e2bfbbc74be54e839923b31befbcd, type: 3}
   tokenEmpty: {fileID: 2800000, guid: a9db8fe41f95342bcabb9bcbf0a38441, type: 3}
+  backdrop: {fileID: 2800000, guid: 0fc616df69f29764fb5f5b1868d4a75b, type: 3}
   gray: {fileID: 2800000, guid: e020a0e670d799742963efacb568c635, type: 3}
   cursor: {fileID: 2800000, guid: 6d1ef788bbc424e51b25114349101adc, type: 3}
   upVal: 0
@@ -4326,56 +4327,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 1806852664}
---- !u!1 &1487198776
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1487198778}
-  - 212: {fileID: 1487198777}
-  m_Layer: 9
-  m_Name: WoodBackdrop
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &1487198777
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1487198776}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayer: -1
-  m_SortingOrder: 0
-  m_SortingLayerID: 926474707
-  m_Sprite: {fileID: 21300000, guid: 0fc616df69f29764fb5f5b1868d4a75b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!4 &1487198778
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1487198776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.38646507, y: -2.77999997, z: 1}
-  m_LocalScale: {x: 2.29999995, y: 2.29999995, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1 &1490809381
 GameObject:
   m_ObjectHideFlags: 0
@@ -4473,6 +4424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayMenu: 0
+  backdrop: {fileID: 2800000, guid: 0fc616df69f29764fb5f5b1868d4a75b, type: 3}
   title: {fileID: 2800000, guid: dae70c66188903845b80c91d6c492f86, type: 3}
   chewy: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
   pauseMenu: {fileID: 1874422197}

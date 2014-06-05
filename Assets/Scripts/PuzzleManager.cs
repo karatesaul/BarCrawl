@@ -12,7 +12,9 @@ public class PuzzleManager : MonoBehaviour {
 	//this is off by default so the menu can appear.
 	//when start is pressed on the menu, it turns the puzzle on
 	public bool puzzleActive;
-	
+
+	private GUIStyle gs;
+
 	public Texture tokenUp;
 	public Texture tokenDown;
 	public Texture tokenLeft;
@@ -20,6 +22,7 @@ public class PuzzleManager : MonoBehaviour {
 	public Texture tokenAttack;
 	public Texture tokenHeal;
 	public Texture tokenEmpty;
+	public Texture backdrop;
 	public Texture gray;
 	
 	public Texture cursor;
@@ -101,7 +104,14 @@ public class PuzzleManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		puzzleActive = false;
+
 		
+		gs = new GUIStyle();
+		gs.stretchWidth = true;
+		gs.stretchHeight = true;
+		gs.fixedHeight = 5 * Screen.width / 6;
+		gs.fixedWidth = Screen.width;
+
 		currTime = 0;		
 		refillCount = new int[6];
 		refillStep = 5;
@@ -1368,6 +1378,8 @@ public class PuzzleManager : MonoBehaviour {
 		//no need to draw this while menu is active
 		if(!puzzleActive) return;
 		
+		GUI.Box (new Rect (0, Screen.height - (5 * Screen.width / 6), Screen.width, 5 * Screen.height / 6), backdrop, gs);
+
 		if (tutorialState == 0) {
 			handleNormalBoardLogic();
 			drawNormalGUI();

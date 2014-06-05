@@ -5,6 +5,9 @@ public class MainMenu : MonoBehaviour {
 	//whether or not to display this instead of puzzle
 	public bool displayMenu;
 	//images and tutorial settings
+
+	public Texture backdrop;
+
 	public Texture title;
 	public Font chewy;
 	//public Texture yesTutorial;
@@ -41,6 +44,15 @@ public class MainMenu : MonoBehaviour {
 		if(!displayMenu){
 			return;
 		}
+
+		GUIStyle gs2;
+		gs2 = new GUIStyle();
+		gs2.stretchWidth = true;
+		gs2.stretchHeight = true;
+		gs2.fixedHeight = 5 * Screen.width / 6;
+		gs2.fixedWidth = Screen.width;
+		GUI.Box (new Rect (0, Screen.height - (5 * Screen.width / 6), Screen.width, 5 * Screen.height / 6), backdrop, gs2);
+
 
 		//prepare the GUIStyle
 		GUIStyle gs = new GUIStyle();
