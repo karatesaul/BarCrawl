@@ -44,6 +44,8 @@ MonoBehaviour:
   puzzleManager: {fileID: 0}
   chewy: {fileID: 0}
   backdrop: {fileID: 2800000, guid: 5689963a718de13479c1e46f9a1dbd23, type: 3}
+  sliderButton: {fileID: 2800000, guid: 82b52df76ab631b4eb09133a2190f64c, type: 3}
+  sliderTrack: {fileID: 2800000, guid: 879d41dc5cb080147b1c328de325e547, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
