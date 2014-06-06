@@ -33,10 +33,10 @@ public class GUIBackMainMenuButton : MonoBehaviour {
 			Application.LoadLevel("Main_Menu");
 		}
 		textStyle.fontSize = Mathf.RoundToInt (textStyle.fontSize * 0.8f);//shrink the font a smidge so it fits on screen
-		GUI.Label (new Rect(0, Screen.height - 100 - findUsOnFacebook.height - 50, Screen.width, 50), 
+		GUI.Label (new Rect(0, Screen.height - 70 - findUsOnFacebook.height - 50, Screen.width, 50), 
 		           "<color=#ffffff><i>Tell us how you did!</i></color>", textStyle);
 		textStyle.fontSize = Screen.width / 10;
-		if(GUI.Button (new Rect(Screen.width/2 - findUsOnFacebook.width/2, Screen.height - 100 - findUsOnFacebook.height,
+		if(GUI.Button (new Rect(Screen.width/2 - findUsOnFacebook.width/2, Screen.height - 70 - findUsOnFacebook.height,
 		                        findUsOnFacebook.width, findUsOnFacebook.height),
 		               findUsOnFacebook, imageStyle)){
 			Application.OpenURL("https://www.facebook.com/BarCrawlANightToForget");
