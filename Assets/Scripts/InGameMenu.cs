@@ -10,10 +10,16 @@ public class InGameMenu : MonoBehaviour {
 	public Font chewy;
 
 	public Texture backdrop;
+	public Texture sliderButton;
+	public Texture sliderTrack;
 
 	private bool paused;
 	private bool showInstructions;
 	private bool adjustVolume;
+
+	private float voiceVolume;
+	private float effectVolume;
+	private float musicVolume;
 
 	private string ins = "<color=#ffffff>" +
 						 "How to Play:\n" +
@@ -27,6 +33,7 @@ public class InGameMenu : MonoBehaviour {
 	private GUIStyle insFormatting;
 	private GUIStyle gs;
 	private GUIStyle gs2;
+	private GUIStyle volumeSliders;
 
 	// Use this for initialization
 	void Start () {
@@ -58,6 +65,26 @@ public class InGameMenu : MonoBehaviour {
 		gs.stretchWidth = true;
 		gs.stretchHeight = true;
 		gs.richText = true;
+
+		volumeSliders = new GUIStyle();
+		volumeSliders.stretchWidth = true;
+		volumeSliders.stretchHeight = true;
+		volumeSliders.fixedWidth = Screen.width - 50;
+		volumeSliders.fixedHeight = 50;
+
+		Debug.Log ("Ian, retreive current values here");
+		//
+		//
+		//get values here
+		//values should be scaled
+		// 0 to 1 -> 25 to Screen.width - 25
+		//
+		//
+		musicVolume = 25;
+		effectVolume = 25;
+		voiceVolume = 25;
+		Debug.Log("Ian: Update the retreival here");
+		// ^^^ Replace those 3 lines
 	}
 	
 	// Update is called once per frame
@@ -78,6 +105,8 @@ public class InGameMenu : MonoBehaviour {
 				puzzleManager.GetComponent<PuzzleManager>().puzzleActive = false;
 			}else{
 				puzzleManager.GetComponent<PuzzleManager>().puzzleActive = true;
+				showInstructions = false;
+				adjustVolume = false;
 			}
 		}
 		//primary pause menu
@@ -111,16 +140,43 @@ public class InGameMenu : MonoBehaviour {
 		}
 		//adjust volume settings
 		if(paused && !showInstructions && adjustVolume){
-			//
-			//
-			//draw the sliders here
-			//
-			//
-			/*
-			if( GUI button that lets them indicate that they are done ){
+		//music volume
+			//draw bar
+			if(GUI.RepeatButton( new Rect(25, 3.75f * Screen.height / 7, Screen.width - 50, 50), sliderTrack, volumeSliders)){
+				musicVolume = Input.mousePosition.x;
+				musicVolume = constrain(musicVolume, 20, Screen.width - 20);
+				Debug.Log ("Ian: scale and store new music volume here");
+			}
+			//draw slider
+			GUI.Box ( new Rect(musicVolume - 25, 3.75f * Screen.height / 7, 50, 50), sliderButton, new GUIStyle());
+		//effect volume
+			//draw bar
+			if(GUI.RepeatButton( new Rect(25, 4.75f * Screen.height / 7, Screen.width - 50, 50), sliderTrack, volumeSliders)){
+				effectVolume = Input.mousePosition.x;
+				effectVolume = constrain(effectVolume, 20, Screen.width - 20);
+				Debug.Log ("Ian: scale and store new effect volume here");
+			}
+			//draw slider
+			GUI.Box ( new Rect(effectVolume - 25, 4.75f * Screen.height / 7, 50, 50), sliderButton, new GUIStyle());
+		//voice volume
+			//draw bar
+			if(GUI.RepeatButton( new Rect(25, 5.75f * Screen.height / 7, Screen.width - 50, 50), sliderTrack, volumeSliders)){
+				voiceVolume = Input.mousePosition.x;
+				voiceVolume = constrain(voiceVolume, 20, Screen.width - 20);
+				Debug.Log ("Ian: scale and store new voice volume here");
+			}
+			//draw slider
+			GUI.Box ( new Rect(voiceVolume - 25, 5.75f * Screen.height / 7, 50, 50), sliderButton, new GUIStyle());
+		//return to root pause menu
+			if(GUI.Button (new Rect(Screen.width/6, 5 * Screen.height/6 + 25, 2 * Screen.width / 3, Screen.height/6), "<color=#ffffff>Return</color>", gs)){
 				adjustVolume = false;
 			}
-			*/
 		}
 	}	
+
+	private float constrain(float val, float min, float max){
+		if(val < min) return min;
+		if(val > max) return max;
+		return val;
+	}
 }
