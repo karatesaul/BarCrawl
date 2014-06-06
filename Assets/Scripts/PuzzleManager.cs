@@ -1381,6 +1381,7 @@ public class PuzzleManager : MonoBehaviour {
 		GUI.Box (new Rect (0, Screen.height - (5 * Screen.width / 6), Screen.width, 5 * Screen.height / 6), backdrop, gs);
 
 		if (tutorialState == 0) {
+			Debug.Log("dsfjldsfsd");
 			handleNormalBoardLogic();
 			drawNormalGUI();
 		} else {
@@ -1624,7 +1625,7 @@ public class PuzzleManager : MonoBehaviour {
 				if (locy - y >= 125) y = locy;
 			}
 			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
-			if (Input.GetMouseButton(0)){
+			if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0 && pc.GetComponent<PlayerCharacter>().executeMode!=true && pc.GetComponent<TurnManager>().turn == 1){
 				//if they clicked on token [1, 3], the correct token
 				if (a == 1 && b == 3){
 					activeToken = puzzleGrid[a,b];
@@ -1702,7 +1703,7 @@ public class PuzzleManager : MonoBehaviour {
 				else y = locy;
 			}
 			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
-			if (Input.GetMouseButton(0)){
+			if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0 && pc.GetComponent<PlayerCharacter>().executeMode!=true && pc.GetComponent<TurnManager>().turn == 1){
 				//if they clicked on token [1, 3], the correct token
 				if (a == 3 && b == 2){
 					activeToken = puzzleGrid[a,b];
@@ -1815,7 +1816,7 @@ public class PuzzleManager : MonoBehaviour {
 				}
 			}
 			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
-			if (Input.GetMouseButton(0)){
+			if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0 && pc.GetComponent<PlayerCharacter>().executeMode!=true && pc.GetComponent<TurnManager>().turn == 1){
 				//if they clicked on token [1, 3], the correct token
 				if (a == 0 && b == 1){
 					activeToken = puzzleGrid[a,b];
