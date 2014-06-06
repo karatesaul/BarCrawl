@@ -1381,7 +1381,7 @@ public class PuzzleManager : MonoBehaviour {
 		GUI.Box (new Rect (0, Screen.height - (5 * Screen.width / 6), Screen.width, 5 * Screen.height / 6), backdrop, gs);
 
 		if (tutorialState == 0) {
-			Debug.Log("dsfjldsfsd");
+//			Debug.Log("dsfjldsfsd");
 			handleNormalBoardLogic();
 			drawNormalGUI();
 		} else {
