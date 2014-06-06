@@ -44,7 +44,11 @@ public class OptionsMenu : MonoBehaviour {
 		//otherText.fontStyle = FontStyle.BoldAndItalic;
 		otherText.richText = true;
 
-		buttonStyle = new GUIStyle();//this one remains empty to hide the button outline around the textures
+		buttonStyle = new GUIStyle();
+		buttonStyle.stretchWidth = true;
+		buttonStyle.stretchHeight = true;
+		buttonStyle.fixedWidth = yesProfanity.width;
+		buttonStyle.fixedHeight = yesProfanity.height;
 	}
 	
 	// Update is called once per frame
