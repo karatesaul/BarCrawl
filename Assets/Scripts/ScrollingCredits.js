@@ -44,7 +44,7 @@ function OnGUI ()
     	speedUp = 5;
     }
     transform.Translate(Vector3.up * Time.deltaTime * speed * speedUp);
-    if (gameObject.transform.position.y > 3.5)
+    if (gameObject.transform.position.y > 3.75)
     {
         Application.LoadLevel("Options");
     }
