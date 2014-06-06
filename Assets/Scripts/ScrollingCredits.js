@@ -21,11 +21,12 @@ function Start()
     creds += "Facebook Integration\nAlec Reeves\n\n\n";
     creds += "Self Proclaimed Creative Overlord\nWessmaniac\n\n\n";
     creds += "Lead Artist\nRebecca Alto\n\n\n";
-    creds += "Visual Artists\nAlexis Williams\nPhoebe Rothfeld\nJes Udelle\nJon Le\n\n\n";
+    creds += "Visual Artists\nAlexis Williams\nPhoebe Rothfeld\nJon Le\nJes Udelle\n\n\n";
     creds += "Lead Audio Designer\nChristopher Miller\n\n\n";
     creds += "Additional Music\nLiquid Courage by Vio-Lence\n\n\n";
     creds += "Voice acting\nLucahjin\n\n\n";
     creds += "Special Thanks\nDavid Wessman\nVio-Lence\n\n\n";
+    creds += "Please Drink Responsibly\n\n\n";
     tc.text= creds; 
     tc.color = Color.white;
     tc.font = chewy;
