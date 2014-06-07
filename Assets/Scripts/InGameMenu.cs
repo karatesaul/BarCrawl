@@ -12,6 +12,7 @@ public class InGameMenu : MonoBehaviour {
 	public Texture backdrop;
 	public Texture sliderButton;
 	public Texture sliderTrack;
+	public Texture pauseButtonBackground;
 
 	private bool paused;
 	private bool showInstructions;
@@ -94,10 +95,11 @@ public class InGameMenu : MonoBehaviour {
 	void OnGUI(){
 		//if no menu, no need to run this method
 		if(!menuActive) return;
-		
+		//puzzle backdrop
 		GUI.Box (new Rect (0, Screen.height - (5 * Screen.width / 6), Screen.width, 5 * Screen.height / 6), backdrop, gs2);
 
 		//pause button in the upper right
+		GUI.Box (new Rect(Screen.width - 5*Screen.width/25, Screen.height/45, 4*Screen.width/25, 4*Screen.height/45), pauseButtonBackground, new GUIStyle());
 		if(GUI.Button(new Rect(Screen.width - 5*Screen.width/25, Screen.height/45, 4*Screen.width/25, 4*Screen.height/45/*Screen.width-pauseButton.width, 0, pauseButton.width, pauseButton.height*/), pauseButton, new GUIStyle() )){
 			paused = !paused;
 			if(paused){

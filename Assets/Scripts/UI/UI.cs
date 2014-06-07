@@ -20,6 +20,7 @@ public class UI : MonoBehaviour {
 	public Texture2D beer1;
 	public Texture2D beer2;
 	public Texture2D beer3;
+	public Texture2D beerBackground;
 	public Font chewy;
 	
 	public bool combo2;
@@ -174,6 +175,7 @@ public class UI : MonoBehaviour {
 			}
 			
 			//reset button
+			GUI.Box (new Rect(Screen.width/25, Screen.height/45, 4*Screen.width/25, 4*Screen.height/45), beerBackground, buttonStyle);
 			if (tm.coolDownTimer > 4) {
 				if (GUI.Button (new Rect(Screen.width/25, Screen.height/45, 4*Screen.width/25, 4*Screen.height/45), beer3, buttonStyle) && tm.turn ==1) {
 					if (pm.tutorialState == 0){
