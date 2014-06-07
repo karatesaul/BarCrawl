@@ -29,12 +29,16 @@ public class UI : MonoBehaviour {
 	public bool tut1;
 	public bool tut2;
 	public bool tut3;
+	public bool tut4;
 	public bool showNumericHealth;
 	private float timer;
-	
+
+	private Color c;
+
 	private GUIStyle healthtext;
 	private GUIStyle scoreText;
 	private GUIStyle comboText;
+	private GUIStyle tutText;
 	private GUIStyle buttonStyle;
 	
 	
@@ -63,6 +67,12 @@ public class UI : MonoBehaviour {
 		comboText.fontSize = Screen.width/25;
 		comboText.normal.textColor = Color.white;
 		comboText.alignment = TextAnchor.UpperCenter;
+
+		tutText = new GUIStyle ();
+		tutText.font = chewy;
+		tutText.fontSize = Screen.width/20;
+		tutText.normal.textColor = Color.white;
+		tutText.alignment = TextAnchor.UpperCenter;
 		
 		buttonStyle = new GUIStyle();
 		
@@ -74,6 +84,7 @@ public class UI : MonoBehaviour {
 		tut1 = false;
 		tut2 = false;
 		tut3 = false;
+		tut4 = false;
 	}
 	
 	// Update is called once per frame
@@ -110,28 +121,46 @@ public class UI : MonoBehaviour {
 	}
 	
 	void OnGUI(){
-		
+
+
 		if (showUI) {
-			//healthbar
-			GUI.DrawTexture (new Rect (Screen.width/2 - Screen.width/4, Screen.height/25,
-			                           Screen.width/2, Screen.height/30), healthbg);
-			
-			GUI.DrawTexture (new Rect (Screen.width/2 - (Screen.width/2)*((float)pc.health/pc.startingHealth)/2, Screen.height/25,
+			//drawing the healthbar
+
+			//border (need to remove?)
+			c.a = 0.5f;
+			GUI.color = c;
+			GUI.DrawTexture (new Rect (Screen.width/2 - Screen.width/4, Screen.height/35, Screen.width/2, Screen.height/30), emptybar);
+
+			//background
+			GUI.color = Color.white;
+			GUI.DrawTexture (new Rect (Screen.width/2 - Screen.width/4, Screen.height/35, Screen.width/2, Screen.height/30), healthbg);
+
+			//bg
+			c = Color.white;
+			c.a = 0.4f;
+			GUI.color = c;
+			GUI.DrawTexture (new Rect (Screen.width/2 - Screen.width/4, Screen.height/35, Screen.width/2, Screen.height/30), healthbar);
+
+			//actual bar
+			//set alpha to dark
+			c.a = 5.0f;
+			GUI.color = Color.red;
+			GUI.DrawTexture (new Rect (Screen.width/2 - (Screen.width/2)*((float)pc.health/pc.startingHealth)/2, Screen.height/35,
 			                           (Screen.width/2)* ((float)pc.health/pc.startingHealth), Screen.height/30), healthbar);
-			
-			GUI.DrawTexture (new Rect (Screen.width/2 - Screen.width/4, Screen.height/25,
-			                           Screen.width/2, Screen.height/30), emptybar);
-			
-			if (showNumericHealth) DrawOutline (new Rect (Screen.width / 2, Screen.height/25, 0, 0), pc.health + "/100", healthtext, Color.black);
+
+			//set color/alpha back to normal
+			GUI.color = Color.white;
+
+			if (showNumericHealth) DrawOutline (new Rect (Screen.width / 2, Screen.height/35, 0, 0), pc.health + "/100", healthtext, Color.black);
 			
 			//score
-			DrawOutline (new Rect (Screen.width / 2, Screen.height/20 + 5, 0, 0), "Score: " + Scores.total.ToString(), scoreText, Color.black);
+			DrawOutline (new Rect (Screen.width / 2, Screen.height/22, 0, 0), "Score: " + Scores.total.ToString(), scoreText, Color.black);
 			
 			//combotext
-			if (combo2) DrawOutline(new Rect (Screen.width/2, Screen.height/15 + 20, 0, 0), "2X combo!", comboText, Color.black);
-			if (combo3) DrawOutline(new Rect (Screen.width/2, Screen.height/15 + 20, 0, 0), "3X combo!", comboText, Color.black);
-			if (combo4) DrawOutline(new Rect (Screen.width/2, Screen.height/15 + 20, 0, 0), "4X combo!", comboText, Color.black);
-			if (combo5) DrawOutline(new Rect (Screen.width/2, Screen.height/15 + 20, 0, 0), "Crazy Combo!", comboText, Color.red);
+			if (combo2) DrawOutline(new Rect (Screen.width/2, Screen.height/12, 0, 0), "2X combo!", comboText, Color.black);
+			if (combo3) DrawOutline(new Rect (Screen.width/2, Screen.height/12, 0, 0), "3X combo!", comboText, Color.black);
+			if (combo4) DrawOutline(new Rect (Screen.width/2, Screen.height/12, 0, 0), "4X combo!", comboText, Color.black);
+			if (combo5) DrawOutline(new Rect (Screen.width/2, Screen.height/12, 0, 0), "Crazy Combo!", comboText, Color.red);
 			
 			//visual timer
 			if (pm.currTime <= 600 && pm.currTime > 500) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/6, 4*Screen.width/25, 4*Screen.height/45), clock1);
@@ -154,6 +183,7 @@ public class UI : MonoBehaviour {
 						pm.ResetPuzzle();
 						pm.tutorialState = 0;
 						tm.coolDownTimer = 0;
+						tut4 = false;
 					}
 				}
 			}
@@ -175,14 +205,17 @@ public class UI : MonoBehaviour {
 			*/
 			
 			//tutorial text
-			if (tut1) DrawOutline (new Rect (Screen.width / 2, Screen.height / 3, 0, 0), "Combine 3 punches to fight enemies!", comboText, Color.black);
+			if (tut1) DrawOutline (new Rect (Screen.width / 2, Screen.height / 3, 0, 0), "Combine 3 punches to fight enemies!", tutText, Color.black);
 			if (tut2) {
-				DrawOutline (new Rect (Screen.width / 2, Screen.height / 3, 0, 0), "Make more matches to do more moves!", comboText, Color.black);
-				DrawOutline (new Rect (Screen.width / 2, Screen.height/3 + Screen.width/25, 0, 0), "Moving into enemies will damage them too!", comboText, Color.black);
+				DrawOutline (new Rect (Screen.width / 2, Screen.height / 3, 0, 0), "Make more matches to do more moves!", tutText, Color.black);
+				DrawOutline (new Rect (Screen.width / 2, Screen.height/3 + Screen.width/25, 0, 0), "Moving into enemies will damage them too!", tutText, Color.black);
 			}
 			if (tut3) {
-				DrawOutline (new Rect (Screen.width / 2, Screen.height / 3, 0, 0), "Connect hearts to restore health!", comboText, Color.black);
-				DrawOutline (new Rect (Screen.width / 2, Screen.height/3 + Screen.width/25, 0, 0), "4+ punches or hearts results in a greater effect!", comboText, Color.black);
+				DrawOutline (new Rect (Screen.width / 2, Screen.height / 3, 0, 0), "Connect hearts to restore health!", tutText, Color.black);
+				DrawOutline (new Rect (Screen.width / 2, Screen.height/3 + Screen.width/25, 0, 0), "4+ punches or hearts results in a greater effect!", tutText, Color.black);
+			}
+			if (tut4) {
+				DrawOutline (new Rect (Screen.width / 2, Screen.height / 3, 0, 0), "Touch the beer to reset the puzzle!", tutText, Color.black);
 			}
 		}
 	}

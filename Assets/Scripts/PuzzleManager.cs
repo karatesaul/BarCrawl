@@ -1594,7 +1594,9 @@ public class PuzzleManager : MonoBehaviour {
 		
 		//draw tutorial cursor after turn is over
 		if (refillStep==5 && activeToken == null) {
-			GUI.DrawTexture(new Rect(x, y, puzzleGrid[m,n].location.width, puzzleGrid[m,n].location.height), cursor);
+			GUI.color = Color.white;
+			if (ui.tut4) GUI.DrawTexture(new Rect(Screen.width/25, Screen.height/45 + 50, Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f), cursor);
+			else GUI.DrawTexture(new Rect(x, y, puzzleGrid[m,n].location.width, puzzleGrid[m,n].location.height), cursor);
 			drawn = true;
 		}
 	}
@@ -1826,6 +1828,7 @@ public class PuzzleManager : MonoBehaviour {
 					tutorialState = 9;
 				}
 			}
+			drawn = false;
 			puzzleGrid[0,1].highlight = true;
 			break;
 		case 9: 
@@ -1926,14 +1929,16 @@ public class PuzzleManager : MonoBehaviour {
 				refillStep = 0;
 
 				tutorialState = 13;
-				PlayerPrefs.SetInt("ShowTutorial", 0);
-				ui.tut3 = false;
 			}
 			puzzleGrid[2, 0].highlight = false;
 			break;
 		case 13:
 			//wait for the player to click on the reset button
 			//this is handled in UI.cs
+			ui.tut3 = false;
+			ui.tut4 = true;
+			
+			PlayerPrefs.SetInt("ShowTutorial", 0);
 			break;
 		}
 	}
