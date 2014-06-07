@@ -176,10 +176,10 @@ MonoBehaviour:
   - {fileID: 1242453236}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 1669679038}
   - {fileID: 1325201205}
   - {fileID: 1977680339}
-  - {fileID: 0}
   - {fileID: 0}
 --- !u!1001 &41214431
 Prefab:
@@ -3628,10 +3628,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1109046242}
   - {fileID: 1474243597}
   - {fileID: 1080834639}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 784082485}
@@ -4629,10 +4629,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 406446296}
   - {fileID: 1770463878}
   - {fileID: 352205836}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 108209160}
@@ -5412,10 +5412,10 @@ MonoBehaviour:
   - {fileID: 1279274458}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 1135969731}
   - {fileID: 362057424}
   - {fileID: 1126718494}
-  - {fileID: 0}
   - {fileID: 0}
 --- !u!1001 &2025263131
 Prefab:
