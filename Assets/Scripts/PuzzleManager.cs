@@ -1595,7 +1595,7 @@ public class PuzzleManager : MonoBehaviour {
 		//draw tutorial cursor after turn is over
 		if (refillStep==5 && activeToken == null) {
 			GUI.color = Color.white;
-			if (ui.tut4) GUI.DrawTexture(new Rect(Screen.width/25, Screen.height/45 + 50, Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f), cursor);
+			if (ui.tut4) GUI.DrawTexture(new Rect(Screen.width/25, Screen.height/45 + 4*Screen.width/25, Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f), cursor);
 			else GUI.DrawTexture(new Rect(x, y, puzzleGrid[m,n].location.width, puzzleGrid[m,n].location.height), cursor);
 			drawn = true;
 		}
