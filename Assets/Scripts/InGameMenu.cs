@@ -21,6 +21,11 @@ public class InGameMenu : MonoBehaviour {
 	private float voiceVolume;
 	private float effectVolume;
 	private float musicVolume;
+	private float baseVolume = 25;
+
+	string voiceVolKey = "voiceKey";
+	string effectVolKey = "effectKey";
+	string musicVolKey = "musicVolume";
 
 	private string ins = "<color=#ffffff>" +
 						 "How to Play:\n" +
@@ -80,11 +85,12 @@ public class InGameMenu : MonoBehaviour {
 		// 0 to 1 -> 25 to Screen.width - 25
 		//
 		//
-		musicVolume = 25;
-		effectVolume = 25;
-		voiceVolume = 25;
-		Debug.Log("Ian: Update the retreival here");
-		// ^^^ Replace those 3 lines (and delete the 4th)
+
+		//sets volume to the player prefrence or if undefined to baseVolume(25)
+		musicVolume = PlayerPrefs.GetFloat(musicVolKey,baseVolume); 
+		effectVolume = PlayerPrefs.GetFloat(effectVolKey,baseVolume); 
+		voiceVolume = PlayerPrefs.GetFloat(voiceVolKey,baseVolume); 
+
 	}
 	
 	// Update is called once per frame
@@ -147,7 +153,8 @@ public class InGameMenu : MonoBehaviour {
 			if(GUI.RepeatButton( new Rect(25, 3.75f * Screen.height / 7, Screen.width - 50, 50), "")){
 				musicVolume = Input.mousePosition.x;
 				musicVolume = constrain(musicVolume, 20, Screen.width - 20);
-				Debug.Log ("Ian: scale and store new music volume here");
+				PlayerPrefs.SetFloat(musicVolKey,musicVolume);
+				Debug.Log ("Music volume is: " + musicVolume);
 			}
 			//draw slider
 			GUI.Box ( new Rect(musicVolume - 25, 3.75f * Screen.height / 7, 50, 50), sliderButton, new GUIStyle());
@@ -157,7 +164,9 @@ public class InGameMenu : MonoBehaviour {
 			if(GUI.RepeatButton( new Rect(25, 4.75f * Screen.height / 7, Screen.width - 50, 50), "")){
 				effectVolume = Input.mousePosition.x;
 				effectVolume = constrain(effectVolume, 20, Screen.width - 20);
-				Debug.Log ("Ian: scale and store new effect volume here");
+				PlayerPrefs.SetFloat(effectVolKey,effectVolume);
+				Debug.Log ("Effect volume is: " + effectVolume);
+				//Debug.Log ("Ian: scale and store new effect volume here");
 			}
 			//draw slider
 			GUI.Box ( new Rect(effectVolume - 25, 4.75f * Screen.height / 7, 50, 50), sliderButton, new GUIStyle());
@@ -167,7 +176,8 @@ public class InGameMenu : MonoBehaviour {
 			if(GUI.RepeatButton( new Rect(25, 5.75f * Screen.height / 7, Screen.width - 50, 50), "")){
 				voiceVolume = Input.mousePosition.x;
 				voiceVolume = constrain(voiceVolume, 20, Screen.width - 20);
-				Debug.Log ("Ian: scale and store new voice volume here");
+				PlayerPrefs.SetFloat(voiceVolKey,voiceVolume);
+				Debug.Log ("Voice volume is: " + voiceVolume);
 			}
 			//draw slider
 			GUI.Box ( new Rect(voiceVolume - 25, 5.75f * Screen.height / 7, 50, 50), sliderButton, new GUIStyle());
