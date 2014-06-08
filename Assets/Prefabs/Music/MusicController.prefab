@@ -43,7 +43,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Priority: 128
+  Priority: 60
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -110,9 +110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vioLence: {fileID: 8300000, guid: 233ac724e6c1f9840955b1041049b9c1, type: 3}
-  bikerBar: {fileID: 8300000, guid: 91b95d99206595747af146dd8d6337c7, type: 3}
-  luauBar: {fileID: 8300000, guid: 28bb699ff702b7f4fa2a41c8ebe20171, type: 3}
-  raveBar: {fileID: 8300000, guid: 79523f05af4c4e844b331480bb67ae76, type: 3}
+  bikerBar: {fileID: 8300000, guid: b90c5d211c1fab545a5adad9383d9a56, type: 3}
+  luauBar: {fileID: 8300000, guid: 7858dd1607a11ea4ab787c83e8ad4dc9, type: 3}
+  raveBar: {fileID: 8300000, guid: 1028e19e45954f54b8c8eee617e50cbc, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
