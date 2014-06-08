@@ -110,9 +110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vioLence: {fileID: 8300000, guid: 233ac724e6c1f9840955b1041049b9c1, type: 3}
-  bikerBar: {fileID: 0}
-  luauBar: {fileID: 0}
-  raveBar: {fileID: 0}
+  bikerBar: {fileID: 8300000, guid: 91b95d99206595747af146dd8d6337c7, type: 3}
+  luauBar: {fileID: 8300000, guid: 28bb699ff702b7f4fa2a41c8ebe20171, type: 3}
+  raveBar: {fileID: 8300000, guid: 79523f05af4c4e844b331480bb67ae76, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
