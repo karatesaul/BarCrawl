@@ -563,6 +563,7 @@ MonoBehaviour:
   beer1: {fileID: 2800000, guid: b466284896701413fbacdab626cf5c3d, type: 3}
   beer2: {fileID: 2800000, guid: 08726dd45df1a464faa26a982a3ca41a, type: 3}
   beer3: {fileID: 2800000, guid: 9851d128be0f14f3fbca119e1b683365, type: 3}
+  beerBackground: {fileID: 2800000, guid: a1ab59738d4d0a84aae45035f35b01e1, type: 3}
   chewy: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
   combo2: 0
   combo3: 0
@@ -571,6 +572,7 @@ MonoBehaviour:
   tut1: 0
   tut2: 0
   tut3: 0
+  tut4: 0
   showNumericHealth: 0
 --- !u!4 &355872760
 Transform:
@@ -734,7 +736,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 4ec33490f9ed045d9a2a88d830c7a9fc, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .0599999987
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -793,7 +795,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: efb99b377e4f543709541417857b806c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .119999997
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1044,10 +1046,6 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: a7bca4e5783a98041b0e7b3513482e08, type: 2}
-      propertyPath: title
-      value: 
-      objectReference: {fileID: 2800000, guid: dae70c66188903845b80c91d6c492f86, type: 3}
     - target: {fileID: 11400000, guid: a7bca4e5783a98041b0e7b3513482e08, type: 2}
       propertyPath: yesTutorial
       value: 
@@ -3315,7 +3313,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: .754000008
+  m_Volume: .25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3432,7 +3430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayMenu: 0
   backdrop: {fileID: 2800000, guid: 0fc616df69f29764fb5f5b1868d4a75b, type: 3}
-  title: {fileID: 2800000, guid: dae70c66188903845b80c91d6c492f86, type: 3}
+  title: {fileID: 2800000, guid: b74265b28313ffb4e8e9bb336ca72789, type: 3}
   chewy: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
   pauseMenu: {fileID: 1874422197}
   ui: {fileID: 0}
@@ -3967,6 +3965,11 @@ MonoBehaviour:
   pauseButton: {fileID: 2800000, guid: dfab3ec7b55402f428d67debce1bffb7, type: 3}
   puzzleManager: {fileID: 385235316}
   chewy: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
+  backdrop: {fileID: 2800000, guid: 5689963a718de13479c1e46f9a1dbd23, type: 3}
+  sliderButton: {fileID: 2800000, guid: 82b52df76ab631b4eb09133a2190f64c, type: 3}
+  sliderTrack: {fileID: 2800000, guid: 879d41dc5cb080147b1c328de325e547, type: 3}
+  pauseButtonBackground: {fileID: 2800000, guid: 83ad5c9fa7cc3b54fb3a36c7c113519d,
+    type: 3}
 --- !u!4 &1874422199
 Transform:
   m_ObjectHideFlags: 0

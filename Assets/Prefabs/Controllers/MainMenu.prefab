@@ -40,7 +40,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayMenu: 0
   backdrop: {fileID: 2800000, guid: 0fc616df69f29764fb5f5b1868d4a75b, type: 3}
-  title: {fileID: 0}
+  title: {fileID: 2800000, guid: b74265b28313ffb4e8e9bb336ca72789, type: 3}
   chewy: {fileID: 0}
   pauseMenu: {fileID: 0}
   ui: {fileID: 0}

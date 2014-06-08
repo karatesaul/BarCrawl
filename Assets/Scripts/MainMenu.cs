@@ -64,7 +64,7 @@ public class MainMenu : MonoBehaviour {
 		gs.richText = true;
 
 		//draw title
-		GUI.DrawTexture(new Rect(0, -Screen.height/3, Screen.width, Screen.height), title, ScaleMode.ScaleToFit);
+		GUI.DrawTexture(new Rect(0, -Screen.height/4, Screen.width, Screen.height), title, ScaleMode.ScaleToFit);
 		//find desired button size
 		int x = Screen.width;
 		int y = Screen.height;
