@@ -181,12 +181,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 76813706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81742cb18205b334a80da931afdae506, type: 3}
+  m_Script: {fileID: 11500000, guid: e5d85d719fa925d45a7b9ca64c805ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   backButton: {fileID: 2800000, guid: e0bab627a0c5eb94d9e123821b8bf75b, type: 3}
   fbPlaceholder: {fileID: 2800000, guid: a36151655717ef946b59f0f305355b22, type: 3}
   findUsOnFacebook: {fileID: 2800000, guid: 7e838bf8d20c54d448b8b4f051da5569, type: 3}
+  PostToFB: {fileID: 2800000, guid: 4dac4f70fe2f9984083e475c1add6270, type: 3}
+  LogIn: {fileID: 2800000, guid: 10286ce2fa6ed0747bf66943e56441d3, type: 3}
   chewy: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
 --- !u!1 &89862223
 GameObject:
@@ -639,7 +641,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: .754000008
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Priority: 128
   DopplerLevel: 1

@@ -8,12 +8,44 @@ public class GUIBackMainMenuButton : MonoBehaviour {
 	public Texture2D backButton;
 	public Texture2D fbPlaceholder;
 	public Texture findUsOnFacebook;
+    public Texture PostToFB;
+    public Texture LogIn;
 	public Font chewy;
 
 	private GUIStyle textStyle;
+    bool isInit = false;
 	private GUIStyle imageStyle;
+    private string lastResponse = "";
 
 	//float buttony2 = Screen.height/9f;
+
+    void Awake() {
+        // Initialize FB SDK 
+      //  Debug.Log( "Awake -- enabled = false" );     
+       // enabled = false;
+        Debug.Log( "going into fb.init" );
+        FB.Init( SetInit, OnHideUnity ); 
+    }
+
+    private void SetInit() {
+       // Debug.Log( "SetInit -- enabled = true" );
+       // enabled = true; // "enabled" is a property inherited from MonoBehaviour                  
+        if( FB.IsLoggedIn ) {
+            Debug.Log( "Already logged in" );
+            OnLoggedIn();
+        }
+    }  
+
+    private void OnHideUnity( bool isGameShown ) {
+        Debug.Log( "OnHideUnity" );
+        if( !isGameShown ) {
+            // pause the game - we will need to hide                                             
+            Time.timeScale = 0;
+        } else {
+            // start the game back up - we're getting focus again                                
+            Time.timeScale = 1;
+        }  
+    }
 
 	void Update(){
 		//buttony2 = Screen.height/9f;
@@ -34,13 +66,42 @@ public class GUIBackMainMenuButton : MonoBehaviour {
 		}
 		textStyle.fontSize = Mathf.RoundToInt (textStyle.fontSize * 0.8f);//shrink the font a smidge so it fits on screen
 		GUI.Label (new Rect(0, Screen.height - 100 - findUsOnFacebook.height - 50, Screen.width, 50), 
-		           "<color=#ffffff><i>Tell us how you did!</i></color>", textStyle);
+		           "<color=#ffffff><i>Come tell us how you did!</i></color>", textStyle);
 		textStyle.fontSize = Screen.width / 10;
-		if(GUI.Button (new Rect(Screen.width/2 - findUsOnFacebook.width/2, Screen.height - 100 - findUsOnFacebook.height,
-		                        findUsOnFacebook.width, findUsOnFacebook.height),
-		               findUsOnFacebook, imageStyle)){
-			Application.OpenURL("https://www.facebook.com/BarCrawlANightToForget");
-		}
+        if( FB.IsLoggedIn ) {
+            if( GUI.Button( new Rect( Screen.width / 2 - findUsOnFacebook.width / 2, Screen.height - 100 - findUsOnFacebook.height, 
+                findUsOnFacebook.width, findUsOnFacebook.height ), PostToFB, imageStyle ) ) 
+            {
+                FB.Feed(
+                    linkCaption: "I just smashed " + Scores.total.ToString() + ", Can you beat it?",
+                    picture: "http://i.imgur.com/S11tl0R.png",
+                    linkName: "Checkout Bar Crawl greatness!",
+                    link: "http://barcrawlgame.wordpress.com/download/"
+                    );
+            }
+        } else {
+            if( GUI.Button( new Rect( Screen.width / 2 - findUsOnFacebook.width / 2, Screen.height - 100 - findUsOnFacebook.height,
+                findUsOnFacebook.width, findUsOnFacebook.height ), LogIn, imageStyle ) ) 
+            {
+                 FB.Login( "email,publish_actions", LoginCallback );
+            }
+        }
 	}
+    void LoginCallback( FBResult result ) {
+        Debug.Log( "LoginCallback" );
+        if( FB.IsLoggedIn ) {
+            OnLoggedIn();
+        } else {
+            Debug.Log( "login failed." );
+        }
+    }
+
+    void OnLoggedIn() {
+        if( FB.IsLoggedIn ) {
+            Debug.Log( "Logged in. ID: " + FB.UserId );
+            
+        }
+        
+    }  
 
 }
