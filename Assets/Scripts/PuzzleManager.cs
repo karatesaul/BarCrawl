@@ -973,7 +973,7 @@ public class PuzzleManager : MonoBehaviour {
 			//fade the move
 			if (t.tokenVal != TokenType.Empty){
 				if (t.drawAlpha >= 1.0f /*&& !audioSources[1].isPlaying*/){
-					audioSources[1].volume = (PlayerPrefs.GetFloat(InGameMenu.effectVolKey) - 25) / (Screen.width - 50);
+					audioSources[1].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[1].Play();
 				}
 				t.drawAlpha -= 0.05f;
@@ -1482,7 +1482,7 @@ public class PuzzleManager : MonoBehaviour {
 					
 					activeX = a;
 					activeY = b;
-					audioSources[0].volume = (PlayerPrefs.GetFloat(InGameMenu.effectVolKey) - 25) / (Screen.width - 50);
+					audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[0].Play();
 					swapCount++;
 				}
@@ -1664,6 +1664,7 @@ public class PuzzleManager : MonoBehaviour {
 					
 					activeX = a;
 					activeY = b;
+					audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 3;
@@ -1740,6 +1741,7 @@ public class PuzzleManager : MonoBehaviour {
 					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
+					audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 6;
@@ -1775,6 +1777,7 @@ public class PuzzleManager : MonoBehaviour {
 					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
+					audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 7;
@@ -1852,6 +1855,7 @@ public class PuzzleManager : MonoBehaviour {
 					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
+					audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 10;
@@ -1884,6 +1888,7 @@ public class PuzzleManager : MonoBehaviour {
 					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
+					audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 11;
@@ -1913,6 +1918,7 @@ public class PuzzleManager : MonoBehaviour {
 					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
+					audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 12;
