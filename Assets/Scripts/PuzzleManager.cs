@@ -24,17 +24,17 @@ public class PuzzleManager : MonoBehaviour {
 	public Texture tokenEmpty;
 	public Texture backdrop;
 	public Texture gray;
-	
+
 	public Texture cursor;
-	
-	public int upVal;
-	public int downVal;
-	public int leftVal;
-	public int rightVal;
-	public int attackVal;
-	public int healVal;
-	public int maxVal;
-	public int trackerVal;
+
+	public static int upVal;
+	public static int downVal;
+	public static int leftVal;
+	public static int rightVal;
+	public static int attackVal;
+	public static int healVal;
+	public static int maxVal;
+	public static int trackerVal;
 	
 	public PlayerCharacter pc;
 	public ParticleSystem matchFadeEffect;
@@ -140,7 +140,7 @@ public class PuzzleManager : MonoBehaviour {
 			for (int j=0; j<5; j++){
 				
 				//get a random token type here
-				int type = getTokenType();
+				int type = getInverseTokenType();
 				puzzleGrid[i,j] = new Token(i, j, type);
 			}
 			//fill the unseen rows with empty tokens
@@ -1032,7 +1032,7 @@ public class PuzzleManager : MonoBehaviour {
 			//now add that number of tokens above to refill the lower rows
 			for (int j=5; j<5+refillCount[i]; j++){
 				//get a random token type here
-				int type = getTokenType();
+				int type = getInverseTokenType();
 				puzzleGrid[i,j].tokenVal = (TokenType)type;
 				puzzleGrid[i,j].ResetSprite();
 				
