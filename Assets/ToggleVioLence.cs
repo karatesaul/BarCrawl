@@ -26,11 +26,10 @@ public class ToggleVioLence : MonoBehaviour {
 			audio.clip = null;
 			audio.Play();
 		}
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		audio.volume = (PlayerPrefs.GetFloat (InGameMenu.musicVolKey) - 25) / (Screen.width / 50);
 	}
 }

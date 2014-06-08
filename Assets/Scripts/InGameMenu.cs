@@ -23,9 +23,9 @@ public class InGameMenu : MonoBehaviour {
 	private float musicVolume;
 	private float baseVolume = 25;
 
-	string voiceVolKey = "voiceKey";
-	string effectVolKey = "effectKey";
-	string musicVolKey = "musicVolume";
+	public static string voiceVolKey = "voiceKey";
+	public static string effectVolKey = "effectKey";
+	public static string musicVolKey = "musicKey";
 
 	private string ins = "<color=#ffffff>" +
 						 "How to Play:\n" +
