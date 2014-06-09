@@ -55,6 +55,7 @@ MonoBehaviour:
   beer1: {fileID: 2800000, guid: b466284896701413fbacdab626cf5c3d, type: 3}
   beer2: {fileID: 2800000, guid: 08726dd45df1a464faa26a982a3ca41a, type: 3}
   beer3: {fileID: 2800000, guid: 9851d128be0f14f3fbca119e1b683365, type: 3}
+  beerBackground: {fileID: 2800000, guid: a1ab59738d4d0a84aae45035f35b01e1, type: 3}
   chewy: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
   combo2: 0
   combo3: 0
@@ -63,6 +64,7 @@ MonoBehaviour:
   tut1: 0
   tut2: 0
   tut3: 0
+  tut4: 0
   showNumericHealth: 0
 --- !u!1001 &100100000
 Prefab:

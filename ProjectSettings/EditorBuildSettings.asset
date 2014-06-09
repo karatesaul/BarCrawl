@@ -17,7 +17,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Random_Test_Scene.unity
   - enabled: 1
     path: Assets/Scenes/Credits.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Instructions.unity
   - enabled: 1
     path: Assets/Scenes/Options.unity
@@ -30,4 +30,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Beach_Bar_Scene1.unity
   - enabled: 1
+    path: Assets/Scenes/Beach_Bar_Scene2.unity
+  - enabled: 1
+    path: Assets/Scenes/Beach_Bar_Scene3.unity
+  - enabled: 1
     path: Assets/Scenes/Club_Bar_Scene1.unity
+  - enabled: 1
+    path: Assets/Scenes/Club_Bar_Scene2.unity
+  - enabled: 1
+    path: Assets/Scenes/Club_Bar_Scene3.unity

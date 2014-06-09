@@ -12,7 +12,9 @@ public class PuzzleManager : MonoBehaviour {
 	//this is off by default so the menu can appear.
 	//when start is pressed on the menu, it turns the puzzle on
 	public bool puzzleActive;
-	
+
+	private GUIStyle gs;
+
 	public Texture tokenUp;
 	public Texture tokenDown;
 	public Texture tokenLeft;
@@ -20,18 +22,19 @@ public class PuzzleManager : MonoBehaviour {
 	public Texture tokenAttack;
 	public Texture tokenHeal;
 	public Texture tokenEmpty;
+	public Texture backdrop;
 	public Texture gray;
-	
+
 	public Texture cursor;
-	
-	public int upVal;
-	public int downVal;
-	public int leftVal;
-	public int rightVal;
-	public int attackVal;
-	public int healVal;
-	public int maxVal;
-	public int trackerVal;
+
+	public static int upVal;
+	public static int downVal;
+	public static int leftVal;
+	public static int rightVal;
+	public static int attackVal;
+	public static int healVal;
+	public static int maxVal;
+	public static int trackerVal;
 	
 	public PlayerCharacter pc;
 	public ParticleSystem matchFadeEffect;
@@ -101,7 +104,14 @@ public class PuzzleManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		puzzleActive = false;
+
 		
+		gs = new GUIStyle();
+		gs.stretchWidth = true;
+		gs.stretchHeight = true;
+		gs.fixedHeight = 5 * Screen.width / 6;
+		gs.fixedWidth = Screen.width;
+
 		currTime = 0;		
 		refillCount = new int[6];
 		refillStep = 5;
@@ -963,6 +973,7 @@ public class PuzzleManager : MonoBehaviour {
 			//fade the move
 			if (t.tokenVal != TokenType.Empty){
 				if (t.drawAlpha >= 1.0f /*&& !audioSources[1].isPlaying*/){
+					audioSources[1].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[1].Play();
 				}
 				t.drawAlpha -= 0.05f;
@@ -1038,57 +1049,69 @@ public class PuzzleManager : MonoBehaviour {
 		int type = 0;
 		if(roll < upVal){
 			type = 1;
-			upVal -= 5;
-			downVal += 1;
-			leftVal += 1;
-			rightVal += 1;
-			attackVal += 1;
-			healVal += 1;
+			if (upVal > 75){
+				upVal -= 5;
+				downVal += 1;
+				leftVal += 1;
+				rightVal += 1;
+				attackVal += 1;
+				healVal += 1;
+			}
 		}
 		else if(roll < (downVal+upVal)){
 			type = 2;
-			upVal += 1;
-			downVal -= 5;
-			leftVal += 1;
-			rightVal += 1;
-			attackVal += 1;
-			healVal += 1;
+			if (downVal > 75){
+				upVal += 1;
+				downVal -= 5;
+				leftVal += 1;
+				rightVal += 1;
+				attackVal += 1;
+				healVal += 1;
+			}
 		}
 		else if (roll < (leftVal+downVal+upVal)){
 			type = 3;
-			upVal += 1;
-			downVal += 1;
-			leftVal -= 5;
-			rightVal += 1;
-			attackVal += 1;
-			healVal += 1;
+			if (leftVal > 75){
+				upVal += 1;
+				downVal += 1;
+				leftVal -= 5;
+				rightVal += 1;
+				attackVal += 1;
+				healVal += 1;
+			}
 		}
 		else if (roll < (rightVal+leftVal+downVal+upVal)){
 			type = 4;
-			upVal += 1;
-			downVal += 1;
-			leftVal += 1;
-			rightVal -= 5;
-			attackVal += 1;
-			healVal += 1;
+			if (rightVal > 75){
+				upVal += 1;
+				downVal += 1;
+				leftVal += 1;
+				rightVal -= 5;
+				attackVal += 1;
+				healVal += 1;
+			}
 		}
 		else if (roll < (attackVal+rightVal+leftVal+downVal+upVal)){
 			type = 5;
-			upVal += 1;
-			downVal += 1;
-			leftVal += 1;
-			rightVal += 1;
-			attackVal -= 5;
-			healVal +=1;
+			if (attackVal > 175){
+				upVal += 1;
+				downVal += 1;
+				leftVal += 1;
+				rightVal += 1;
+				attackVal -= 5;
+				healVal +=1;
+			}
 		}
 		else if (roll < (healVal+attackVal+rightVal+leftVal+downVal+upVal)){
 			type = 6;
-			upVal += 1;
-			downVal += 1;
-			leftVal += 1;
-			rightVal += 1;
-			attackVal += 1;
-			healVal -= 5;
+			if (healVal > 30){
+				upVal += 1;
+				downVal += 1;
+				leftVal += 1;
+				rightVal += 1;
+				attackVal += 1;
+				healVal -= 5;
+			}
 		}
 		else {
 			type = 7;
@@ -1368,7 +1391,10 @@ public class PuzzleManager : MonoBehaviour {
 		//no need to draw this while menu is active
 		if(!puzzleActive) return;
 		
+		GUI.Box (new Rect (0, Screen.height - (5 * Screen.width / 6), Screen.width, 5 * Screen.height / 6), backdrop, gs);
+
 		if (tutorialState == 0) {
+//			Debug.Log("dsfjldsfsd");
 			handleNormalBoardLogic();
 			drawNormalGUI();
 		} else {
@@ -1468,6 +1494,7 @@ public class PuzzleManager : MonoBehaviour {
 					
 					activeX = a;
 					activeY = b;
+					audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[0].Play();
 					swapCount++;
 				}
@@ -1581,7 +1608,9 @@ public class PuzzleManager : MonoBehaviour {
 		
 		//draw tutorial cursor after turn is over
 		if (refillStep==5 && activeToken == null) {
-			GUI.DrawTexture(new Rect(x, y, puzzleGrid[m,n].location.width, puzzleGrid[m,n].location.height), cursor);
+			GUI.color = Color.white;
+			if (ui.tut4) GUI.DrawTexture(new Rect(Screen.width/25, Screen.height/45 + 4*Screen.width/25, Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f), cursor);
+			else GUI.DrawTexture(new Rect(x, y, puzzleGrid[m,n].location.width, puzzleGrid[m,n].location.height), cursor);
 			drawn = true;
 		}
 	}
@@ -1612,7 +1641,7 @@ public class PuzzleManager : MonoBehaviour {
 				if (locy - y >= 125) y = locy;
 			}
 			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
-			if (Input.GetMouseButton(0)){
+			if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0 && pc.GetComponent<PlayerCharacter>().executeMode!=true && pc.GetComponent<TurnManager>().turn == 1){
 				//if they clicked on token [1, 3], the correct token
 				if (a == 1 && b == 3){
 					activeToken = puzzleGrid[a,b];
@@ -1647,6 +1676,7 @@ public class PuzzleManager : MonoBehaviour {
 					
 					activeX = a;
 					activeY = b;
+					audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 3;
@@ -1690,7 +1720,7 @@ public class PuzzleManager : MonoBehaviour {
 				else y = locy;
 			}
 			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
-			if (Input.GetMouseButton(0)){
+			if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0 && pc.GetComponent<PlayerCharacter>().executeMode!=true && pc.GetComponent<TurnManager>().turn == 1){
 				//if they clicked on token [1, 3], the correct token
 				if (a == 3 && b == 2){
 					activeToken = puzzleGrid[a,b];
@@ -1723,6 +1753,7 @@ public class PuzzleManager : MonoBehaviour {
 					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
+					audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 6;
@@ -1758,6 +1789,7 @@ public class PuzzleManager : MonoBehaviour {
 					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
+					audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 7;
@@ -1803,7 +1835,7 @@ public class PuzzleManager : MonoBehaviour {
 				}
 			}
 			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
-			if (Input.GetMouseButton(0)){
+			if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0 && pc.GetComponent<PlayerCharacter>().executeMode!=true && pc.GetComponent<TurnManager>().turn == 1){
 				//if they clicked on token [1, 3], the correct token
 				if (a == 0 && b == 1){
 					activeToken = puzzleGrid[a,b];
@@ -1813,6 +1845,7 @@ public class PuzzleManager : MonoBehaviour {
 					tutorialState = 9;
 				}
 			}
+			drawn = false;
 			puzzleGrid[0,1].highlight = true;
 			break;
 		case 9: 
@@ -1834,6 +1867,7 @@ public class PuzzleManager : MonoBehaviour {
 					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
+					audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 10;
@@ -1866,6 +1900,7 @@ public class PuzzleManager : MonoBehaviour {
 					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
+					audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 11;
@@ -1895,6 +1930,7 @@ public class PuzzleManager : MonoBehaviour {
 					moveToken(activeX, activeY, swapWith);
 					activeX = a;
 					activeY = b;
+					audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 					audioSources[0].Play();
 					//swapCount++;
 					tutorialState = 12;
@@ -1913,14 +1949,16 @@ public class PuzzleManager : MonoBehaviour {
 				refillStep = 0;
 
 				tutorialState = 13;
-				PlayerPrefs.SetInt("ShowTutorial", 0);
-				ui.tut3 = false;
 			}
 			puzzleGrid[2, 0].highlight = false;
 			break;
 		case 13:
 			//wait for the player to click on the reset button
 			//this is handled in UI.cs
+			ui.tut3 = false;
+			ui.tut4 = true;
+			
+			PlayerPrefs.SetInt("ShowTutorial", 0);
 			break;
 		}
 	}

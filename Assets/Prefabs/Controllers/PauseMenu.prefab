@@ -42,7 +42,12 @@ MonoBehaviour:
   tm: {fileID: 0}
   pauseButton: {fileID: 2800000, guid: dfab3ec7b55402f428d67debce1bffb7, type: 3}
   puzzleManager: {fileID: 0}
-  chewy: {fileID: 0}
+  chewy: {fileID: 12800000, guid: 7b4f275eb2071884e906e76eaecdc486, type: 3}
+  backdrop: {fileID: 2800000, guid: 5689963a718de13479c1e46f9a1dbd23, type: 3}
+  sliderButton: {fileID: 2800000, guid: 82b52df76ab631b4eb09133a2190f64c, type: 3}
+  sliderTrack: {fileID: 2800000, guid: 879d41dc5cb080147b1c328de325e547, type: 3}
+  pauseButtonBackground: {fileID: 2800000, guid: 83ad5c9fa7cc3b54fb3a36c7c113519d,
+    type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

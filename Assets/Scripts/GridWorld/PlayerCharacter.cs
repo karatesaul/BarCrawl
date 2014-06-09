@@ -73,7 +73,10 @@ public class PlayerCharacter : FightingEntity {
 		facing = Move.Right;
 	}
 
-
+	public void throwFalsePunch()
+	{
+		animator.Play ("AttackLeft");
+	}
 
 	// Update is called once per frame
 	protected override void Update () 

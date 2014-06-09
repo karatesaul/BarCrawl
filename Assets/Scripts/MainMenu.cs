@@ -5,6 +5,9 @@ public class MainMenu : MonoBehaviour {
 	//whether or not to display this instead of puzzle
 	public bool displayMenu;
 	//images and tutorial settings
+
+	public Texture backdrop;
+
 	public Texture title;
 	public Font chewy;
 	//public Texture yesTutorial;
@@ -13,6 +16,10 @@ public class MainMenu : MonoBehaviour {
 	
 	public GameObject pauseMenu;
 	public UI ui;
+
+	//for initial punch
+	public PlayerCharacter player;
+	public Enemy barEnemy;
 	
 	// Use this for initialization
 	void Start () {
@@ -38,6 +45,15 @@ public class MainMenu : MonoBehaviour {
 			return;
 		}
 
+		GUIStyle gs2;
+		gs2 = new GUIStyle();
+		gs2.stretchWidth = true;
+		gs2.stretchHeight = true;
+		gs2.fixedHeight = 5 * Screen.width / 6;
+		gs2.fixedWidth = Screen.width;
+		GUI.Box (new Rect (0, Screen.height - (5 * Screen.width / 6), Screen.width, 5 * Screen.height / 6), backdrop, gs2);
+
+
 		//prepare the GUIStyle
 		GUIStyle gs = new GUIStyle();
 		gs.font = chewy;
@@ -48,7 +64,7 @@ public class MainMenu : MonoBehaviour {
 		gs.richText = true;
 
 		//draw title
-		GUI.DrawTexture(new Rect(0, -Screen.height/3, Screen.width, Screen.height), title, ScaleMode.ScaleToFit);
+		GUI.DrawTexture(new Rect(0, -Screen.height/4, Screen.width, Screen.height), title, ScaleMode.ScaleToFit);
 		//find desired button size
 		int x = Screen.width;
 		int y = Screen.height;
@@ -67,6 +83,10 @@ public class MainMenu : MonoBehaviour {
 			pauseMenu.GetComponent<InGameMenu>().menuActive = true;
 			//finally turn on the UI
 			ui.showUI = true;
+
+			//make the player punch the nearby enemy.
+			player.throwFalsePunch();
+			barEnemy.takeDamage(0);
 		}
 		//high score screen button
 		if(GUI.Button (new Rect(x/2 - buttonWidth/2, 2*y/3, buttonWidth, buttonHeight), "<color=#ffffff>HIGH SCORES</color>", gs)){

@@ -63,6 +63,7 @@ public class Entity : MonoBehaviour {
 		if (health <= 0 && deathState == 0) {
 			deathticker = 1;
 			animator.Play ("Death");
+			audioSources[1].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 			audioSources [1].Play ();
 			deathState = 1;
 			dead = true;
@@ -120,6 +121,7 @@ public class Entity : MonoBehaviour {
 		currentRed = 100;
 
 		animator.Play ("Hurt");
+		audioSources[0].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
 		audioSources[0].Play ();
 
 		if (PlayerPrefs.GetInt ("Profanity") == 1) {

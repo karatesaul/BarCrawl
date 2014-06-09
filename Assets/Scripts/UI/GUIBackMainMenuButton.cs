@@ -15,7 +15,6 @@ public class GUIBackMainMenuButton : MonoBehaviour {
 	private GUIStyle textStyle;
     bool isInit = false;
 	private GUIStyle imageStyle;
-    private string lastResponse = "";
 
 	//float buttony2 = Screen.height/9f;
 
@@ -24,12 +23,15 @@ public class GUIBackMainMenuButton : MonoBehaviour {
       //  Debug.Log( "Awake -- enabled = false" );     
        // enabled = false;
         Debug.Log( "going into fb.init" );
-        FB.Init( SetInit, OnHideUnity ); 
+        if( !isInit ) {
+            FB.Init( SetInit, OnHideUnity );
+        }
     }
 
     private void SetInit() {
        // Debug.Log( "SetInit -- enabled = true" );
-       // enabled = true; // "enabled" is a property inherited from MonoBehaviour                  
+       // enabled = true; // "enabled" is a property inherited from MonoBehaviour   
+        isInit = true;       
         if( FB.IsLoggedIn ) {
             Debug.Log( "Already logged in" );
             OnLoggedIn();
@@ -73,10 +75,10 @@ public class GUIBackMainMenuButton : MonoBehaviour {
                 findUsOnFacebook.width, findUsOnFacebook.height ), PostToFB, imageStyle ) ) 
             {
                 FB.Feed(
-                    linkCaption: "I just smashed " + Scores.total.ToString() + ", Can you beat it?",
+                    linkCaption: "I just scored " + Scores.total.ToString() + "in an epic bar fight.  Think you can do better?",
                     picture: "http://i.imgur.com/S11tl0R.png",
-                    linkName: "Checkout Bar Crawl greatness!",
-                    link: "http://barcrawlgame.wordpress.com/download/"
+                    linkName: "Checkout Bar Crawl greatness on Facebook!!",
+                    link: "https://www.facebook.com/BarCrawlANightToForget"
                     );
             }
         } else {
@@ -86,6 +88,7 @@ public class GUIBackMainMenuButton : MonoBehaviour {
                  FB.Login( "email,publish_actions", LoginCallback );
             }
         }
+
 	}
     void LoginCallback( FBResult result ) {
         Debug.Log( "LoginCallback" );
