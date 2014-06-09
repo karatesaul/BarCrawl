@@ -49,7 +49,7 @@ public class SFXManager : MonoBehaviour {
 	private static void playCensored(){
 		int rand = Mathf.RoundToInt(Random.Range(0, censored.Length - 1));
 		if (currentAudio == null) {
-			AudioSource.PlayClipAtPoint (censored [rand], player.transform.position, (PlayerPrefs.GetFloat(InGameMenu.voiceVolKey) - 25) / (Screen.width - 50));
+			AudioSource.PlayClipAtPoint (censored [rand], player.transform.position, PlayerPrefs.GetFloat(InGameMenu.voiceVolKey));
 			currentAudio = GameObject.Find ("One shot audio");
 		} 
 		else
@@ -59,7 +59,7 @@ public class SFXManager : MonoBehaviour {
 	private static void playUncensored(){
 		int rand = Mathf.RoundToInt(Random.Range(0, uncensored.Length - 1));
 		if (currentAudio == null) {
-			AudioSource.PlayClipAtPoint (uncensored [rand], player.transform.position, (PlayerPrefs.GetFloat(InGameMenu.voiceVolKey) - 25) / (Screen.width - 50));
+			AudioSource.PlayClipAtPoint (uncensored [rand], player.transform.position, PlayerPrefs.GetFloat(InGameMenu.voiceVolKey));
 			currentAudio = GameObject.Find ("One shot audio");
 		} 
 		else
