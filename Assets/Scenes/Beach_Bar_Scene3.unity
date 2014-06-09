@@ -519,11 +519,11 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: .25
+  m_Volume: .5
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Priority: 128
+  Priority: 60
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -580,9 +580,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vioLence: {fileID: 8300000, guid: 233ac724e6c1f9840955b1041049b9c1, type: 3}
-  bikerBar: {fileID: 0}
-  luauBar: {fileID: 0}
-  raveBar: {fileID: 0}
+  bikerBar: {fileID: 8300000, guid: b90c5d211c1fab545a5adad9383d9a56, type: 3}
+  luauBar: {fileID: 8300000, guid: 7858dd1607a11ea4ab787c83e8ad4dc9, type: 3}
+  raveBar: {fileID: 8300000, guid: 1028e19e45954f54b8c8eee617e50cbc, type: 3}
 --- !u!114 &365981912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,14 +647,6 @@ MonoBehaviour:
   backdrop: {fileID: 2800000, guid: 0fc616df69f29764fb5f5b1868d4a75b, type: 3}
   gray: {fileID: 2800000, guid: e020a0e670d799742963efacb568c635, type: 3}
   cursor: {fileID: 2800000, guid: 6d1ef788bbc424e51b25114349101adc, type: 3}
-  upVal: 0
-  downVal: 0
-  leftVal: 0
-  rightVal: 0
-  attackVal: 0
-  healVal: 0
-  maxVal: 0
-  trackerVal: 0
   pc: {fileID: 1707795426}
   matchFadeEffect: {fileID: 19800000, guid: 6f45a22ff4bf64240acb5c0536b399c3, type: 2}
   ui: {fileID: 0}
@@ -1099,7 +1091,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 605270506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.75, y: 4.5, z: 0}
+  m_LocalPosition: {x: 2.75, y: 4.5, z: -.100000001}
   m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
