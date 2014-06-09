@@ -87,9 +87,9 @@ public class InGameMenu : MonoBehaviour {
 		//
 
 		//sets volume to the player prefrence or if undefined to baseVolume(25)
-		musicVolume = PlayerPrefs.GetFloat(musicVolKey,baseVolume); 
-		effectVolume = PlayerPrefs.GetFloat(effectVolKey,baseVolume); 
-		voiceVolume = PlayerPrefs.GetFloat(voiceVolKey,baseVolume); 
+		musicVolume = PlayerPrefs.GetFloat(musicVolKey,baseVolume) * (Screen.width - 40) + 20; 
+		effectVolume = PlayerPrefs.GetFloat(effectVolKey,baseVolume) * (Screen.width - 40) + 20; 
+		voiceVolume = PlayerPrefs.GetFloat(voiceVolKey,baseVolume) * (Screen.width - 40) + 20; 
 
 	}
 	
