@@ -1638,7 +1638,7 @@ public class PuzzleManager : MonoBehaviour {
 			} else if (drawn) { 
 				//animate the cursor if positions were already set and it was alreay drawn at the intial position
 				y -= Time.deltaTime * 75;
-				if (locy - y >= 125) y = locy;
+				if (locy - y >= Screen.height/6) y = locy;
 			}
 			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
 			if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0 && pc.GetComponent<PlayerCharacter>().executeMode!=true && pc.GetComponent<TurnManager>().turn == 1){
@@ -1716,7 +1716,7 @@ public class PuzzleManager : MonoBehaviour {
 				locy = y;
 			} else if (drawn) {
 				//animate the cursor if positions were already set and it was alreay drawn at the intial position
-				if (y - locy <= 190) y += Time.deltaTime * 100;
+				if (y - locy <= Screen.height/4) y += Time.deltaTime * 100;
 				else y = locy;
 			}
 			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
@@ -1827,9 +1827,9 @@ public class PuzzleManager : MonoBehaviour {
 				locx = x;
 				locy = y;
 			} else if (drawn) {
-				if (x - locx <= 150) x += Time.deltaTime * 100;
+				if (x - locx <= Screen.width/3) x += Time.deltaTime * 100;
 				else y += Time.deltaTime * 100;
-				if (y - locy >= 200) {
+				if (y - locy >= Screen.height/4) {
 					x = locx;
 					y = locy;
 				}
