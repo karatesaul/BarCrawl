@@ -49,7 +49,14 @@ public class TurnManager : MonoBehaviour {
 		turn = 1;
 		enemyCount = 0;
 	}
-	
+
+	/*
+	 * NEW CODE in Update:
+	 * || Scores.turnsSurvived > 50
+	 * 
+	 * that's literally it
+	 */
+
 	// Update is called once per frame
 	void Update () {
 			if (turn == 1) {
@@ -77,7 +84,9 @@ public class TurnManager : MonoBehaviour {
 
 			Enemy enemyInstance;
 
-			if(((spawnTimer > 2 && enemyCount < (Scores.total/100) && enemyCount < maxEnemies) || enemyCount < 0))
+			//NEW CODE: || Scores.turnsSurvived > 50
+
+			if(((spawnTimer > 2 && enemyCount < (Scores.total/100) && enemyCount < maxEnemies) || enemyCount < 0) || Scores.turnsSurvived > 50)
 			{
 
 				 //This should instead be called in Enemy, but I'll move it there later.
