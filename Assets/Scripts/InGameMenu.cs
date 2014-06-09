@@ -87,9 +87,9 @@ public class InGameMenu : MonoBehaviour {
 		//
 
 		//sets volume to the player prefrence or if undefined to baseVolume(25)
-		musicVolume = PlayerPrefs.GetFloat(musicVolKey,baseVolume) * (Screen.width - 40) + 20; 
-		effectVolume = PlayerPrefs.GetFloat(effectVolKey,baseVolume) * 2 * (Screen.width - 40) + 20; 
-		voiceVolume = PlayerPrefs.GetFloat(voiceVolKey,baseVolume) * 2 * (Screen.width - 40) + 20; 
+		musicVolume = PlayerPrefs.GetFloat(musicVolKey,baseVolume) * (Screen.width - 50) + 25; 
+		effectVolume = PlayerPrefs.GetFloat(effectVolKey,baseVolume) * 2 * (Screen.width - 50) + 25; 
+		voiceVolume = PlayerPrefs.GetFloat(voiceVolKey,baseVolume) * 2 * (Screen.width - 50) + 25; 
 
 	}
 	
@@ -152,9 +152,10 @@ public class InGameMenu : MonoBehaviour {
 			GUI.Label(new Rect(25, 3.5f * Screen.height / 7, Screen.width - 50, 50), "<color=#ffffff>Music Volume</color>", volumeSliders);
 			if(GUI.RepeatButton( new Rect(25, 3.75f * Screen.height / 7, Screen.width - 50, 50), "")){
 				musicVolume = Input.mousePosition.x;
-				musicVolume = constrain(musicVolume, 20, Screen.width - 20);
-				PlayerPrefs.SetFloat(musicVolKey, (musicVolume - 20) / (Screen.width - 40));
-				Debug.Log ("Music volume is: " + (musicVolume - 20) / (Screen.width - 40));
+				musicVolume = constrain(musicVolume, 25, Screen.width - 25);
+				if ((musicVolume - 25)/(Screen.width - 50) < .05) musicVolume = 25;
+				PlayerPrefs.SetFloat(musicVolKey, (musicVolume - 25) / (Screen.width - 50));
+				Debug.Log ("Music volume is: " + (musicVolume - 25) / (Screen.width - 50));
 			}
 			//draw slider
 			GUI.Box ( new Rect(musicVolume - 25, 3.75f * Screen.height / 7, 50, 50), sliderButton, new GUIStyle());
@@ -163,9 +164,10 @@ public class InGameMenu : MonoBehaviour {
 			GUI.Label (new Rect(25, 4.5f * Screen.height / 7, Screen.width - 50, 50), "<color=#ffffff>Sound Effect Volume</color>", volumeSliders);
 			if(GUI.RepeatButton( new Rect(25, 4.75f * Screen.height / 7, Screen.width - 50, 50), "")){
 				effectVolume = Input.mousePosition.x;
-				effectVolume = constrain(effectVolume, 20, Screen.width - 20);
-				PlayerPrefs.SetFloat(effectVolKey,(effectVolume - 20) / 2 / (Screen.width - 40));
-				Debug.Log ("Effect volume is: " + (effectVolume - 20) / 2 / (Screen.width - 40));
+				effectVolume = constrain(effectVolume, 25, Screen.width - 25);
+				if ((effectVolume - 25)/2/(Screen.width - 50) < .05) effectVolume = 25;
+				PlayerPrefs.SetFloat(effectVolKey,(effectVolume - 25) / 2 / (Screen.width - 50));
+				Debug.Log ("Effect volume is: " + (effectVolume - 25) / 2 / (Screen.width - 50));
 				//Debug.Log ("Ian: scale and store new effect volume here");
 			}
 			//draw slider
@@ -175,9 +177,10 @@ public class InGameMenu : MonoBehaviour {
 			GUI.Label (new Rect(25, 5.5f * Screen.height / 7, Screen.width - 50, 50), "<color=#ffffff>Voice Volume</color>", volumeSliders);
 			if(GUI.RepeatButton( new Rect(25, 5.75f * Screen.height / 7, Screen.width - 50, 50), "")){
 				voiceVolume = Input.mousePosition.x;
-				voiceVolume = constrain(voiceVolume, 20, Screen.width - 20);
-				PlayerPrefs.SetFloat(voiceVolKey,(voiceVolume - 20) / 2 / (Screen.width - 40));
-				Debug.Log ("Voice volume is: " + (voiceVolume - 20) / 2 / (Screen.width - 40));
+				voiceVolume = constrain(voiceVolume, 25, Screen.width - 25);
+				if ((voiceVolume - 25)/2/(Screen.width - 50) < .05) voiceVolume = 25;
+				PlayerPrefs.SetFloat(voiceVolKey,(voiceVolume - 25) / 2 / (Screen.width - 50));
+				Debug.Log ("Voice volume is: " + (voiceVolume - 25) / 2 / (Screen.width - 50));
 			}
 			//draw slider
 			GUI.Box ( new Rect(voiceVolume - 25, 5.75f * Screen.height / 7, 50, 50), sliderButton, new GUIStyle());
