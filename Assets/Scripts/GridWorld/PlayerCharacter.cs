@@ -269,6 +269,8 @@ public class PlayerCharacter : FightingEntity {
 				animator.Play("AttackDown");
 				shakyCam = shakeTime;
 				Instantiate(aoeEffect, transform.position, Quaternion.identity);
+				audioSources[2].volume = PlayerPrefs.GetFloat(InGameMenu.effectVolKey);
+				audioSources[2].Play();
 				
 				if (Random.Range(0, 5) == 0)
 					SFXManager.PlayerVoice();
