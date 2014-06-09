@@ -31,6 +31,15 @@ public class Initializer : MonoBehaviour {
 		if(!PlayerPrefs.HasKey ("HealthBarNumbers")){
 			PlayerPrefs.SetInt("HealthBarNumbers", 0);
 		}
+		if (!PlayerPrefs.HasKey (InGameMenu.musicVolKey)) {
+			PlayerPrefs.SetFloat(InGameMenu.musicVolKey, 1f);
+		}
+		if (!PlayerPrefs.HasKey (InGameMenu.effectVolKey)) {
+			PlayerPrefs.SetFloat(InGameMenu.effectVolKey, 1f);
+		}
+		if (!PlayerPrefs.HasKey (InGameMenu.voiceVolKey)) {
+			PlayerPrefs.SetFloat(InGameMenu.voiceVolKey, 1f);
+		}
 
 		//make sure there's no old instances hanging around causing bugs
 		GridManager.clearInstance ();
