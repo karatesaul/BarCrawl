@@ -35,10 +35,10 @@ public class Initializer : MonoBehaviour {
 			PlayerPrefs.SetFloat(InGameMenu.musicVolKey, 1f);
 		}
 		if (!PlayerPrefs.HasKey (InGameMenu.effectVolKey)) {
-			PlayerPrefs.SetFloat(InGameMenu.effectVolKey, 1f);
+			PlayerPrefs.SetFloat(InGameMenu.effectVolKey, .5f);
 		}
 		if (!PlayerPrefs.HasKey (InGameMenu.voiceVolKey)) {
-			PlayerPrefs.SetFloat(InGameMenu.voiceVolKey, 1f);
+			PlayerPrefs.SetFloat(InGameMenu.voiceVolKey, .5f);
 		}
 
 		//make sure there's no old instances hanging around causing bugs
