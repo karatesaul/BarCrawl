@@ -19,14 +19,22 @@ public class GUIBackMainMenuButton : MonoBehaviour {
 
 	//float buttony2 = Screen.height/9f;
 
+/*
     void Awake() {
         // Initialize FB SDK 
       //  Debug.Log( "Awake -- enabled = false" );     
        // enabled = false;
+
+
+
         Debug.Log( "going into fb.init" );
         if( !isInit ) {
             FB.Init( SetInit, OnHideUnity );
         }
+
+
+
+
     }
 
     private void SetInit() {
@@ -49,7 +57,7 @@ public class GUIBackMainMenuButton : MonoBehaviour {
             Time.timeScale = 1;
         }  
     }
-
+*/
 	void Update(){
 		//buttony2 = Screen.height/9f;
 		textStyle = new GUIStyle();
@@ -68,9 +76,36 @@ public class GUIBackMainMenuButton : MonoBehaviour {
 			Application.LoadLevel("Main_Menu");
 		}
 		textStyle.fontSize = Mathf.RoundToInt (textStyle.fontSize * 0.8f);//shrink the font a smidge so it fits on screen
-		GUI.Label (new Rect(0, Screen.height - 100 - findUsOnFacebook.height - 60, Screen.width, 50), 
-		           "<color=#ffffff><i>Tell us how you did!</i></color>", textStyle);
+		//GUI.Label (new Rect(0, Screen.height - 100 - findUsOnFacebook.height - 60, Screen.width, 50), 
+		//           "<color=#ffffff><i>Find us on Facebook!</i></color>", textStyle);
+		if( GUI.Button( new Rect( 0, Screen.height - 100 - findUsOnFacebook.height - 60, Screen.width, 50 ),
+		               "<color=#ffffff><i>Find us on Facebook!</i></color>", textStyle ) ) 
+		{
+			
+			Application.OpenURL("https://www.facebook.com/BarCrawlANightToForget");
+		}
 		textStyle.fontSize = Screen.width / 10;
+
+
+/*
+		if( GUI.Button( new Rect( Screen.width / 2 - findUsOnFacebook.width / 2, Screen.height - 110 - findUsOnFacebook.height, 
+		                         findUsOnFacebook.width, findUsOnFacebook.height ), PostToFB, imageStyle ) ) 
+		{
+
+			Application.OpenURL("https://www.facebook.com/BarCrawlANightToForget")
+
+			FB.Feed(
+				linkCaption: "I just scored " + Scores.total.ToString() + " in an epic bar fight.  Think you can do better?",
+				picture: "http://i.imgur.com/S11tl0R.png",
+				linkName: "Check out Bar Crawl greatness on Facebook!!",
+				link: "https://www.facebook.com/BarCrawlANightToForget"
+				);
+
+		}
+
+*/
+
+/*
         if( FB.IsLoggedIn ) {
             if( GUI.Button( new Rect( Screen.width / 2 - findUsOnFacebook.width / 2, Screen.height - 110 - findUsOnFacebook.height, 
                 findUsOnFacebook.width, findUsOnFacebook.height ), PostToFB, imageStyle ) ) 
@@ -90,7 +125,11 @@ public class GUIBackMainMenuButton : MonoBehaviour {
             }
         }
 
+*/
 	}
+
+
+	/*
     void LoginCallback( FBResult result ) {
         Debug.Log( "LoginCallback" );
         if( FB.IsLoggedIn ) {
@@ -107,5 +146,5 @@ public class GUIBackMainMenuButton : MonoBehaviour {
         }
         
     }  
-
+	*/
 }
