@@ -15,7 +15,7 @@ public class Enemy : FightingEntity {
 	//lifespan = amount of turns enemy has been alive
 	public int lifespan;
 
-	private bool playerDetected;
+	//private bool playerDetected;
 	protected int detectionRange = 5;
 
 	public Move toBar = Move.Up;
@@ -32,7 +32,7 @@ public class Enemy : FightingEntity {
 		currMove = Move.None;
 		isExecuting = false;
 
-		playerDetected = false;
+		//playerDetected = false;
 		lifespan = 0;
 	}
 	
@@ -312,7 +312,7 @@ public class Enemy : FightingEntity {
 			list.Sort();
 			//and thus efficiency dies
 
-			AStarPoint from = list[0];
+			//AStarPoint from = list[0];
 			list.RemoveAt(0);
 		}
 

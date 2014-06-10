@@ -628,10 +628,10 @@ public class PuzzleManager : MonoBehaviour {
 		//add them to the full set
 		setOfTokens.InsertRange (originalMatchNum, newMatches);
 		
-		foreach(List<Token> match in newMatches)
-		{
+		//foreach(List<Token> match in newMatches)
+		//{
 			//Debug.Log("-match of " + match.Count + ", match num is" + setOfTokens.IndexOf(match));
-		}
+		//}
 		
 	}
 	
