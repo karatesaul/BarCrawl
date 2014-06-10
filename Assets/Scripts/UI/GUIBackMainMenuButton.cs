@@ -10,6 +10,7 @@ public class GUIBackMainMenuButton : MonoBehaviour {
 	public Texture findUsOnFacebook;
     public Texture PostToFB;
     public Texture LogIn;
+	public Texture2D buttonbg;
 	public Font chewy;
 
 	private GUIStyle textStyle;
@@ -62,7 +63,7 @@ public class GUIBackMainMenuButton : MonoBehaviour {
 
 	void OnGUI () {
 		//if (GUI.Button (new Rect (Screen.width/1.4f,Screen.height/1.2f,buttony2,buttony2), backButton)) {
-
+		GUI.DrawTexture (new Rect(0, Screen.height-100, Screen.width, 100), buttonbg);
 		if(GUI.Button (new Rect(0, Screen.height-100, Screen.width, 100), "<color=#ffffff>On to the next bar!</color>", textStyle)){
 			Application.LoadLevel("Main_Menu");
 		}
