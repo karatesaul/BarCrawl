@@ -214,21 +214,21 @@ public class UI : MonoBehaviour {
 			
 			//tutorial text
 			if (tut1) { 
-				DrawOutline (new Rect (Screen.width / 2, Screen.height / 3, 0, 0), "Combine 3 punches to fight enemies!", tutText, Color.black);
+				DrawOutline (new Rect (Screen.width / 2, Screen.height / 3 - 15, 0, 0), "Combine 3 punches to fight enemies!", tutText, Color.black);
 			}
 			if (tut2) {
-				DrawOutline (new Rect (Screen.width / 2, Screen.height / 3, 0, 0), "Make more matches to do more moves!", tutText, Color.black);
-				DrawOutline (new Rect (Screen.width / 2, Screen.height/3 + Screen.width/25, 0, 0), "Moving into enemies will damage them too!", tutText, Color.black);
+				DrawOutline (new Rect (Screen.width / 2, Screen.height / 3 - 15, 0, 0), "Make more matches to do more moves!", tutText, Color.black);
+				DrawOutline (new Rect (Screen.width / 2, Screen.height/3 + Screen.width/25 - 15, 0, 0), "Moving into enemies will damage them too!", tutText, Color.black);
 			}
 			if (tut3) {
-				DrawOutline (new Rect (Screen.width / 2, Screen.height / 3, 0, 0), "Connect hearts to restore health!", tutText, Color.black);
-				DrawOutline (new Rect (Screen.width / 2, Screen.height/3 + Screen.width/25, 0, 0), "4+ punches or hearts results in a greater effect!", tutText, Color.black);
+				DrawOutline (new Rect (Screen.width / 2, Screen.height / 3 - 15, 0, 0), "Connect hearts to restore health!", tutText, Color.black);
+				DrawOutline (new Rect (Screen.width / 2, Screen.height/3 + Screen.width/25 - 15, 0, 0), "4+ punches or hearts results in a greater effect!", tutText, Color.black);
 			}
 			if (tut4) {
-				DrawOutline (new Rect (Screen.width/2 - 2*Screen.width/25, Screen.height/22 + 3*Screen.width/25, 0, 0), "Touch the beer", tutText, Color.black);
-				DrawOutline (new Rect (Screen.width/2 - 2*Screen.width/25, Screen.height/22 + 4*Screen.width/25, 0, 0), "to reset the puzzle!", tutText, Color.black);
-				DrawOutline (new Rect (Screen.width / 2, Screen.height/3, 0, 0), "From now on you have a limited time.", tutText, Color.black);
-				DrawOutline (new Rect (Screen.width / 2, Screen.height/3 + Screen.width/25, 0, 0), "to complete each move. Good luck!", tutText, Color.black);
+				DrawOutline (new Rect (Screen.width/2 - 2*Screen.width/25, Screen.height/22 + 3*Screen.width/25 - 15, 0, 0), "Touch the beer", tutText, Color.black);
+				DrawOutline (new Rect (Screen.width/2 - 2*Screen.width/25, Screen.height/22 + 4*Screen.width/25 - 15, 0, 0), "to reset the puzzle!", tutText, Color.black);
+				DrawOutline (new Rect (Screen.width / 2, Screen.height/3 - 15, 0, 0), "From now on you have a limited time.", tutText, Color.black);
+				DrawOutline (new Rect (Screen.width / 2, Screen.height/3 + Screen.width/25 - 15, 0, 0), "to complete each move. Good luck!", tutText, Color.black);
 			}
 		}
 	}

@@ -9,6 +9,10 @@ public class Initializer : MonoBehaviour {
 	bool debuggingForceLoad;
 	string forceLevel;
 
+	void Awake(){
+		Application.targetFrameRate = 60;
+	}
+
 	void Start(){
 		/**************************************************************************************************
 		 *  Set this value to true and enter a level name to force test a level.  Change it back to false

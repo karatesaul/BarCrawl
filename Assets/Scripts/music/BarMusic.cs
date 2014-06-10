@@ -5,6 +5,7 @@ public class BarMusic : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake() {
+		Application.targetFrameRate = 60;
 		if (PlayerPrefs.GetInt ("ViolenceMusic") == 1) {
 			GlobalMusic.ViolenceMusic();
 			//Debug.Log("Violence Music: " + PlayerPrefs.GetInt ("ViolenceMusic"));

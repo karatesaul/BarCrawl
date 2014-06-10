@@ -1968,14 +1968,6 @@ MonoBehaviour:
   backdrop: {fileID: 2800000, guid: 0fc616df69f29764fb5f5b1868d4a75b, type: 3}
   gray: {fileID: 2800000, guid: e020a0e670d799742963efacb568c635, type: 3}
   cursor: {fileID: 2800000, guid: 6d1ef788bbc424e51b25114349101adc, type: 3}
-  upVal: 0
-  downVal: 0
-  leftVal: 0
-  rightVal: 0
-  attackVal: 0
-  healVal: 0
-  maxVal: 0
-  trackerVal: 0
   pc: {fileID: 1707795426}
   matchFadeEffect: {fileID: 19800000, guid: 6f45a22ff4bf64240acb5c0536b399c3, type: 2}
   ui: {fileID: 0}
@@ -3856,11 +3848,11 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: .25
+  m_Volume: .5
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Priority: 128
+  Priority: 60
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -3917,9 +3909,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vioLence: {fileID: 8300000, guid: 233ac724e6c1f9840955b1041049b9c1, type: 3}
-  bikerBar: {fileID: 0}
-  luauBar: {fileID: 0}
-  raveBar: {fileID: 0}
+  bikerBar: {fileID: 8300000, guid: b90c5d211c1fab545a5adad9383d9a56, type: 3}
+  luauBar: {fileID: 8300000, guid: 7858dd1607a11ea4ab787c83e8ad4dc9, type: 3}
+  raveBar: {fileID: 8300000, guid: 1028e19e45954f54b8c8eee617e50cbc, type: 3}
 --- !u!114 &966191595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5850,6 +5842,7 @@ GameObject:
   - 114: {fileID: 1707795431}
   - 82: {fileID: 1707795433}
   - 82: {fileID: 1707795432}
+  - 82: {fileID: 1707795434}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -6055,6 +6048,65 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 41e4a4c70131f40a5b3d774be29ff1a1, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!82 &1707795434
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200004, guid: 84589b969f74f2243a4bedc0cd3664e9,
+    type: 2}
+  m_PrefabInternal: {fileID: 890802758}
+  m_GameObject: {fileID: 1707795425}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: dcf259ea34afa40d582ae91982221770, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
