@@ -119,7 +119,7 @@ public class OptionsMenu : MonoBehaviour {
 
 
 		//return to main
-		GUI.DrawTexture (new Rect(0, Screen.height-100, Screen.width, 100), buttonbg);
+		GUI.DrawTexture (new Rect(0, 6*Screen.height/7+25, Screen.width, Screen.height/7-25), buttonbg);
 		if(GUI.Button (new Rect(Screen.width/2 - mainMenu.width/2, 6*Screen.height/7 + 25,
 		                        mainMenu.width, mainMenu.height), mainMenu, buttonStyle)){
 			Application.LoadLevel ("Main_Menu");
