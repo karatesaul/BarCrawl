@@ -75,7 +75,7 @@ public class GUIBackMainMenuButton : MonoBehaviour {
                 findUsOnFacebook.width, findUsOnFacebook.height ), PostToFB, imageStyle ) ) 
             {
                 FB.Feed(
-                    linkCaption: "I just scored " + Scores.total.ToString() + "in an epic bar fight.  Think you can do better?",
+                    linkCaption: "I just scored " + Scores.total.ToString() + " in an epic bar fight.  Think you can do better?",
                     picture: "http://i.imgur.com/S11tl0R.png",
                     linkName: "Checkout Bar Crawl greatness on Facebook!!",
                     link: "https://www.facebook.com/BarCrawlANightToForget"
