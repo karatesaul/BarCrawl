@@ -60,8 +60,20 @@ public class ThreeScoreSetter : MonoBehaviour {
 		currText3.text = "Turns Lasted:\n" + score3;
 		currText4.text = "Composite:\n" + score4;
 
+		currText1.fontSize = Screen.width/20;
+		currText2.fontSize = Screen.width/20;
+		currText3.fontSize = Screen.width/20;
+		currText4.fontSize = Screen.width/20;
+
+		scoreText1.fontSize = Screen.width/20;
+		scoreText2.fontSize = Screen.width/20;
+		scoreText3.fontSize = Screen.width/20;
+		scoreText4.fontSize = Screen.width/20;
+
 		results.text = "Your Score!";
+		results.fontSize = Screen.width/12;
 		lifeTimeBest.text = "Life Time Best!";
+		lifeTimeBest.fontSize = Screen.width/12;
 	}
 
 	void Update(){

@@ -21,7 +21,7 @@ public class InGameMenu : MonoBehaviour {
 	private float voiceVolume;
 	private float effectVolume;
 	private float musicVolume;
-	private float baseVolume = 25;
+	private float baseVolume = 1;
 
 	public static string voiceVolKey = "voiceKey";
 	public static string effectVolKey = "effectKey";

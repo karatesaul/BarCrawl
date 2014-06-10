@@ -16,6 +16,7 @@ public class OptionsMenu : MonoBehaviour {
 	public Texture noHealthBarNumbers;
 	public Texture credits;
 	public Texture mainMenu;
+	public Texture2D buttonbg;
 	public bool tutorial;
 	public bool profanity;
 	public bool violenceSoundtrack;
@@ -118,6 +119,7 @@ public class OptionsMenu : MonoBehaviour {
 
 
 		//return to main
+		GUI.DrawTexture (new Rect(0, 6*Screen.height/7+25, Screen.width, Screen.height/7-25), buttonbg);
 		if(GUI.Button (new Rect(Screen.width/2 - mainMenu.width/2, 6*Screen.height/7 + 25,
 		                        mainMenu.width, mainMenu.height), mainMenu, buttonStyle)){
 			Application.LoadLevel ("Main_Menu");

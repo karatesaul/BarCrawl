@@ -26,7 +26,7 @@ public class TurnManager : MonoBehaviour {
 	//1 = player turn
 	//2 = enemy turn
 	public int turn;
-	private bool canMove;
+	//private bool canMove;
 
 	// Use this for initialization
 	void Start () {
@@ -43,7 +43,7 @@ public class TurnManager : MonoBehaviour {
 		for (int i = 0; i < enemyObjs.Length; i++) {
 			enemies.Add(enemyObjs[i].GetComponent<Enemy>());
 		}
-		canMove = true;
+		//canMove = true;
 		spawnTimer = 0;
 		coolDownTimer = 5;
 		turn = 1;
@@ -124,7 +124,7 @@ public class TurnManager : MonoBehaviour {
 					enemy.lifespan++;
 				}
 			}
-			canMove = false;
+			//canMove = false;
 
 			turn = 3;
 			spawnTimer++;
