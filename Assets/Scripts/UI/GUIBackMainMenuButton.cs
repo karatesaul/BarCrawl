@@ -69,7 +69,7 @@ public class GUIBackMainMenuButton : MonoBehaviour {
 		}
 		textStyle.fontSize = Mathf.RoundToInt (textStyle.fontSize * 0.8f);//shrink the font a smidge so it fits on screen
 		GUI.Label (new Rect(0, Screen.height - 100 - findUsOnFacebook.height - 60, Screen.width, 50), 
-		           "<color=#ffffff><i>Tell us how you did!</i></color>", textStyle);
+		           "<color=#ffffff><i>Share your score!</i></color>", textStyle);
 		textStyle.fontSize = Screen.width / 10;
         if( FB.IsLoggedIn ) {
             if( GUI.Button( new Rect( Screen.width / 2 - findUsOnFacebook.width / 2, Screen.height - 110 - findUsOnFacebook.height, 
