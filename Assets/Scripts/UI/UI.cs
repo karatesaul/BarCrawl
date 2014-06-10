@@ -163,29 +163,15 @@ public class UI : MonoBehaviour {
 			if (combo4) DrawOutline(new Rect (Screen.width/2, Screen.height/12, 0, 0), "4X combo!", comboText, Color.black);
 			if (combo5) DrawOutline(new Rect (Screen.width/2, Screen.height/12, 0, 0), "Crazy Combo!", comboText, Color.red);
 
-			if (Camera.main.aspect == 0.5625f) {
-				//visual timer
-				if (pm.currTime <= 600 && pm.currTime > 500) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/8, 4*Screen.width/25, 4*Screen.height/45), clock1);
-				else if (pm.currTime <= 500 && pm.currTime > 400) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/8, 4*Screen.width/25, 4*Screen.height/45), clock2);
-				else if (pm.currTime <= 400 && pm.currTime > 300) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/8, 4*Screen.width/25, 4*Screen.height/45), clock3);
-				else if (pm.currTime <= 300 && pm.currTime > 200) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/8, 4*Screen.width/25, 4*Screen.height/45), clock4);
-				else if (pm.currTime <= 200 && pm.currTime > 100) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/8, 4*Screen.width/25, 4*Screen.height/45), clock5);
-				else if (pm.currTime <= 100) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/8, 4*Screen.width/25, 4*Screen.height/45), clock6);
-				else {
-					//draw nothing
-				}
-			}
+			//visual timer
+			if (pm.currTime <= 600 && pm.currTime > 500) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/3, 4*Screen.width/25, 4*Screen.height/45), clock1);
+			else if (pm.currTime <= 500 && pm.currTime > 400) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/3, 4*Screen.width/25, 4*Screen.height/45), clock2);
+			else if (pm.currTime <= 400 && pm.currTime > 300) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/3, 4*Screen.width/25, 4*Screen.height/45), clock3);
+			else if (pm.currTime <= 300 && pm.currTime > 200) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/3, 4*Screen.width/25, 4*Screen.height/45), clock4);
+			else if (pm.currTime <= 200 && pm.currTime > 100) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/3, 4*Screen.width/25, 4*Screen.height/45), clock5);
+			else if (pm.currTime <= 100) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/3, 4*Screen.width/25, 4*Screen.height/45), clock6);
 			else {
-				//visual timer
-				if (pm.currTime <= 600 && pm.currTime > 500) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/3, 4*Screen.width/25, 4*Screen.height/45), clock1);
-				else if (pm.currTime <= 500 && pm.currTime > 400) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/3, 4*Screen.width/25, 4*Screen.height/45), clock2);
-				else if (pm.currTime <= 400 && pm.currTime > 300) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/3, 4*Screen.width/25, 4*Screen.height/45), clock3);
-				else if (pm.currTime <= 300 && pm.currTime > 200) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/3, 4*Screen.width/25, 4*Screen.height/45), clock4);
-				else if (pm.currTime <= 200 && pm.currTime > 100) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/3, 4*Screen.width/25, 4*Screen.height/45), clock5);
-				else if (pm.currTime <= 100) GUI.DrawTexture(new Rect (Screen.width/2 - 2*Screen.width/25, Screen.width * 5/6 - Screen.width/3, 4*Screen.width/25, 4*Screen.height/45), clock6);
-				else {
-					//draw nothing
-				}
+				//draw nothing
 			}
 			
 			//reset button
