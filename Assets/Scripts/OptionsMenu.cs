@@ -48,8 +48,8 @@ public class OptionsMenu : MonoBehaviour {
 		buttonStyle = new GUIStyle();
 		buttonStyle.stretchWidth = true;
 		buttonStyle.stretchHeight = true;
-		buttonStyle.fixedWidth = yesProfanity.width;
-		buttonStyle.fixedHeight = yesProfanity.height;
+		buttonStyle.fixedWidth = yesProfanity.width * Screen.width/800;
+		buttonStyle.fixedHeight = yesProfanity.height * Screen.height/1200;
 	}
 	
 	// Update is called once per frame
@@ -58,19 +58,23 @@ public class OptionsMenu : MonoBehaviour {
 	}
 
 	void OnGUI(){
+		int x = Screen.width;
+		int y = Screen.height;
+		int buttonWidth  = Mathf.RoundToInt(x * 2.0f/3.0f);
+		int buttonHeight = Mathf.RoundToInt(y * 1.0f/6.0f);
 		Texture tutorialTexture  = (tutorial?yesTutorial:noTutorial);
 		Texture profanityTexture = (profanity?yesProfanity:noProfanity);
 		Texture violenceTexture  = (violenceSoundtrack?moreVioLence:lessViolence);
 		Texture numericHealthTexture = (showNumericHealth?healthBarNumbers:noHealthBarNumbers);
 
 		//draw options
-		GUI.Box(new Rect(Screen.width/2 - options.width/2, 0, options.width, options.height), options, buttonStyle);
+		GUI.Box(new Rect(Screen.width/2 - buttonWidth/2, 0, options.width, options.height), options, buttonStyle);
 
 		//option to allow profanity in game
-		GUI.Label (new Rect(Screen.width/2 - profanityTexture.width/2, Screen.height/7,
-		                    profanityTexture.width, profanityTexture.height), style + "I'm an adult" + (profanity?" God damn it!":"!") + endStyle, otherText);
-		if(GUI.Button (new Rect(Screen.width/2 - profanityTexture.width/2, Screen.height/7 + 25,
-		                        profanityTexture.width, profanityTexture.height), profanityTexture, buttonStyle)){
+		GUI.Label (new Rect(Screen.width/2 - buttonWidth/2, Screen.height/7,
+		                   buttonWidth, buttonHeight), style + "I'm an adult" + (profanity?" God damn it!":"!") + endStyle, otherText);
+		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, Screen.height/7 + 25,
+		                        buttonWidth, buttonHeight), profanityTexture, buttonStyle)){
 			profanity = !profanity;
 			//store this result
 			PlayerPrefs.SetInt ("Profanity", (profanity?1:0));
@@ -78,10 +82,10 @@ public class OptionsMenu : MonoBehaviour {
 
 
 		//option to override our music with vio-lence
-		GUI.Label (new Rect(Screen.width/2 - violenceTexture.width/2, 2 * Screen.height/7,
-		                    violenceTexture.width, violenceTexture.height), style + (violenceSoundtrack?"I want more Vio-Lence!":"Bang that head that doesn't bang") + endStyle, otherText);
-		if(GUI.Button (new Rect(Screen.width/2 - violenceTexture.width/2, 2 * Screen.height/7 + 25,
-		                        violenceTexture.width, violenceTexture.height), violenceTexture, buttonStyle)){
+		GUI.Label (new Rect(Screen.width/2 - buttonWidth/2, 2 * Screen.height/7,
+		                    buttonWidth, buttonHeight), style + (violenceSoundtrack?"I want more Vio-Lence!":"Bang that head that doesn't bang") + endStyle, otherText);
+		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 2 * Screen.height/7 + 25,
+		                        buttonWidth, buttonHeight), violenceTexture, buttonStyle)){
 			violenceSoundtrack = !violenceSoundtrack;
 			//store this result
 			PlayerPrefs.SetInt ("ViolenceMusic", (violenceSoundtrack?1:0));
@@ -89,10 +93,10 @@ public class OptionsMenu : MonoBehaviour {
 
 
 		//show tutorial setting
-		GUI.Label (new Rect(Screen.width/2-tutorialTexture.width/2, 3 * Screen.height/7, 
-		                    tutorialTexture.width, tutorialTexture.height), style + (tutorial?"Help me play this complicated game!":"I got it") + endStyle, otherText);
-		if(GUI.Button (new Rect(Screen.width/2-tutorialTexture.width/2, 3 * Screen.height/7 + 25, 
-		                        tutorialTexture.width, tutorialTexture.height), tutorialTexture, buttonStyle)){
+		GUI.Label (new Rect(Screen.width/2-buttonWidth/2, 3 * Screen.height/7, 
+		                    buttonWidth, buttonHeight), style + (tutorial?"Help me play this complicated game!":"I got it") + endStyle, otherText);
+		if(GUI.Button (new Rect(Screen.width/2-buttonWidth/2, 3 * Screen.height/7 + 25, 
+		                        buttonWidth, buttonHeight), tutorialTexture, buttonStyle)){
 			tutorial = !tutorial;
 			//store this result
 			PlayerPrefs.SetInt("ShowTutorial", (tutorial?1:0));
@@ -100,28 +104,28 @@ public class OptionsMenu : MonoBehaviour {
 
 
 		//show numeric health values setting
-		GUI.Label(new Rect(Screen.width/2 - numericHealthTexture.width/2, 4 * Screen.height/7,
+		GUI.Label(new Rect(Screen.width/2 - buttonWidth/2, 4 * Screen.height/7,
 		                   numericHealthTexture.width, numericHealthTexture.height), style + (showNumericHealth?"Quantify my drunkenness":"I don't need no stinkin' numbers") + endStyle, otherText);
-		if(GUI.Button (new Rect(Screen.width/2 - numericHealthTexture.width/2, 4 * Screen.height/7 + 25,
-		                        numericHealthTexture.width, numericHealthTexture.height), numericHealthTexture, buttonStyle)){
+		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 4 * Screen.height/7 + 25,
+		                        buttonWidth, buttonHeight), numericHealthTexture, buttonStyle)){
 			showNumericHealth = !showNumericHealth;
 			PlayerPrefs.SetInt(	"HealthBarNumbers", (showNumericHealth?1:0));
 		}
 
 
 		//show credits
-		GUI.Label (new Rect(Screen.width/2 - tutorialTexture.width/2, 5 * Screen.height/7,
+		GUI.Label (new Rect(Screen.width/2 - buttonWidth/2, 5 * Screen.height/7,
 		                    tutorialTexture.width, tutorialTexture.height), style + "Who made this awesome game?" + endStyle, otherText);
-		if(GUI.Button (new Rect(Screen.width/2 - credits.width/2, 5 * Screen.height/7 + 25,
-		                        credits.width, credits.height), credits, buttonStyle)){
+		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 5 * Screen.height/7 + 25,
+		                       buttonWidth, buttonHeight), credits, buttonStyle)){
 			Application.LoadLevel("Credits");
 		}
 
 
 		//return to main
 		GUI.DrawTexture (new Rect(0, 6*Screen.height/7+25, Screen.width, Screen.height/7-25), buttonbg);
-		if(GUI.Button (new Rect(Screen.width/2 - mainMenu.width/2, 6*Screen.height/7 + 25,
-		                        mainMenu.width, mainMenu.height), mainMenu, buttonStyle)){
+		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 6*Screen.height/7 + 25,
+		                        buttonWidth, buttonHeight), mainMenu, buttonStyle)){
 			Application.LoadLevel ("Main_Menu");
 		}
 	}	
