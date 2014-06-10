@@ -1432,8 +1432,10 @@ public class PuzzleManager : MonoBehaviour {
 		//draw the queue of moves
 		//center-align the queue
 		float centerX = Screen.width/2 - (setOfMoves.Count * Screen.width/16)/2;
+		float centerY;
 		if (centerX < 0) centerX = 0f;
-		float centerY = Screen.width * 5/6 - Screen.width/6;
+		if (Camera.main.aspect == 0.5625f) centerY = Screen.width * 5/6 - Screen.width/6;
+		else centerY = Screen.width * 5/6 - Screen.width/4;
 		int index = 0;
 		foreach (TokenType t in setOfMoves) {
 			GUI.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -1597,8 +1599,10 @@ public class PuzzleManager : MonoBehaviour {
 		//draw the queue of moves
 		//center-align the queue
 		float centerX = Screen.width/2 - (setOfMoves.Count * Screen.width/16)/2;
+		float centerY;
 		if (centerX < 0) centerX = 0f;
-		float centerY = Screen.width * 5/6 - Screen.width/6;
+		if (Camera.main.aspect == 0.5625f) centerY = Screen.width * 5/6 - Screen.width/6;
+		else centerY = Screen.width * 5/6 - Screen.width/4;
 		int index = 0;
 		foreach (TokenType t in setOfMoves) {
 			GUI.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
