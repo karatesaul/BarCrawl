@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backButton: {fileID: 2800000, guid: e0bab627a0c5eb94d9e123821b8bf75b, type: 3}
-  fbPlaceholder: {fileID: 2800000, guid: a36151655717ef946b59f0f305355b22, type: 3}
+  fbButton: {fileID: 2800000, guid: a36151655717ef946b59f0f305355b22, type: 3}
   findUsOnFacebook: {fileID: 2800000, guid: 7e838bf8d20c54d448b8b4f051da5569, type: 3}
   PostToFB: {fileID: 2800000, guid: 4dac4f70fe2f9984083e475c1add6270, type: 3}
   LogIn: {fileID: 2800000, guid: 10286ce2fa6ed0747bf66943e56441d3, type: 3}

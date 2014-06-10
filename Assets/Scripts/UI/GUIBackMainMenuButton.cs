@@ -6,7 +6,7 @@ public class GUIBackMainMenuButton : MonoBehaviour {
 	//public AudioClip buttonPressClip;
 	
 	public Texture2D backButton;
-	public Texture2D fbPlaceholder;
+	public Texture2D fbButton;
 	public Texture findUsOnFacebook;
     public Texture PostToFB;
     public Texture LogIn;
@@ -78,10 +78,14 @@ public class GUIBackMainMenuButton : MonoBehaviour {
 		textStyle.fontSize = Mathf.RoundToInt (textStyle.fontSize * 0.8f);//shrink the font a smidge so it fits on screen
 		//GUI.Label (new Rect(0, Screen.height - 100 - findUsOnFacebook.height - 60, Screen.width, 50), 
 		//           "<color=#ffffff><i>Find us on Facebook!</i></color>", textStyle);
-		if( GUI.Button( new Rect( 0, Screen.height - 100 - findUsOnFacebook.height - 60, Screen.width, 50 ),
+		if( GUI.Button( new Rect( 0, Screen.height - 100 - findUsOnFacebook.height, Screen.width - 75, 50 ),
 		               "<color=#ffffff><i>Find us on Facebook!</i></color>", textStyle ) ) 
 		{
 			
+			Application.OpenURL("https://www.facebook.com/BarCrawlANightToForget");
+		}
+		if( GUI.Button( new Rect( Screen.width - 100, Screen.height - 100 - findUsOnFacebook.height, 50, 50 ), fbButton, new GUIStyle()) ) 
+		{
 			Application.OpenURL("https://www.facebook.com/BarCrawlANightToForget");
 		}
 		textStyle.fontSize = Screen.width / 10;

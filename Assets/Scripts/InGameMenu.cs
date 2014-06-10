@@ -139,7 +139,7 @@ public class InGameMenu : MonoBehaviour {
 		//show instructions
 		if(paused && showInstructions && !adjustVolume){
 			//instructions text
-			GUI.Box (new Rect(5, Screen.height/2, Screen.width - 5, Screen.height/2), ins, insFormatting);
+			GUI.Box (new Rect(5, Screen.height/2 + 30, Screen.width - 5, Screen.height/2), ins, insFormatting);
 			//return to root pause menu
 			if(GUI.Button (new Rect(Screen.width/6, 5 * Screen.height/6, 2 * Screen.width / 3, Screen.height/6), "<color=#ffffff>Return</color>", gs)){
 				showInstructions = false;
@@ -149,8 +149,8 @@ public class InGameMenu : MonoBehaviour {
 		if(paused && !showInstructions && adjustVolume){
 		//music volume
 			//draw bar
-			GUI.Label(new Rect(25, 3.5f * Screen.height / 7, Screen.width - 50, 50), "<color=#ffffff>Music Volume</color>", volumeSliders);
-			if(GUI.RepeatButton( new Rect(25, 3.75f * Screen.height / 7, Screen.width - 50, 50), "")){
+			GUI.Label(new Rect(25, 3.5f * Screen.height / 7 + 30, Screen.width - 50, 50), "<color=#ffffff>Music Volume</color>", volumeSliders);
+			if(GUI.RepeatButton( new Rect(25, 3.75f * Screen.height / 7 + 30, Screen.width - 50, 50), "")){
 				musicVolume = Input.mousePosition.x;
 				musicVolume = constrain(musicVolume, 25, Screen.width - 25);
 				if ((musicVolume - 25)/(Screen.width - 50) < .05) musicVolume = 25;
@@ -158,11 +158,11 @@ public class InGameMenu : MonoBehaviour {
 				Debug.Log ("Music volume is: " + (musicVolume - 25) / (Screen.width - 50));
 			}
 			//draw slider
-			GUI.Box ( new Rect(musicVolume - 25, 3.75f * Screen.height / 7, 50, 50), sliderButton, new GUIStyle());
+			GUI.Box ( new Rect(musicVolume - 25, 3.75f * Screen.height / 7 + 30, 50, 50), sliderButton, new GUIStyle());
 		//effect volume
 			//draw bar
-			GUI.Label (new Rect(25, 4.5f * Screen.height / 7, Screen.width - 50, 50), "<color=#ffffff>Sound Effect Volume</color>", volumeSliders);
-			if(GUI.RepeatButton( new Rect(25, 4.75f * Screen.height / 7, Screen.width - 50, 50), "")){
+			GUI.Label (new Rect(25, 4.5f * Screen.height / 7 + 30, Screen.width - 50, 50), "<color=#ffffff>Sound Effect Volume</color>", volumeSliders);
+			if(GUI.RepeatButton( new Rect(25, 4.75f * Screen.height / 7 + 30, Screen.width - 50, 50), "")){
 				effectVolume = Input.mousePosition.x;
 				effectVolume = constrain(effectVolume, 25, Screen.width - 25);
 				if ((effectVolume - 25)/2/(Screen.width - 50) < .05) effectVolume = 25;
@@ -171,11 +171,11 @@ public class InGameMenu : MonoBehaviour {
 				//Debug.Log ("Ian: scale and store new effect volume here");
 			}
 			//draw slider
-			GUI.Box ( new Rect(effectVolume - 25, 4.75f * Screen.height / 7, 50, 50), sliderButton, new GUIStyle());
+			GUI.Box ( new Rect(effectVolume - 25, 4.75f * Screen.height / 7 + 30, 50, 50), sliderButton, new GUIStyle());
 		//voice volume
 			//draw bar
-			GUI.Label (new Rect(25, 5.5f * Screen.height / 7, Screen.width - 50, 50), "<color=#ffffff>Voice Volume</color>", volumeSliders);
-			if(GUI.RepeatButton( new Rect(25, 5.75f * Screen.height / 7, Screen.width - 50, 50), "")){
+			GUI.Label (new Rect(25, 5.5f * Screen.height / 7 + 30, Screen.width - 50, 50), "<color=#ffffff>Voice Volume</color>", volumeSliders);
+			if(GUI.RepeatButton( new Rect(25, 5.75f * Screen.height / 7 + 30, Screen.width - 50, 50), "")){
 				voiceVolume = Input.mousePosition.x;
 				voiceVolume = constrain(voiceVolume, 25, Screen.width - 25);
 				if ((voiceVolume - 25)/2/(Screen.width - 50) < .05) voiceVolume = 25;
@@ -183,7 +183,7 @@ public class InGameMenu : MonoBehaviour {
 				Debug.Log ("Voice volume is: " + (voiceVolume - 25) / 2 / (Screen.width - 50));
 			}
 			//draw slider
-			GUI.Box ( new Rect(voiceVolume - 25, 5.75f * Screen.height / 7, 50, 50), sliderButton, new GUIStyle());
+			GUI.Box ( new Rect(voiceVolume - 25, 5.75f * Screen.height / 7 + 30, 50, 50), sliderButton, new GUIStyle());
 		//return to root pause menu
 			if(GUI.Button (new Rect(Screen.width/6, 5 * Screen.height/6 + 25, 2 * Screen.width / 3, Screen.height/6), "<color=#ffffff>Return</color>", gs)){
 				adjustVolume = false;

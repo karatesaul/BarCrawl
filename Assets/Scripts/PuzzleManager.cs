@@ -57,7 +57,7 @@ public class PuzzleManager : MonoBehaviour {
 	/// 4 - waiting
 	/// </summary>
 	public int refillStep;
-	public int fallSpeed = 4;
+	public int fallSpeed = 10;
 	
 	private Token[,] puzzleGrid;
 	private int[] refillCount;
@@ -1433,7 +1433,7 @@ public class PuzzleManager : MonoBehaviour {
 		//center-align the queue
 		float centerX = Screen.width/2 - (setOfMoves.Count * Screen.width/16)/2;
 		if (centerX < 0) centerX = 0f;
-		float centerY = Screen.width * 5/6 - Screen.width/6;
+		float centerY = Screen.width * 5/6 - Screen.width/8;
 		int index = 0;
 		foreach (TokenType t in setOfMoves) {
 			GUI.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -1598,7 +1598,7 @@ public class PuzzleManager : MonoBehaviour {
 		//center-align the queue
 		float centerX = Screen.width/2 - (setOfMoves.Count * Screen.width/16)/2;
 		if (centerX < 0) centerX = 0f;
-		float centerY = Screen.width * 5/6 - Screen.width/6;
+		float centerY = Screen.width * 5/6 - Screen.width/8;
 		int index = 0;
 		foreach (TokenType t in setOfMoves) {
 			GUI.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
