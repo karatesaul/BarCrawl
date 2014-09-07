@@ -71,6 +71,13 @@ public class PlayerCharacter : FightingEntity {
 		base.Start();
 
 		facing = Move.Right;
+
+		//if it is set to easy mode, double healing values
+		if(PlayerPrefs.GetInt("EasyMode") == 1){
+			print (PlayerPrefs.GetInt ("EasyMode"));
+			healAmount = 10;
+			healIncrease = 5;
+		}
 	}
 
 	public void throwFalsePunch()
