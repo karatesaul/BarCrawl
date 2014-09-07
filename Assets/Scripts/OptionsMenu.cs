@@ -54,7 +54,12 @@ public class OptionsMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(Input.GetKeyDown (KeyCode.E)){
+			int x = PlayerPrefs.GetInt ("EasyMode") + 1;
+			x %= 2;
+			PlayerPrefs.SetInt ("EasyMode", x);
+			print ("Difficulty set to: " + (PlayerPrefs.GetInt ("EasyMode") == 0?"hard":"easy"));
+		}
 	}
 
 	void OnGUI(){

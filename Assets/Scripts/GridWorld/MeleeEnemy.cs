@@ -6,8 +6,11 @@ public class MeleeEnemy : Enemy {
 	// Use this for initialization
 	protected override void Start () {
 		health = 15;
-
-		damageDealt = 10;
+		if(PlayerPrefs.GetInt ("EasyMode") == 0){
+			damageDealt = 10;
+		}else{
+			damageDealt = 5;
+		}
 		range = 1;
 		//these are the defaults anyway, but w/e.
 

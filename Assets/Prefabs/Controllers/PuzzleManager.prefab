@@ -167,14 +167,6 @@ MonoBehaviour:
   backdrop: {fileID: 2800000, guid: 0fc616df69f29764fb5f5b1868d4a75b, type: 3}
   gray: {fileID: 2800000, guid: e020a0e670d799742963efacb568c635, type: 3}
   cursor: {fileID: 0}
-  upVal: 0
-  downVal: 0
-  leftVal: 0
-  rightVal: 0
-  attackVal: 0
-  healVal: 0
-  maxVal: 0
-  trackerVal: 0
   pc: {fileID: 0}
   matchFadeEffect: {fileID: 19800000, guid: 6f45a22ff4bf64240acb5c0536b399c3, type: 2}
   ui: {fileID: 0}
@@ -183,7 +175,7 @@ MonoBehaviour:
   currTime: 0
   totalScore: 0
   refillStep: 0
-  fallSpeed: 6
+  fallSpeed: 8
   setOfMoves: 
   showNumericHealth: 0
   tutorialState: 0
