@@ -3,6 +3,22 @@ using System.Collections;
 
 public class OptionsMenu : MonoBehaviour {
 
+	private class Option{
+
+		public string trueLabel;
+		public string falseLabel;
+		public bool enabled;
+		public GUIStyle gs;
+
+		public Option(string t, string f, bool e, GUIStyle g){
+			trueLabel = t;
+			falseLabel = f;
+			enabled = e;
+			gs = g;
+		}
+
+	}
+
 	public Font chewy;
 
 	public Texture options;
@@ -21,12 +37,14 @@ public class OptionsMenu : MonoBehaviour {
 	public bool profanity;
 	public bool violenceSoundtrack;
 	public bool showNumericHealth;
+	public bool easyMode;
 
 	private GUIStyle optionsHeader;
 	private GUIStyle otherText;
 	private GUIStyle buttonStyle;
-	string style = "<color=#ffffff><b><i>";
-	string endStyle = "</i></b></color>";
+	const string style = "<color=#ffffff><b><i>";
+	const string endStyle = "</i></b></color>";
+	private Queue optionList;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +52,7 @@ public class OptionsMenu : MonoBehaviour {
 		profanity = PlayerPrefs.GetInt ("Profanity") == 1;
 		violenceSoundtrack = PlayerPrefs.GetInt ("ViolenceMusic") == 1;
 		showNumericHealth = PlayerPrefs.GetInt("HealthBarNumbers") == 1;
+		easyMode = PlayerPrefs.GetInt ("EasyMode") == 1;
 
 		optionsHeader = new GUIStyle();
 		optionsHeader.fontSize = Screen.width/10;
@@ -48,8 +67,10 @@ public class OptionsMenu : MonoBehaviour {
 		buttonStyle = new GUIStyle();
 		buttonStyle.stretchWidth = true;
 		buttonStyle.stretchHeight = true;
-		buttonStyle.fixedWidth = yesProfanity.width;
-		buttonStyle.fixedHeight = yesProfanity.height;
+		buttonStyle.fixedWidth = yesProfanity.width * Screen.width/800;
+		buttonStyle.fixedHeight = yesProfanity.height * Screen.height/1200;
+
+		InitializeList();
 	}
 	
 	// Update is called once per frame
@@ -130,4 +151,8 @@ public class OptionsMenu : MonoBehaviour {
 			Application.LoadLevel ("Main_Menu");
 		}
 	}	
+
+	void InitializeList(){
+		optionList = new Queue(9);
+	}
 }
