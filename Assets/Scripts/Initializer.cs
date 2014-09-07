@@ -40,6 +40,9 @@ public class Initializer : MonoBehaviour {
 		if (!PlayerPrefs.HasKey (InGameMenu.voiceVolKey)) {
 			PlayerPrefs.SetFloat(InGameMenu.voiceVolKey, .1f);
 		}
+		if (!PlayerPrefs.HasKey ("EasyMode")){
+			PlayerPrefs.SetInt ("EasyMode", 1);
+		}
 
 		//make sure there's no old instances hanging around causing bugs
 		GridManager.clearInstance ();
