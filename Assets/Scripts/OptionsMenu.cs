@@ -70,12 +70,9 @@ public class OptionsMenu : MonoBehaviour {
 	public bool violenceSoundtrack;
 	public bool showNumericHealth;
 	public bool easyMode;
-<<<<<<< HEAD
-=======
 
 	//for scrolling
 	private int scrollOffset;
->>>>>>> 5ea5432... Scrolling options
 
 	private GUIStyle optionsHeader;
 	private GUIStyle otherText;
@@ -138,15 +135,6 @@ public class OptionsMenu : MonoBehaviour {
 		Texture easyModeTexture = (easyMode?easyModeEnabled:easyModeDisabled);
 
 		//draw options
-<<<<<<< HEAD
-		GUI.Box(new Rect(Screen.width/2 - options.width/2, 0, options.width, options.height), options, buttonStyle);
-
-		//option to allow profanity in game
-		GUI.Label (new Rect(Screen.width/2 - profanityTexture.width/2, Screen.height/7,
-		                    profanityTexture.width, profanityTexture.height), style + "I'm an adult" + (profanity?" God damn it!":"!") + endStyle, otherText);
-		if(GUI.Button (new Rect(Screen.width/2 - profanityTexture.width/2, Screen.height/7 + 25,
-		                        profanityTexture.width, profanityTexture.height), profanityTexture, buttonStyle)){
-=======
 		GUI.Box(new Rect(Screen.width/2 - buttonWidth/2, scrollOffset, options.width, options.height), options, buttonStyle);
 
 		//option to allow profanity in game
@@ -154,119 +142,99 @@ public class OptionsMenu : MonoBehaviour {
 		                   buttonWidth, buttonHeight), style + "I'm an adult" + (profanity?" God damn it!":"!") + endStyle, otherText);
 		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, Screen.height/7 + 25 + scrollOffset,
 		                        buttonWidth, buttonHeight), profanityTexture, buttonStyle)){
->>>>>>> 5ea5432... Scrolling options
 			profanity = !profanity;
 			//store this result
 			PlayerPrefs.SetInt ("Profanity", (profanity?1:0));
+			return;
 		}
 
 
 		//option to override our music with vio-lence
-<<<<<<< HEAD
-		GUI.Label (new Rect(Screen.width/2 - violenceTexture.width/2, 2 * Screen.height/7,
-		                    violenceTexture.width, violenceTexture.height), style + (violenceSoundtrack?"I want more Vio-Lence!":"Bang that head that doesn't bang") + endStyle, otherText);
-		if(GUI.Button (new Rect(Screen.width/2 - violenceTexture.width/2, 2 * Screen.height/7 + 25,
-		                        violenceTexture.width, violenceTexture.height), violenceTexture, buttonStyle)){
-=======
 		GUI.Label (new Rect(Screen.width/2 - buttonWidth/2, 2 * Screen.height/7 + scrollOffset,
 		                    buttonWidth, buttonHeight), style + (violenceSoundtrack?"I want more Vio-Lence!":"Bang that head that doesn't bang") + endStyle, otherText);
 		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 2 * Screen.height/7 + 25 + scrollOffset,
 		                        buttonWidth, buttonHeight), violenceTexture, buttonStyle)){
->>>>>>> 5ea5432... Scrolling options
 			violenceSoundtrack = !violenceSoundtrack;
 			//store this result
 			PlayerPrefs.SetInt ("ViolenceMusic", (violenceSoundtrack?1:0));
+			return;
 		}
 
 
 		//show tutorial setting
-<<<<<<< HEAD
-		GUI.Label (new Rect(Screen.width/2-tutorialTexture.width/2, 3 * Screen.height/7, 
-		                    tutorialTexture.width, tutorialTexture.height), style + (tutorial?"Help me play this complicated game!":"I got it") + endStyle, otherText);
-		if(GUI.Button (new Rect(Screen.width/2-tutorialTexture.width/2, 3 * Screen.height/7 + 25, 
-		                        tutorialTexture.width, tutorialTexture.height), tutorialTexture, buttonStyle)){
-=======
 		GUI.Label (new Rect(Screen.width/2-buttonWidth/2, 3 * Screen.height/7 + scrollOffset, 
 		                    buttonWidth, buttonHeight), style + (tutorial?"Help me play this complicated game!":"I got it") + endStyle, otherText);
 		if(GUI.Button (new Rect(Screen.width/2-buttonWidth/2, 3 * Screen.height/7 + 25 + scrollOffset, 
 		                        buttonWidth, buttonHeight), tutorialTexture, buttonStyle)){
->>>>>>> 5ea5432... Scrolling options
 			tutorial = !tutorial;
 			//store this result
 			PlayerPrefs.SetInt("ShowTutorial", (tutorial?1:0));
+			return;
 		}
 
 
 		//show numeric health values setting
-<<<<<<< HEAD
-		GUI.Label(new Rect(Screen.width/2 - numericHealthTexture.width/2, 4 * Screen.height/7,
-		                   numericHealthTexture.width, numericHealthTexture.height), style + (showNumericHealth?"Quantify my drunkenness":"I don't need no stinkin' numbers") + endStyle, otherText);
-		if(GUI.Button (new Rect(Screen.width/2 - numericHealthTexture.width/2, 4 * Screen.height/7 + 25,
-		                        numericHealthTexture.width, numericHealthTexture.height), numericHealthTexture, buttonStyle)){
-=======
 		GUI.Label(new Rect(Screen.width/2 - buttonWidth/2, 4 * Screen.height/7 + scrollOffset,
 		                   numericHealthTexture.width, numericHealthTexture.height), style + (showNumericHealth?"Quantify my drunkenness":"I don't need no stinkin' numbers") + endStyle, otherText);
 		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 4 * Screen.height/7 + 25 + scrollOffset,
 		                        buttonWidth, buttonHeight), numericHealthTexture, buttonStyle)){
->>>>>>> 5ea5432... Scrolling options
 			showNumericHealth = !showNumericHealth;
 			PlayerPrefs.SetInt(	"HealthBarNumbers", (showNumericHealth?1:0));
+			return;
 		}
 
 		//toggle easy mode option
 		GUI.Label (new Rect(Screen.width/2 - buttonWidth/2, 5 * Screen.height/7 + scrollOffset,
-		                    tutorialTexture.width, tutorialTexture.height), style + (easyMode?"Go easy, this is my first bar fight!":"Bring it" + (profanity?", bitch!":"!")) + endStyle, otherText);
+		                    easyModeTexture.width, easyModeTexture.height), style + (easyMode?"Go easy, this is my first bar fight!":"Bring it" + (profanity?", bitch!":"!")) + endStyle, otherText);
 		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 5 * Screen.height/7 + 25 + scrollOffset,
 		                        buttonWidth, buttonHeight), easyModeTexture, buttonStyle)){
 			easyMode = !easyMode;
 			PlayerPrefs.SetInt ("EasyMode", (easyMode?1:0));
+			return;
 		}
 
 		//edit volume stuff
-
+		GUI.Label (new Rect(Screen.width/2 - buttonWidth/2, 6 * Screen.height/7 + scrollOffset,
+		                    easyModeTexture.width, easyModeTexture.height), style + "Edit volume settings" + endStyle, otherText);
+		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 6 * Screen.height/7 + 25 + scrollOffset,
+		                        buttonWidth, buttonHeight), options, buttonStyle)){
+			//TODO fill in volume options
+			return;
+		}
 
 		//show credits
-<<<<<<< HEAD
-		GUI.Label (new Rect(Screen.width/2 - tutorialTexture.width/2, 5 * Screen.height/7,
-		                    tutorialTexture.width, tutorialTexture.height), style + "Who made this awesome game?" + endStyle, otherText);
-		if(GUI.Button (new Rect(Screen.width/2 - credits.width/2, 5 * Screen.height/7 + 25,
-		                        credits.width, credits.height), credits, buttonStyle)){
-=======
 		GUI.Label (new Rect(Screen.width/2 - buttonWidth/2, 7 * Screen.height/7 + scrollOffset,
 		                    tutorialTexture.width, tutorialTexture.height), style + "Who made this awesome game?" + endStyle, otherText);
 		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 7 * Screen.height/7 + 25 + scrollOffset,
 		                       buttonWidth, buttonHeight), credits, buttonStyle)){
->>>>>>> 5ea5432... Scrolling options
 			Application.LoadLevel("Credits");
+			return;
 		}
 
 
 		//return to main
-<<<<<<< HEAD
-		GUI.DrawTexture (new Rect(0, 6*Screen.height/7+25, Screen.width, Screen.height/7-25), buttonbg);
-		if(GUI.Button (new Rect(Screen.width/2 - mainMenu.width/2, 6*Screen.height/7 + 25,
-		                        mainMenu.width, mainMenu.height), mainMenu, buttonStyle)){
-=======
 		GUI.DrawTexture (new Rect(0, 8*Screen.height/7 + scrollOffset, Screen.width, Screen.height/7-25), buttonbg);
 		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 8*Screen.height/7 + scrollOffset,
 		                        buttonWidth, buttonHeight), mainMenu, buttonStyle)){
->>>>>>> 5ea5432... Scrolling options
 			Application.LoadLevel ("Main_Menu");
+			return;
 		}
-	}	
 
-	void InitializeList(){
-		/*
-		optionList = new MenuItem[9];
-		optionsList[0] = new Title(options);
-		optionsList[1] = new Option();
-		optionsList[2] = new Option();
-		optionsList[3] = new Option();
-		optionsList[4] = new Option();
-		optionsList[5] = new Option();
-		optionsList[6] = new Option();
-		optionsList[7] = new Option();
-		optionsList[8] = new ExitButton();
-		*/
+		//if there is a touch event, and activated a button, it won't get here.
+		//if it did get here, check if we need to do any scrolling
+		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
+			Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+			if(touchDeltaPosition.y < 0){
+				scrollOffset -= 3;
+			}else if(touchDeltaPosition.y > 0){
+				scrollOffset += 3;
+			}
+		}
+
+		//constrain scrolling
+		if(scrollOffset > 0)
+			scrollOffset = 0;
+		if(scrollOffset < -175)
+			scrollOffset = -175;
 	}
 }
