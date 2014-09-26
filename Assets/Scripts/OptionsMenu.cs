@@ -102,6 +102,7 @@ public class OptionsMenu : MonoBehaviour {
 			profanity = !profanity;
 			//store this result
 			PlayerPrefs.SetInt ("Profanity", (profanity?1:0));
+			return;
 		}
 
 
@@ -113,6 +114,7 @@ public class OptionsMenu : MonoBehaviour {
 			violenceSoundtrack = !violenceSoundtrack;
 			//store this result
 			PlayerPrefs.SetInt ("ViolenceMusic", (violenceSoundtrack?1:0));
+			return;
 		}
 
 
@@ -124,6 +126,7 @@ public class OptionsMenu : MonoBehaviour {
 			tutorial = !tutorial;
 			//store this result
 			PlayerPrefs.SetInt("ShowTutorial", (tutorial?1:0));
+			return;
 		}
 
 
@@ -134,19 +137,27 @@ public class OptionsMenu : MonoBehaviour {
 		                        buttonWidth, buttonHeight), numericHealthTexture, buttonStyle)){
 			showNumericHealth = !showNumericHealth;
 			PlayerPrefs.SetInt(	"HealthBarNumbers", (showNumericHealth?1:0));
+			return;
 		}
 
 		//toggle easy mode option
 		GUI.Label (new Rect(Screen.width/2 - buttonWidth/2, 5 * Screen.height/7 + scrollOffset,
-		                    tutorialTexture.width, tutorialTexture.height), style + (easyMode?"Go easy, this is my first bar fight!":"Bring it" + (profanity?", bitch!":"!")) + endStyle, otherText);
+		                    easyModeTexture.width, easyModeTexture.height), style + (easyMode?"Go easy, this is my first bar fight!":"Bring it" + (profanity?", bitch!":"!")) + endStyle, otherText);
 		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 5 * Screen.height/7 + 25 + scrollOffset,
 		                        buttonWidth, buttonHeight), easyModeTexture, buttonStyle)){
 			easyMode = !easyMode;
 			PlayerPrefs.SetInt ("EasyMode", (easyMode?1:0));
+			return;
 		}
 
 		//edit volume stuff
-
+		GUI.Label (new Rect(Screen.width/2 - buttonWidth/2, 6 * Screen.height/7 + scrollOffset,
+		                    easyModeTexture.width, easyModeTexture.height), style + "Edit volume settings" + endStyle, otherText);
+		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 6 * Screen.height/7 + 25 + scrollOffset,
+		                        buttonWidth, buttonHeight), options, buttonStyle)){
+			//TODO fill in volume options
+			return;
+		}
 
 		//show credits
 		GUI.Label (new Rect(Screen.width/2 - buttonWidth/2, 7 * Screen.height/7 + scrollOffset,
@@ -154,6 +165,7 @@ public class OptionsMenu : MonoBehaviour {
 		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 7 * Screen.height/7 + 25 + scrollOffset,
 		                       buttonWidth, buttonHeight), credits, buttonStyle)){
 			Application.LoadLevel("Credits");
+			return;
 		}
 
 
@@ -162,6 +174,24 @@ public class OptionsMenu : MonoBehaviour {
 		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 8*Screen.height/7 + scrollOffset,
 		                        buttonWidth, buttonHeight), mainMenu, buttonStyle)){
 			Application.LoadLevel ("Main_Menu");
+			return;
 		}
+
+		//if there is a touch event, and activated a button, it won't get here.
+		//if it did get here, check if we need to do any scrolling
+		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
+			Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+			if(touchDeltaPosition.y < 0){
+				scrollOffset -= 3;
+			}else if(touchDeltaPosition.y > 0){
+				scrollOffset += 3;
+			}
+		}
+
+		//constrain scrolling
+		if(scrollOffset > 0)
+			scrollOffset = 0;
+		if(scrollOffset < -175)
+			scrollOffset = -175;
 	}
 }
