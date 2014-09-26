@@ -31,8 +31,8 @@ public class OptionsMenu : MonoBehaviour {
 	private GUIStyle optionsHeader;
 	private GUIStyle otherText;
 	private GUIStyle buttonStyle;
-	string style = "<color=#ffffff><b><i>";
-	string endStyle = "</i></b></color>";
+	const string style = "<color=#ffffff><b><i>";
+	const string endStyle = "</i></b></color>";
 
 	// Use this for initialization
 	void Start () {
@@ -163,5 +163,5 @@ public class OptionsMenu : MonoBehaviour {
 		                        buttonWidth, buttonHeight), mainMenu, buttonStyle)){
 			Application.LoadLevel ("Main_Menu");
 		}
-	}	
+	}
 }
