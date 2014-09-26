@@ -231,6 +231,8 @@ MonoBehaviour:
   lessViolence: {fileID: 2800000, guid: a017b01fcf9f51f4f84919e1fff60ca0, type: 3}
   healthBarNumbers: {fileID: 2800000, guid: d2bc817095860344fb4f013d37956637, type: 3}
   noHealthBarNumbers: {fileID: 2800000, guid: eed1fd15f7473aa4c94a8361294bbd47, type: 3}
+  easyModeEnabled: {fileID: 2800000, guid: bd3d67b6d91feb64da4701760c70308a, type: 3}
+  easyModeDisabled: {fileID: 2800000, guid: 43c44b26960bd88429a17619cbf2502a, type: 3}
   credits: {fileID: 2800000, guid: cbb33d24d1ccefd439a7b14365498a7d, type: 3}
   mainMenu: {fileID: 2800000, guid: fc212e2cff8095041853989b294c3623, type: 3}
   buttonbg: {fileID: 2800000, guid: b40798680f08449ba9d0bd4da79a7f4f, type: 3}
@@ -238,6 +240,7 @@ MonoBehaviour:
   profanity: 0
   violenceSoundtrack: 0
   showNumericHealth: 0
+  easyMode: 0
 --- !u!4 &1427470837
 Transform:
   m_ObjectHideFlags: 0
