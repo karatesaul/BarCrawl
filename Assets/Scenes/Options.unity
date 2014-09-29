@@ -351,6 +351,7 @@ MonoBehaviour:
   easyModeDisabled: {fileID: 2800000, guid: 43c44b26960bd88429a17619cbf2502a, type: 3}
   credits: {fileID: 2800000, guid: cbb33d24d1ccefd439a7b14365498a7d, type: 3}
   mainMenu: {fileID: 2800000, guid: fc212e2cff8095041853989b294c3623, type: 3}
+  sliderButton: {fileID: 2800000, guid: 82b52df76ab631b4eb09133a2190f64c, type: 3}
   buttonbg: {fileID: 2800000, guid: b40798680f08449ba9d0bd4da79a7f4f, type: 3}
   tutorial: 1
   profanity: 0

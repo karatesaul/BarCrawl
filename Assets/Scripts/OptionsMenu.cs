@@ -18,12 +18,16 @@ public class OptionsMenu : MonoBehaviour {
 	public Texture easyModeDisabled;
 	public Texture credits;
 	public Texture mainMenu;
+	public Texture sliderButton;
 	public Texture2D buttonbg;
 	public bool tutorial;
 	public bool profanity;
 	public bool violenceSoundtrack;
 	public bool showNumericHealth;
 	public bool easyMode;
+
+	//main pause menu, or adjust volume?
+	private bool adjustingVolume;
 
 	//for scrolling
 	private int scrollOffset;
@@ -59,16 +63,20 @@ public class OptionsMenu : MonoBehaviour {
 		buttonStyle.fixedHeight = yesProfanity.height * Screen.height/1200;
 
 		scrollOffset = 0;
+
+		adjustingVolume = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		/*
 		if(Input.GetKeyDown (KeyCode.E)){
 			int x = PlayerPrefs.GetInt ("EasyMode") + 1;
 			x %= 2;
 			PlayerPrefs.SetInt ("EasyMode", x);
 			print ("Difficulty set to: " + (PlayerPrefs.GetInt ("EasyMode") == 0?"hard":"easy"));
 		}
+		*/
 		if(Input.GetKey (KeyCode.O)){
 			scrollOffset++;
 		}
@@ -81,6 +89,12 @@ public class OptionsMenu : MonoBehaviour {
 	}
 
 	void OnGUI(){
+		//intercept call if in adjusting volume state
+		//I know it is ugly, but I want to get this out the door and never touch it again :(
+		if(adjustingVolume){
+			volumeGUI();
+			return;
+		}
 		int x = Screen.width;
 		int y = Screen.height;
 		int buttonWidth  = Mathf.RoundToInt(x * 2.0f/3.0f);
@@ -155,7 +169,7 @@ public class OptionsMenu : MonoBehaviour {
 		                    easyModeTexture.width, easyModeTexture.height), style + "Edit volume settings" + endStyle, otherText);
 		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 6 * Screen.height/7 + 25 + scrollOffset,
 		                        buttonWidth, buttonHeight), options, buttonStyle)){
-			//TODO fill in volume options
+			adjustingVolume = true;
 			return;
 		}
 
@@ -193,5 +207,76 @@ public class OptionsMenu : MonoBehaviour {
 			scrollOffset = 0;
 		if(scrollOffset < -175)
 			scrollOffset = -175;
+	}
+
+	//this method is probably the ugliest code I've written in this project
+	//I blame Obama... or my laziness.  Whatever.
+	private void volumeGUI(){
+		GUIStyle volumeSliders = new GUIStyle();
+		volumeSliders.stretchWidth = true;
+		volumeSliders.stretchHeight = true;
+		volumeSliders.font = chewy;
+		volumeSliders.richText = true;
+		volumeSliders.fontSize = Screen.width/18;
+		GUIStyle returnButtonStyle = new GUIStyle();
+		returnButtonStyle.font = chewy;
+		returnButtonStyle.fontSize = 30;
+		returnButtonStyle.alignment = TextAnchor.MiddleCenter;
+		float baseVolume = 1;
+		const string voiceVolKey = "voiceKey";
+		const string effectVolKey = "effectKey";
+		const string musicVolKey = "musicKey";
+		float musicVolume = PlayerPrefs.GetFloat(musicVolKey,baseVolume) * (Screen.width - 50) + 25; 
+		float effectVolume = PlayerPrefs.GetFloat(effectVolKey,baseVolume) * 2 * (Screen.width - 50) + 25; 
+		float voiceVolume = PlayerPrefs.GetFloat(voiceVolKey,baseVolume) * 2 * (Screen.width - 50) + 25;
+
+		GUI.Box(new Rect(Screen.width/2 - options.width/2, 10, options.width, options.height), options, buttonStyle);
+	//music volume
+		//draw bar
+		GUI.Label(new Rect(25, Screen.height / 4 - 30, Screen.width - 50, 50), "<color=#ffffff>Music Volume</color>", volumeSliders);
+		if(GUI.RepeatButton( new Rect(25, Screen.height / 4, Screen.width - 50, 50), "")){
+			musicVolume = Input.mousePosition.x;
+			musicVolume = constrain(musicVolume, 25, Screen.width - 25);
+			if ((musicVolume - 25)/(Screen.width - 50) < .05) musicVolume = 25;
+			PlayerPrefs.SetFloat(musicVolKey, (musicVolume - 25) / (Screen.width - 50));
+			Debug.Log ("Music volume is: " + (musicVolume - 25) / (Screen.width - 50));
+		}
+		//draw slider
+		GUI.Box ( new Rect(musicVolume - 25, Screen.height / 4, 50, 50), sliderButton, new GUIStyle());
+	//effect volume
+		//draw bar
+		GUI.Label (new Rect(25, Screen.height / 2 - 30, Screen.width - 50, 50), "<color=#ffffff>Sound Effect Volume</color>", volumeSliders);
+		if(GUI.RepeatButton( new Rect(25, Screen.height / 2, Screen.width - 50, 50), "")){
+			effectVolume = Input.mousePosition.x;
+			effectVolume = constrain(effectVolume, 25, Screen.width - 25);
+			if ((effectVolume - 25)/2/(Screen.width - 50) < .05) effectVolume = 25;
+			PlayerPrefs.SetFloat(effectVolKey,(effectVolume - 25) / 2 / (Screen.width - 50));
+			Debug.Log ("Effect volume is: " + (effectVolume - 25) / 2 / (Screen.width - 50));
+			//Debug.Log ("Ian: scale and store new effect volume here");
+		}
+		//draw slider
+		GUI.Box ( new Rect(effectVolume - 25, Screen.height / 2, 50, 50), sliderButton, new GUIStyle());
+	//voice volume
+		//draw bar
+		GUI.Label (new Rect(25, 3 * Screen.height / 4 - 30, Screen.width - 50, 50), "<color=#ffffff>Voice Volume</color>", volumeSliders);
+		if(GUI.RepeatButton( new Rect(25, 3 * Screen.height / 4, Screen.width - 50, 50), "")){
+			voiceVolume = Input.mousePosition.x;
+			voiceVolume = constrain(voiceVolume, 25, Screen.width - 25);
+			if ((voiceVolume - 25)/2/(Screen.width - 50) < .05) voiceVolume = 25;
+			PlayerPrefs.SetFloat(voiceVolKey,(voiceVolume - 25) / 2 / (Screen.width - 50));
+			Debug.Log ("Voice volume is: " + (voiceVolume - 25) / 2 / (Screen.width - 50));
+		}
+		//draw slider
+		GUI.Box ( new Rect(voiceVolume - 25, 3 * Screen.height / 4, 50, 50), sliderButton, new GUIStyle());
+	//return to root pause menu
+		if(GUI.Button (new Rect(Screen.width/6, 5 * Screen.height/6, 2 * Screen.width / 3, Screen.height/6), "<color=#ffffff>Return</color>", returnButtonStyle)){
+			adjustingVolume = false;
+		}
+	}
+
+	private float constrain(float val, float min, float max){
+		if(val < min) return min;
+		if(val > max) return max;
+		return val;
 	}
 }
