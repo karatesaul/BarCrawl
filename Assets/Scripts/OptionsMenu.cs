@@ -98,7 +98,7 @@ public class OptionsMenu : MonoBehaviour {
 		int x = Screen.width;
 		int y = Screen.height;
 		int buttonWidth  = Mathf.RoundToInt(x * 2.0f/3.0f);
-		int buttonHeight = Mathf.RoundToInt(y * 1.0f/6.0f);
+		int buttonHeight = options.height;
 		Texture tutorialTexture  = (tutorial?yesTutorial:noTutorial);
 		Texture profanityTexture = (profanity?yesProfanity:noProfanity);
 		Texture violenceTexture  = (violenceSoundtrack?moreVioLence:lessViolence);
@@ -134,7 +134,7 @@ public class OptionsMenu : MonoBehaviour {
 
 		//show tutorial setting
 		GUI.Label (new Rect(Screen.width/2-buttonWidth/2, 3 * Screen.height/7 + scrollOffset, 
-		                    buttonWidth, buttonHeight), style + (tutorial?"Help me play this complicated game!":"I got it") + endStyle, otherText);
+		                    buttonWidth, buttonHeight), style + (tutorial?"Help me play this complicated game!":"How hard could this be?") + endStyle, otherText);
 		if(GUI.Button (new Rect(Screen.width/2-buttonWidth/2, 3 * Screen.height/7 + 25 + scrollOffset, 
 		                        buttonWidth, buttonHeight), tutorialTexture, buttonStyle)){
 			tutorial = !tutorial;
@@ -210,7 +210,7 @@ public class OptionsMenu : MonoBehaviour {
 	}
 
 	//this method is probably the ugliest code I've written in this project
-	//I blame Obama... or my laziness.  Whatever.
+	//I blame Obama... or my laziness.  Whatever.  Leave me alone.
 	private void volumeGUI(){
 		GUIStyle volumeSliders = new GUIStyle();
 		volumeSliders.stretchWidth = true;
