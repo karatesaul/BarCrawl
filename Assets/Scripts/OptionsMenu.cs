@@ -242,11 +242,7 @@ public class OptionsMenu : MonoBehaviour {
 		//if it did get here, check if we need to do any scrolling
 		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
 			Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-			if(touchDeltaPosition.y < 0){
-				scrollOffset -= 3;
-			}else if(touchDeltaPosition.y > 0){
-				scrollOffset += 3;
-			}
+			scrollOffset += touchDeltaPosition.y;
 		}
 
 		//constrain scrolling
