@@ -3,52 +3,6 @@ using System.Collections;
 
 public class OptionsMenu : MonoBehaviour {
 
-	private class MenuItem{
-		public bool currentlyTrue;
-		public GUIStyle gs;
-		public string displayText;
-
-		public virtual void render(){
-			//not used.  Override in derived classes
-		}
-	}
-
-	private class Option : MenuItem{
-		public Texture enabled;
-		public Texture disabled;
-		public string playerPrefsKey;
-		public string trueSnarkyComment;
-		public string falseSnarkyComment;
-
-		public Option(Texture e, Texture d, bool status, string playerPrefsKey, string yesComment, string noComment, GUIStyle g){
-			enabled = e;
-			disabled = d;
-			currentlyTrue = status;
-			this.playerPrefsKey = playerPrefsKey;
-			trueSnarkyComment = yesComment;
-			falseSnarkyComment = noComment;
-			gs = g;
-		}
-	}
-
-	private class Title : MenuItem{
-		public Texture title;
-
-		public Title(Texture t){
-			title = t;
-		}
-	}
-
-	private class ExitButton{
-		public Texture text;
-		public Texture background;
-
-		public ExitButton(Texture t, Texture b){
-			text = t;
-			background = b;
-		}
-	}
-
 	public Font chewy;
 
 	public Texture options;
@@ -83,7 +37,6 @@ public class OptionsMenu : MonoBehaviour {
 	private GUIStyle buttonStyle;
 	const string style = "<color=#ffffff><b><i>";
 	const string endStyle = "</i></b></color>";
-	private MenuItem[] optionList;
 
 	// Use this for initialization
 	void Start () {
@@ -242,7 +195,7 @@ public class OptionsMenu : MonoBehaviour {
 		//if it did get here, check if we need to do any scrolling
 		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
 			Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-			scrollOffset += touchDeltaPosition.y;
+			scrollOffset += Mathf.RoundToInt(touchDeltaPosition.y);
 		}
 
 		//constrain scrolling
