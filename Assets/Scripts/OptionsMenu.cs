@@ -201,8 +201,8 @@ public class OptionsMenu : MonoBehaviour {
 		//constrain scrolling
 		if(scrollOffset > 0)
 			scrollOffset = 0;
-		if(scrollOffset < -175)
-			scrollOffset = -175;
+		if(scrollOffset < -275)
+			scrollOffset = -275;
 	}
 
 	//this method is probably the ugliest code I've written in this project
