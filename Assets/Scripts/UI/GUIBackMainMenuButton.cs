@@ -6,10 +6,10 @@ public class GUIBackMainMenuButton : MonoBehaviour {
 	//public AudioClip buttonPressClip;
 	
 	public Texture2D backButton;
-	public Texture2D fbPlaceholder;
+	//public Texture2D fbPlaceholder;
 	public Texture findUsOnFacebook;
-    public Texture PostToFB;
-    public Texture LogIn;
+    //public Texture PostToFB;
+    //public Texture LogIn;
 	public Texture2D buttonbg;
 	public Font chewy;
 
@@ -19,6 +19,7 @@ public class GUIBackMainMenuButton : MonoBehaviour {
 
 	//float buttony2 = Screen.height/9f;
 
+    /*
     void Awake() {
         // Initialize FB SDK 
       //  Debug.Log( "Awake -- enabled = false" );     
@@ -38,6 +39,7 @@ public class GUIBackMainMenuButton : MonoBehaviour {
             OnLoggedIn();
         }
     }  
+     * */
 
     private void OnHideUnity( bool isGameShown ) {
         Debug.Log( "OnHideUnity" );
@@ -71,6 +73,13 @@ public class GUIBackMainMenuButton : MonoBehaviour {
 		GUI.Label (new Rect(0, Screen.height - 100 - findUsOnFacebook.height - 60, Screen.width, 50), 
 		           "<color=#ffffff><i>Share your score!</i></color>", textStyle);
 		textStyle.fontSize = Screen.width / 10;
+        if (GUI.Button(new Rect(Screen.width / 2 - findUsOnFacebook.width / 2, Screen.height - 110 - findUsOnFacebook.height,
+                                findUsOnFacebook.width, findUsOnFacebook.height), findUsOnFacebook, imageStyle))
+        {
+            Application.OpenURL("https://www.facebook.com/BarCrawlANightToForget");
+        }
+        //removed facebook stuff just so we can ship the update and never think about it again
+        /*
         if( FB.IsLoggedIn ) {
             if( GUI.Button( new Rect( Screen.width / 2 - findUsOnFacebook.width / 2, Screen.height - 110 - findUsOnFacebook.height, 
                 findUsOnFacebook.width, findUsOnFacebook.height ), PostToFB, imageStyle ) ) 
@@ -89,8 +98,11 @@ public class GUIBackMainMenuButton : MonoBehaviour {
                  FB.Login( "email,publish_actions", LoginCallback );
             }
         }
+         * */
 
 	}
+
+    /*
     void LoginCallback( FBResult result ) {
         Debug.Log( "LoginCallback" );
         if( FB.IsLoggedIn ) {
@@ -106,6 +118,6 @@ public class GUIBackMainMenuButton : MonoBehaviour {
             
         }
         
-    }  
+    }  */
 
 }
