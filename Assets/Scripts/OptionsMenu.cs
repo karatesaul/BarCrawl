@@ -16,6 +16,7 @@ public class OptionsMenu : MonoBehaviour {
 	public Texture noHealthBarNumbers;
 	public Texture easyModeEnabled;
 	public Texture easyModeDisabled;
+    public Texture soundSettings;
 	public Texture credits;
 	public Texture mainMenu;
 	public Texture sliderButton;
@@ -168,7 +169,7 @@ public class OptionsMenu : MonoBehaviour {
 		GUI.Label (new Rect(Screen.width/2 - buttonWidth/2, 6 * Screen.height/7 + scrollOffset,
 		                    easyModeTexture.width, easyModeTexture.height), style + "Edit volume settings" + endStyle, otherText);
 		if(GUI.Button (new Rect(Screen.width/2 - buttonWidth/2, 6 * Screen.height/7 + 25 + scrollOffset,
-		                        buttonWidth, buttonHeight), options, buttonStyle)){
+		                        buttonWidth, buttonHeight), soundSettings, buttonStyle)){
 			adjustingVolume = true;
 			return;
 		}

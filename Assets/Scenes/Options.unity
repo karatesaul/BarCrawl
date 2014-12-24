@@ -190,6 +190,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 1
 --- !u!1001 &800758838
 Prefab:
   m_ObjectHideFlags: 0
@@ -297,8 +298,11 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
   m_HDR: 0
   m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: .0219999999
 --- !u!4 &1200442507
 Transform:
   m_ObjectHideFlags: 0
@@ -310,6 +314,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 2
 --- !u!1 &1427470835
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,6 +354,7 @@ MonoBehaviour:
   noHealthBarNumbers: {fileID: 2800000, guid: eed1fd15f7473aa4c94a8361294bbd47, type: 3}
   easyModeEnabled: {fileID: 2800000, guid: bd3d67b6d91feb64da4701760c70308a, type: 3}
   easyModeDisabled: {fileID: 2800000, guid: 43c44b26960bd88429a17619cbf2502a, type: 3}
+  soundSettings: {fileID: 2800000, guid: e8ccea8019496fa469fb40c910a444f5, type: 3}
   credits: {fileID: 2800000, guid: cbb33d24d1ccefd439a7b14365498a7d, type: 3}
   mainMenu: {fileID: 2800000, guid: fc212e2cff8095041853989b294c3623, type: 3}
   sliderButton: {fileID: 2800000, guid: 82b52df76ab631b4eb09133a2190f64c, type: 3}
@@ -369,3 +375,4 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
