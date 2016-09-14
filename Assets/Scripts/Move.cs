@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 // Right is the POSITIVE X
 // Up is the POSITIVE Y
@@ -32,7 +33,7 @@ public static class moveExtensions
 		case Move.Heal:
 			return new Vector2(0, 0);
 		default:
-			return new Vector2(760, 3589);
+            throw new InvalidOperationException("Invalid move type!");
 		}
 	}
 

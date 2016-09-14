@@ -1119,6 +1119,7 @@ public class PuzzleManager : MonoBehaviour {
 		return type;
 	}
 	
+    //unused
 	private int getInverseTokenType(){
 		int roll = Random.Range(1,1000);
 		int type = 0;
@@ -1181,7 +1182,8 @@ public class PuzzleManager : MonoBehaviour {
 		}
 		return type;
 	}
-	private int codyTokenType(){
+	//also unused
+    private int codyTokenType(){
 		upVal = 1;
 		downVal = 1;
 		leftVal = 1;
