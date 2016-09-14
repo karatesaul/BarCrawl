@@ -131,7 +131,7 @@ public class PuzzleManager : MonoBehaviour {
 		setOfTokens = new List<List<Token>> ();
 		//Debug.Log (puzzleGrid [0, 0].tokenVal);
 		
-		puzzleCamera = GameObject.Find("Puzzle Camera").camera;
+		puzzleCamera = GameObject.Find("Puzzle Camera").GetComponent<Camera>();
 		//puzzleWorldOrigin = GameObject.Find ("Wood Backdrop").transform.position;
 		
 		//initialize the tokens

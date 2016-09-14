@@ -11,25 +11,25 @@ public class ToggleVioLence : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (GlobalMusic.LEVELNUM == 1) {
-			audio.clip = bikerBar;
-			audio.Play ();
+			GetComponent<AudioSource>().clip = bikerBar;
+			GetComponent<AudioSource>().Play ();
 		}else if (GlobalMusic.LEVELNUM == 2) {
-			audio.clip = luauBar;
-			audio.Play ();
+			GetComponent<AudioSource>().clip = luauBar;
+			GetComponent<AudioSource>().Play ();
 		}else if (GlobalMusic.LEVELNUM == 3) {
-			audio.clip = raveBar;
-			audio.Play ();
+			GetComponent<AudioSource>().clip = raveBar;
+			GetComponent<AudioSource>().Play ();
 		}else if (GlobalMusic.LEVELNUM == 0) {
-			audio.clip = vioLence;
-			audio.Play ();
+			GetComponent<AudioSource>().clip = vioLence;
+			GetComponent<AudioSource>().Play ();
 		} else {
-			audio.clip = null;
-			audio.Play();
+			GetComponent<AudioSource>().clip = null;
+			GetComponent<AudioSource>().Play();
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		audio.volume = PlayerPrefs.GetFloat (InGameMenu.musicVolKey);
+		GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat (InGameMenu.musicVolKey);
 	}
 }
