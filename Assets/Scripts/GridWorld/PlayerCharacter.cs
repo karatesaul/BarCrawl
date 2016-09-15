@@ -95,8 +95,8 @@ public class PlayerCharacter : FightingEntity {
 		Vector3 correction = new Vector3(0, 0, 0);
 		Vector3 cameraMin = new Vector3(worldCamera.transform.position.x - worldCamera.orthographicSize * Screen.width/Screen.height, worldCamera.transform.position.y - worldCamera.orthographicSize, 0);
 		Vector3 cameraMax = new Vector3(worldCamera.transform.position.x + worldCamera.orthographicSize * Screen.width/Screen.height, worldCamera.transform.position.y + worldCamera.orthographicSize, 0);
-		Vector3 floorMin = new Vector3(floor.renderer.bounds.min.x, floor.renderer.bounds.min.y, 0);
-		Vector3 floorMax = new Vector3(floor.renderer.bounds.max.x, floor.renderer.bounds.max.y, 0);
+		Vector3 floorMin = new Vector3(floor.GetComponent<Renderer>().bounds.min.x, floor.GetComponent<Renderer>().bounds.min.y, 0);
+		Vector3 floorMax = new Vector3(floor.GetComponent<Renderer>().bounds.max.x, floor.GetComponent<Renderer>().bounds.max.y, 0);
 		if (cameraMin.x < floorMin.x){
 			correction.x += floorMin.x - cameraMin.x;
 		}
@@ -106,8 +106,8 @@ public class PlayerCharacter : FightingEntity {
 		if (worldCamera.transform.position.y < floorMin.y){
 			correction.y += floorMin.y - worldCamera.transform.position.y;
 		}
-		if (cameraMax.y > bar.renderer.bounds.max.y){
-			correction.y += bar.renderer.bounds.max.y - cameraMax.y;
+		if (cameraMax.y > bar.GetComponent<Renderer>().bounds.max.y){
+			correction.y += bar.GetComponent<Renderer>().bounds.max.y - cameraMax.y;
 		}
 		if (shakyCam != 0) {
 			shakyCam--;

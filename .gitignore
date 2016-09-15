@@ -278,3 +278,13 @@ BarCrawl.userprefs
 Library/EditorUserBuildSettings.asset
 
 ProjectSettings/EditorBuildSettings.asset
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+obj/Debug/Assembly-CSharp.csproj.FileListAbsolute.txt
+obj/Debug/Assembly-CSharp.csprojResolveAssemblyReference.cache
+obj/Debug/Assembly-CSharp.dll
+obj/Debug/Assembly-CSharp.pdb
+obj/Debug/Assembly-CSharp-Editor.csproj.FileListAbsolute.txt
+obj/Debug/Assembly-CSharp-Editor.csprojResolveAssemblyReference.cache
+obj/Debug/Assembly-CSharp-Editor.dll
+obj/Debug/Assembly-CSharp-Editor.pdb
+DungeonCrawl.v11.suo

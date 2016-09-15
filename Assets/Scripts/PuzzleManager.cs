@@ -25,16 +25,25 @@ public class PuzzleManager : MonoBehaviour {
 	public Texture backdrop;
 	public Texture gray;
 
+    //for tutorial only
 	public Texture cursor;
 
-	public static int upVal;
-	public static int downVal;
-	public static int leftVal;
-	public static int rightVal;
-	public static int attackVal;
-	public static int healVal;
-	public static int maxVal;
-	public static int trackerVal;
+    //weights for random token generation
+	private const int UP_WEIGHT = 75;
+    private const int DOWN_WEIGHT = 75;
+    private const int LEFT_WEIGHT = 75;
+    private const int RIGHT_WEIGHT = 75;
+    private const int ATTACK_WEIGHT = 175;
+    private const int HEAL_WEIGHT = 10;
+    private const int ZERO_MULTIPLIER = 4;
+
+    //counts of token types
+    private int numUps;
+    private int numDowns;
+    private int numLefts;
+    private int numRights;
+    private int numAttacks;
+    private int numHeals;
 	
 	public PlayerCharacter pc;
 	public ParticleSystem matchFadeEffect;
@@ -59,6 +68,17 @@ public class PuzzleManager : MonoBehaviour {
 	public int refillStep;
 	public int fallSpeed = 4;
 	
+    //consts and almost-consts
+    public const int PUZZLE_WIDTH = 6;
+    public const int PUZZLE_HEIGHT = 5;
+    public const int TOTAL_PUZZLE_HEIGHT = 10; //including the shift-down space
+    public static float TOKEN_SIZE
+        {get { return _TOKEN_SIZE;} }
+    private static float _TOKEN_SIZE = Screen.width / PUZZLE_WIDTH; //technically, the size of the token plus its buffer space, but that buffer space is included in the image so...
+    public static float PUZZLE_SCREEN_HEIGHT
+        { get { return _PUZZLE_SCREEN_HEIGHT; } }
+    private static int _PUZZLE_SCREEN_HEIGHT = (int)TOKEN_SIZE * PUZZLE_HEIGHT;
+
 	private Token[,] puzzleGrid;
 	private int[] refillCount;
 	private int[] maxValue;
@@ -104,13 +124,13 @@ public class PuzzleManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		puzzleActive = false;
-
 		
 		gs = new GUIStyle();
 		gs.stretchWidth = true;
 		gs.stretchHeight = true;
-		gs.fixedHeight = 5 * Screen.width / 6;
 		gs.fixedWidth = Screen.width;
+        gs.fixedHeight = PUZZLE_SCREEN_HEIGHT;
+
 
 		currTime = 0;		
 		refillCount = new int[6];
@@ -119,32 +139,25 @@ public class PuzzleManager : MonoBehaviour {
 		maxValue = new int[6];
 		minValue = new int[6];
 		
-		upVal = 150;
-		downVal = 150;
-		leftVal = 150;
-		rightVal = 150;
-		attackVal = 350;
-		healVal = 50;
-		
 		//List of moves to pass to the Game Board
 		setOfMoves = new List<TokenType> ();
 		setOfTokens = new List<List<Token>> ();
 		//Debug.Log (puzzleGrid [0, 0].tokenVal);
 		
-		puzzleCamera = GameObject.Find("Puzzle Camera").camera;
+		puzzleCamera = GameObject.Find("Puzzle Camera").GetComponent<Camera>();
 		//puzzleWorldOrigin = GameObject.Find ("Wood Backdrop").transform.position;
 		
 		//initialize the tokens
-		puzzleGrid = new Token[6, 10];
-		for (int i=0; i<6; i++) {
-			for (int j=0; j<5; j++){
+		puzzleGrid = new Token[PUZZLE_WIDTH, TOTAL_PUZZLE_HEIGHT];
+		for (int i=0; i < PUZZLE_WIDTH; i++) {
+			for (int j = 0; j < PUZZLE_HEIGHT; j++){
 				
 				//get a random token type here
-				int type = getTokenType();
+				TokenType type = generateTokenType();
 				puzzleGrid[i,j] = new Token(i, j, type);
 			}
 			//fill the unseen rows with empty tokens
-			for (int j=5; j<10; j++){
+			for (int j = PUZZLE_HEIGHT; j < TOTAL_PUZZLE_HEIGHT; j++){
 				puzzleGrid[i,j] = new Token(i,j, 0);
 			}
 		}
@@ -468,7 +481,7 @@ public class PuzzleManager : MonoBehaviour {
 				break;
 		}
 		//then the higher
-		for(int i = x + 1; i < 6; i++)
+		for(int i = x + 1; i < PUZZLE_WIDTH; i++)
 		{
 			if(puzzleGrid[i,y].tokenVal.Equals(puzzleGrid[x,y].tokenVal) && !puzzleGrid[i,y].active)
 				matches.Add(puzzleGrid[i,y]);
@@ -502,7 +515,7 @@ public class PuzzleManager : MonoBehaviour {
 				break;
 		}
 		//then the higher
-		for(int i = y + 1; i < 5; i++)
+		for(int i = y + 1; i < PUZZLE_HEIGHT; i++)
 		{
 			if(puzzleGrid[x,i].tokenVal.Equals(puzzleGrid[x,y].tokenVal) && !puzzleGrid[x,i].active)
 				matches.Add(puzzleGrid[x,i]);
@@ -688,7 +701,7 @@ public class PuzzleManager : MonoBehaviour {
 				break;
 		}
 		//then the higher
-		for(int i = y + 1; i < 5; i++)
+		for(int i = y + 1; i < PUZZLE_HEIGHT; i++)
 		{
 			if(puzzleGrid[x,i].tokenVal.Equals(puzzleGrid[x,y].tokenVal) && sourceSet.Contains(puzzleGrid[x,i]))
 				matches.Add(puzzleGrid[x,i]);
@@ -780,10 +793,12 @@ public class PuzzleManager : MonoBehaviour {
 		}
 
 
+
+        //TODO: make this use functions and stuff
 		//Debug.Log ("Running Algorithm");
 		int slotNum = 0;
 		bool foundMove = false;
-		for (int i = 0; i < 6; i++){
+		for (int i = 0; i < PUZZLE_WIDTH; i++){
 			if (puzzleGrid[i,2].tokenVal.Equals(puzzleGrid[i,1].tokenVal)){
 				if (puzzleGrid[i,1].tokenVal.Equals(puzzleGrid[i,0].tokenVal)){
 					puzzleGrid[i,2].used = true;
@@ -828,7 +843,7 @@ public class PuzzleManager : MonoBehaviour {
 				}
 			}
 		}
-		for (int j = 0; j < 5; j++){
+		for (int j = 0; j < PUZZLE_HEIGHT; j++){
 			if (puzzleGrid[2,j].tokenVal.Equals(puzzleGrid[1,j].tokenVal)){
 				if (puzzleGrid[1,j].tokenVal.Equals(puzzleGrid[0,j].tokenVal)){
 					puzzleGrid[2,j].used = true;
@@ -1019,241 +1034,152 @@ public class PuzzleManager : MonoBehaviour {
 	/// Creates new tokens to fall and refill the grid.  
 	/// Iterates over all of the rows, counting the gaps and then adding that many tokens above.
 	/// </summary>
-	private void RefillTokens(){
+	private void RefillTokens(){  //TODO: randomize refilling order, cause it really matters now
+        countTokens();
+
 		//iterate over all of the columns
-		for (int i=0; i<6; i++) {
+		for (int i=0; i<PUZZLE_WIDTH; i++) {
 			//first reset the refillcount for the column
 			refillCount[i] = 0;
 			//next count the empty spots in the column
-			for (int j=0; j<5; j++){
+			for (int j=0; j<PUZZLE_HEIGHT; j++){
 				if (puzzleGrid[i,j].tokenVal == TokenType.Empty){
 					refillCount[i]++;
 				}
 			}
 			//now add that number of tokens above to refill the lower rows
-			for (int j=5; j<5+refillCount[i]; j++){
+			for (int j=PUZZLE_HEIGHT; j<PUZZLE_HEIGHT+refillCount[i]; j++){
 				//get a random token type here
-				int type = getTokenType();
-				puzzleGrid[i,j].tokenVal = (TokenType)type;
+                puzzleGrid[i, j].tokenVal = generateTokenType();
 				puzzleGrid[i,j].ResetSprite();
 				
 				//so they don't fuck up the match logic
-				//puzzleGrid[i,j].used = false;
 				puzzleGrid[i,j].match = null;
 			}
 		}
 	}
-	
-	private int getTokenType(){
-		int roll = Random.Range(1,1000);
-		int type = 0;
-		if(roll < upVal){
-			type = 1;
-			if (upVal > 75){
-				upVal -= 5;
-				downVal += 1;
-				leftVal += 1;
-				rightVal += 1;
-				attackVal += 1;
-				healVal += 1;
-			}
-		}
-		else if(roll < (downVal+upVal)){
-			type = 2;
-			if (downVal > 75){
-				upVal += 1;
-				downVal -= 5;
-				leftVal += 1;
-				rightVal += 1;
-				attackVal += 1;
-				healVal += 1;
-			}
-		}
-		else if (roll < (leftVal+downVal+upVal)){
-			type = 3;
-			if (leftVal > 75){
-				upVal += 1;
-				downVal += 1;
-				leftVal -= 5;
-				rightVal += 1;
-				attackVal += 1;
-				healVal += 1;
-			}
-		}
-		else if (roll < (rightVal+leftVal+downVal+upVal)){
-			type = 4;
-			if (rightVal > 75){
-				upVal += 1;
-				downVal += 1;
-				leftVal += 1;
-				rightVal -= 5;
-				attackVal += 1;
-				healVal += 1;
-			}
-		}
-		else if (roll < (attackVal+rightVal+leftVal+downVal+upVal)){
-			type = 5;
-			if (attackVal > 175){
-				upVal += 1;
-				downVal += 1;
-				leftVal += 1;
-				rightVal += 1;
-				attackVal -= 5;
-				healVal +=1;
-			}
-		}
-		else if (roll < (healVal+attackVal+rightVal+leftVal+downVal+upVal)){
-			type = 6;
-			if (healVal > 30){
-				upVal += 1;
-				downVal += 1;
-				leftVal += 1;
-				rightVal += 1;
-				attackVal += 1;
-				healVal -= 5;
-			}
-		}
-		else {
-			type = 7;
-		}
-		return type;
-	}
-	
-	private int getInverseTokenType(){
-		int roll = Random.Range(1,1000);
-		int type = 0;
-		if(roll < upVal){
-			type = 1;
-			upVal += 5;
-			downVal -= 1;
-			leftVal -= 1;
-			rightVal -= 1;
-			attackVal -= 1;
-			healVal -= 1;
-		}
-		else if(roll < (downVal+upVal)){
-			type = 2;
-			upVal -= 1;
-			downVal += 5;
-			leftVal -= 1;
-			rightVal -= 1;
-			attackVal -= 1;
-			healVal -= 1;
-		}
-		else if (roll < (leftVal+downVal+upVal)){
-			type = 3;
-			upVal -= 1;
-			downVal -= 1;
-			leftVal += 5;
-			rightVal -= 1;
-			attackVal -= 1;
-			healVal -= 1;
-		}
-		else if (roll < (rightVal+leftVal+downVal+upVal)){
-			type = 4;
-			upVal -= 1;
-			downVal -= 1;
-			leftVal -= 1;
-			rightVal += 5;
-			attackVal -= 1;
-			healVal -= 1;
-		}
-		else if (roll < (attackVal+rightVal+leftVal+downVal+upVal)){
-			type = 5;
-			upVal -= 1;
-			downVal -= 1;
-			leftVal -= 1;
-			rightVal -= 1;
-			attackVal += 5;
-			healVal -=1;
-		}
-		else if (roll < (healVal+attackVal+rightVal+leftVal+downVal+upVal)){
-			type = 6;
-			upVal -= 1;
-			downVal -= 1;
-			leftVal -= 1;
-			rightVal -= 1;
-			attackVal -= 1;
-			healVal += 5;
-		}
-		else {
-			type = 7;
-		}
-		return type;
-	}
-	private int codyTokenType(){
-		upVal = 1;
-		downVal = 1;
-		leftVal = 1;
-		rightVal = 1;
-		attackVal = 1;
-		healVal = 1;
-		maxVal = 0;
-		int roll = Random.Range(1,30);
-		int type = 0;
-		for (int i=0; i<6; i++) {
-			for (int j=0; j<5; j++){
-				if (puzzleGrid[i,j].tokenVal == TokenType.Up){
-					upVal++;
-				}
-				if (puzzleGrid[i,j].tokenVal == TokenType.Down){
-					downVal++;
-				}
-				if (puzzleGrid[i,j].tokenVal == TokenType.Left){
-					leftVal++;
-				}
-				if (puzzleGrid[i,j].tokenVal == TokenType.Right){
-					rightVal++;
-				}
-				if (puzzleGrid[i,j].tokenVal == TokenType.Attack){
-					attackVal++;
-				}
-				if (puzzleGrid[i,j].tokenVal == TokenType.Heal){
-					healVal++;
-				}
-			}
-		}
-		for (int i=0; i<6; i++) {
-			if(upVal > maxVal){ maxVal = upVal; trackerVal=1;}
-			if(downVal > maxVal){ maxVal = downVal; trackerVal=2;}
-			if(leftVal > maxVal){ maxVal = leftVal; trackerVal=3;}
-			if(rightVal > maxVal){ maxVal = rightVal; trackerVal=4;}
-			if(attackVal > maxVal){ maxVal = attackVal; trackerVal=5;}
-			if(healVal > maxVal){ maxVal = healVal; trackerVal=6;}
-			
-			maxValue[i] = maxVal;
-			minValue[5-i] = trackerVal;
-			
-			if(trackerVal==1) upVal=0;
-			if(trackerVal==2) downVal=0;
-			if(trackerVal==3) leftVal=0;
-			if(trackerVal==4) rightVal=0;
-			if(trackerVal==5) attackVal=0;
-			if(trackerVal==6) healVal=0;
-			maxVal=0;
-			trackerVal=0;
-		}
-		if (roll < maxValue [0]) {
-			type = minValue [0];
-		}
-		else if (roll < maxValue [1]) {
-			type = minValue[1];
-		}
-		else if (roll < maxValue [2]) {
-			type = minValue[2];
-		}
-		else if (roll < maxValue [3]) {
-			type = minValue[3];
-		}
-		else if (roll < maxValue [4]) {
-			type = minValue[4];
-		}
-		else if (roll < maxValue [5]) {
-			type = minValue[5];
-		}
-		return type;
-	}
-	
+
+    /// <summary>
+    /// Counts the number of tokens of each type, and puts those values into the "num[Type]s" variables.
+    /// </summary>
+    private void countTokens()
+    {
+        numUps = 0;
+        numDowns = 0;
+        numLefts = 0;
+        numRights = 0;
+        numAttacks = 0;
+        numHeals = 0;
+
+        for (int i = 0; i < PUZZLE_WIDTH; i++)
+        {
+            for (int j = 0; j < PUZZLE_HEIGHT; j++)
+            {
+                switch (puzzleGrid[i, j].tokenVal)
+                {
+                    
+                    case TokenType.Up:
+                        numUps++;
+                        break;
+                    case TokenType.Down:
+                        numDowns++;
+                        break;
+                    case TokenType.Left:
+                        numLefts++;
+                        break;
+                    case TokenType.Right:
+                        numRights++;
+                        break;
+                    case TokenType.Attack:
+                        numAttacks++;
+                        break;
+                    case TokenType.Heal:
+                        numHeals++;
+                        break;
+                    case TokenType.Empty:
+                        break;
+                    default:
+                        throw new System.InvalidOperationException("Unrecognized token type!");
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Generates a random token type using the following formula:
+    /// numChancesForType = typeValue / (numTokensOfType ^ 2)
+    /// (Or, if numTokens = 0, numChances = typeValue * 4)
+    /// This formula results in very high chances at low numbers, but relatively even low chances as numbers get higher.
+    /// </summary>
+    /// <returns></returns>
+    private TokenType generateTokenType()
+    {
+        int upChances;
+        if (numUps == 0)
+            upChances = UP_WEIGHT * 4;
+        else
+            upChances = Mathf.CeilToInt(UP_WEIGHT / (numUps * numUps * 1.0f));
+        int downChances;
+        if (numDowns == 0)
+            downChances = DOWN_WEIGHT * 4;
+        else
+            downChances = Mathf.CeilToInt(DOWN_WEIGHT / (numDowns * numDowns * 1.0f));
+        int leftChances;
+        if (numLefts == 0)
+            leftChances = LEFT_WEIGHT * 4;
+        else 
+            leftChances = Mathf.CeilToInt(LEFT_WEIGHT / (numLefts * numLefts * 1.0f));
+        int rightChances;
+        if (numRights == 0)
+            rightChances = RIGHT_WEIGHT * 4;
+        else 
+            rightChances = Mathf.CeilToInt(RIGHT_WEIGHT / (numRights * numRights * 1.0f));
+        int attackChances;
+        if (numAttacks == 0)
+            attackChances = ATTACK_WEIGHT * 4;
+        else 
+            attackChances = Mathf.CeilToInt(ATTACK_WEIGHT / (numAttacks * numAttacks * 1.0f));
+        int healChances;
+        if (numHeals == 0)
+            healChances = HEAL_WEIGHT * 4;
+        else
+            healChances = Mathf.CeilToInt(HEAL_WEIGHT / (numHeals * numHeals * 1.0f));
+
+        int roll = Random.Range(0, upChances + downChances + leftChances + rightChances + attackChances + healChances);
+
+        if (roll < upChances)
+        {
+            numUps++;
+            return TokenType.Up;
+        }
+        else if (roll < upChances + downChances)
+        {
+            numDowns++;
+            return TokenType.Down;
+        }
+        else if (roll < upChances + downChances + leftChances)
+        {
+            numLefts++;
+            return TokenType.Left;
+        }
+        else if (roll < upChances + downChances + leftChances + rightChances)
+        {
+            numRights++;
+            return TokenType.Right;
+        }
+        else if (roll < upChances + downChances + leftChances + rightChances + attackChances)
+        {
+            numAttacks++;
+            return TokenType.Attack;
+        }
+        else if (roll < upChances + downChances + leftChances + rightChances + attackChances + healChances)
+        {
+            numHeals++;
+            return TokenType.Heal;
+        }
+        else
+            throw new System.ApplicationException("Rolled a nonexistent type?");
+    }
 	
 	private void tutorialBoard(){
 		puzzleGrid[0,0].tokenVal = TokenType.Heal;
@@ -1325,12 +1251,12 @@ public class PuzzleManager : MonoBehaviour {
 	
 	private bool ShiftDownAtOnce(){
 		bool shifts = false;
-		for (int j=1; j<10; j++){
-			for (int i=0; i<6; i++){
+		for (int j=1; j<TOTAL_PUZZLE_HEIGHT; j++){
+			for (int i=0; i<PUZZLE_WIDTH; i++){
 				if(puzzleGrid[i,j-1] != null && puzzleGrid[i,j] != null && puzzleGrid[i,j-1].tokenVal == TokenType.Empty){
 					puzzleGrid[i, j-1].tokenVal = puzzleGrid[i, j].tokenVal;
 					puzzleGrid[i, j].tokenVal = TokenType.Empty;
-					if (j < 5){
+					if (j < PUZZLE_HEIGHT){
 						shifts = true;
 						//Debug.Log ("Shifts Happened");
 					}
@@ -1346,13 +1272,13 @@ public class PuzzleManager : MonoBehaviour {
 	private bool ShiftTokensInData(){
 		bool shifts = false;
 		//shift the tokens in data alone.
-		for (int i=0; i<6; i++) {
-			for (int j=1; j<10; j++) {
+		for (int i=0; i<PUZZLE_WIDTH; i++) {
+			for (int j=1; j<TOTAL_PUZZLE_HEIGHT; j++) {
 				if (puzzleGrid [i, j - 1].tokenVal == TokenType.Empty) {
 					Token temp = puzzleGrid [i, j - 1];
 					puzzleGrid [i, j - 1] = puzzleGrid [i, j];
 					puzzleGrid [i, j] = temp;
-					if (j < 5) {
+					if (j < PUZZLE_HEIGHT) {
 						shifts = true;
 					}
 				}
@@ -1368,8 +1294,8 @@ public class PuzzleManager : MonoBehaviour {
 	private bool ShiftTokensDownVisually(){
 		bool shifts = false;
 		//shift the tokens in data alone.
-		for (int i=0; i<6; i++) {
-			for (int j=0; j<10; j++) {
+		for (int i=0; i<PUZZLE_WIDTH; i++) {
+			for (int j=0; j<TOTAL_PUZZLE_HEIGHT; j++) {
 				//get the height the tokens should be at
 				Vector2 properHeight = Token.GetCoordsOfPosition(i,j);
 				if (puzzleGrid[i,j].Origin.y < properHeight.y){
@@ -1390,8 +1316,8 @@ public class PuzzleManager : MonoBehaviour {
 	public void OnGUI(){
 		//no need to draw this while menu is active
 		if(!puzzleActive) return;
-		
-		GUI.Box (new Rect (0, Screen.height - (5 * Screen.width / 6), Screen.width, 5 * Screen.height / 6), backdrop, gs);
+
+        GUI.Box(new Rect(0, Screen.height - (PUZZLE_SCREEN_HEIGHT), Screen.width, PUZZLE_SCREEN_HEIGHT), backdrop, gs);
 
 		if (tutorialState == 0) {
 //			Debug.Log("dsfjldsfsd");
@@ -1405,8 +1331,8 @@ public class PuzzleManager : MonoBehaviour {
 	
 	private void drawNormalGUI(){
 		//draw the board
-		for (int i=0; i<6; i++) {
-			for (int j=0; j<5; j++) {
+		for (int i=0; i<PUZZLE_WIDTH; i++) {
+			for (int j=0; j<PUZZLE_HEIGHT; j++) {
 				if (puzzleGrid [i, j].tokenVal == TokenType.Empty)
 					continue;
 				if (puzzleGrid [i, j] != activeToken) {
@@ -1421,25 +1347,29 @@ public class PuzzleManager : MonoBehaviour {
 			}
 			//draw the 6th row if refilling
 			if (refillStep == 3){
-				if (puzzleGrid[i,6].tokenVal == TokenType.Empty) continue;
-				if (puzzleGrid[i, 6] != activeToken){
-					GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,6].drawAlpha);
-					GUI.DrawTexture(puzzleGrid[i,6].location, puzzleGrid[i,6].sprite);
+				if (puzzleGrid[i, PUZZLE_HEIGHT + 1].tokenVal == TokenType.Empty) continue;
+                if (puzzleGrid[i, PUZZLE_HEIGHT + 1] != activeToken)
+                {
+                    GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i, PUZZLE_HEIGHT + 1].drawAlpha);
+                    GUI.DrawTexture(puzzleGrid[i, PUZZLE_HEIGHT + 1].location, puzzleGrid[i, PUZZLE_HEIGHT + 1].sprite);
 				}
 			}
 		}
 		
 		//draw the queue of moves
 		//center-align the queue
-		float centerX = Screen.width/2 - (setOfMoves.Count * Screen.width/16)/2;
-		if (centerX < 0) centerX = 0f;
-		float centerY = Screen.width * 5/6 - Screen.width/6;
+        float QueueTokenSize = Screen.width / 16;
+        float queueX = Screen.width / 2 - (setOfMoves.Count * QueueTokenSize) / 2;
+		if (queueX < 0)
+            queueX = 0f;
+		float centerY = Screen.height - (PUZZLE_SCREEN_HEIGHT + QueueTokenSize);
 		int index = 0;
 		foreach (TokenType t in setOfMoves) {
-			GUI.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-			GUI.DrawTexture(new Rect(centerX + Screen.width/16 * index, centerY, Screen.width/16, Screen.width/16), Token.SpriteOf(t));
+			GUI.color = Color.white;
+            GUI.DrawTexture(new Rect(queueX + QueueTokenSize * index, centerY, QueueTokenSize, QueueTokenSize), Token.SpriteOf(t));
 			index++;
 		}
+        //TODO: extend queue for multiple rows
 		
 		//draw the active token
 		if (activeToken != null) {
@@ -1468,19 +1398,20 @@ public class PuzzleManager : MonoBehaviour {
 				activeToken.location.y = Screen.height - (Input.mousePosition.y + mouseTokenRelativeLocation.y);
 				
 				//swap around the tiles
-				int a = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
-				int b = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
+				int a = Mathf.FloorToInt (Input.mousePosition.x / TOKEN_SIZE);
+				int b = Mathf.FloorToInt (Input.mousePosition.y / TOKEN_SIZE);
 				
 				//keep the active token on the board
-				if (b > 4){
-					b = 4;
+				if (b >= PUZZLE_HEIGHT){
+					b = PUZZLE_HEIGHT - 1;
 				}
+                //seems off by one, but only because the array starts at 0, as they do.
 				
 				//these keep the active token on the board, but only come up when running it in Unity on the computer.
 				if(b < 0)
 					b=0;
-				if(a > 5)
-					a=5;
+				if(a >= PUZZLE_WIDTH)
+					a=PUZZLE_WIDTH - 1;
 				if(a < 0)
 					a=0;
 				
@@ -1504,9 +1435,8 @@ public class PuzzleManager : MonoBehaviour {
 					activeToken.location.x = 0;
 				if (activeToken.location.x > Screen.width - activeToken.location.width)
 					activeToken.location.x = Screen.width - activeToken.location.width;
-				if (activeToken.location.y < Screen.height - 5.0f/6.0f*Screen.width) {
-					activeToken.location.y = Screen.height - 5.0f/6.0f*Screen.width;
-				}
+                if (activeToken.location.y < Screen.height - PUZZLE_SCREEN_HEIGHT)
+                    activeToken.location.y = Screen.height - PUZZLE_SCREEN_HEIGHT;
 				if (activeToken.location.y > Screen.height - activeToken.location.height)
 					activeToken.location.y = Screen.height - activeToken.location.height;
 				
@@ -1528,10 +1458,10 @@ public class PuzzleManager : MonoBehaviour {
 				
 				//else, if we don't already have an active token	
 			} 
-			else if (activeToken == null && Input.mousePosition.y < 5.0 / 6.0 * Screen.width) {
+			else if (activeToken == null && Input.mousePosition.y < PUZZLE_SCREEN_HEIGHT) {
 				//get the token that the mouse is over, and pick it up
-				int a = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
-				int b = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
+				int a = Mathf.FloorToInt (Input.mousePosition.x / (TOKEN_SIZE));
+				int b = Mathf.FloorToInt (Input.mousePosition.y / (TOKEN_SIZE));
 				activeToken = puzzleGrid [a, b];
 				activeToken.active = true;
 				activeX = a;
@@ -1563,8 +1493,8 @@ public class PuzzleManager : MonoBehaviour {
 	private void drawTutorialGUI(){
 		
 		//draw the board
-		for (int i=0; i<6; i++) {
-			for (int j=0; j<5; j++){
+		for (int i=0; i<PUZZLE_WIDTH; i++) {
+			for (int j=0; j<PUZZLE_HEIGHT; j++){
 				if (puzzleGrid[i,j].tokenVal == TokenType.Empty) continue;
 				if (puzzleGrid[i, j] != activeToken){
 					if((GameObject.Find ("Player").GetComponent<TurnManager>().turn!=0 && refillStep == 4)|| (puzzleGrid[i,j].highlight == false && refillStep == 5)) {
@@ -1578,10 +1508,11 @@ public class PuzzleManager : MonoBehaviour {
 			}
 			//draw the 6th row if refilling
 			if (refillStep == 3){
-				if (puzzleGrid[i,6].tokenVal == TokenType.Empty) continue;
-				if (puzzleGrid[i, 6] != activeToken){
-					GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i,6].drawAlpha);
-					GUI.DrawTexture(puzzleGrid[i,6].location, puzzleGrid[i,6].sprite);
+				if (puzzleGrid[i, PUZZLE_HEIGHT + 1].tokenVal == TokenType.Empty) continue;  //TODO: is it actually correct to be HEIGHT + 1??
+                if (puzzleGrid[i, PUZZLE_HEIGHT + 1] != activeToken)
+                {
+                    GUI.color = new Color(1.0f, 1.0f, 1.0f, puzzleGrid[i, PUZZLE_HEIGHT + 1].drawAlpha);
+                    GUI.DrawTexture(puzzleGrid[i, PUZZLE_HEIGHT + 1].location, puzzleGrid[i, PUZZLE_HEIGHT + 1].sprite);
 					//GUI.Box(puzzleGrid[i,j].location, "i: " + i.ToString() + "j: " + j.ToString());
 				}
 			}
@@ -1596,29 +1527,33 @@ public class PuzzleManager : MonoBehaviour {
 		
 		//draw the queue of moves
 		//center-align the queue
-		float centerX = Screen.width/2 - (setOfMoves.Count * Screen.width/16)/2;
-		if (centerX < 0) centerX = 0f;
-		float centerY = Screen.width * 5/6 - Screen.width/6;
+        float QueueTokenSize = Screen.width / 16;
+        float centerX = Screen.width / 2 - (setOfMoves.Count * QueueTokenSize) / 2;
+		if (centerX < 0)
+            centerX = 0f;
+        float centerY = Screen.height - (PUZZLE_SCREEN_HEIGHT + QueueTokenSize);
 		int index = 0;
 		foreach (TokenType t in setOfMoves) {
-			GUI.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-			GUI.DrawTexture(new Rect(centerX + Screen.width/16 * index, centerY, Screen.width/16, Screen.width/16), Token.SpriteOf(t));
+			GUI.color = Color.white;
+            GUI.DrawTexture(new Rect(centerX + QueueTokenSize * index, centerY, QueueTokenSize, QueueTokenSize), Token.SpriteOf(t));
 			index++;
 		}
 		
 		//draw tutorial cursor after turn is over
 		if (refillStep==5 && activeToken == null) {
 			GUI.color = Color.white;
-			if (ui.tut4) GUI.DrawTexture(new Rect(Screen.width/25, Screen.height/45 + 4*Screen.width/25, Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f), cursor);
-			else GUI.DrawTexture(new Rect(x, y, puzzleGrid[m,n].location.width, puzzleGrid[m,n].location.height), cursor);
+			if (ui.tut4)
+                GUI.DrawTexture(new Rect(Screen.width/25, Screen.height/45 + 4*Screen.width/25, TOKEN_SIZE, TOKEN_SIZE), cursor);
+			else
+                GUI.DrawTexture(new Rect(x, y, puzzleGrid[m,n].location.width, puzzleGrid[m,n].location.height), cursor);
 			drawn = true;
 		}
 	}
 	
 	private void handleTutorialBoardLogic(){
 		//get the token space that the mouse is over
-		int a = Mathf.FloorToInt (Input.mousePosition.x / (Screen.width * 1.0f / 6.0f));
-		int b = Mathf.FloorToInt (Input.mousePosition.y / (Screen.width * 1.0f / 6.0f));
+		int a = Mathf.FloorToInt (Input.mousePosition.x / TOKEN_SIZE);
+		int b = Mathf.FloorToInt (Input.mousePosition.y / TOKEN_SIZE);
 		
 		switch(tutorialState) {
 		case 0:
@@ -1635,10 +1570,12 @@ public class PuzzleManager : MonoBehaviour {
 				y = puzzleGrid[m,n].location.y + 25;
 				locx = x;
 				locy = y;
-			} else if (drawn) { 
-				//animate the cursor if positions were already set and it was alreay drawn at the intial position
+			} 
+            else if (drawn) { 
+				//animate the cursor if positions were already set and it was already drawn at the intial position
 				y -= Time.deltaTime * 75;
-				if (locy - y >= Screen.height/6) y = locy;
+				if (locy - y >= TOKEN_SIZE)
+                    y = locy;
 			}
 			//we have yet to have a token picked up, so wait for a token to be picked up and check if it is the right token
 			if (refillStep == 5 && Input.GetMouseButton (0) && pc.GetComponent<PlayerCharacter>().health > 0 && pc.GetComponent<PlayerCharacter>().executeMode!=true && pc.GetComponent<TurnManager>().turn == 1){
@@ -2023,7 +1960,7 @@ public class Token{
 	}
 	
 	public static Vector2 GetCoordsOfPosition(int i, int j){
-		return new Vector2 (i * (Screen.width / 6.0f), Screen.height - (1 + j) * (Screen.width / 6.0f));
+		return new Vector2 (i * PuzzleManager.TOKEN_SIZE, Screen.height - (1 + j) * PuzzleManager.TOKEN_SIZE);
 	}
 	
 	/// <summary>
@@ -2032,7 +1969,7 @@ public class Token{
 	/// <returns>The position of coords.</returns>
 	/// <param name="coords">Coords.</param>
 	public static Vector2 GetPositionOfCoords(Vector2 coords){
-		return new Vector2 (Mathf.FloorToInt (coords.x * (6.0f / Screen.width)), Mathf.FloorToInt((Screen.height - coords.y) * (6.0f / Screen.width) - 1));
+        return new Vector2(Mathf.FloorToInt(coords.x / PuzzleManager.TOKEN_SIZE), Mathf.FloorToInt(((Screen.height - coords.y) / PuzzleManager.TOKEN_SIZE) - 1));
 	}
 	
 	public static Texture SpriteOf(TokenType t){
@@ -2064,44 +2001,50 @@ public class Token{
 		}
 		return sprite;
 	}
-	
-	public Token(int xLoc, int yLoc, int type){
-		this.seen = false;
-		this.used = false;
-		this.tokenVal = (TokenType)type;
-		this.drawAlpha = 1.0f;
-		
-		puzzX = xLoc;
-		puzzY = yLoc;
-		
-		location = new Rect (Screen.width * (xLoc / 6.0f), Screen.height - Screen.width / 6.0f * (1 + yLoc), Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f);
-		
-		switch ((TokenType)type) {
-		case TokenType.Attack:
-			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenAttack;
-			break;
-		case TokenType.Down:
-			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenDown;
-			break;
-		case TokenType.Left:
-			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenLeft;
-			break;
-		case TokenType.Right:
-			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenRight;
-			break;
-		case TokenType.Up:
-			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenUp;
-			break;
-		case TokenType.Heal:
-			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenHeal;
-			break;
-		case TokenType.Empty:
-			sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenEmpty;
-			break;
-		default:
-			break;
-		}
-	}
+
+    public Token(int xLoc, int yLoc, int type)
+        : this(xLoc, yLoc, (TokenType)type)
+    { }
+
+    public Token(int xLoc, int yLoc, TokenType type)
+    {
+        this.seen = false;
+        this.used = false;
+        this.tokenVal = type;
+        this.drawAlpha = 1.0f;
+
+        puzzX = xLoc;
+        puzzY = yLoc;
+
+        location = new Rect(xLoc * PuzzleManager.TOKEN_SIZE, Screen.height - (1 + yLoc) * PuzzleManager.TOKEN_SIZE, PuzzleManager.TOKEN_SIZE, PuzzleManager.TOKEN_SIZE);
+
+        switch (type)
+        {
+            case TokenType.Attack:
+                sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenAttack;
+                break;
+            case TokenType.Down:
+                sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenDown;
+                break;
+            case TokenType.Left:
+                sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenLeft;
+                break;
+            case TokenType.Right:
+                sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenRight;
+                break;
+            case TokenType.Up:
+                sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenUp;
+                break;
+            case TokenType.Heal:
+                sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenHeal;
+                break;
+            case TokenType.Empty:
+                sprite = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().tokenEmpty;
+                break;
+            default:
+                break;
+        }
+    }
 	
 	public void ResetSprite(){
 		switch (tokenVal) {
@@ -2132,7 +2075,7 @@ public class Token{
 	}
 	
 	public void Reposition(int xLoc, int yLoc){
-		location = new Rect (Screen.width * (xLoc / 6.0f), Screen.height - Screen.width / 6.0f * (1 + yLoc), Screen.width * 1.0f / 6.0f, Screen.width * 1.0f / 6.0f);
+        location = new Rect(xLoc * PuzzleManager.TOKEN_SIZE, Screen.height - (1 + yLoc) * PuzzleManager.TOKEN_SIZE, PuzzleManager.TOKEN_SIZE, PuzzleManager.TOKEN_SIZE);
 		
 		puzzX = xLoc;
 		puzzY = yLoc;
