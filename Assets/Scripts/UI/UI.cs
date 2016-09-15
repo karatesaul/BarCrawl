@@ -179,12 +179,6 @@ public class UI : MonoBehaviour {
 			if (tm.coolDownTimer > 4) {
 				if (GUI.Button (new Rect(Screen.width/25, Screen.height/45, 4*Screen.width/25, 4*Screen.height/45), beer3, buttonStyle) && tm.turn ==1) {
 					if (pm.tutorialState == 0){
-						PuzzleManager.upVal = 150;
-						PuzzleManager.downVal = 150;
-						PuzzleManager.leftVal = 150;
-						PuzzleManager.rightVal = 150;
-						PuzzleManager.attackVal = 350;
-						PuzzleManager.healVal = 50;
 						pm.ResetPuzzle();
 						tm.coolDownTimer = 0;
 					} else if (pm.tutorialState == 13){
